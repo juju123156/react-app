@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paging.demo.mapper.EqpMapper">
+
+    <sql id="getEqpInfList">
+        SELECT
+            CEILING(COUNT(*) OVER () / #{perPageNum}) AS page, COUNT(*) OVER () AS totalCnt
+		     , ROW_NUMBER() OVER(ORDER BY EQP_ID) AS num
+             , ef.EQP_ID
+             , ef.EQP_NM
+             , ef.EQP_CL_CD
+             , ef.EQP_OP_STAT_CD
+             , ef.JRDT_HDOFC_CD
+             , ef.RDT_TEAM_ORG_CD
+             , ef.EQP_SRNO
+             , ef.MST_IP
+             , ef.LAT_CODN
+             , ef.LNG_CODN
+             , ef.OP_CHRR_ID
+             , DATE_FORMAT(ef.REGRT_DT, '%Y-%m-%d %H:%i:%S') AS REGRT_DT
+             , ef.REGRT_ID
+             , DATE_FORMAT(ef.UDT_DT, '%Y-%m-%d %T') AS UDT_DT
+             , ef.UDT_ID
+             , co.COM_CD_NM AS EQP_OP_STAT_CD_NM
+             , co2.COM_CD_NM AS EQP_CL_CD_NM
+             , co3.COM_CD_NM AS JRDT_HDOFC_CD_NM
+             , co4.COM_CD_NM AS RDT_TEAM_ORG_CD_NM
+        FROM
+            EQP_INF ef
+                LEFT JOIN COM_CD co
+                    ON ef.EQP_OP_STAT_CD = co.COM_CD
+                    AND co.GRP_CD = '06'
+                LEFT JOIN COM_CD co2
+                    ON ef.EQP_CL_CD = co2.COM_CD
+                    AND co2.GRP_CD = '05'
+                LEFT JOIN COM_CD co3
+                    ON ef.JRDT_HDOFC_CD  = co3.COM_CD
+                    AND co3.GRP_CD = '07'
+                LEFT JOIN COM_CD co4
+                    ON ef.RDT_TEAM_ORG_CD  = co4.COM_CD
+                    AND co4.GRP_CD = '08'
+    </sql>
+
+    <select id="getEqpInfListPaging" resultType="EqpDto" >
+        SELECT
+            AA.*
+        FROM
+            (
+                <include refid="getEqpInfList" />
+            ) AA
+        WHERE 1 = 1
+        AND AA.num > (#{page} - 1) * #{perPageNum} AND AA.num <![CDATA[ <= ]]> #{page} * #{perPageNum}
+    </select>
+
+</mapper>
