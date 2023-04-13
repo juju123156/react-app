@@ -10,24 +10,23 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 const Component = (props) => {
   // const [rowData,setRowData] = useState(null);
   // const [columnDefs, setColumnDefs] = useState(null);
-  const [isLoad, setIsLoad] = useState(false);
+  // const isContent = props.isContent;  
+  const [isContent, setIsContent] = useState(false);
+  const sendData = (rowData, columnDefs) => {};
 
-  const sendData = (rowData, columnDefs) => {
-     
-  }
+  const clickRender =()=>{
+    alert("click");
+    // console.log(content);
+    setIsContent(!isContent)
+  };
+ 
+  if(isContent) {
+    return  <AgGrid sendData={sendData} />
+  } 
+  
+  return <button onClick={clickRender}>표 보여주기</button>
 
-  // button on off체크 함수 
-  const loadData = () =>{
-    setIsLoad(!isLoad);
-  }
-
-  return (
-
-    <div>
-      <button onClick={loadData}>표 불러오기</button>
-      {isLoad && <AgGrid sendData={sendData}/>}
-    </div>
-  );
 };
 
 export default Component;
+
