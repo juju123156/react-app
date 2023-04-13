@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>TMS - T Wifi Zone Management System</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link href="assets/js/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link href="assets/js/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header>
+		<h1><span>SK Telecom</span></h1>
+		<h2><span>TMS</span></h2>
+		<nav class="mu-gnb fl">
+			<!-- Depth1 -->
+			<ul class="mu-h-menu fl">
+				<li><a href="#"><span>지하철 관리</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>품질 현황</span></a></li>
+						<li><a href="#"><span>품질 현황</span></a></li>
+						<li><a href="#"><span>품질 현황 품질</span></a></li>
+					</ul>
+				</li>
+				<li class="active"><a href="#"><span>L2 관리</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>장비 관리</span></a></li>
+						<li><a href="#"><span>장비 관리</span></a></li>
+						<li><a href="#"><span>장비 관리</span></a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="mu-top-menu fr">
+				<div class="session">
+					<i class="mu-icon-img clock"></i>
+					<span>세션 유지 시간 : 60분</span>
+					<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i></button>
+				</div>
+				<div class="user-info">
+					<i class="mu-icon-img user"></i>
+					<span>MG_2010님</span>
+				</div>
+				<div class="">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img logout"></i></button>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="mu-container">
+		<section></section>
+	</div>
+
+	<!-- dialog 배경 -->
+	<div class="mu-dialog-background"></div>
+
+	<!-- dialog : L2 스위치 장비관리 -->
+	<div class="mu-dialog mu-fix-foot" style="top:120px;left:50px;width:830px;height:540px;">
+		<div class="mu-dialog-head">
+			<span class="mu-title">L2 스위치 장비관리 (등록/수정)</span>
+			<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img close"></i></button>
+		</div>
+		<div class="mu-dialog-body">
+			<table class="mu-formbox">
+				<colgroup>
+					<col width="140">
+					<col>
+					<col width="110">
+					<col>
+					<col width="80">
+					<col>
+				</colgroup>
+				<tbody>
+					<tr>
+						<th><label>본부</label></th>
+						<td>
+							<div class="mu-selectbox">
+								<button class="mu-value">list default</button>
+								<ul class="mu-list">
+									<li value="1">list option1</li>
+								</ul>
+							</div>
+						</td>
+						<th><label>팀</label></th>
+						<td>
+							<div class="mu-selectbox on">
+								<button class="mu-value">list default list default list default</button>
+								<ul class="mu-list">
+									<li value="1">list option1</li>
+									<li value="1">list option1 list option1 list option1</li>
+									<li value="1">list option1</li>
+								</ul>
+							</div>
+						</td>
+						<th><label>ONS팀</label></th>
+						<td>
+							<div class="mu-selectbox">
+								<button class="mu-value">list default</button>
+								<ul class="mu-list">
+									<li value="1">list option1</li>
+								</ul>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th><label>L2 제조사</label></th>
+						<td>
+							<div class="mu-selectbox">
+								<button class="mu-value">list default</button>
+								<ul class="mu-list">
+									<li value="1">list option1</li>
+								</ul>
+							</div>
+						</td>
+						<th><label>L2 모델명</label></th>
+						<td>
+							<div class="mu-selectbox">
+								<button class="mu-value">list default</button>
+								<ul class="mu-list">
+									<li value="1">list option1</li>
+								</ul>
+							</div>
+						</td>
+						<th></th>
+						<td></td>
+					</tr>
+					<tr>
+						<th><label>L2 MAC</label></th>
+						<td>
+							<input type="text" class="mu-input">
+						</td>
+						<th><label>L2 IP</label></th>
+						<td>
+							<input type="text" class="mu-input">
+						</td>
+						<th><label>L2 장비명</label></th>
+						<td>
+							<input type="text" class="mu-input">
+						</td>
+					</tr>
+					<tr>
+						<th><label>UpLink 포트번호</label></th>
+						<td>
+							<input type="text" class="mu-input">
+						</td>
+						<th></th>
+						<td></td>
+						<th></th>
+						<td></td>
+					</tr>
+					<tr>
+						<th><label>상위 장비명 / 대국정보</label></th>
+						<td colspan="3">
+							<input type="text" class="mu-input">
+						</td>
+						<th></th>
+						<td></td>
+					</tr>
+					<tr>
+						<th><label>설치 위치 도로명주소</label></th>
+						<td colspan="5">
+							<div class="mu-vgroup">
+								<div class="mu-item-group">
+									<input type="text" class="mu-input">
+									<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img search"></i><span>검색</span></button>
+								</div>
+								<input type="text" class="mu-input">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th><label>설치 위치 상세</label></th>
+						<td colspan="5">
+							<input type="text" class="mu-input">
+						</td>
+					</tr>
+					<tr>
+						<th><label>설치 업체명 MAC</label></th>
+						<td>
+							<input type="text" class="mu-input">
+						</td>
+						<th><label>정보 등록/수정자</label></th>
+						<td colspan="3">
+							<input type="text" class="mu-input">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="mu-dialog-foot">
+			<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img check"></i><span>저장</span></button>
+			<button type="button" class="mu-btn mu-btn-icon mu-btn-close"><i class="mu-icon-img close"></i><span>닫기</span></button>
+		</div>
+	</div>
+	<!-- //dialog -->
+
+	<!-- dialog : 도로명 주소 검색 -->
+	<div class="mu-dialog mu-fix-foot" style="top:120px;left:900px;width:600px;height:580px;">
+		<div class="mu-dialog-head">
+			<span class="mu-title">도로명 주소 검색</span>
+			<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img close"></i></button>
+		</div>
+		<div class="mu-dialog-body">
+			<div class="mu-grid-wrap">
+				<div class="mu-grid-top">
+					<div class="mu-item-group">
+						<label>설치 위치 도로명주소</label>
+						<input type="text" class="mu-input">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img search"></i><span>검색</span></button>
+					</div>
+				</div>
+				<div class="mu-grid-body">
+					<table id="jqGrid" style="width:100%;height:100%;"></table>
+				</div>
+			</div>
+		</div>
+		<div class="mu-dialog-foot">
+			<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img check"></i><span>저장</span></button>
+			<button type="button" class="mu-btn mu-btn-icon mu-btn-close"><i class="mu-icon-img close"></i><span>닫기</span></button>
+		</div>
+	</div>
+	<!-- //dialog -->
+
+	<!-- alert : 삭제 -->
+	<div class="mu-alert" style="top:750px;left:50px;width:525px;">
+		<div class="mu-alert-head">
+			<span class="mu-title">삭제</span>
+			<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img close"></i></button>
+		</div>
+		<div class="mu-alert-body">
+			<i class="mu-icon-img alert"></i>
+			<span class="mu-alert-msg">OOOOOO 장비를 삭제 하시겠습니까?</span>
+		</div>
+		<div class="mu-alert-foot">
+			<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img check"></i><span>저장</span></button>
+			<button type="button" class="mu-btn mu-btn-icon mu-btn-close"><i class="mu-icon-img close"></i><span>닫기</span></button>
+		</div>
+	</div>
+	<!-- //alert -->
+
+	<!-- alert : 오류 -->
+	<div class="mu-alert" style="top:750px;left:650px;width:400px;">
+		<div class="mu-alert-head">
+			<span class="mu-title">오류</span>
+			<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img close"></i></button>
+		</div>
+		<div class="mu-alert-body">
+			<i class="mu-icon-img alert"></i>
+			<span class="mu-alert-msg">L2 모델명은 필수 선택 항목입니다.</span>
+		</div>
+	</div>
+	<!-- //alert -->
+
+	<!-- alert : 정보 -->
+	<div class="mu-alert" style="top:750px;left:1100px;width:400px;">
+		<div class="mu-alert-head">
+			<span class="mu-title">정보</span>
+			<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img close"></i></button>
+		</div>
+		<div class="mu-alert-body">
+			<i class="mu-icon-img info"></i>
+			<span class="mu-alert-msg">L2 모델명은 필수 선택 항목입니다.</span>
+		</div>
+	</div>
+	<!-- //alert -->
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.min.js"></script>
+	<script src="assets/js/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript"> 
+		var mydata = [
+			{ id: "1", invdate: "2007-10-01", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
+			{ id: "2", invdate: "2007-10-02", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
+			{ id: "3", invdate: "2007-09-01", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" },
+			{ id: "4", invdate: "2007-10-04", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
+			{ id: "5", invdate: "2007-10-05", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
+			{ id: "6", invdate: "2007-09-06", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" },
+			{ id: "7", invdate: "2007-10-04", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
+			{ id: "8", invdate: "2007-10-03", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
+			{ id: "9", invdate: "2007-09-01", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" }
+		];
+
+		$(document).ready(function () {
+			$("#jqGrid").jqGrid({
+				datatype: "local",
+				data: mydata,
+				//autowidth: true,
+				width: $("#jqGrid").width(),
+				height: $("#jqGrid").height(),
+				shrinkToFit:true,
+				colModel: [
+					{ label: 'Inv No', name: 'id', width: 75, key:true },
+					{ label: 'Date', name: 'invdate', width: 90 },
+					{ label: 'Client', name: 'name', width: 100 },
+					{ label: 'Amount', name: 'amount', width: 80 },
+					{ label: 'Tax', name: 'tax', width: 80 },
+					{ label: 'Total', name: 'total', width: 80 },
+					{ label: 'Notes', name: 'note', width: 150 }
+				]
+			});
+		});
+
+		// mu-search-group 의 tr 수에 따라 mu-grid-wrap height 구하기
+		var searchHeight = $(".mu-search-group").height();
+		$(".mu-grid-wrap").css('height','calc(100% - '+ searchHeight +'px)');
+
+	</script>
+</body>
+</html>

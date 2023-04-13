@@ -1,0 +1,336 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>TMS - T Wifi Zone Management System</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+	<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham-dark.css">
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="app">
+	<header>
+		<h1><span>SK Telecom</span></h1>
+		<h2><span>TMS</span></h2>
+		<nav class="mu-gnb fl">
+			<!-- Depth1 -->
+			<ul class="mu-h-menu fl">
+				<li><a href="#"><span>Dashboard</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>장비 상황판</span></a></li>
+						<li><a href="#"><span>RM 상황판</span></a></li>
+						<li><a href="#"><span>지하철 관리</span></a></li>
+					</ul>
+				</li>
+				<li class="active"><a href="#"><span>현황</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>장비 현황</span></a></li>
+						<li><a href="#"><span>장애 현황</span></a></li>
+						<li><a href="#"><span>DNS Manager</span></a></li>
+						<li><a href="#"><span>AP 리셋 통계</span></a></li>
+						<li><a href="#"><span>장시간 미복구 알람</span></a></li>
+						<li><a href="#"><span>다발 알람</span></a></li>
+					</ul>
+				</li>
+				<li><a href="#"><span>제어</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>MMI</span></a></li>
+					</ul>
+				</li>
+				<li><a href="#"><span>설정</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>일반</span><i class="mu-icon arrow"></i></a>
+							<ul class="mu-list">
+								<li><a href="#"><span>AP 비밀번호 설정</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div class="mu-top-menu fr">
+				<div class="session">
+					<i class="mu-icon-img clock"></i>
+					<span>세션 유지 시간 : 60분</span>
+					<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i></button>
+				</div>
+				<div class="user-info">
+					<i class="mu-icon-img user"></i>
+					<span>MG_2010님</span>
+				</div>
+				<div class="">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img logout"></i></button>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="mu-container">
+		<section>
+			<div class="mu-content-top">
+				<h3 class="mu-title"><i class="mu-icon-img list"></i><span>다발 알람</span><span class="mu-title-info">＊ 알람이 중복 발생한 장비</span></h3>
+			</div>
+			<div class="mu-content">
+				<div class="mu-search-group">
+					<div class="mu-search-item">
+						<table>
+							<tbody>
+								<tr>
+									<th><label>발생건</label></th>
+									<td>
+										<input type="text" class="mu-input">
+									</td>
+									<th><label>발생일</label></th>
+									<td>
+										<input type="text" class="mu-input">
+									</td>
+									<th><label>알람코드</label></th>
+									<td>
+										<input type="text" class="mu-input">
+									</td>
+									<th><label>장비명</label></th>
+									<td>
+										<input type="text" class="mu-input">
+									</td>
+									<th><label>제조사</label></th>
+									<td>
+										<div class="mu-selectbox">
+											<button class="mu-value">list default</button>
+											<ul class="mu-list">
+												<li value="1">list option1</li>
+												<li value="2">list option2</li>
+												<li value="3">list option3</li>
+											</ul>
+										</div>
+									</td>
+									<th><label>장비유형</label></th>
+									<td>
+										<div class="mu-item-group">
+											<div class="mu-selectbox">
+												<button class="mu-value">list default</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+													<li value="2">list option2</li>
+													<li value="3">list option3</li>
+												</ul>
+											</div>
+											<div class="mu-selectbox">
+												<button class="mu-value">list default</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+													<li value="2">list option2</li>
+													<li value="3">list option3</li>
+												</ul>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th><label>조직</label></th>
+									<td colspan="3">
+										<div class="mu-input-search">
+											<input type="text" class="mu-input" placeholder="search...">
+											<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img search"></i></button>
+										</div>
+									</td>
+									<th><label>MAC</label></th>
+									<td>
+										<input type="text" class="mu-input">
+									</td>
+									<th><label>DNS</label></th>
+									<td>
+										<input type="text" class="mu-input">
+									</td>
+									<th></th>
+									<td colspan="3"></td>
+								</tr>
+								<tr>
+									<th><label>알람등급</label></th>
+									<td colspan="5">
+										<div class="mu-hgroup">
+											<div class="mu-checkbox">
+												<input type="checkbox" id="ckb11">
+												<label for="ckb11">OOS</label>
+											</div>
+											<div class="mu-checkbox">
+												<input type="checkbox" id="ckb12" checked>
+												<label for="ckb12">Critical</label>
+											</div>
+											<div class="mu-checkbox">
+												<input type="checkbox" id="ckb13">
+												<label for="ckb13">Major</label>
+											</div>
+											<div class="mu-checkbox">
+												<input type="checkbox" id="ckb14">
+												<label for="ckb14">Normal</label>
+											</div>
+											<div class="mu-checkbox">
+												<input type="checkbox" id="ckb15">
+												<label for="ckb15">미운용</label>
+											</div>
+										</div>
+									</td>
+									<th></th>
+									<td>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb21">
+											<label for="ckb21">22~07시 제외</label>
+										</div>
+									</td>
+									<th><label>발생일</label></th>
+									<td colspan="3">
+										<div class="mu-item-group">
+											<date-picker v-model="stdDate" :lang="lang" :clearable=false></date-picker>
+											<span>~</span>
+											<date-picker v-model="stdDate" :lang="lang" :clearable=false></date-picker>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mu-search-btn">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i><span>초기화</span></button>
+						<button type="button" class="mu-btn mu-btn-point mu-btn-icon"><i class="mu-icon-img search"></i><span>조회</span></button>
+						<span class="bar-line"></span><!-- [2020-09-14] 2020년도 공통 변경건 현행화 : 관련버튼 사이 라인 추가(bar-line) -->
+						<button type="button" class="mu-btn mu-btn-green mu-btn-icon"><i class="mu-icon-img download"></i><span>엑셀</span></button><!-- [2020-09-14] 2020년도 공통 변경건 현행화 : 엑셀버튼 조회단에 배치 -->					
+					</div>
+				</div>
+				<!-- [2020-09-14] 2020년도 공통 변경건 현행화 : 조회결과는 하단 pagination-wrap 으로 이동 -->
+				<!-- <div class="mu-grid-top">
+					<div class="mu-item-group fr">
+						<span>조회결과 : 1600</span>
+						<button type="button" class="mu-btn mu-btn-green mu-btn-icon"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+					</div>
+				</div> 2020-09-14 DEL -->
+				<div class="mu-tab-body">
+					<div class="mu-tab-cont">
+						<div class="ag-grid-wrap">
+							<div id="myGrid" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+						</div>
+						<!-- [2020-09-14] 2020년도 공통 변경건 현행화 : 조회결과는 하단 pagination-wrap 으로 이동 -->
+						<div class="pagination-wrap">
+							<p class="total-num">총 : 1,200건(1/200건)</p>
+							<div class="mu-pagination">
+								<button type="button" class="mu-first" disabled="disabled"><span></span></button>
+								<button type="button" class="mu-prev" disabled="disabled"><span></span></button>
+								<ul>
+									<li><a href="">1</a></li>
+									<li><a href="">2</a></li>
+									<li><a href="">3</a></li> 
+									<li><a href="">4</a></li>
+									<li><a href="">5</a></li>
+									<li><a href="">6</a></li>
+									<li class="active"><a href="">7777</a></li>
+									<li><a href="">8</a></li>
+									<li><a href="">9</a></li>
+								</ul>
+								<button type="button" class="mu-next"><span></span></button>
+								<button type="button" class="mu-last"><span></span></button>
+							</div>
+						</div>
+						<!-- //pagination-wrap -->
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+
+		<script src="https://unpkg.com/vue@2.6.10"></script><!-- 20200814 MOD : vue@2.3.3 ==> @2.6.10 -->
+	<script src="https://unpkg.com/ag-grid-community@21.0.1/dist/ag-grid-community.min.noStyle.js"></script><!-- 20200814 MOD : ver @23.2.1 ==> @21.0.1 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue2-datepicker@2.12.0/lib/index.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.js"></script>
+	<script type="text/javascript"> 
+
+	/*new Vue({
+        el: '#app',
+        data: {
+          prjName: 'TMS',
+          columnDefs: null,
+          rowData: null,
+        },
+        components:{
+            'ag-grid-vue' :agGrid
+        },
+        beforeMount(){
+        
+            
+        },
+        mounted() {
+            var columnDefs = [
+                {headerName: "Make", field: "make",sortable: true,checkboxSelection: true,headerCheckboxSelection: true},
+                {headerName: "Model", field: "model"},
+                {headerName: "Customer", field: "customer", cellRenderer:this.countryCellRenderer},
+                {headerName: "Price", field: "price",sortable: true}
+            ];
+            
+            // specify the data
+            var rowData = [
+                {make: "Toyota", model: "Celica", price: 35000},
+                {make: "Ford", model: "Mondeo", price: 32000},
+                {make: "Porsche", model: "Boxter", price: 72000}
+            ];
+			//var rowData = null;
+            
+            
+            var gridOptions = {
+                columnDefs: columnDefs,
+                rowData: rowData
+            };        
+
+            let eGridDiv = document.querySelector('#myGrid');
+            new agGrid.Grid(eGridDiv, gridOptions);
+        }
+        ,methods: {
+          countryCellRenderer(params) {
+            let flag = '<span class="critical">Critical</span>';
+            return flag;
+          }
+        
+        }
+    })*/
+
+	Vue.use(DatePicker.default);
+    
+    new Vue({
+        el: '#app',
+        data: {
+          prjName: 'TMS',
+          stdDate:null,
+          lang: {
+                days: ['일', '월', '화', '수', '목', '금', '토'],
+                months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+                placeholder: {
+                date: 'Select Date',
+                dateRange: 'Select Date Range'
+                }
+            },
+         time:'',
+         timePickerOptions:{
+             start: '00:00',
+             step: '00:30',
+             end: '23:30'
+           }
+        },
+        
+        beforeMount(){
+        
+            
+        },
+        mounted() {
+            this.stdDate  = Date.now();
+        },
+    })
+
+	</script>
+</body>
+</html>

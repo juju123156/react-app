@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>TMS - T Wifi Zone Management System</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="assets/ag-grid/ag-grid.css">
+	<link rel="stylesheet" href="assets/ag-grid/ag-theme-balham-dark.css">
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="app">
+	<header>
+		<h1><span>SK Telecom</span></h1>
+		<h2><span>TMS</span></h2>
+		<nav class="mu-gnb fl">
+			<!-- Depth1 -->
+			<ul class="mu-h-menu fl">
+				<li class="active"><a href="#"><span>Dashboard</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>장비 상황판</span></a></li>
+						<li><a href="#"><span>RM 상황판</span></a></li>
+						<li><a href="#"><span>통합품질관리</span></a></li>
+						<li><a href="#"><span>지하철품질</span></a></li>
+					</ul>
+				</li>
+				<li><a href="#"><span>현황</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>장비 현황</span></a></li>
+						<li><a href="#"><span>장비구성정보 조회</span></a></li>
+						<li><a href="#"><span>L2구성정보 조회</span></a></li>
+						<li><a href="#"><span>AP트래픽현황</span></a></li>
+						<li><a href="#"><span>WiFi트래픽현황</span></a></li>
+						<li><a href="#"><span>장애 현황</span></a></li>
+						<li><a href="#"><span>알람시간관리</span></a></li>
+						<li><a href="#"><span>POE 리셋</span><i class="mu-icon arrow"></i></a>
+							<ul class="mu-list">
+								<li><a href="#"><span>수동POE 리셋작업</span></a></li>
+								<li><a href="#"><span>자동POE 리셋작업</span></a></li>
+								<li><a href="#"><span>POE 리셋통계</span></a></li>
+							</ul>
+						</li>
+						<li><a href="#"><span>KPI</span><i class="mu-icon arrow"></i></a>
+							<ul class="mu-list">
+								<li><a href="#"><span>KPI 실적</span></a></li>
+								<li><a href="#"><span>KPI 실적 SKB</span></a></li>
+								<li><a href="#"><span>KPI 실적 ONS</span></a></li>
+								<li><a href="#"><span>KPI 24시간 감시 장비</span></a></li>
+								<li><a href="#"><span>ONS KPI 가동률</span></a></li>
+								<li><a href="#"><span>ONS 가동률</span></a></li>
+							</ul>
+						</li>
+						<li><a href="#"><span>서비스종료조회</span></a></li>
+						<li><a href="#"><span>미사용국소목록</span></a></li>
+						<li><a href="#"><span>SSID 조회</span></a></li>
+						<li><a href="#"><span>공용화 WiFi SSID변경국소</span></a></li>
+						<li><a href="#"><span>DNS MANAGER</span></a></li>
+						<li><a href="#"><span>AP위경도정보 중복확인</span></a></li>
+						<li><a href="#"><span>IP사용내역 조회</span></a></li>
+						<li><a href="#"><span>SCAN INFO 조회</span></a></li>
+						<li><a href="#"><span>무인증국소 조회</span></a></li>
+						<li><a href="#"><span>FIMS대개체 실재국소목록</span></a></li>
+						<li><a href="#"><span>법인사업자조회</span></a></li>
+					</ul>
+				</li>
+				<li><a href="#"><span>통계</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>AP 리셋 통계</span></a></li>
+						<li><a href="#"><span>장시간 미복구 알람</span></a></li>
+						<li><a href="#"><span>다발 알람</span></a></li>
+						<li><a href="#"><span>트레픽저조국소조회</span></a></li>
+						<li><a href="#"><span>인수요청통계</span></a></li>
+						<li><a href="#"><span>지하철리셋통계</span></a></li>
+					</ul>
+				</li>
+				<li><a href="#"><span>제어</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>MMI</span></a></li>
+						<li><a href="#"><span>일괄 PING TEST</span></a></li>
+						<li><a href="#"><span>AP MAC필터관리</span></a></li>
+						<li><a href="#"><span>펌웨어 업그레이드</span></a></li>
+					</ul>
+				</li>
+				<li><a href="#"><span>SON</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>그룹관리</span></a></li>
+						<li><a href="#"><span>SON/MMI사용자권한</span></a></li>
+						<li><a href="#"><span>그룹MMI이력</span></a></li>
+						<li><a href="#"><span>그룹MMI상세이력</span></a></li>
+						<li><a href="#"><span>SON 자동제어 알고리즘</span></a></li>
+					</ul>
+				</li>
+				<li><a href="#"><span>이력</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>MMI이력</span></a></li>
+						<li><a href="#"><span>알람이력</span></a></li>
+						<li><a href="#"><span>인수요청이력</span></a></li>
+						<li><a href="#"><span>성능수집이력</span></a></li>
+						<li><a href="#"><span>MAC변경이력</span></a></li>
+						<li><a href="#"><span>CACHING서비스이력</span></a></li>
+						<li><a href="#"><span>TERMINAL COMMAND이력</span></a></li>
+						<li><a href="#"><span>FIMS 연동이력</span></a></li>
+						<li><a href="#"><span>L2스위치 펌웨어 작업이력</span></a></li>
+						<li><a href="#"><span>작업히스토리</span></a></li>
+					</ul>
+				</li>
+				<li><a href="#"><span>관리</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>운용관리</span><i class="mu-icon arrow"></i></a>
+							<ul class="mu-list">
+								<li><a href="#"><span>depth</span></a></li>
+							</ul>
+						</li>
+						<li><a href="#"><span>사용자관리</span><i class="mu-icon arrow"></i></a>
+							<ul class="mu-list">
+								<li><a href="#"><span>depth</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div class="mu-top-menu fr">
+				<div class="session">
+					<i class="mu-icon-img clock"></i>
+					<span>세션 유지 시간 : 60분</span>
+					<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i></button>
+				</div>
+				<div class="user-info">
+					<i class="mu-icon-img user"></i>
+					<span>MG_2010님</span>
+				</div>
+				<div class="">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img logout"></i></button>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="mu-container">
+		<section>
+			<div class="mu-content-top">
+				<h3 class="mu-title"><i class="mu-icon-img list"></i><span>AP 위경도 중복 현황</span></h3>
+			</div>
+			<div class="mu-content">
+
+				<!-- 상단 지역 검색리스트영역 : 지역을 클릭시 좌하단 목록 필터링 그리드 -->
+				<div class="mu-row mu-row-3">
+					<div class="mu-col mu-col-12">
+						<div class="mu-tab-body">
+							<div class="mu-tab-cont">
+								<div class="mu-grid-top">
+									<h5 class="mu-title">현황 리스트</h5>
+								</div>
+								<div class="ag-grid-wrap">
+									<div id="myGrid1" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- //상단 지역 검색리스트영역 -->	
+				
+				<!-- 하단 검색리스트영역 : 좌하단 클릭시 우하단 장비목록 필터링 그리드 -->
+				<div class="mu-row mu-row-9">
+					<div class="mu-col mu-col-12">
+						<div class="mu-tab-body">
+							<div class="mu-tab-cont">
+								<div class="mu-row gap-30 gap-bar-line">
+									<div class="mu-col mu-col-7">
+										<div class="mu-grid-group">
+											<div class="mu-grid-top">
+												<h5 class="mu-title">지역</h5> 
+												<div class="mu-item-group fr">
+													<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+												</div>
+											</div>
+											<div class="ag-grid-wrap">
+												<div id="myGrid2" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+											</div>
+											<div class="pagination-wrap">
+												<p class="total-num">총 : 1,200건(1/200건)</p>
+												<div class="mu-pagination">
+													<button type="button" class="mu-first" disabled="disabled"><span></span></button>
+													<button type="button" class="mu-prev" disabled="disabled"><span></span></button>
+													<ul>
+														<li><a href="">1</a></li>
+														<li><a href="">2</a></li>
+														<li><a href="">3</a></li> 
+														<li><a href="">4</a></li>
+														<li><a href="">5</a></li>
+														<li><a href="">6</a></li>
+														<li class="active"><a href="">7777</a></li>
+														<li><a href="">8</a></li>
+														<li><a href="">9</a></li>
+													</ul>
+													<button type="button" class="mu-next"><span></span></button>
+													<button type="button" class="mu-last"><span></span></button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="mu-col mu-col-5">
+										<div class="mu-grid-group">
+											<div class="mu-grid-top">
+												<h5 class="mu-title">장비</h5> 
+												<div class="mu-item-group fr">
+													<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+												</div>
+											</div>
+											<div class="ag-grid-wrap">
+												<div id="myGrid3" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+											</div>
+											<div class="pagination-wrap">
+												<p class="total-num">총 : 1,200건(1/200건)</p>
+												<div class="mu-pagination">
+													<button type="button" class="mu-first" disabled="disabled"><span></span></button>
+													<button type="button" class="mu-prev" disabled="disabled"><span></span></button>
+													<ul>
+														<li><a href="">1</a></li>
+														<li><a href="">2</a></li>
+														<li><a href="">3</a></li> 
+														<li><a href="">4</a></li>
+														<li><a href="">5</a></li>
+														<li><a href="">6</a></li>
+														<li class="active"><a href="">7777</a></li>
+														<li><a href="">8</a></li>
+														<li><a href="">9</a></li>
+													</ul>
+													<button type="button" class="mu-next"><span></span></button>
+													<button type="button" class="mu-last"><span></span></button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>	
+							</div>
+						</div>					
+					</div>
+				</div>
+				<!-- //하단 검색리스트영역 -->		
+
+			</div>
+		</section>
+	</div>
+</div>
+
+	<script src="https://unpkg.com/vue@2.6.10"></script><!-- 20200814 MOD : vue@2.3.3 ==> @2.6.10 -->
+	<script src="https://unpkg.com/ag-grid-community@21.0.1/dist/ag-grid-community.min.noStyle.js"></script><!-- 20200814 MOD : ver @23.2.1 ==> @21.0.1 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue2-datepicker@2.12.0/lib/index.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.js"></script>
+	<script type="text/javascript"> 
+		//달력+시간 샘플 2.12.0
+		Vue.use(DatePicker.default);
+			
+		new Vue({
+			
+			el: '#app',
+			data: {
+			prjName: 'TMS',
+			stdDate:null,
+			lang: {
+					days: ['일', '월', '화', '수', '목', '금', '토'],
+					months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+					pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+					placeholder: {
+					date: 'Select Date',
+					dateRange: 'Select Date Range'
+					}
+				},
+			time:'',
+			timePickerOptions:{
+				start: '00',
+				step: '00',
+				end: '00'
+			}
+			},
+			
+			beforeMount(){
+			
+				
+			},
+			mounted() {
+				this.stdDate  = Date.now();
+			},
+			
+
+		})
+
+		//ag-grid 개발참고용 샘플코드1
+		// specify the columns
+		var columnDefs = [			
+			{headerName: "테스트용 그리드", field: "cl1",width: 200, unSortIcon: true},
+			{headerName: "테스트용 그리드", field: "cl2", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드2", field: "cl3", width: 200, unSortIcon: true},
+			{headerName: "테스트용 그리드3", field: "cl4", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드4", field: "cl5", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드5", field: "cl6", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드6", field: "cl7", width: 150, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl8", width: 500, unSortIcon: true}
+
+		];
+
+		// specify the data
+		var rowData = [
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"}, 			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"}
+		];
+  
+		// let the grid know which columns and what data to use
+		var gridOptions = {
+			defaultColDef: {
+			sortable: true
+			},
+			columnDefs: columnDefs,
+			rowData: rowData,
+			rowSelection: 'single'
+		};
+
+		// lookup the container we want the Grid to use
+		var eGridDiv = document.querySelector('#myGrid1');
+
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv, gridOptions);
+
+		//ag-grid 개발참고용 샘플코드2
+		// specify the columns
+		var columnDefs = [			
+			{headerName: "테스트용 그리드", field: "cl1",width: 200, unSortIcon: true},
+			{headerName: "테스트용 그리드", field: "cl2", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드2", field: "cl3", width: 200, unSortIcon: true},
+			{headerName: "테스트용 그리드3", field: "cl4", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드4", field: "cl5", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드5", field: "cl6", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드6", field: "cl7", width: 150, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl8", width: 500, unSortIcon: true}
+
+		];
+
+		// specify the data
+		var rowData = [
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"}, 			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"}
+		];
+  
+		// let the grid know which columns and what data to use
+		var gridOptions = {
+			defaultColDef: {
+			sortable: true
+			},
+			columnDefs: columnDefs,
+			rowData: rowData,
+			rowSelection: 'single'
+		};
+
+		// lookup the container we want the Grid to use
+		var eGridDiv = document.querySelector('#myGrid2');
+
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv, gridOptions);
+
+		//ag-grid 개발참고용 샘플코드3
+		// specify the columns
+		var columnDefs = [			
+			{headerName: "테스트용 그리드", field: "cl1",width: 200, unSortIcon: true},
+			{headerName: "테스트용 그리드", field: "cl2", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드2", field: "cl3", width: 200, unSortIcon: true},
+			{headerName: "테스트용 그리드3", field: "cl4", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드4", field: "cl5", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드5", field: "cl6", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드6", field: "cl7", width: 150, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl8", width: 500, unSortIcon: true}
+
+		];
+
+		// specify the data
+		var rowData = [
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"}, 			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"}
+		];
+  
+		// let the grid know which columns and what data to use
+		var gridOptions = {
+			defaultColDef: {
+			sortable: true
+			},
+			columnDefs: columnDefs,
+			rowData: rowData,
+			rowSelection: 'single'
+		};
+
+		// lookup the container we want the Grid to use
+		var eGridDiv = document.querySelector('#myGrid3');
+
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv, gridOptions);
+	</script>
+
+	
+</body>
+</html>

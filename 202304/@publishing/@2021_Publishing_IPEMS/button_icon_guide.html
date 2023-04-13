@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>BUTTON & ICON GUIDE - IP-EMS</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link href="assets/ag-grid/ag-grid.css" rel="stylesheet" type="text/css">
+	<link href="assets/ag-grid/ag-theme-balham-dark.css" rel="stylesheet" type="text/css">
+	<link href="guide/css/guide.css" rel="stylesheet" type="text/css"><!-- guide -->
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>		
+<div id="app">
+	<div id="guide-wrap2">
+		<h1>IP-EMS BUTTON & ICON GUIDE</h1>
+		<!-- guide-container -->			
+		<div class="guide-container">
+			<div class="guide-area">
+				<div class="mu-row">
+					<div class="mu-col mu-col-4">
+
+						<p class="guide-info">기본 버튼 타입 : mu-btn</p>
+						<span class="info">활성 </span> <button type="button" class="mu-btn">기본 26px버튼</button>
+						<span class="info">비활성 </span> <button type="button" class="mu-btn" disabled="disabled">disabled</button>
+						<br><br>
+						<button type="button" class="mu-btn">Reboot</button>
+						<button type="button" class="mu-btn">Reboot 실행</button>
+						<button type="button" class="mu-btn">PING</button>
+						<button type="button" class="mu-btn">Ping 실행</button>
+						<button type="button" class="mu-btn">선택</button>
+						<button type="button" class="mu-btn">WiFi Reset</button> 
+						<button type="button" class="mu-btn">Reboot Flag 설정</button> 
+						<button type="button" class="mu-btn">Femto Ping</button>
+						<button type="button" class="mu-btn">그룹공유</button>
+						<button type="button" class="mu-btn">공유자 지정</button>
+						<button type="button" class="mu-btn">공유자 보기</button>
+						<button type="button" class="mu-btn">전송</button>
+						<button type="button" class="mu-btn">갱신</button>
+
+					</div>
+					<div class="mu-col mu-col-3">
+
+						<p class="guide-info">small 버튼 타입 : mu-btn + mu-btn-sm (Grid 내부용)</p>
+						<span class="info">활성 </span><button type="button" class="mu-btn mu-btn-sm">기본 sm size 22px</button>
+						<span class="info">비활성 </span><button type="button" class="mu-btn mu-btn-sm" disabled="disabled">disabled</button>
+						<br><br>
+						<button type="button" class="mu-btn mu-btn-sm">상세</button>
+						<button type="button" class="mu-btn mu-btn-sm">내려받기</button>
+
+					</div>
+					<div class="mu-col mu-col-5">
+
+						<p class="guide-info">기본 아이콘 + 텍스트 버튼 타입 : mu-btn + mu-btn-icon > i.mu-icon-img + icon(name)</p>
+						<span class="info">활성 </span><button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img set"></i><span>기본 26px버튼</span></button>
+						<span class="info">비활성 </span><button type="button" class="mu-btn mu-btn-icon" disabled="disabled"><i class="mu-icon-img set"></i><span>disabled</span></button>
+						<br><br>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img set"></i><span>RM 임계치 및 SMS 대상자 설정</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img set"></i><span>그룹 관리</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img set"></i><span>기본 DNS 관리</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img set"></i><span>품질저조국소 리셋 설정</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img set"></i><span>AP관리</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img set"></i><span>서울시AP관리</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img set"></i><span>장비 관리</span></button>
+						<br><br>	
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img search"></i><span>근접장비 보기</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img search"></i><span>주소검색</span></button>
+						<br><br>				
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>중지</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>정책해제</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>선택해제</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>작업취소</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>공용화해제</span></button>	
+						<br><br>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i><span>초기화</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i><span>새로고침</span></button>
+						<br><br>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img modify"></i><span>수정</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img modify"></i><span>변경</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img modify"></i><span>담당자변경</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img modify"></i><span>대기/상용변경</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img modify"></i><span>관리부서변경</span></button>
+						<br><br>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i><span>추가</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i><span>그룹추가</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i><span>단말등록</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i><span>그룹에 사용</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>삭제</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>그룹삭제</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>장비삭제</span></button>	<br><br>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img list"></i><span>목록</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img list"></i><span>상세 내역 보기</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img confirm"></i><span>인지</span></button>	
+						
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img confirm"></i><span>공공AP적용</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img confirm"></i><span>서울시AP적용</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img download"></i><span>업로드 샘플</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img upload"></i><span>장비 일괄 업로드</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img upload"></i><span>장비엑셀업로드</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img upload"></i><span>회선번호 업로드</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img upload"></i><span>B2B 업로드</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img upload"></i><span>AP백홀정보 업로드</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img help"></i><span>도움말</span></button>
+
+					</div>
+				</div>
+
+				<hr>
+
+				<div class="mu-row">
+					<div class="mu-col mu-col-6">
+
+						<p class="guide-info">컬러포인트 버튼1 : mu-btn + mu-btn-icon + mu-btn-point</p>
+						<span class="info">활성 </span><button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img search"></i><span>mu-btn-point</span></button>				
+						<span class="info">비활성 </span><button type="button" class="mu-btn mu-btn-icon mu-btn-point" disabled="disabled"><i class="mu-icon-img search"></i><span>disabled</span></button>
+						<br><br>
+						<button type="button" class="mu-btn mu-btn-point mu-btn-icon"><i class="mu-icon-img search"></i><span>조회</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img mmi"></i><span>MMI</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>선택</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>저장</span></button>	
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>주소 입력</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>확인</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>적용</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>실행</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>정책적용</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>수정</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>단말기저장</span></button>
+
+					</div>
+					<div class="mu-col mu-col-6">
+
+						<p class="guide-info">컬러포인트 버튼2 : mu-btn + mu-btn-icon + mu-btn-green(다운로드용)</p>
+						<span class="info">활성 </span><button type="button" class="mu-btn mu-btn-green mu-btn-icon"><i class="mu-icon-img download"></i><span>mu-btn-green</span></button>
+						<span class="info">비활성 </span><button type="button" class="mu-btn mu-btn-green mu-btn-icon" disabled="disabled"><i class="mu-icon-img download"></i><span>disabled</span></button>
+						<br><br>
+						<button type="button" class="mu-btn mu-btn-green mu-btn-icon"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>장비엑셀다운로드</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>엑셀(CSV)</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>TXT</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>XML</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>샘플다운로드</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>상세정보 파일다운</span></button>
+
+					</div>
+				</div>
+
+				<hr>
+
+				<div class="mu-row">
+					<div class="mu-col mu-col-3">
+
+						<p class="guide-info">아이콘만 있는 버튼 타입1 : mu-btn + mu-btn-icon</p>	
+						<span class="info">활성 </span><button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img dialog"></i></button>
+						<span class="info">비활성 </span><button type="button" class="mu-btn mu-btn-icon" disabled="disabled"><i class="mu-icon-img dialog"></i></button>
+						<br><br>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img dialog"></i></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-right"></i></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-left"></i></button>
+		
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img up"></i></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img down"></i></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img right"></i></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img left"></i></button>
+
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i></button>
+
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i></button>
+                        <br><br>
+                        [2021 UP] <br> <br>필터
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img filter"></i></button>
+						설정 <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img set"></i></button>
+						감시시작 <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img play"></i></button>
+						감시중지 <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img stop"></i></button>
+						가청설정 <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img volume"></i></button>
+
+					</div>
+					<div class="mu-col mu-col-3">				
+						
+						<p class="guide-info">아이콘만 있는 버튼 타입2 : mu-btn + mu-btn-icon + mu-btn-icon-only</p>				
+						<span class="info">활성 </span><button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only"><i class="mu-icon-img refresh"></i></button>
+						<span class="info">비활성 </span><button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" disabled="disabled"><i class="mu-icon-img refresh"></i></button>
+						<br><br>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only"><i class="mu-icon-img contract"></i></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only"><i class="mu-icon-img expand"></i></button>
+
+					</div>
+					<div class="mu-col mu-col-3">
+
+						<p class="guide-info">조회테이블 Fold 토글버튼 : mu-btn + mu-btn-icon + mu-btn-fold (2020년 상세보기 기능 추가)</p>
+						<div class="search-group-area">
+							<button type="button" class="mu-btn mu-btn-icon mu-btn-fold"><i class="mu-icon-img arrow-down"></i><span>상세조회조건</span></button>
+						</div>
+						<div class="search-group-area open-detail">
+							<button type="button" class="mu-btn mu-btn-icon mu-btn-fold"><i class="mu-icon-img arrow-down"></i><span>상세조회조건</span></button>
+						</div>
+
+					</div>
+					<div class="mu-col mu-col-3">
+
+						<p class="guide-info">상속 버튼 타입</p>
+						<span class="info">로그아웃 확인</span><a href="gnb_heading_tab_text_guide.html" target="_blank" style="text-decoration: underline; color: red;">gnb_heading_tab_text_guide.html 를 참고하세요  --&gt;</a>
+						<div class="mu-top-menu">
+							<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img logout"></i></button>
+						</div>
+
+					</div>
+				</div>
+
+				<hr>
+
+
+				<p class="guide-info">pagination-wrap > total-num + mu-pagination > mu-first + mu-prev + ul li + mu-next + mu-last (2020년 공통수정 : 총건수 pagination-wrap 내부로 이동)</p>
+				<div class="pagination-wrap">
+					<p class="total-num">총: 1,200건(1/200건)</p>
+					<div class="mu-pagination">
+						<button type="button" class="mu-first" disabled="disabled"><span></span></button>
+						<button type="button" class="mu-prev" disabled="disabled"><span></span></button>
+						<ul>
+							<li><a href="">1</a></li>
+							<li><a href="">2</a></li>
+							<li><a href="">3</a></li> 
+							<li><a href="">4</a></li>
+							<li><a href="">5</a></li>
+							<li><a href="">6</a></li>
+							<li class="active"><a href="">active</a></li>
+							<li><a href="">8</a></li>
+							<li><a href="">9</a></li>
+						</ul>
+						<button type="button" class="mu-next"><span></span></button>
+						<button type="button" class="mu-last"><span></span></button>
+					</div>
+				</div>
+
+				
+				<p class="guide-info">버튼정렬 mu-tab-cont > * + mu-btn-wrap (RIGHT)</p>
+				<span class="info">확인</span><a href="00MMI_tab1.html" target="_blank" style="text-decoration: underline; color: red;">00MMI_tab1.html 를 참고하세요  --&gt;</a>
+				<br><br>
+				<div class="mu-tab-body">
+					<div class="mu-tab-cont">
+						<div class="mu-formbox"></div>
+						<div class="mu-btn-wrap">
+							<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img modify"></i><span>수정</span></button>
+						</div>
+					</div>
+				</div>
+
+				<p class="guide-info">버튼정렬 mu-btn-wrap + mu-btn-bottom (LEFT : RIGHT) </p>			
+				<div class="mu-btn-wrap mu-btn-bottom" style="overflow:hidden;"><!-- style은 확인용 영역 -->
+					<div class="mu-item-group fl">
+						<label>IP Address</label> 
+						<input type="text" class="mu-input"> 
+						<button type="button" class="mu-btn">실행</button></div> 
+					<div class="mu-item-group fr">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>중지</span></button> 
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img refresh"></i><span>초기화</span></button>
+					</div>
+				</div>
+
+				<p class="guide-info">버튼정렬 mu-btn-wrap > mu-btn-group (LEFT : RIGHT) +  mu-btn-group (LEFT : RIGHT)</p>
+				<div class="mu-btn-wrap">
+					<div class="mu-btn-group" style="border:1px dashed red;"><!-- style은 확인용 영역 -->
+						<div class="mu-item-group fl">
+							<button type="button" class="mu-btn">명령어 실행</button>
+							<button type="button" class="mu-btn">Reboot</button>
+							<button type="button" class="mu-btn">PING 실행</button>
+						</div>
+						<div class="mu-item-group fr">
+							<button type="button" class="mu-btn">FirmWare</button>
+							<button type="button" class="mu-btn">Femto Reboot</button>
+							<button type="button" class="mu-btn">Cashe Bridge 파일</button>
+						</div>
+					</div>
+					<div class="mu-btn-group" style="border:1px dashed red;"><!-- style은 확인용 영역 -->
+						<div class="mu-item-group fl">
+							<button type="button" class="mu-btn">선택장비 제외</button>
+						</div>
+						<div class="mu-item-group fr">
+							<button type="button" class="mu-btn">초기화</button>
+							<button type="button" class="mu-btn">표 초기화</button>
+							<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+						</div>
+					</div>
+				</div>
+
+
+				<p class="guide-info">전체타이틀에 들어갈 경우 : mu-content-top > mu-title(LEFT) : mu-item-group(RIGHT)</p>
+				<div class="mu-content-top">
+					<h3 class="mu-title"><i class="mu-icon-img dashboard"></i><span>h3.mu-title</span></h3> 
+					<div class="mu-item-group">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img set"></i><span>RM 임계치 및 SMS 대상자 설정</span></button>
+					</div>
+				</div>
+
+				<p class="guide-info">패널 상단에 들어갈 경우 : mu-panel-head > mu-title(LEFT) : mu-item-group + fr(RIGHT)</p>
+				<div class="mu-panel-head">
+					<h4 class="mu-title">h4.mu-title</h4> 
+					<div class="mu-item-group fr">
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only"><i class="mu-icon-img refresh"></i></button> 
+						<span>기준 시간 : 2019/03/13 08:00:00</span>
+					</div>
+				</div>
+				<p class="guide-info">조회단 내부 버튼 타입 mu-search-btn > mu-btn (2020-08-18 MOD : mu-grid-top에 있던 엑셀버튼을 공통으로 조회단 내부로 이동) ***** 관련버튼 사이 라인 추가(bar-line)*****</p>				
+				<div class="mu-search-group">
+					<div class="mu-search-btn">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i><span>초기화</span></button> 
+						<button type="button" class="mu-btn mu-btn-point mu-btn-icon"><i class="mu-icon-img search"></i><span>조회</span></button>
+						<span class="bar-line"></span>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+					</div>
+				</div>
+
+
+				<p class="guide-info">그리드 상단에 들어갈 경우 : mu-grid-top > mu-item-group.fr(RIGHT) ***** 관련버튼 사이 라인 추가(bar-line)*****</p>
+				<div class="mu-grid-top">
+					<div class="mu-item-group fr">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i><span>그룹추가</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>그룹삭제</span></button>				
+						<span class="bar-line"></span>
+						<button type="button" class="mu-btn">그룹공유</button>
+						<button type="button" class="mu-btn">그룹공유현황</button>
+					</div>
+				</div>
+
+				<p class="guide-info">그리드 상단에 들어갈 경우 : mu-grid-top > mu-item-group(LEFT) : mu-item-group + fr(RIGHT)</p>
+				<div class="mu-grid-top">
+					<div class="mu-item-group">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img confirm"></i><span>인지</span></button> 
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>삭제</span></button>
+					</div> 
+					<div class="mu-item-group fr">
+						<button type="button" class="mu-btn mu-btn-green mu-btn-icon"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+					</div>
+				</div>
+				<div class="mu-grid-top">
+					<div class="mu-item-group">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img up"></i></button> 
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img down"></i></button>
+					</div> 
+					<div class="mu-item-group fr">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>삭제</span></button> 
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i><span>추가</span></button>
+					</div>
+				</div>
+
+				<p class="guide-info">swap 에 들어가는 버튼 타입 : mu-swap > mu-swap-btn</p>
+				<div class="mu-swap">
+					<div class="mu-swap-left">
+						<div style="border:1px dashed red;height:80px;">mu-swap-left 영역표시용</div>
+					</div>
+					<div class="mu-swap-btn">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-right"></i></button> 
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-left"></i></button>
+					</div>
+					<div class="mu-swap-right">						
+						<div style="border:1px dashed red;height:80px;">mu-swap-right 영역표시용</div>
+					</div>
+				</div>
+
+				<p class="guide-info">챠트 상단에 들어갈 경우 : chart-wrap-group > chart-wrap > mu-title(LEFT) - mu-item-group + fr(RIGHT)</p>
+				<div class="chart-wrap-group" style="height:100px"><!-- style은 확인용 영역 -->
+					<div class="chart-wrap">
+						<h5 class="mu-title">mu-title</h5> 
+						<div class="mu-item-group fr">
+							<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img list"></i><span>오른쪽정렬버튼 버튼위치확인용</span></button>
+						</div> 
+						<div class="chart">chart</div>
+					</div>
+				</div>
+
+				<p class="guide-info">팝업 버튼타입</p>	
+				<span class="info">화면 보기</span><a href="dialog.html" target="_blank" style="text-decoration: underline; color: red;">dialog.html 를 참고하세요  --&gt;</a>
+				<!-- 팝업예시 -->
+				<div style="position:relative;height:250px">
+				<div class="mu-dialog" style="top:10px;left:10px;width:550px;">
+					<div class="mu-dialog-head">
+						<h4 class="mu-title">mu-title</h4> 
+						<div class="mu-dialog-head-btn">
+							<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img min"></i></button> 
+							<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+						</div>
+					</div>
+					<div class="mu-dialog-body">
+						<div class="mu-dialog-top">
+							<h5 class="mu-title">mu-title</h5> 
+							<div class="mu-item-group fr">
+								<div class="alarm-grade">알람등급 : <span class="critical">Critical</span></div> 
+								<button type="button" class="mu-btn">Reboot 실행</button> 
+								<button type="button" class="mu-btn">Ping 실행</button> 
+								<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i><span>새로고침</span></button>
+							</div>
+						</div>
+						<div style="border:1px dashed red;height:80px;">팝업내용 영역표시용</div>
+					</div>
+					<div class="mu-dialog-foot">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button> 
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>확인</span></button>
+					</div>
+				</div>
+				<!-- //팝업예시 -->
+				</div>	
+				
+				
+			</div>						
+		</div>
+		<!-- //guide-container -->
+		<footer id="guide-footer">
+			<p class="copy">Copyright © 2020 Mobigen UX Development. All rights reserved.</p>
+		</footer>
+	</div>
+
+</div>
+<script src="https://unpkg.com/vue@2.6.10"></script><!-- 20200814 MOD : vue@2.3.3 ==> @2.6.10 -->
+<script src="https://unpkg.com/ag-grid-community@21.0.1/dist/ag-grid-community.min.noStyle.js"></script><!-- 20200814 MOD : ver @23.2.1 ==> @21.0.1 -->
+<script src="https://cdn.jsdelivr.net/npm/vue2-datepicker@2.12.0/lib/index.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery-ui.js"></script>
+</body>
+</html>

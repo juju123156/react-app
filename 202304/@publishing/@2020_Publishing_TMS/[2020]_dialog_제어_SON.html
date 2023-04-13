@@ -1,0 +1,2179 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>TMS - T Wifi Zone Management System</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link href="assets/ag-grid/ag-grid.css" rel="stylesheet" type="text/css">
+	<link href="assets/ag-grid/ag-theme-balham-dark.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="app">
+	<div class="mu-container">
+
+		<!-- dialog 배경 -->
+		<div class="mu-dialog-background"></div>
+
+
+		<div style="position:absolute;top:30px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog15">제어 > 일괄 PING TEST > 장비 선택</div>
+		<!-- dialog : 장비 선택 -->
+		<div class="mu-dialog" style="top:50px;left:30px;width:920px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">장비 선택</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<!-- 조회테이블 -->
+				<div class="mu-search-group">
+					<div class="mu-search-item">
+						<table>
+							<colgroup>
+								<col style="width:45px;">
+								<col style="width:250px;">
+								<col style="width:70px;">
+								<col style="width:300px;">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th><label>장비명</label></th>
+									<td>
+										<input type="input" class="mu-input">
+									</td>									
+									<th><label>조직</label></th>
+									<td>
+										<div class="mu-input-search">
+											<input type="text" class="mu-input" placeholder="search...">
+											<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img search"></i></button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th><label>MAC</label></th>
+									<td>
+										<input type="input" class="mu-input">
+									</td>									
+									<th><label>장비유형</label></th>
+									<td>
+										<div class="mu-item-group">
+											<div class="mu-selectbox">
+												<button class="mu-value">대분류</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+													<li value="2">list option2</li>
+													<li value="3">list option3</li>
+												</ul>
+											</div>
+											<div class="mu-selectbox">
+												<button class="mu-value">소분류</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+													<li value="2">list option2</li>
+													<li value="3">list option3</li>
+												</ul>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="3"><label>제조사</label></th>
+									<td>
+										<div class="mu-selectbox">
+											<button class="mu-value">전체</button>
+											<ul class="mu-list">
+												<li value="1">list option1</li>
+												<li value="2">list option2</li>
+												<li value="3">list option3</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mu-search-btn">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i><span>초기화</span></button>
+						<button type="button" class="mu-btn mu-btn-point mu-btn-icon"><i class="mu-icon-img search"></i><span>조회</span></button>
+					</div>
+				</div>
+				<!-- //조회테이블 -->
+				<!-- ag-grid-wrap -->
+				<div class="ag-grid-wrap" style="height:320px;">
+					<div id="myGrid1" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+				</div>
+				<!-- //ag-grid-wrap -->
+			</div>
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>확인</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:30px;left:970px;font-size:13px;color:#fff;z-index:1000;" id="dialog16">제어 > 일괄 PING TEST > 일괄 PING TEST 이력 조회</div>
+		<!-- dialog : 일괄 PING TEST 이력 조회 -->
+		<div class="mu-dialog" style="top:50px;left:970px;width:920px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">일괄 PING TEST 이력 조회</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<!-- mu-search-group -->
+				<div class="mu-search-group">
+					<div class="mu-search-item">
+						<table>
+							<colgroup>
+								<col style="width:45px;">
+								<col style="width:250px;">
+								<col style="width:70px;">
+								<col style="width:200px;">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th><label>기간</label></th>
+									<td>
+										<div class="mu-item-group">
+											<date-picker v-model="stdDate" :lang="lang" :clearable=false></date-picker>
+											<span>~</span>
+											<date-picker v-model="stdDate" :lang="lang" :clearable=false></date-picker>
+										</div>
+									</td>									
+									<th><label>사용자ID</label></th>
+									<td>
+										<input type="text" class="mu-input">
+									</td>
+								</tr>
+								<tr>
+									<th><label>장비명</label></th>
+									<td>
+										<input type="input" class="mu-input">
+									</td>									
+									<th><label>작업명</label></th>
+									<td>
+										<input type="input" class="mu-input">
+									</td>
+								</tr>
+								<tr>
+									<th><label>MAC</label></th>
+									<td>
+										<input type="input" class="mu-input">
+									</td>									
+									<th><label>성공여부</label></th>
+									<td>
+										<div class="mu-selectbox">
+											<button class="mu-value">list default</button>
+											<ul class="mu-list">
+												<li value="1">list option1</li>
+												<li value="2">list option2</li>
+												<li value="3">list option3</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mu-search-btn">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i><span>초기화</span></button>
+						<button type="button" class="mu-btn mu-btn-point mu-btn-icon"><i class="mu-icon-img search"></i><span>조회</span></button>					
+						<span class="bar-line"></span>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+					</div>
+				</div>
+				<!-- //mu-search-group -->
+				<!-- ag-grid-wrap -->
+				<div class="ag-grid-wrap" style="height:320px;">
+					<div id="myGrid2" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+				</div>
+				<!-- //ag-grid-wrap -->
+			</div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:720px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog17">제어 > AP MAC필터관리 > AP관리 - tab1_적용 국소현황</div>
+		<!-- dialog : AP관리 - tab1_적용 국소현황 : 2019년도 작업본 Dashboard > 통합 품질 관리 > 그룹 추가 및 변경그룹 참고 / 탭구성 02현황_01장비현황.html참고 2020-09-09 ADD: mu-fix-foot height:745px; 추가 -->
+		<div class="mu-dialog mu-fix-foot" style="top:740px;left:30px;width:920px;height:745px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">AP관리</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">	
+				<!-- dialog 입력폼영역 -->
+				<div class="mu-dialog-box">
+					<table class="mu-formbox">					
+						<colgroup>
+							<col style="width:45px;">
+							<col>
+							<col style="width:45px;">
+							<col style="width:170px;">
+							<col style="width:45px;">
+							<col style="width:170px;">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label>2.4G</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb1-1"> 
+											<label for="ckb1-1">SSID1</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb1-2"> 
+											<label for="ckb1-2">SSID2</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb1-3"> 
+											<label for="ckb1-3">SSID3</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb1-4"> 
+											<label for="ckb1-4">SSID4</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb1-5"> 
+											<label for="ckb1-5">SSID5</label>
+										</div>
+									</div>
+								</td>
+								<th><label>Enable</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-radio">
+											<input type="radio" id="r1-1" name="radio111" checked="checked">
+											<label for="r1-1">ON</label>
+										</div>
+										<div class="mu-radio">
+											<input type="radio" id="r1-2" name="radio111">
+											<label for="r1-2">OFF</label>
+										</div>
+									</div>
+								</td>
+								<th><label>Policy</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-radio">
+											<input type="radio" id="r2-1" name="radio222" checked="checked">
+											<label for="r2-1">Deny</label>
+										</div>
+										<div class="mu-radio">
+											<input type="radio" id="r2-2" name="radio222">
+											<label for="r2-2">Allow</label>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><label>5G</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb2-1"> 
+											<label for="ckb2-1">SSID1</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb2-2"> 
+											<label for="ckb2-2">SSID2</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb2-3"> 
+											<label for="ckb2-3">SSID3</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb2-4"> 
+											<label for="ckb2-4">SSID4</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb2-5"> 
+											<label for="ckb2-5">SSID5</label>
+										</div>
+									</div>
+								</td>
+								<th><label>Enable</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-radio">
+											<input type="radio" id="r3-1" name="radio333" checked="checked">
+											<label for="r3-1">ON</label>
+										</div>
+										<div class="mu-radio">
+											<input type="radio" id="r3-2" name="radio333">
+											<label for="r3-2">OFF</label>
+										</div>
+									</div>
+								</td>
+								<th><label>Policy</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-radio">
+											<input type="radio" id="r4-1" name="radio444" checked="checked">
+											<label for="r4-1">Deny</label>
+										</div>
+										<div class="mu-radio">
+											<input type="radio" id="r4-2" name="radio444">
+											<label for="r4-2">Allow</label>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- dialog 입력폼영역 -->
+				<!-- mu-tab -->		
+				<ul class="mu-tab">
+					<li class="active"><a href="">적용 국소현황</a></li> 
+					<li><a href="">국소 추가</a></li>
+				</ul>				
+				<!-- //mu-tab -->
+				<!-- mu-swap -->
+				<div class="mu-swap">
+					<!-- mu-swap-left -->
+					<div class="mu-swap-left mu-dialog-box">
+						<!-- mu-swap-left  > button -->
+						<div class="mu-grid-top">
+							<div class="mu-item-group fr">
+								<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img upload"></i><span>장비엑셀업로드</span></button> 
+							</div>
+						</div>	
+						<!-- //mu-swap-left  > button -->
+						<!-- ag-grid-wrap -->					
+						<div class="ag-grid-wrap">
+							<div id="myGrid3" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+						</div>
+						<!-- //ag-grid-wrap -->
+					</div>
+					<!-- //mu-swap-left -->
+					<div class="mu-swap-btn">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-right"></i></button> 
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-left"></i></button>
+					</div>
+					<!-- mu-swap-right -->
+					<div class="mu-swap-right mu-dialog-box">
+						<!-- mu-swap-right  > button -->
+						<div class="mu-grid-top">
+							<div class="mu-item-group fr">
+								<button type="button" class="mu-btn mu-btn-green mu-btn-icon"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+							</div>
+						</div>
+						<!-- //mu-swap-right  > button -->
+						<!-- ag-grid-wrap -->
+						<div class="ag-grid-wrap">
+							<div id="myGrid4" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+						</div>
+						<!-- //ag-grid-wrap -->
+					</div>
+					<!-- //mu-swap-right -->
+				</div>
+				<!-- mu-swap -->
+			</div>			
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>정책해제</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>정책적용</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:720px;left:970px;font-size:13px;color:#fff;z-index:1000;" id="dialog18">제어 > AP MAC필터관리 > AP관리 - tab2_국소 추가</div>
+		<!-- dialog : AP관리 - tab2_국소 추가 : 2019년도 작업본 Dashboard > 통합 품질 관리 > 그룹 추가 및 변경그룹 참고 / 탭구성 02현황_01장비현황.html참고 2020-09-09 ADD: mu-fix-foot height:745px; 추가 -->
+		<div class="mu-dialog mu-fix-foot" style="top:740px;left:970px;width:920px;height:745px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">AP관리</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">	
+				<!-- dialog 입력폼영역 -->
+				<div class="mu-dialog-box">
+					<table class="mu-formbox">					
+						<colgroup>
+							<col style="width:45px;">
+							<col>
+							<col style="width:45px;">
+							<col style="width:170px;">
+							<col style="width:45px;">
+							<col style="width:170px;">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label>2.4G</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb11-1"> 
+											<label for="ckb11-1">SSID1</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb11-2"> 
+											<label for="ckb11-2">SSID2</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb11-3"> 
+											<label for="ckb11-3">SSID3</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb11-4"> 
+											<label for="ckb11-4">SSID4</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb11-5"> 
+											<label for="ckb11-5">SSID5</label>
+										</div>
+									</div>
+								</td>
+								<th><label>Enable</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-radio">
+											<input type="radio" id="r11-1" name="radio1111" checked="checked">
+											<label for="r11-1">ON</label>
+										</div>
+										<div class="mu-radio">
+											<input type="radio" id="r11-2" name="radio1111">
+											<label for="r11-2">OFF</label>
+										</div>
+									</div>
+								</td>
+								<th><label>Policy</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-radio">
+											<input type="radio" id="r22-1" name="radio2222" checked="checked">
+											<label for="r2-1">Deny</label>
+										</div>
+										<div class="mu-radio">
+											<input type="radio" id="r22-2" name="radio2222">
+											<label for="r22-2">Allow</label>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><label>5G</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb22-1"> 
+											<label for="ckb22-1">SSID1</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb22-2"> 
+											<label for="ckb22-2">SSID2</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb2-3"> 
+											<label for="ckb22-3">SSID3</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb22-4"> 
+											<label for="ckb22-4">SSID4</label>
+										</div>
+										<div class="mu-checkbox">
+											<input type="checkbox" id="ckb22-5"> 
+											<label for="ckb22-5">SSID5</label>
+										</div>
+									</div>
+								</td>
+								<th><label>Enable</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-radio">
+											<input type="radio" id="r33-1" name="radio3333" checked="checked">
+											<label for="r33-1">ON</label>
+										</div>
+										<div class="mu-radio">
+											<input type="radio" id="r33-2" name="radio3333">
+											<label for="r33-2">OFF</label>
+										</div>
+									</div>
+								</td>
+								<th><label>Policy</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-radio">
+											<input type="radio" id="r44-1" name="radio4444" checked="checked">
+											<label for="r44-1">Deny</label>
+										</div>
+										<div class="mu-radio">
+											<input type="radio" id="r44-2" name="radio4444">
+											<label for="r44-2">Allow</label>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- //dialog 입력폼영역 -->
+
+				<!-- mu-tab -->		
+				<ul class="mu-tab">
+					<li><a href="">적용 국소현황</a></li> 
+					<li class="active"><a href="">국소 추가</a></li>
+				</ul>				
+				<!-- //mu-tab -->
+
+				<!-- mu-swap -->
+				<div class="mu-swap h500">
+					<!-- mu-swap-left -->
+					<div class="mu-swap-left mu-dialog-box">	
+						<!-- mu-swap-left  > button -->									
+						<div class="mu-grid-top">
+							<div class="mu-item-group fr">
+								<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img upload"></i><span>장비엑셀업로드</span></button> 
+							</div>
+						</div>
+						<!-- //mu-swap-left  > button -->		
+						<!-- mu-search-group > 입력테이블 + 버튼영역 -->
+						<div class="mu-search-group">
+							<table class="mu-formbox">					
+								<colgroup>
+									<col style="width:90px;">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr>
+										<th><label>장비명</label></th>
+										<td>
+											<input type="text" class="mu-input">
+										</td>
+									</tr>
+									<tr>
+										<th><label>조직</label></th>
+										<td>
+											<div class="mu-input-search">
+												<input type="text" class="mu-input" placeholder="search...">
+												<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img search"></i></button>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label>장비MAC</label></th>
+										<td>
+											<input type="text" class="mu-input">
+										</td>
+									</tr>
+									<tr>
+										<th><label>주소검색</label></th>
+										<td>
+											<input type="text" class="mu-input">
+										</td>
+									</tr>
+									<tr>
+										<th><label>제조사</label></th>
+										<td>
+											<div class="mu-selectbox">
+												<button class="mu-value">list default</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label>장비유형</label></th>
+										<td>
+											<div class="mu-item-group">
+												<div class="mu-selectbox">
+													<button class="mu-value">전체</button>
+													<ul class="mu-list">
+														<li value="1">list option1</li>
+														<li value="2">list option2</li>
+														<li value="3">list option3</li>
+													</ul>
+												</div>
+												<div class="mu-selectbox">
+													<button class="mu-value">전체</button>
+													<ul class="mu-list">
+														<li value="1">list option1</li>
+														<li value="2">list option2</li>
+														<li value="3">list option3</li>
+													</ul>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="mu-btn-wrap mu-btn-bottom">
+								<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i><span>초기화</span></button>
+								<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img search"></i><span>조회</span></button>
+							</div>
+						</div>
+						<!-- //mu-search-group > 입력테이블 + 버튼영역 -->	
+						<!-- ag-grid-wrap -->					
+						<div class="ag-grid-wrap">
+							<div id="myGrid5" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+						</div>
+						<!-- //ag-grid-wrap -->
+					</div>
+					<!-- //mu-swap-left -->
+					<div class="mu-swap-btn">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-right"></i></button> 
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-left"></i></button>
+					</div>
+					<!-- mu-swap-right -->
+					<div class="mu-swap-right mu-dialog-box">
+						<!-- mu-swap-right  > button -->
+						<div class="mu-grid-top">
+							<div class="mu-item-group fr">
+								<button type="button" class="mu-btn mu-btn-green mu-btn-icon"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+							</div>
+						</div>
+						<!-- //mu-swap-right  > button -->
+						<!-- ag-grid-wrap -->
+						<div class="ag-grid-wrap">
+							<div id="myGrid6" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+						</div>
+						<!-- //ag-grid-wrap -->
+					</div>
+					<!-- //mu-swap-right -->
+				</div>
+				<!-- mu-swap -->
+
+			</div>
+			
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>정책해제</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>정책적용</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:1600px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog19">제어 > AP MAC필터관리 > 단말 등록</div>
+		<!-- dialog : 단말 등록 -->
+		<div class="mu-dialog" style="top:1620px;left:30px;width:600px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">단말 등록</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<!-- left 단말기 개수 + right 해당버튼 -->
+				<div class="mu-grid-top">
+					<div class="mu-item-group">
+						<h5 class="mu-title">단말기 개수<span class="txt-num">(99개)</span></h5>
+					</div>
+					<div class="mu-item-group fr">						 
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i><span>추가</span></button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>삭제</span></button>
+						<span class="bar-line"></span>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img upload"></i><span>장비업로드</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>샘플다운로드</span></button>
+					</div>
+				</div>
+				<!-- //left 단말기 개수 + right 해당버튼 -->
+				<!-- ag-grid-wrap -->
+				<div class="ag-grid-wrap" style="height:400px;">
+					<div id="myGrid7" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+				</div>
+				<!-- //ag-grid-wrap -->
+			</div>			
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>단말기저장</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:1600px;left:970px;font-size:13px;color:#fff;z-index:1000;" id="dialog20">제어 > AP MAC필터관리 > 단말등록 > 단말 MAC 추가</div>
+		<!-- dialog : 단말등록 > 단말 MAC 추가 -->
+		<div class="mu-dialog" style="top:1620px;left:970px;width:400px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">단말 MAC 추가</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<!-- 안내리스트 -->
+				<div class="mu-dialog-info">
+					<ul>
+						<li><span class="txt-white">알파벳 대문자 및 숫자</span>로 만 입력 가능합니다.</li> 
+					</ul>
+				</div>
+				<!-- //안내리스트 -->
+                <!-- dialog 입력폼영역 -->
+                <div class="mu-dialog-box">                     
+                    <table class="mu-formbox">
+                        <colgroup>
+                            <col style="width:70px;">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><label>단말기 MAC</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>                    
+                </div>
+                <!-- //dialog 입력폼영역 -->               
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>추가</span></button>
+            </div>
+		</div>
+		<!-- //dialog -->
+		
+		<div style="position:absolute;top:2340px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog21">제어 > Firmware 업그레이드 > Firmware 적용 장비 선택</div>
+		<!-- dialog : 펌웨어 적용 장비 선택 2020-09-09 ADD: mu-fix-foot height:710px 적용필수 -->
+		<div class="mu-dialog mu-fix-foot" style="top:2360px;left:30px;width:1280px;height:710px">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">펌웨어 적용 장비 선택</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+
+				<!-- mu-swap -->
+				<div class="mu-swap">
+					<!-- mu-swap-left fx-none, w420으로 고정값추가 -->
+					<div class="mu-swap-left mu-dialog-box fx-none w420">	
+						<!-- mu-swap-left -->									
+						<div class="mu-grid-top">
+							<div class="mu-item-group">
+								<h5 class="mu-title">장비선택</h5>
+							</div>
+						</div>
+						<!-- //mu-swap-left -->		
+						<!-- mu-search-group > 입력테이블 + 버튼영역 -->
+						<div class="mu-search-group">
+							<table class="mu-formbox">					
+								<colgroup>
+									<col style="width:90px;">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr>
+										<th><label>제조사</label></th>
+										<td>
+											<div class="mu-selectbox">
+												<button class="mu-value">전체</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label>Software Ver.</label></th>
+										<td>
+											<div class="mu-selectbox">
+												<button class="mu-value">전체</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label>Hardware Ver.</label></th>
+										<td>
+											<div class="mu-selectbox">
+												<button class="mu-value">전체</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label>장비상태</label></th>
+										<td>
+											<div class="mu-selectbox">
+												<button class="mu-value">전체</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label>장비명</label></th>
+										<td>
+											<input type="text" class="mu-input">
+										</td>
+									</tr>
+									<tr>
+										<th><label>MAC</label></th>
+										<td>
+											<input type="text" class="mu-input">
+										</td>
+									</tr>
+									<tr>
+										<th><label>조직</label></th>
+										<td>
+											<!-- 2020-09-16 MOD : 구조검색 통일 -->											
+											<div class="mu-input-search">
+												<input type="text" class="mu-input" placeholder="search...">
+												<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img search"></i></button>
+											</div>
+											<!-- //2020-09-16 MOD : 구조검색 통일 -->
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="mu-btn-wrap mu-btn-bottom">
+								<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>선택해제</span></button>
+								<span class="bar-line"></span>
+								<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img search"></i><span>조회</span></button>
+							</div>
+						</div>
+						<!-- //mu-search-group > 입력테이블 + 버튼영역 -->	
+						<!-- ag-grid-wrap -->					
+						<div class="ag-grid-wrap">
+							<div id="myGrid16" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+						</div>
+						<!-- //ag-grid-wrap -->
+					</div>
+					<!-- //mu-swap-left -->
+					<div class="mu-swap-btn">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-right"></i></button> 
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-left"></i></button>
+					</div>
+					<!-- mu-swap-right -->
+					<div class="mu-swap-right mu-dialog-box">
+						<!-- 좌우나누기 간격조절, 라인추가 -->
+						<div class="mu-row gap-20 gap-bar-line">
+							<!-- 왼쪽영역 -->
+							<div class="mu-col mu-col-5">
+								<div class="mu-grid-top">
+									<div class="mu-item-group">
+										<h5 class="mu-title">선택된 장비 목록</h5>
+									</div>
+								</div>
+								<!-- ag-grid-wrap -->
+								<div class="ag-grid-wrap">
+									<div id="myGrid17" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+								</div>
+								<!-- //ag-grid-wrap -->
+							</div>
+							<!-- //왼쪽영역 -->
+							<!-- 오른쪽영역 -->
+							<div class="mu-col mu-col-7">								
+								<div class="mu-grid-top">
+									<div class="mu-item-group">
+										<h5 class="mu-title">Firmware Select</h5>
+									</div>
+								</div>								
+								<!-- dialog 입력 -->                  
+								<table class="mu-formbox">
+									<colgroup>
+										<col style="width:150px;">
+										<col>
+									</colgroup>
+									<tbody>
+										<tr>
+											<th><label>작업명</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>Firmware</label></th>
+											<td>
+												<div class="mu-item-group">
+													<input type="input" class="mu-input"> 
+													<button type="button" class="mu-btn">선택</button>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th><label>Firmware 등록일</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>Download URL Path</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>Firmware Size(Kbyte)</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>Authentication ID</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>Authentication Password</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>Success URL</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>Fail URL</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>Dealy Time(sec.)</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>Target File Name</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>제조사</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>Hardware Version</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>Software Version</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>모델명</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>자동 Upgrade 설정</label></th>
+											<td>
+												<input type="input" class="mu-input">
+											</td>
+										</tr>
+										<tr>
+											<th><label>Upgrade Date and Time</label></th>
+											<td>
+												<div class="mu-item-group">
+													<date-picker v-model="stdDate" :lang="lang" :clearable=false></date-picker>
+													<date-picker v-model="time "type="time" class="mu-timepicker" format="HH:mm:ss" placeholder="Select Time" :time-picker-options="timePickerOptions"></date-picker>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table> 
+								<!-- //dialog 입력 --> 
+							</div>
+							<!-- //오른쪽영역 -->
+						</div>
+						<!-- //좌우나누기 -->
+					</div>
+					<!-- //mu-swap-right -->
+				</div>
+				<!-- mu-swap -->
+
+
+				
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>작업취소</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>작업실행</span></button>
+            </div>
+		</div>
+		<!-- //dialog -->
+		
+		<div style="position:absolute;top:3360px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog22">제어 > Firmware 업그레이드 > Firmware 적용 장비 선택 > Firmware 검색</div>
+		<!-- dialog : Firmware 적용 장비 선택 > Firmware 검색 -->
+		<div class="mu-dialog" style="top:3380px;left:30px;width:970px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">Firmware 검색</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<!-- 조회테이블 -->
+				<div class="mu-search-group">
+					<div class="mu-search-item">
+						<table>										
+							<colgroup>
+								<col style="width:80px;">
+								<col style="width:190px;">
+								<col style="width:70px;">
+								<col style="width:190px;">
+								<col style="width:60px;">
+								<col style="width:190px;">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th><label>Firmware 명</label></th>
+									<td>
+										<input type="text" class="mu-input">
+									</td>
+									<th><label>S/W Ver.</label></th>
+									<td>
+										<input type="text" class="mu-input">
+									</td>
+									<th><label>모델명</label></th>
+									<td>
+										<input type="text" class="mu-input">
+									</td>
+								</tr>
+								<tr>
+									<th><label>OUI</label></th>
+									<td>
+										<input type="text" class="mu-input">
+									</td>
+									<th><label>H/W ver.</label></th>
+									<td>
+										<input type="text" class="mu-input">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mu-search-btn">
+						<button type="button" class="mu-btn mu-btn-point mu-btn-icon"><i class="mu-icon-img search"></i><span>조회</span></button>
+					</div>
+				</div>
+				<!-- //조회테이블 -->
+				<div class="ag-grid-wrap" style="height:500px;">
+					<div id="myGrid8" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+				</div>
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>선택</span></button>
+            </div>
+		</div>
+		<!-- //dialog -->
+		
+		<div style="position:absolute;top:4200px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog23">SON > 그룹관리 > 즉시제어</div>
+		<!-- dialog : 즉시제어 -->
+		<div class="mu-dialog" style="top:4220px;left:30px;width:970px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">즉시제어</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<div class="mu-row">
+					<div class="mu-col mu-col-6">
+						<!-- dialog 입력폼영역 -->
+						<div class="mu-dialog-box">                     
+							<table class="mu-formbox">
+								<colgroup>
+									<col style="width:60px;">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr>
+										<th><label>그룹명</label></th>
+										<td>
+											<span>광고WL설정</span>
+										</td>
+									</tr>
+									<tr>
+										<th><label>그룹타입</label></th>
+										<td>
+											<span>제어</span>
+										</td>
+									</tr>
+									<tr>
+										<th><label>자동제어</label></th>
+										<td>
+											<span>OFF</span>
+										</td>
+									</tr>
+									<tr>
+										<th><label>설명</label></th>
+										<td class="vt">
+											<span>설명설명설명설명설명 설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명두줄이상....처리하기</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>                    
+						</div>
+						<!-- //dialog 입력폼영역 --> 
+					</div>
+					<div class="mu-col mu-col-6">		
+						<!-- ag-grid-wrap --> 
+						<div class="ag-grid-wrap" style="height:155px;">
+							<div id="myGrid21" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+						</div> 
+						<!-- //ag-grid-wrap -->
+					</div>
+				</div>
+				<div class="mu-row">
+					<div class="mu-col mu-col-12">
+						<div class="mu-grid-top">
+							<div class="mu-item-group">
+								<div class="mu-selectbox">
+									<button class="mu-value">화이트리스트</button>
+									<ul class="mu-list">
+										<li value="1">블랙리스트</li>
+									</ul>
+								</div>
+								<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img right"></i><span>실행</span></button> 
+								<span class="bar-line"></span>
+								<button type="button" class="mu-btn">Firmware</button>
+								<span class="bar-line"></span>
+								<div class="mu-checkbox">
+									<input type="checkbox" id="ckbS"> 
+									<label for="ckbS">재시작여부</label>
+								</div>										
+							</div> 
+							<div class="mu-item-group fr">		
+								<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i><span>추가</span></button>
+								<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img modify"></i><span>수정</span></button>
+								<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>삭제</span></button>
+							</div>
+						</div>
+						<!-- ag-grid-wrap --> 
+						<div class="ag-grid-wrap" style="height:400px;">
+							<div id="myGrid22" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+						</div> 
+						<!-- //ag-grid-wrap -->
+					</div>
+				</div>
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>실행</span></button>
+            </div>
+		</div>
+		<!-- //dialog -->
+		
+		<div style="position:absolute;top:4980px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog24">SON > 그룹관리 > 즉시제어 > 화이트리스트 편집 <br>SON > 그룹관리 > 즉시제어 > 블랙리스트 편집</div>
+		<!-- dialog : 화이트리스트 편집 -->
+		<div class="mu-dialog" style="top:5020px;left:30px;width:700px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">화이트리스트 편집</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+                <!-- dialog 입력폼영역 -->
+                <div class="mu-dialog-box">                     
+                    <table class="mu-formbox">
+                        <colgroup>
+                            <col style="width:60px;">
+                            <col>
+                            <col style="width:160px;">
+                            <col style="width:100px;">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><label>IP Address</label></th>
+                                <td colspan="3">
+									<div class="mu-item-group fx-none">
+										<input type="input" class="mu-input w170">
+										<span class="txt-info">IP 입력 예) 192.168.0.1 or 123.23.3.10 ~ 20 or URL 입력가능</span>
+									</div>
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>비고</label></th>
+                                <td>
+									<div class="mu-item-group">
+										<input type="input" class="mu-input">
+										<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i></button>
+										<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i></button>
+									</div>
+                                </td>
+								<th><label>DefaultAccessListEnabled</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">None</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+                        </tbody>
+                    </table>                    
+                </div>
+				<!-- //dialog 입력폼영역 --> 
+				<!-- ag-grid-wrap --> 
+				<div class="ag-grid-wrap" style="height:200px;">
+					<div id="myGrid9" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+				</div> 
+				<!-- //ag-grid-wrap -->
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>저장</span></button>
+            </div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:5000px;left:780px;font-size:13px;color:#fff;z-index:1000;" id="dialog26">SON > 그룹관리 > 즉시제어 > 펌웨어 선택</div>
+		<!-- dialog : 펌웨어 선택 -->
+		<div class="mu-dialog" style="top:5020px;left:780px;width:470px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">펌웨어 선택</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+                <!-- dialog 입력폼영역 -->
+                <div class="mu-dialog-box">                     
+                    <table class="mu-formbox">
+                        <colgroup>
+                            <col style="width:150px;">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><label>Firmware</label></th>
+								<td>
+									<div class="mu-item-group">
+										<input type="text" class="mu-input"> 
+										<button type="button" class="mu-btn">선택</button>
+									</div>
+								</td>
+							</tr>
+							<tr>
+                                <th><label>Firmware 등록일</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>Download URL Path</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>Firmware Size(Kbyte)</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>Authentication ID</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>Authentication Password</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>Success URL</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>Fail URL</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>Delay Time(sec.)</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>Target File Name</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>제조사</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>Hardware Version</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>Software Version</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+                                <th><label>모델명</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+							</tr>
+                        </tbody>
+                    </table>                    
+                </div>
+                <!-- //dialog 입력폼영역 -->
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>확인</span></button>
+            </div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:5680px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog27">SON > 그룹관리 > 그룹수정 - tab1_장비정보 <br>SON > 그룹관리 > 그룹추가</div>
+		<!-- dialog : 그룹수정/그룹추가 - tab1_장비정보 2020-09-09 ADD: mu-fix-foot height:900px;추가 -->
+		<div class="mu-dialog mu-fix-foot" style="top:5720px;left:30px;width:1100px;height:900px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">그룹수정</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+                <!-- dialog 입력폼영역 -->
+                <div class="mu-dialog-box">                     
+                    <table class="mu-formbox">
+                        <colgroup>
+                            <col style="width:70px;">
+                            <col>
+                            <col style="width:110px;">
+                            <col style="width:120px;">
+                            <col style="width:90px;">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><label>그룹명</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                                <th><label>자동제어</label></th>
+                                <td>
+									<input type="input" class="mu-input">
+                                </td>
+                                <th><label>설명</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+							</tr>
+							<tr>
+								<th><label>그룹타입</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">None</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+								<th><label>Green AP관리</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">사용안함</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+                                <th><label>선택장비수</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+							</tr>
+                        </tbody>
+                    </table>                    
+                </div>
+				<!-- //dialog 입력폼영역 -->
+
+				<!-- mu-tab -->
+				<ul class="mu-tab">
+					<li class="active"><a href="">장비정보</a></li> 
+					<li><a href="">스케쥴 목록</a></li>
+				</ul> 
+				<!-- //mu-tab -->
+
+				<!-- mu-swap -->
+				<div class="mu-swap">
+					<!-- mu-swap-left -->
+					<div class="mu-swap-left mu-dialog-box">
+						<!-- mu-swap-left  > title -->	
+						<div class="mu-grid-top">
+							<h5 class="mu-title">장비선택</h5>
+						</div>
+						<!-- //mu-swap-left  > title -->										
+						<!-- mu-search-group > 입력테이블 + 버튼영역 -->
+						<div class="mu-search-group">
+							<table class="mu-formbox">					
+								<colgroup>
+									<col style="width:90px;">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr>
+										<th><label>제조사</label></th>
+										<td>
+											<div class="mu-selectbox">
+												<button class="mu-value">list default</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label>Software Ver.</label></th>
+										<td>
+											<div class="mu-selectbox">
+												<button class="mu-value">list default</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label>Hardware Ver.</label></th>
+										<td>
+											<div class="mu-selectbox">
+												<button class="mu-value">list default</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label>장비 등록상태</label></th>
+										<td>
+											<div class="mu-selectbox">
+												<button class="mu-value">list default</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label>장비 서비스상태</label></th>
+										<td>
+											<div class="mu-selectbox">
+												<button class="mu-value">list default</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label>장비유형</label></th>
+										<td>
+											<div class="mu-item-group">
+												<div class="mu-selectbox">
+													<button class="mu-value">전체</button>
+													<ul class="mu-list">
+														<li value="1">list option1</li>
+														<li value="2">list option2</li>
+														<li value="3">list option3</li>
+													</ul>
+												</div>
+												<div class="mu-selectbox">
+													<button class="mu-value">전체</button>
+													<ul class="mu-list">
+														<li value="1">list option1</li>
+														<li value="2">list option2</li>
+														<li value="3">list option3</li>
+													</ul>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><label>MAC</label></th>
+										<td>
+											<input type="input" class="mu-input">
+										</td>
+									</tr>
+									<tr>
+										<th><label>조직</label></th>
+										<td>
+											<!-- 2020-09-16 MOD : 구조검색 통일 -->											
+											<div class="mu-input-search">
+												<input type="text" class="mu-input" placeholder="search...">
+												<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img search"></i></button>
+											</div>
+											<!-- //2020-09-16 MOD : 구조검색 통일 -->
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="mu-btn-wrap mu-btn-bottom">
+								<div class="mu-checkbox">
+									<input type="checkbox" id="ckbS"> 
+									<label for="ckbS">그룹 선택안된 장비 검색</label>
+								</div>
+								<span class="bar-line"></span> 
+								<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img search"></i><span>조회</span></button>
+							</div>
+						</div>
+						<!-- //mu-search-group > 입력테이블 + 버튼영역 -->
+						<!-- ag-grid-wrap -->						
+						<div class="ag-grid-wrap">
+							<div id="myGrid10" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+						</div>
+						<!-- //ag-grid-wrap -->
+					</div>
+					<!-- //mu-swap-left -->
+					<div class="mu-swap-btn">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-right"></i></button> 
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-left"></i></button>
+					</div>
+					<!-- mu-swap-right -->
+					<div class="mu-swap-right mu-dialog-box">
+						<!-- right 대상장비 개수 + right 해당버튼 -->
+						<div class="mu-grid-top">
+							<div class="mu-item-group">
+								<h5 class="mu-title">대상장비<span class="txt-num">(99개)</span></h5>
+							</div>
+							<div class="mu-item-group fr">
+								<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img upload"></i><span>장비엑셀업로드</span></button>
+								<button type="button" class="mu-btn">그룹공유</button>
+								<span class="bar-line"></span>
+								<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>장비엑셀다운로드</span></button>
+							</div>
+						</div>
+						<!-- //right 대상장비 개수 + right 해당버튼 -->
+						<!-- ag-grid-wrap -->
+						<div class="ag-grid-wrap">
+							<div id="myGrid11" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+						</div>
+						<!-- //ag-grid-wrap -->
+					</div>
+					<!-- //mu-swap-right -->
+				</div>
+				<!-- mu-swap -->
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>수정</span></button>
+            </div>
+		</div>
+		<!-- //dialog -->		
+		
+		<div style="position:absolute;top:6800px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog28">SON > 그룹관리 > 그룹수정 - tab2_스케쥴 목록 - 스케줄정보 - tabsub1_작업내용 <br>SON > 그룹관리 > 그룹수정 - tab2_스케쥴 목록 - 스케줄정보 - tabsub2_스케쥴 적용된 그룹목록</div>
+		<!-- dialog : 그룹수정 - tab2_스케쥴 목록 - 스케줄정보 - tabsub1_작업내용 -->
+		<div class="mu-dialog" style="top:6840px;left:30px;width:1100px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">그룹수정</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<!-- dialog 입력폼영역 -->
+				<div class="mu-dialog-box">                     
+					<table class="mu-formbox">
+						<colgroup>
+							<col style="width:70px;">
+							<col>
+							<col style="width:110px;">
+							<col style="width:120px;">
+							<col style="width:90px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label>그룹명</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+								<th><label>자동제어</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+								<th><label>설명</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+							</tr>
+							<tr>
+								<th><label>그룹타입</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">None</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+								<th><label>Green AP관리</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">사용안함</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+								<th><label>선택장비수</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+							</tr>
+						</tbody>
+					</table>                    
+				</div>
+				<!-- //dialog 입력폼영역 -->
+
+				<!-- mu-tab -->
+				<ul class="mu-tab">
+					<li><a href="">장비정보</a></li> 
+					<li class="active"><a href="">스케쥴 목록</a></li>
+				</ul> 
+				<!-- //mu-tab -->
+
+				<div class="mu-tab-body">
+					<div class="mu-tab-cont">
+						<div class="mu-row h700">
+							<!-- left -->
+							<div class="mu-col mu-col-5">
+								<!-- left top -->
+								<div class="mu-grid-group mu-row-6">	
+									<!-- left  > button -->
+									<div class="mu-grid-top">
+										<div class="mu-item-group fr">
+											<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i><span>추가</span></button>
+											<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>삭제</span></button>
+											<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i></button>
+										</div>
+									</div>
+									<!-- //left  > button -->
+									<!-- ag-grid-wrap -->
+									<div class="ag-grid-wrap">
+										<div id="myGrid12" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+									</div>
+									<!-- //ag-grid-wrap -->
+								</div>
+								<!-- //left top -->
+								<!-- left bottom -->
+								<div class="mu-grid-group mu-row-6">	
+									<!-- left  > button -->
+									<div class="mu-grid-top">
+										<div class="mu-item-group fr">
+											<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i><span>그룹에 사용</span></button>
+											<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i><span>추가</span></button>
+											<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>삭제</span></button>
+											<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i></button>
+										</div>
+									</div>
+									<!-- //left  > button -->
+									<!-- ag-grid-wrap -->
+									<div class="ag-grid-wrap">
+										<div id="myGrid13" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+									</div>
+									<!-- //ag-grid-wrap -->
+								</div>
+								<!-- //left bottom -->													
+							</div>
+							<!-- //left -->
+							<!-- right -->
+							<div class="mu-col mu-col-7">							
+								<!-- mu-tab -->
+								<ul class="mu-tab">
+									<li class="active"><a href="">작업내용</a></li>
+									<li><a href="">스케쥴 적용된 그룹목록</a></li>
+								</ul>
+								<!-- //mu-tab -->
+								<div class="mu-tab-body">
+									<div class="mu-tab-cont">		
+										<!-- right  > button -->
+										<div class="mu-grid-top">
+											<div class="mu-item-group fr">
+												<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img upload"></i><span>장비업로드</span></button>
+												<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img add"></i><span>추가</span></button>
+												<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>삭제</span></button>
+												<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i></button>
+												<span class="bar-line"></span>
+												<button type="button" class="mu-btn">그룹공유</button>
+												<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>장비다운로드</span></button>
+											</div>
+										</div>
+										<!-- //right  > button -->
+										<!-- ag-grid-wrap -->
+										<div class="ag-grid-wrap">
+											<div id="myGrid14" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+										</div>
+										<!-- //ag-grid-wrap -->
+									</div>
+								</div>
+
+							</div>
+							<!-- //right -->
+						</div>
+					</div>
+				</div>
+
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>수정</span></button>
+            </div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:7880px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog29">SON > 그룹관리 > 그룹수정 > 그룹공유</div>
+		<!-- dialog : 그룹공유 2020-09-09 ADD: mu-fix-foot height:700px 적용필수 -->
+		<div class="mu-dialog mu-fix-foot" style="top:7900px;left:30px;width:1280px;height:700px">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">그룹 공유</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<!-- dialog 입력폼영역 top -->
+				<div class="mu-dialog-box">                     
+					<table class="mu-formbox">
+						<colgroup>
+							<col style="width:70px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label>설명</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+							</tr>
+						</tbody>
+					</table>                    
+				</div>
+				<!-- //dialog 입력폼영역 top -->
+				
+				<!-- mu-swap -->
+				<div class="mu-swap">
+					<!-- mu-swap-left -->
+					<div class="mu-swap-left mu-dialog-box">	
+						<!-- 좌우나누기 간격조절, 라인추가 -->
+						<div class="mu-row gap-20 gap-bar-line">
+							<!-- 왼쪽영역 -->
+							<div class="mu-col mu-col-4">			
+								<div class="mu-grid-top">
+									<div class="mu-item-group">
+										<h5 class="mu-title">선택한 그룹 목록</h5>
+									</div>
+								</div>		
+								<!-- ag-grid-wrap -->					
+								<div class="ag-grid-wrap">
+									<div id="myGrid18" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+								</div>
+								<!-- //ag-grid-wrap -->
+							</div>
+							<!-- //왼쪽영역 -->
+							<!-- 오른쪽영역 -->
+							<div class="mu-col mu-col-8">								
+								<div class="mu-grid-top">
+									<div class="mu-item-group">
+										<h5 class="mu-title">사용자 검색</h5>
+									</div>
+								</div>
+								<!-- //mu-swap-left -->			
+								<!-- mu-search-group > 입력테이블 + 버튼영역 -->
+								<div class="mu-search-group">
+									<table class="mu-formbox">					
+										<colgroup>
+											<col style="width:90px;">
+											<col>
+										</colgroup>
+										<tbody>
+											<tr>
+												<th><label>사용자 ID</label></th>
+												<td>
+													<input type="input" class="mu-input">
+												</td>
+											</tr>
+											<tr>
+												<th><label>사용자명</label></th>
+												<td>
+													<input type="input" class="mu-input">
+												</td>
+											</tr>
+											<tr>
+												<th><label>조직</label></th>
+												<td>
+													<!-- 2020-09-16 MOD : 구조검색 통일 -->											
+													<div class="mu-input-search">
+														<input type="text" class="mu-input" placeholder="search...">
+														<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img search"></i></button>
+													</div>
+													<!-- //2020-09-16 MOD : 구조검색 통일 -->
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="mu-btn-wrap mu-btn-bottom">
+										<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img search"></i><span>조회</span></button>
+									</div>
+								</div>
+								<!-- //mu-search-group > 입력테이블 + 버튼영역 -->
+								<!-- ag-grid-wrap -->
+								<div class="ag-grid-wrap">
+									<div id="myGrid19" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+								</div>
+								<!-- //ag-grid-wrap -->
+								
+							</div>
+							<!-- //오른쪽영역 -->
+						</div>
+						<!-- //좌우나누기 -->
+					</div>
+					<!-- //mu-swap-left -->
+					<div class="mu-swap-btn">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-right"></i></button> 
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img arrow-left"></i></button>
+					</div>
+					<!-- mu-swap-right fx-none, w420으로 고정값추가 -->
+					<div class="mu-swap-right mu-dialog-box fx-none w420">
+						<div class="mu-grid-top">
+							<div class="mu-item-group">
+								<h5 class="mu-title">대상 사용자</h5>
+							</div>
+							<div class="mu-item-group fr">								
+								<button type="button" class="mu-btn">공유자 지정</button>
+								<button type="button" class="mu-btn">공유자 보기</button>
+							</div>
+						</div>					
+						<!-- ag-grid-wrap -->
+						<div class="ag-grid-wrap">
+							<div id="myGrid20" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+						</div>
+						<!-- //ag-grid-wrap -->
+						<!-- mu-dialog-info -->
+						<div class="mu-dialog-info">
+							<ul>
+								<li>위 목록은 선택한 그룹의 공통 공유자들의 목록입니다.</li>
+								<li>일부만 공유된 ID는 보이지 않을수 있습니다.</li>
+								<li>상태값이 없는 사용자는 추가대상자입니다.</li>
+							</ul>
+						</div>
+						<!-- //mu-dialog-info -->
+					</div>
+					<!-- //mu-swap-right -->
+				</div>
+				<!-- mu-swap -->
+			</div>
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>작업취소</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>작업실행</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+		
+		<div style="position:absolute;top:8680px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog30">SON > 그룹관리 > 그룹수정 > 그룹공유 > 그룹 기본 공유자 보기</div>
+		<!-- dialog : 그룹 기본 공유자 보기 -->
+		<div class="mu-dialog" style="top:8700px;left:30px;width:400px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">그룹 기본 공유자 보기</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body"> 
+				<!-- button -->
+				<div class="mu-grid-top">
+					<div class="mu-item-group fr"> 
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>삭제</span></button>
+					</div>
+				</div>
+				<!-- //button -->
+				<!-- ag-grid-wrap -->
+				<div class="ag-grid-wrap" style="height:200px;">
+					<div id="myGrid15" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+				</div>
+				<!-- //ag-grid-wrap -->
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+            </div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:8680px;left:480px;font-size:13px;color:#fff;z-index:1000;" id="dialog31">SON > SON/MMI사용자권한 > MMI/SON 권한 관리(등록/수정)</div>
+		<!-- dialog : MMI/SON 권한 관리(등록/수정) -->
+		<div class="mu-dialog" style="top:8700px;left:480px;width:300px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">MMI/SON 권한 관리(등록/수정)</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+                <!-- dialog 입력폼영역 -->
+                <div class="mu-dialog-box">                     
+                    <table class="mu-formbox">
+                        <colgroup>
+                            <col style="width:100px;">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><label>사용자ID</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>SON권한</label></th>
+                                <td>							
+									<div class="mu-selectbox">
+										<button class="mu-value">Y</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>MMI권한</label></th>
+                                <td>							
+									<div class="mu-selectbox">
+										<button class="mu-value">N</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>SON 제어 AP개수</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>                    
+                </div>
+                <!-- //dialog 입력폼영역 -->   
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>저장</span></button>
+            </div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:8680px;left:850px;font-size:13px;color:#fff;z-index:1000;" id="dialog32">SON > 그룹 MMI 상세 이력 > 파일 다운로드</div>
+		<!-- dialog : 파일 다운로드 -->
+		<div class="mu-dialog" style="top:8700px;left:850px;width:300px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">파일 다운로드</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<div class="mu-dialog-box">
+					<div class="mu-hgroup">
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>엑셀(CSV)</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>TXT</span></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>XML</span></button>
+					</div>
+				</div>
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+            </div>
+		</div>
+		<!-- //dialog -->
+		
+	</div>
+</div>
+
+	<script src="https://unpkg.com/vue@2.6.10"></script><!-- 20200814 MOD : vue@2.3.3 ==> @2.6.10 -->
+	<script src="https://unpkg.com/ag-grid-community@21.0.1/dist/ag-grid-community.min.noStyle.js"></script><!-- 20200814 MOD : ver @23.2.1 ==> @21.0.1 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue2-datepicker@2.12.0/lib/index.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.js"></script>
+	<script>
+		//달력+시간 샘플 2.12.0
+		Vue.use(DatePicker.default);
+			
+		new Vue({
+			
+			el: '#app',
+			data: {
+			  prjName: 'TMS',
+			  stdDate:null,
+			  lang: {
+					days: ['일', '월', '화', '수', '목', '금', '토'],
+					months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+					pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+					placeholder: {
+					date: 'Select Date',
+					dateRange: 'Select Date Range'
+					}
+				},
+			 time:'',
+			 timePickerOptions:{
+				 start: '00',
+				 step: '00',
+				 end: '00'
+			   }
+			},
+			
+			beforeMount(){
+			
+				
+			},
+			mounted() {
+				this.stdDate  = Date.now();
+			},
+			
+		
+		})
+		
+
+
+				
+		//ag-grid 개발참고용 샘플코드1~
+		// specify the columns
+		var columnDefs = [			
+			{headerName: "", field: "cl1",width: 40, sortable: true,checkboxSelection: true,headerCheckboxSelection: true},
+			{headerName: "테스트용 그리드", field: "cl2", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드2", field: "cl3", width: 200, unSortIcon: true},
+			{headerName: "테스트용 그리드3", field: "cl4", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드4", field: "cl5", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드5", field: "cl6", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드6", field: "cl7", width: 150, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl8", width: 150, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl9", width: 200, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl10", width: 150, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl11", width: 100, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl12", width: 200, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl13", width: 100, unSortIcon: true}
+
+		];
+
+		// specify the data
+		var rowData = [
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"}, 			
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"}
+		];
+  
+		// let the grid know which columns and what data to use
+		var gridOptions = {
+			defaultColDef: {
+			sortable: true
+			},
+			columnDefs: columnDefs,
+			rowData: rowData,
+			rowSelection: 'single'
+		};
+
+		// lookup the container we want the Grid to use
+		var eGridDiv1 = document.querySelector('#myGrid1');
+		var eGridDiv2 = document.querySelector('#myGrid2');
+		var eGridDiv3 = document.querySelector('#myGrid3');
+		var eGridDiv4 = document.querySelector('#myGrid4');
+		var eGridDiv5 = document.querySelector('#myGrid5');
+		var eGridDiv6 = document.querySelector('#myGrid6');
+		var eGridDiv7 = document.querySelector('#myGrid7');
+		var eGridDiv8 = document.querySelector('#myGrid8');
+		var eGridDiv9 = document.querySelector('#myGrid9');
+		var eGridDiv10 = document.querySelector('#myGrid10');
+		var eGridDiv11 = document.querySelector('#myGrid11');
+		var eGridDiv12 = document.querySelector('#myGrid12');
+		var eGridDiv13 = document.querySelector('#myGrid13');
+		var eGridDiv14 = document.querySelector('#myGrid14');
+		var eGridDiv15 = document.querySelector('#myGrid15');
+		var eGridDiv16 = document.querySelector('#myGrid16');
+		var eGridDiv17 = document.querySelector('#myGrid17');
+		var eGridDiv18 = document.querySelector('#myGrid18');
+		var eGridDiv19 = document.querySelector('#myGrid19');
+		var eGridDiv20 = document.querySelector('#myGrid20');
+		var eGridDiv21 = document.querySelector('#myGrid21');
+		var eGridDiv22 = document.querySelector('#myGrid22');
+
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv1, gridOptions);	
+		new agGrid.Grid(eGridDiv2, gridOptions);	
+		new agGrid.Grid(eGridDiv3, gridOptions);	
+		new agGrid.Grid(eGridDiv4, gridOptions);	
+		new agGrid.Grid(eGridDiv5, gridOptions);	
+		new agGrid.Grid(eGridDiv6, gridOptions);	
+		new agGrid.Grid(eGridDiv7, gridOptions);	
+		new agGrid.Grid(eGridDiv8, gridOptions);
+		new agGrid.Grid(eGridDiv9, gridOptions);	
+		new agGrid.Grid(eGridDiv10, gridOptions);	
+		new agGrid.Grid(eGridDiv11, gridOptions);	
+		new agGrid.Grid(eGridDiv12, gridOptions);	
+		new agGrid.Grid(eGridDiv13, gridOptions);	
+		new agGrid.Grid(eGridDiv14, gridOptions);		
+		new agGrid.Grid(eGridDiv15, gridOptions);	
+		new agGrid.Grid(eGridDiv16, gridOptions);		
+		new agGrid.Grid(eGridDiv17, gridOptions);	
+		new agGrid.Grid(eGridDiv18, gridOptions);	
+		new agGrid.Grid(eGridDiv19, gridOptions);		
+		new agGrid.Grid(eGridDiv20, gridOptions);		
+		new agGrid.Grid(eGridDiv21, gridOptions);		
+		new agGrid.Grid(eGridDiv22, gridOptions);
+		
+
+		</script>
+</body>
+</html>

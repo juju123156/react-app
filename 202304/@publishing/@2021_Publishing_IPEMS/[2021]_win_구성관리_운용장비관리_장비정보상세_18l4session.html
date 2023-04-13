@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>IP-EMS </title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="assets/ag-grid/ag-grid.css">
+	<link rel="stylesheet" href="assets/ag-grid/ag-theme-balham-dark.css">
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body class="equip-popup">
+<div id="app">
+	<div class="mu-container">
+		<section>
+			<div class="mu-content-top">
+				<h3 class="mu-title"><i class="mu-icon-img list"></i><span>장비 정보 상세</span></h3>
+			</div>
+			<div class="mu-content">
+
+				<!-- mu-search-group -->
+				<div class="mu-search-group">
+					<div class="mu-search-item">
+						<table>
+							<colgroup>
+								<col style="width:90px;">
+								<col style="width:240px;">
+								<col style="width:90px;">
+								<col style="width:240px;">
+								<col style="width:90px;">
+								<col style="width:240px;">
+								<col style="width:90px;">
+								<col style="width:240px;">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th><label>전송국사</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>망구분</label></th>
+									<td>
+										<input type="text" class="mu-input" value="라우터 > IBC" readonly="readonly">
+									</td>
+									<th><label>장비유형</label></th>
+									<td colspan="3">
+										<input type="text" class="mu-input" value="IB백홀 > IBC" readonly="readonly">
+									</td>
+								</tr>
+								<tr>
+									<th><label>장비명</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>장비 IP</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>장비설명</label></th>
+									<td colspan="3">
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+								</tr>
+								<tr>
+									<th><label>제조사</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>모델</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>가동시간</label></th>
+									<td>
+										<input type="text" class="mu-input" value="5 days, 23:22:46.67" readonly="readonly">
+									</td>
+									<th><label>백업일시</label></th>
+									<td>
+										<input type="text" class="mu-input" value="2001-01-01 13:00:00" readonly="readonly">
+									</td>
+								</tr>
+								<tr>
+									<th><label>최상위 연동장비</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>상위 연동장비</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>등록일시</label></th>
+									<td>
+										<input type="text" class="mu-input" value="yyyy-mm-dd hh24:mi:ss" readonly="readonly">
+									</td>
+									<th><label>수정일시</label></th>
+									<td>
+										<input type="text" class="mu-input" value="yyyy-mm-dd hh24:mi:ss" readonly="readonly">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- //mu-search-group -->
+
+				<div class="mu-grid-top">
+					<div class="mu-item-group fr">
+						<button type="button" class="mu-btn"><span>재조회</span></button>
+						<button type="button" class="mu-btn" disabled="disabled"><span>저장</span></button>
+						<button type="button" class="mu-btn"><span>장비 상태 및 성능</span></button>
+						<button type="button" class="mu-btn"><span>실시간 장비 성능</span></button>
+						<button type="button" class="mu-btn"><span>자원 재 수집</span></button>
+						<button type="button" class="mu-btn"><span>조회접속</span></button>
+						<button type="button" class="mu-btn"><span>작업접속</span></button>
+						<button type="button" class="mu-btn"><span>RM접속</span></button>
+					</div>
+				</div>
+				<div class="mu-tab-page">
+					<ul class="mu-tab">
+						<li><a href="#none">장비정보(I)</a></li>
+						<li><a href="#none">장비정보(II)</a></li>
+						<li><a href="#none">장비정보(III)</a></li>
+						<li><a href="#none">고장내역</a></li>
+						<li><a href="#none">포트정보</a></li>
+						<li><a href="#none">포트성능</a></li>
+						<li><a href="#none">포트링크현황</a></li>
+						<li><a href="#none">Config 백업</a></li>
+						<li><a href="#none">TFTP 백업</a></li>
+						<li><a href="#none">Syslog 현황</a></li>
+						<li><a href="#none">FDB 정보</a></li>
+						<li><a href="#none">ARP 정보</a></li>
+						<li><a href="#none">상태정보</a></li>
+						<li><a href="#none">Net Session</a></li>
+						<li><a href="#none">CSM 정보</a></li>
+						<li><a href="#none">Fast Convergence</a></li>
+						<li><a href="#none">FHRP</a></li>
+						<li class="active"><a href="#none">L4 Session</a></li>
+						<li><a href="#none">Net iRule</a></li>
+						<li><a href="#none">장비정보(IV)</a></li>
+					</ul>
+					<button type="button" class="mu-btn mu-btn-icon-only"><span>. . .</span></button>
+				</div>
+				<div class="mu-tab-body">
+					<div class="mu-tab-cont">
+						<div class="mu-row" style="height:auto;">
+							<div class="mu-col mu-col-12">
+								<div class="mu-grid-top">
+									<h6 class="mu-title"><i class="mu-icon-img"></i><span>L4 Session 통계 정보</span></h6>
+								</div>
+								<div class="mu-search-group">
+									<div class="mu-search-item">
+										<table class="mu-grid">
+											<colgroup>
+												<col span="6" style="width: 140px;">
+											</colgroup>
+											<tbody>
+												<tr>
+													<th>CPS</th>
+													<td>79,156</td>
+													<th>동시접속자</th>
+													<td>2,345</td>
+													<th>CPU</th>
+													<td>9.99</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="mu-search-btn">
+										<button type="button" class="mu-btn"><span>1분 통계</span></button>
+										<button type="button" class="mu-btn"><span>5분 통계</span></button>
+										<button type="button" class="mu-btn"><span>1시간 통계</span></button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="mu-row">
+							<div class="mu-col mu-col-12">
+								<div class="mu-grid-top">
+									<h6 class="mu-title"><i class="mu-icon-img"></i><span>CPS</span></h6>
+								</div>
+								<div class="chart-wrap">
+									<div class="chart"></div>
+								</div>
+							</div>
+						</div>
+						<div class="mu-row">
+							<div class="mu-col mu-col-12">
+								<div class="mu-grid-top">
+									<h6 class="mu-title"><i class="mu-icon-img"></i><span>동시 접속자</span></h6>
+								</div>
+								<div class="chart-wrap">
+									<div class="chart"></div>
+								</div>
+							</div>
+						</div>
+						<div class="mu-row">
+							<div class="mu-col mu-col-12">
+								<div class="mu-grid-top">
+									<h6 class="mu-title"><i class="mu-icon-img"></i><span>CPU</span></h6>
+								</div>
+								<div class="chart-wrap">
+									<div class="chart"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+
+	<script src="https://unpkg.com/vue@2.6.10"></script><!-- 20200814 MOD : vue@2.3.3 ==> @2.6.10 -->
+	<script src="https://unpkg.com/ag-grid-community@21.0.1/dist/ag-grid-community.min.noStyle.js"></script><!-- 20200814 MOD : ver @23.2.1 ==> @21.0.1 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue2-datepicker@2.12.0/lib/index.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.js"></script>
+	<script type="text/javascript"> 
+		$(document).ready(function() {
+			$(".mu-tab-page .mu-btn").on("click",function(){
+				$('.mu-tab-page').toggleClass('open');
+			});
+		});
+
+		//달력+시간 샘플 2.12.0
+		Vue.use(DatePicker.default);
+			
+		new Vue({
+			
+			el: '#app',
+			data: {
+			prjName: 'TMS',
+			stdDate:null,
+			lang: {
+					days: ['일', '월', '화', '수', '목', '금', '토'],
+					months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+					pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+					placeholder: {
+					date: 'Select Date',
+					dateRange: 'Select Date Range'
+					}
+				},
+			time:'',
+			timePickerOptions:{
+				start: '00',
+				step: '00',
+				end: '00'
+			}
+			},
+			
+			beforeMount(){
+			
+				
+			},
+			mounted() {
+				this.stdDate  = Date.now();
+			},
+			
+
+		})
+
+		//ag-grid 개발참고용 샘플코드1
+		// specify the columns
+		var columnDefs = [			
+			{headerName: "테스트용 그리드", field: "cl1",width: 200, unSortIcon: true},
+			{headerName: "테스트용 그리드", field: "cl2", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드2", field: "cl3", width: 200, unSortIcon: true},
+			{headerName: "테스트용 그리드3", field: "cl4", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드4", field: "cl5", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드5", field: "cl6", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드6", field: "cl7", width: 150, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl8", width: 500, unSortIcon: true}
+
+		];
+
+		// specify the data
+		var rowData = [
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"}, 			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "ag-grid 개발참고용 샘플코드", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"}
+		];
+  
+		// let the grid know which columns and what data to use
+		var gridOptions = {
+			defaultColDef: {
+			sortable: true
+			},
+			columnDefs: columnDefs,
+			rowData: rowData,
+			rowSelection: 'single'
+		};
+
+		// lookup the container we want the Grid to use
+		var eGridDiv = document.querySelector('#myGrid1');
+
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv, gridOptions);
+	</script>
+
+	
+</body>
+</html>

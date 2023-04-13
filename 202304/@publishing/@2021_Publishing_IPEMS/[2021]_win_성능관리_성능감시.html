@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>IP-EMS </title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="assets/ag-grid/ag-grid.css">
+	<link rel="stylesheet" href="assets/ag-grid/ag-theme-balham-dark.css">
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="app">
+	<div class="mu-container">
+		<section>
+			<div class="mu-content-top">
+				<h3 class="mu-title"><i class="mu-icon-img dashboard"></i><span>성능 감시</span></h3>
+			</div>
+			<div class="mu-content">
+				<!-- mu-search-group -->
+				<div class="mu-search-group">
+					<div class="mu-search-item">
+						<table>
+							<colgroup>
+								<col style="width:80px;">
+								<col style="width:150px;">
+								<col>
+								<col style="width:90px;">
+								<col>
+								<col style="width:120px;">
+								<col>
+								<col>
+							</colgroup>
+							<tbody>
+								<tr>
+									<th><label>갱신 시간</label></th>
+                                    <td>2021-08-17 14:17:00</td>
+									<td>
+                                        <div class="mu-hgroup">
+                                            <div class="mu-radio">
+                                                <input type="radio" id="r1" name="radio1"> 
+                                                <label for="r1">1분</label>
+                                            </div> 
+                                            <div class="mu-radio">
+                                                <input type="radio" id="r2" name="radio1"> 
+                                                <label for="r2">5분</label>
+                                            </div> 
+                                            <div class="mu-radio ml40">
+                                                <input type="radio" id="r11" name="radio2"> 
+                                                <label for="r11">24시간</label>
+                                            </div> 
+                                            <div class="mu-radio">
+                                                <input type="radio" id="r22" name="radio2"> 
+                                                <label for="r22">48시간</label>
+                                            </div> 
+                                        </div>
+									</td>
+                                    <th><label>성능지표</label></th>
+                                    <td>
+                                        <div class="mu-selectbox"><button class="mu-value">전체</button> 
+                                            <ul class="mu-list">
+                                                <li value="1">list option1</li> 
+                                                <li value="2">list option2</li> 
+                                                <li value="3">list option3</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <th><label>장애(성능)보기</label></th>
+                                    <td>
+                                        <div class="mu-checkbox">
+                                            <input type="checkbox" id="ckb1"> 
+                                            <label for="ckb1"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>적용</span></button>	
+                                    </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mu-search-btn">
+                        <button type="button" class="mu-btn mu-btn-icon" title="감시시작"><i class="mu-icon-img play"></i></button><!-- //감시 시작,중지 토글버튼 <button type="button" class="mu-btn mu-btn-icon" title="감시중지"><i class="mu-icon-img stop"></i></button> -->>                       
+                        <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img set"></i><span>감시 그룹 설정</span></button>
+                         <span class="bar-line"></span>
+                        <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i><span>초기화</span></button>
+					</div>
+				</div>
+				<!-- //mu-search-group -->
+                <!-- chart-scroll-area -->
+                <div class="chart-scroll-area">
+                    <!-- chart-wrap-group -->
+                    <div class="mu-row chart-wrap-group">
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap"><!-- expand 시  fixed-expand -->
+                                <h5 class="mu-title">주요서비스_BTV(IPTV)_전국11</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_DNS_성수/둔산/분당22</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //chart-wrap-group -->                
+                    <!-- chart-wrap-group -->
+                    <div class="mu-row chart-wrap-group">
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_RTP)_성수/둔산/분당33</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_SIP)_성수/둔산44</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //chart-wrap-group -->             
+                    <!-- chart-wrap-group -->
+                    <div class="mu-row chart-wrap-group">
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_BTV(IPTV)_전국</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_DNS_성수/둔산/분당</h5>
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 --> 
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //chart-wrap-group -->             
+                    <!-- chart-wrap-group -->
+                    <div class="mu-row chart-wrap-group">
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_RTP)_성수/둔산/분당</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_SIP)_성수/둔산</h5>
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 --> 
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //chart-wrap-group -->          
+                    <!-- chart-wrap-group -->
+                    <div class="mu-row chart-wrap-group">
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_RTP)_성수/둔산/분당</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_SIP)_성수/둔산</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //chart-wrap-group -->     
+                    <!-- chart-wrap-group -->
+                    <div class="mu-row chart-wrap-group">
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_RTP)_성수/둔산/분당</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_SIP)_성수/둔산</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //chart-wrap-group -->     
+                    <!-- chart-wrap-group -->
+                    <div class="mu-row chart-wrap-group">
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_RTP)_성수/둔산/분당</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_SIP)_성수/둔산</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //chart-wrap-group -->     
+                    <!-- chart-wrap-group -->
+                    <div class="mu-row chart-wrap-group">
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_RTP)_성수/둔산/분당</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_SIP)_성수/둔산</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //chart-wrap-group -->     
+                    <!-- chart-wrap-group -->
+                    <div class="mu-row chart-wrap-group">
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_RTP)_성수/둔산/분당</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_SIP)_성수/둔산</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //chart-wrap-group -->     
+                    <!-- chart-wrap-group -->
+                    <div class="mu-row chart-wrap-group">
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_RTP)_성수/둔산/분당</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_SIP)_성수/둔산</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //chart-wrap-group -->     
+                    <!-- chart-wrap-group -->
+                    <div class="mu-row chart-wrap-group">
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_RTP)_성수/둔산/분당</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_SIP)_성수/둔산</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //chart-wrap-group -->
+                    <!-- chart-wrap-group -->
+                    <div class="mu-row chart-wrap-group">
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_RTP)_성수/둔산/분당</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                        <div class="mu-col mu-col-6">
+                            <div class="chart-wrap">
+                                <h5 class="mu-title">주요서비스_HDV(IMS_SIP)_성수/둔산</h5> 
+                                <button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only" title="펼쳐보기"><i class="mu-icon-img expand"></i></button><!-- expand / contract 토글 -->
+                                <div class="chart">실제 차트 영역</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //chart-wrap-group -->
+                </div>
+                <!-- //chart-scroll-area -->
+			</div>
+		</section>
+	</div>
+</div>
+
+	<script src="https://unpkg.com/vue@2.6.10"></script><!-- 20200814 MOD : vue@2.3.3 ==> @2.6.10 -->
+	<script src="https://unpkg.com/ag-grid-community@21.0.1/dist/ag-grid-community.min.noStyle.js"></script><!-- 20200814 MOD : ver @23.2.1 ==> @21.0.1 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue2-datepicker@2.12.0/lib/index.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.js"></script>
+	<script type="text/javascript"> 
+		//달력+시간 샘플 2.12.0
+		Vue.use(DatePicker.default);
+			
+		new Vue({
+			
+			el: '#app',
+			data: {
+			prjName: 'TMS',
+			stdDate:null,
+			lang: {
+					days: ['일', '월', '화', '수', '목', '금', '토'],
+					months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+					pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+					placeholder: {
+					date: 'Select Date',
+					dateRange: 'Select Date Range'
+					}
+				},
+			time:'',
+			timePickerOptions:{
+				start: '00',
+				step: '00',
+				end: '00'
+			}
+			},
+			
+			beforeMount(){
+			
+				
+			},
+			mounted() {
+				this.stdDate  = Date.now();
+			},
+			
+
+		})
+
+ /* 성능감시 Chart 최대/최소 */  
+ $( function() {
+    var $chartArea = $('.chart-wrap-group .chart-wrap'),
+        $chartBtn = $('.chart-wrap-group .chart-wrap .mu-btn.mu-btn-icon');
+
+        $chartBtn.click(function(){  
+        if($chartArea.hasClass('fixed-expand') == true){
+            $(this).attr("title","펼쳐보기");
+            $(this).parent().removeClass("fixed-expand");
+            $(this).children("i").toggleClass("expand contract");
+        } else {
+            $(this).attr("title","접어보기");
+            $(this).parent().addClass("fixed-expand");
+            $(this).children("i").toggleClass("contract expand");
+
+        }
+    }); 
+
+}); 
+
+
+
+	</script>
+
+	
+</body>
+</html>

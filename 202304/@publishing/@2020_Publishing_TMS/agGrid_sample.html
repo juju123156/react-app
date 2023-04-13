@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">  
+    <title>Vue Sample</title>
+</head>
+<body>
+    
+<div id="app">
+      <H1>{{ prjName }}</H1>       
+      <div id="myGrid" style="height:150px;width:800px" class="ag-theme-balham-dark"></div>
+
+</div>
+
+<script src="https://unpkg.com/vue@2.6.10"></script><!-- 20200814 MOD : vue@2.3.3 ==> @2.6.10 -->
+<script src="https://unpkg.com/ag-grid-community@21.0.1/dist/ag-grid-community.min.noStyle.js"></script><!-- 20200814 MOD : ver @23.2.1 ==> @21.0.1 -->
+
+<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham-dark.css">
+<!--
+<script src = "https://cdn.jsdelivr.net/npm/ag-grid-vue@21.0.1/dist/ag-grid-vue.umd.js"></script>
+
+https://www.ag-grid.com/javascript-getting-started/ -- API ����
+-->
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+          prjName: 'TMS',
+          columnDefs: null,
+          rowData: null,
+        },
+        components:{
+            'ag-grid-vue' :agGrid
+        },
+        beforeMount(){
+        
+            
+        },
+        mounted() {
+            var columnDefs = [
+                {headerName: "Make", field: "make",sortable: true,checkboxSelection: true,headerCheckboxSelection: true},
+                {headerName: "Model", field: "model"},
+                {headerName: "Price", field: "price",sortable: true}
+            ];
+            
+            // specify the data
+            var rowData = [
+                {make: "Toyota", model: "Celica", price: 35000},
+                {make: "Ford", model: "Mondeo", price: 32000},
+                {make: "Porsche", model: "Boxter", price: 72000}
+            ];
+            
+            
+            var gridOptions = {
+                columnDefs: columnDefs,
+                rowData: rowData
+            };        
+
+            let eGridDiv = document.querySelector('#myGrid');
+            new agGrid.Grid(eGridDiv, gridOptions);
+        },
+    })
+</script>
+</body>
+</html>

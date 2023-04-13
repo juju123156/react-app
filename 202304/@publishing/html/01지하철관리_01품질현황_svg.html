@@ -1,0 +1,584 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>TMS - T Wifi Zone Management System</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link href="assets/js/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link href="assets/js/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+	<style>
+ /*  #subway-drag { width: 500px; height: 500px; padding:100px;} */
+/*  .aaaa{position:absolute;} */
+
+ .frame-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+
+#drag-3 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 6.5em;
+  margin: 10%;
+  background-color: #29e;
+  color: white;
+  border-radius: 0.75em;
+  padding: 4%;
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+}
+
+#drag-me::before {
+  content: "#" attr(id);
+  font-weight: bold;
+}
+  </style>
+</head>
+<body>
+	<header>
+		<h1><span>SK Telecom</span></h1>
+		<h2><span>TMS</span></h2>
+		<nav class="mu-gnb fl">
+			<!-- Depth1 -->
+			<ul class="mu-h-menu fl">
+				<li><a href="#"><span>지하철 관리</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>품질 현황</span></a></li>
+						<li><a href="#"><span>품질 현황</span></a></li>
+						<li><a href="#"><span>품질 현황 품질</span></a></li>
+					</ul>
+				</li>
+				<li class="active"><a href="#"><span>L2 관리</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>장비 관리</span></a></li>
+						<li><a href="#"><span>장비 관리</span></a></li>
+						<li><a href="#"><span>장비 관리</span></a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="mu-top-menu fr">
+				<div class="session">
+					<i class="mu-icon-img clock"></i>
+					<span>세션 유지 시간 : 60분</span>
+					<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i></button>
+				</div>
+				<div class="user-info">
+					<i class="mu-icon-img user"></i>
+					<span>MG_2010님</span>
+				</div>
+				<div class="">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img logout"></i></button>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="mu-container">
+		<section>
+			<div class="mu-panel">
+				<div class="mu-panel-head">
+					<h3 class="mu-title"><span>지하철 관리 - 품질 현황</span></h3>
+					<div class="mu-panel-head-btn">
+						<div class="latest-collect">
+							<span>최종 수집 : 2018-08-08 12:12:12 </span>
+							<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img refresh"></i></button>
+						</div>
+						<div class="auto-collect">
+							<span>자동 수집 중</span>
+							<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img play"></i></button>
+							<!--<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img stop"></i></button>--><!-- 자동수집중일때 -->
+						</div>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img min"></i></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img close"></i></button>
+					</div>
+				</div>
+				<div class="mu-panel-body">
+					<div id="subway" class="mu-content">
+					<!-- content -->
+						<div class="subway">
+							<div class="frame-cover"></div>
+							<object type="image/svg+xml" data="views/subway/svg/2line_text.svg">Your browser does not support SVG</object>
+
+							<!-- <div class="draggable" id="drag-3">
+								<div class="frame-cover"></div>
+								<object type="image/svg+xml" data="views/subway/svg/2line_text.svg">Your browser does not support SVG</object>
+							</div> -->
+
+							<!-- <object class="draggable" id="drag-1" type="image/svg+xml" data="views/subway/svg/2line_text.svg">Your browser does not support SVG</object> -->
+							<!--<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1920px" height="1080px" viewBox="0 0 1920 1080" enable-background="new 0 0 1920 1080" xml:space="preserve">
+
+<g id="_x32_호선-_텍스트">
+	<text transform="matrix(0.98 0 0 1 1427.5 548.833)"><tspan x="0" y="0" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">구의</tspan><tspan x="16.899" y="0" font-family="'NotoSansKR-Regular-KSCpc-EUC-H'" font-size="10">(광진구청)</tspan></text>
+	<text transform="matrix(0.98 0 0 1 1195 485.333)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">한양대</text>
+	<text transform="matrix(0.98 0 0 1 1158.167 396.9995)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">상왕십리</text>
+	<text transform="matrix(0.98 0 0 1 1170.166 379.833)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">신답</text>
+	<text transform="matrix(0.98 0 0 1 1219.75 505.583)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">뚝섬</text>
+	<text transform="matrix(0.98 0 0 1 1275.083 467.916)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">용답</text>
+	<text transform="matrix(0.98 0 0 1 1460.833 580.166)"><tspan x="0" y="0" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">강변</tspan><tspan x="16.9" y="0" font-family="'NotoSansKR-Regular-KSCpc-EUC-H'" font-size="10">(동서울터미널)</tspan></text>
+	<text transform="matrix(0.98 0 0 1 1279.3262 724.833)"><tspan x="0" y="0" font-family="'NotoSansKR-Regular-KSCpc-EUC-H'" font-size="10">(무역센터)</tspan><tspan x="11.08" y="10" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">삼성</tspan></text>
+	<text transform="matrix(0.98 0 0 1 741.6597 433.166)"><tspan x="0" y="0" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">신촌</tspan><tspan x="16.899" y="0" font-family="'NotoSansKR-Regular-KSCpc-EUC-H'" font-size="10">(지하)</tspan></text>
+	<text transform="matrix(0.98 0 0 1 707.1846 417.8325)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">이대</text>
+	<text transform="matrix(0.98 0 0 1 858.7627 375.8325)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">을지로입구</text>
+	<text transform="matrix(0.98 0 0 1 707.1846 398.4995)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">아현</text>
+	<text transform="matrix(0.98 0 0 1 799.0957 762.833)"><tspan x="0" y="0" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">서울대입구</tspan><tspan x="1.595" y="12" font-family="'NotoSansKR-Regular-KSCpc-EUC-H'" font-size="10">(관악구청)</tspan></text>
+	<text transform="matrix(0.98 0 0 1 1005.3594 722.832)"><tspan x="0" y="0" font-family="'NotoSansKR-Regular-KSCpc-EUC-H'" font-size="10">(법원·검찰청)</tspan><tspan x="28.41" y="14" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">교대</tspan></text>
+	<text transform="matrix(0.98 0 0 1 608.1494 712.999)"><tspan x="0" y="0" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">대림</tspan><tspan x="23.66" y="0" font-family="'NotoSansKR-Regular-KSCpc-EUC-H'" font-size="10">(구로구청)</tspan></text>
+	<text transform="matrix(0.98 0 0 1 744.4355 365.9995)"><tspan x="0" y="0" font-family="'NotoSansKR-Regular-KSCpc-EUC-H'" font-size="10">(경기대입구)</tspan><tspan x="5.86" y="14" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">충정로</tspan></text>
+	
+		<text transform="matrix(0.98 0 0 1 522.7515 524.333)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">영등포구청</text>
+	
+		<text transform="matrix(0.98 0 0 1 439.5537 499.041)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">까치산</text>
+	
+		<text transform="matrix(0.98 0 0 1 568.0127 604.333)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">신도림</text>
+	
+		<text transform="matrix(0.98 0 0 1 623.9756 511.416)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">당산</text>
+	
+		<text transform="matrix(0.98 0 0 1 680.7256 475.416)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">합정</text>
+	
+		<text transform="matrix(0.98 0 0 1 741.1313 455.416)" class="ttt">홍대입구</text>
+	
+		<text transform="matrix(0.98 0 0 1 816.7251 376.916)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">시청</text>
+	
+		<text transform="matrix(0.98 0 0 1 913.2358 375.916)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">을지로3가</text>
+	
+		<text transform="matrix(0.98 0 0 1 960.2358 407.166)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">을지로4가</text>
+	
+		<text transform="matrix(0.98 0 0 1 1097.7246 407.166)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">신당</text>
+	<text transform="matrix(0.98 0 0 1 1014.584 359.416)"><tspan x="0" y="0" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">동대문역사</tspan><tspan x="5.915" y="16.8" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">문화공원</tspan></text>
+	
+		<text transform="matrix(0.98 0 0 1 1121.5938 333.9995)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">신설동</text>
+	<text transform="matrix(0.98 0 0 1 1487.166 643.5)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">잠실나루</text>
+	<text transform="matrix(0.98 0 0 1 1413.166 733)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">잠실새내</text>
+	<text transform="matrix(0.98 0 0 1 1165.166 732.333)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">역삼</text>
+	<text transform="matrix(0.98 0 0 1 994.499 762.666)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">서초</text>
+	<text transform="matrix(0.98 0 0 1 943.4985 762.666)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">방배</text>
+	<text transform="matrix(0.98 0 0 1 853.7095 762.666)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">낙성대</text>
+	<text transform="matrix(0.98 0 0 1 762.3501 762.666)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">봉천</text>
+	<text transform="matrix(0.98 0 0 1 716.8501 762.666)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">신림</text>
+	<text transform="matrix(0.98 0 0 1 663.7095 762.666)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">신대방</text>
+	<text transform="matrix(0.98 0 0 1 596.8501 557.166)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">문래</text>
+	<text transform="matrix(0.98 0 0 1 543.0435 585.499)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">도림천</text>
+	<text transform="matrix(0.98 0 0 1 522.5825 564.374)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">양천구청</text>
+	<text transform="matrix(0.98 0 0 1 497.27 539.0615)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">신정네거리</text>
+	<text transform="matrix(0.98 0 0 1 641.4814 731.333)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">구로디지털단지</text>
+	<text transform="matrix(0.98 0 0 1 1487.166 700.834)"><tspan x="0" y="0" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">잠실</tspan><tspan x="23.66" y="0" font-family="'NotoSansKR-Regular-KSCpc-EUC-H'" font-size="10">(송파구청)</tspan></text>
+	<text transform="matrix(0.98 0 0 1 1184.1592 416.334)"><tspan x="0" y="0" font-family="'NotoSansKR-Regular-KSCpc-EUC-H'" font-size="10">(성동구청)</tspan><tspan x="1.635" y="14" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">왕십리</tspan></text>
+	<text transform="matrix(0.98 0 0 1 1147.2031 358.5005)"><tspan x="0" y="0" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="10">용두</tspan><tspan x="-30.61" y="12" font-family="'NotoSansKR-Regular-KSCpc-EUC-H'" font-size="10">(동대문구청)</tspan></text>
+	
+		<text transform="matrix(0.98 0 0 1 1330.166 732.834)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">종합운동장</text>
+	
+		<text transform="matrix(0.98 0 0 1 1214.999 732.001)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">선릉</text>
+	
+		<text transform="matrix(0.98 0 0 1 1112.332 732.001)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">강남</text>
+	
+		<text transform="matrix(0.98 0 0 1 905.6655 732.001)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">사당</text>
+	
+		<text transform="matrix(0.98 0 0 1 1325.334 527.5)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">건대입구</text>
+	
+		<text transform="matrix(0.98 0 0 1 1236.166 526.5)" font-family="'NotoSansKR-Medium-KSCpc-EUC-H'" font-size="14" letter-spacing="-1.02">성수</text>
+</g>
+</svg>-->
+							<!-- <img src="views/subway/svg/2line_text.svg" class="aaaa"></img> -->
+						</div><!-- 지하철 노선도 -->
+						<div class="subway-city">
+							<ul>
+								<li class="seoulmetro active"><!-- 지역 선택시 "active" 추가 -->
+									<div class="name">수도권</div>
+									<div class="rate">98%</div>
+									<div class="num">(운행 00대, 장애 00대)</div>
+								</li>
+								<li class="busan active alarm"><!-- 지역 선택시 "active" 추가, 알람 발생시 "alarm" 추가 -->
+									<div class="name">부산</div>
+									<div class="rate">98%</div>
+									<div class="num">(운행 00대, 장애 00대)</div>
+								</li>
+								<li class="daegu">
+									<div class="name">대구</div>
+									<div class="rate">98%</div>
+									<div class="num">(운행 00대, 장애 00대)</div>
+								</li>
+								<li class="gwangju alarm"><!-- 알람 발생시 "alarm" 추가 -->
+									<div class="name">광주</div>
+									<div class="rate">98%</div>
+									<div class="num">(운행 00대, 장애 00대)</div>
+								</li>
+								<li class="daejeon">
+									<div class="name">대전</div>
+									<div class="rate">98%</div>
+									<div class="num">(운행 00대, 장애 00대)</div>
+								</li>
+							</ul>
+						</div>
+						<div class="subway-line seoulmetro"><!-- 도시구분 class 추가(seoulmetro) -->
+							<ul>
+								<li class="line-01 active"><!-- 노선 선택시 "active" 추가 -->
+									<div class="line-name">
+										<span class="line-color">1</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-02 active alarm"><!-- 노선 선택시 "active" 추가, 알람 발생시 "alarm" 추가 -->
+									<div class="line-name">
+										<span class="line-color">2</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-03">
+									<div class="line-name">
+										<span class="line-color">3</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-04 alarm"><!-- 알람 발생시 "alarm" 추가 -->
+									<div class="line-name">
+										<span class="line-color">4</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-05">
+									<div class="line-name">
+										<span class="line-color">5</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-06">
+									<div class="line-name">
+										<span class="line-color">6</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-07">
+									<div class="line-name">
+										<span class="line-color">7</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-08">
+									<div class="line-name">
+										<span class="line-color">8</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-09">
+									<div class="line-name">
+										<span class="line-color">9</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-10">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">경춘</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-11">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">경의·중앙</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-12">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">인천1</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-13">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">인천2</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-14">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">분당</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-15">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">공항</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-16">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">수인</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-17">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">신분당</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-18">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">의정부</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-19">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">에버라인</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-20">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">자기부상</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-21">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">경강</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-22">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">우이신설</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+							</ul>
+						</div>
+						<div class="subway-btn-wrap">
+							<button type="button" class="mu-btn mu-btn-icon plus"><i class="mu-icon-img plus"></i></button>
+							<button type="button" class="mu-btn mu-btn-icon minus"><i class="mu-icon-img minus"></i></button>
+						</div>
+						<!-- //content -->
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.min.js"></script>
+	<script src="assets/js/jquery.jqGrid.min.js"></script>
+	<script src="assets/js/interact.min.js"></script>
+	<script type="text/javascript"> 
+		var mydata = [
+			{ id: "1", invdate: "2007-10-01", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
+			{ id: "2", invdate: "2007-10-02", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
+			{ id: "3", invdate: "2007-09-01", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" },
+			{ id: "4", invdate: "2007-10-04", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
+			{ id: "5", invdate: "2007-10-05", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
+			{ id: "6", invdate: "2007-09-06", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" },
+			{ id: "7", invdate: "2007-10-04", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
+			{ id: "8", invdate: "2007-10-03", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
+			{ id: "9", invdate: "2007-09-01", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" }
+		];
+
+		$(document).ready(function () {
+			$("#jqGrid").jqGrid({
+				datatype: "local",
+				data: mydata,
+				//autowidth: true,
+				width: $("#jqGrid").width(),
+				//height: $("#jqGrid").height(),
+				height: $(".mu-grid-body > table").height(),
+				//shrinkToFit:true,
+				colModel: [
+					{ label: 'Inv No', name: 'id', width: 75, key:true, align: 'center', frozen:true },
+					{ label: 'Date', name: 'invdate', width: 90, frozen:true },
+					{ label: 'Client', name: 'name', width: 100, frozen:true },
+					{ label: 'Amount', name: 'amount', width: 80, frozen:true },
+					{ label: 'Tax', name: 'tax', width: 80 },
+					{ label: 'Total', name: 'total', width: 80 },
+					{ label: 'Notes', name: 'note', width: 150 }
+				]
+			});
+			//alert($(".mu-grid-body").height());
+			$("#jqGrid").jqGrid('setFrozenColumns');
+			$("#jqGrid").trigger('reloadGrid');
+		});
+
+		// mu-search-group 의 tr 수에 따라 mu-grid-wrap height 구하기
+		var searchHeight = $(".mu-search-group").height();
+		$(".mu-grid-wrap").css('height','calc(100% - '+ searchHeight +'px)');
+
+		/*$(document).ready(function () {
+			var subway = $(".subway");
+			var svgDocument = subway.contentDocument;
+			//alert(svgDocument);
+			$(".subway").contentDocument.draggable();
+		})*/
+
+		//$(".subway").draggable();
+		/*window.onload=function() {
+			var object = document.getElementById("subwayId");
+			var svgDocument = object.contentDocument;
+			svgDocument.onclick();
+		};*/
+
+			/*$(document).ready(function () {
+				applyDrag('.subway');
+				function applyDrag(selector) {
+								
+					var startX = 0;
+					var startY = 0;
+					var delX = 0;
+					var delY = 0;
+					var offsetX = 0;
+					var offsetY = 0;
+					
+					$(selector).on('mousedown', function(e) {
+						//alert("1");
+						startX = e.clientX;
+						startY = e.clientY;
+						offsetX = $(selector).position().left;
+						offsetY = $(selector).position().top;
+						//console.log(offsetX + ' / ' + offsetY);
+						//console.log(startX + ' / ' + startY);
+						
+						$(document).on('mousemove', function(e) {
+							e.preventDefault();
+							delX = e.clientX - startX;
+							delY = e.clientY - startY;
+							//console.log(delX + ' / ' + delY);
+							$(selector).css({'left': (delX + offsetX) + 'px', 'top': (delY + offsetY) + 'px'});
+						});
+						$(document).on('mouseup', function() {
+							$(document).off('mousemove mouseup');
+						});
+					});
+				}
+			});*/
+
+/*function makeDraggable(evt) {
+        var svg = evt.target;
+        svg.addEventListener('mousedown', startDrag);
+        svg.addEventListener('mousemove', drag);
+        svg.addEventListener('mouseup', endDrag);
+        function getMousePosition(evt) {
+          var CTM = svg.getScreenCTM();
+          return {
+            x: (evt.clientX - CTM.e) / CTM.a,
+            y: (evt.clientY - CTM.f) / CTM.d
+          };
+        }
+        var selectedElement, offset;
+        function startDrag(evt) {
+          if (evt.target.classList.contains('draggable')) {
+            selectedElement = evt.target;
+            offset = getMousePosition(evt);
+            offset.x -= parseFloat(selectedElement.getAttributeNS(null, "x"));
+            offset.y -= parseFloat(selectedElement.getAttributeNS(null, "y"));
+          }
+        }
+        function drag(evt) {
+          if (selectedElement) {
+            var coord = getMousePosition(evt);
+            selectedElement.setAttributeNS(null, "x", coord.x - offset.x);
+            selectedElement.setAttributeNS(null, "y", coord.y - offset.y);
+          }
+        }
+        function endDrag(evt) {
+          selectedElement = null;
+        }
+      }*/
+	/*window.onload=function() {
+		// Get the Object by ID
+		var a = document.getElementById("svgObject");
+		// Get the SVG document inside the Object tag
+		var svgDoc = a.contentDocument;
+		// Get one of the SVG items by ID;
+		var svgItem = svgDoc.getElementById("svgItem");
+		// Set the colour to something else
+		svgItem.setAttribute("fill", "lime");
+	};*/
+
+
+	// target elements with the "draggable" class
+    /*interact('.draggable')
+      .draggable({
+        // enable inertial throwing
+        inertia: true,
+        // keep the element within the area of it's parent
+        restrict: {
+          restriction: "parent",
+          endOnly: true,
+          elementRect: {
+            top: 0,
+            left: 0,
+            bottom: 1,
+            right: 1
+          }
+        },
+        // enable autoScroll
+        autoScroll: true,
+
+        // call this function on every dragmove event
+        onmove: dragMoveListener,
+        // call this function on every dragend event
+        onend: function(event) {
+          var textEl = event.target.querySelector('p');
+
+          textEl && (textEl.textContent =
+            'moved a distance of ' + (Math.sqrt(event.dx * event.dx +
+              event.dy * event.dy) | 0) + 'px');
+        }
+
+      });
+
+    function dragMoveListener(event) {
+      var target = event.target,
+        // keep the dragged position in the data-x/data-y attributes
+        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+      // translate the element
+      target.style.webkitTransform =
+        target.style.transform =
+        'translate(' + x + 'px, ' + y + 'px)';
+
+      // update the posiion attributes
+      target.setAttribute('data-x', x);
+      target.setAttribute('data-y', y);
+    }
+
+    // this is used later in the resizing and gesture demos
+    window.dragMoveListener = dragMoveListener;*/
+
+	$(".subway").draggable();
+
+	</script>
+</body>
+</html>

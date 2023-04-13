@@ -1,0 +1,545 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>TMS - T Wifi Zone Management System</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link href="assets/ag-grid/ag-grid.css" rel="stylesheet" type="text/css">
+	<link href="assets/ag-grid/ag-theme-balham-dark.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/login.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="app">
+	<div class="mu-container">
+
+		<!-- dialog 배경 -->
+        <div class="mu-dialog-background"></div>
+        
+		<div style="position:absolute;top:20px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog01">Login > 공지사항</div>
+		<!-- dialog : 공지사항 -->
+		<div class="mu-dialog" style="top:40px;left:30px;width:600px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">공지사항</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+                <!-- notice-box 공지문구 -->
+                <div class="notice-box">
+<pre>
+[ 공지사항은 입력 EDIT가 아닙니다. VIEW만 됩니다. 
+공지가 길어지면 스크롤됩니다. 
+현재 height:300px 로 고정 / 
+notice-box 안에
+    pre tag 필요할까요? 
+    pre 필요없으면 삭제해주세요..
+
+디자인확인용입니다.]
+
+**** 엑셀 다운로드 권한 공지 **** 
+
+안녕하세요 2월 20일부터 TMS담당 매니저님의 요청으로 
+WiFi/L2 스위치의 민감정보(IP,지번/도로명 주소,위경도 좌표)가 포함된 메뉴는 
+엑셀다운이 제한되거나 메뉴가 안보일수 있습니다. 
+해당메뉴의 권한이 필요하신분은 매니저님에게 요청하시기 바랍니다.
+
+
+**** 사용자 계정관련 공지(중요) **** 
+안녕하세요 2월 20일부터 TMS담당 매니저님의 요청으로 
+WiFi/L2 스위치의 민감정보(IP,지번/도로명 주소,위경도 좌표)가 포함된 메뉴는 
+엑셀다운이 제한되거나 메뉴가 안보일수 있습니다. 
+해당메뉴의 권한이 필요하신분은 매니저님에게 요청하시기 바랍니다.
+</pre>
+
+                </div>
+                <!-- //notice-box 공지문구 -->
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img confirm"></i><span>닫기</span></button>
+            </div>
+		</div>
+        <!-- //dialog -->
+
+
+		<div style="position:absolute;top:20px;left:640px;font-size:13px;color:#fff;z-index:1000;" id="dialog01">Login > 계정신청 > 개인정보 활용 동의</div>
+		<!-- dialog : 개인정보 활용 동의 -->
+		<div class="mu-dialog" style="top:40px;left:640px;width:600px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">개인정보 활용 동의</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+                <div class="terms-wrap">
+                    <!-- terms-info 활용동의안내 -->
+                    <div class="terms-info">
+                        <p>정보통신망법 규정에 따라 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.</p>
+
+                        <div class="terms-check">
+                            <div class="mu-checkbox"><input type="checkbox" id="ckb1"> <label for="ckb1">[필수] 개인정보 활용 전체동의</label></div>
+                        </div>
+                    </div>
+                    <!-- //terms-info 활용동의안내 -->
+                    
+                    <div class="terms-top">
+                        <div class="mu-checkbox"><input type="checkbox" id="ckb2"> <label for="ckb2">개인정보 항목</label></div>
+                    </div>
+                    <div class="terms-box">
+                        회원가입을 통한 서비스 제공을 위해 아래와 같은 개인정보를 수집하고 있습니다. <br>
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                    </div>
+                    <div class="terms-top">
+                        <div class="mu-checkbox"><input type="checkbox" id="ckb3"> <label for="ckb3">개인정보 보유 및 이용기간</label></div>
+                    </div>
+                    <div class="terms-box">
+                        회원가입을 통한 서비스 제공을 위해 아래와 같은 개인정보를 수집하고 있습니다. <br>
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                    </div>
+                    <div class="terms-top">
+                        <div class="mu-checkbox"><input type="checkbox" id="ckb4"> <label for="ckb4">FIDO 이용약관</label></div>
+                    </div>
+                    <div class="terms-box">
+                        회원가입을 통한 서비스 제공을 위해 아래와 같은 개인정보를 수집하고 있습니다. <br>
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                        항목 : 사용자명, 직위, 아이디(ID), 비밀번호(PW), 휴대전화번호, 이메일, 소속협력사 등 <br>
+                        서비스 이용과정 및 처리과정 상 수집정보 : 이용기록(현장작업 보고, 메뉴 사용 파악), 접속 로고, 접속IP 정보 등
+                    </div>
+                </div>
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>확인</span></button>
+            </div>
+		</div>
+        <!-- //dialog -->
+        
+        <div style="position:absolute;top:20px;left:1250px;font-size:13px;color:#fff;z-index:1000;" id="dialog02">Login > 개인정보 활용 동의 후 계정신청</div>
+		<!-- dialog : 계정신청 -->
+		<div class="mu-dialog" style="top:40px;left:1250px;width:460px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">계정신청</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body"> 
+                <!-- dialog 안내리스트 -->
+				<div class="mu-dialog-info">
+					<ul>
+						<li><span class="necessary">*항목</span>은 반드시 입력하셔야 합니다.</li> 
+						<li>SKT/ONS 직원은 <span class="txt-white">ID를 사번으로 입력</span>해 주세요. <br>예) SKT선택후 1234567 으로 입력하면 SKT1234567 으로 계정신청이 됩니다.</li> 
+						<li>비밀번호는 영문자와 숫자,특수문자(!@#$%&*()~_)의 조합으로 <span class="txt-white">10자리 이상 입력</span>해 주세요.</li>
+					</ul>
+                </div>
+                <!-- //dialog 안내리스트 -->
+                <!-- dialog 입력폼영역 -->
+                <div class="mu-dialog-box">
+                    <table class="mu-formbox">
+                        <colgroup>
+                            <col style="width:100px;">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><label class="necessary">*사용자명</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label class="necessary">*ID</label></th>
+                                <td>
+                                    <div class="mu-item-group">
+                                        <div class="mu-selectbox">
+                                            <button class="mu-value">SKT</button>
+                                            <ul class="mu-list">
+                                                <li value="1">list option1</li>
+                                                <li value="2">list option2</li>
+                                                <li value="3">list option3</li>
+                                            </ul>
+                                        </div>
+                                        <input type="input" class="mu-input">
+                                        <button type="button" class="mu-btn"><span>입력</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label class="necessary">*비밀번호</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label class="necessary">*비밀번호 확인</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th rowspan="3"><label class="necessary">*관리 지역</label></th>
+                                <td>
+                                    <div class="mu-item-group">
+                                        <input type="input" class="mu-input">
+                                        <button type="button" class="mu-btn"><span>선택</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label class="necessary">*소속구분</label></th>
+                                <td>
+                                    <div class="mu-selectbox">
+                                        <button class="mu-value">SKT</button>
+                                        <ul class="mu-list">
+                                            <li value="1">list option1</li>
+                                            <li value="2">list option2</li>
+                                            <li value="3">list option3</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label class="necessary">*1차 승인자</label></th>
+                                <td>
+                                    <div class="mu-selectbox">
+                                        <button class="mu-value">이훈재(AI DT 분석 Cell)</button>
+                                        <ul class="mu-list">
+                                            <li value="1">list option1</li>
+                                            <li value="2">list option2</li>
+                                            <li value="3">list option3</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label class="necessary">*2차 승인자</label></th>
+                                <td>
+                                    <div class="mu-selectbox">
+                                        <button class="mu-value">이훈재(AI DT 분석 Cell)</button>
+                                        <ul class="mu-list">
+                                            <li value="1">list option1</li>
+                                            <li value="2">list option2</li>
+                                            <li value="3">list option3</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label class="necessary">*팀/회사</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>주소</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label class="necessary">*핸드폰 번호</label></th>
+                                <td>
+                                    <div class="mu-item-group">
+                                        <input type="input" class="mu-input">
+                                        <span>"-" 제외</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>메일</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- //dialog 입력폼영역 -->
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>신청</span></button>
+            </div>
+		</div>
+        <!-- //dialog -->
+        
+        <div style="position:absolute;top:720px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog03">Login > 계정신청 > ID 입력</div>
+		<!-- dialog : 계정신청 > ID 입력 -->
+		<div class="mu-dialog" style="top:740px;left:30px;width:400px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">ID 입력</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<div class="mu-dialog-info">
+					<ul>
+						<li>사용하실 ID를 입력하신 후 <span class="txt-white">중복여부를 확인</span>해 주세요.</li> 
+						<li>숫자만 입력 가능합니다.(6 ~ 8자리)</li>
+					</ul>
+                </div>
+                <!-- dialog 입력폼영역 -->
+                <div class="mu-dialog-box">                     
+                    <table class="mu-formbox">
+                        <colgroup>
+                            <col style="width:25px;">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><label>ID</label></th>
+                                <td>
+                                    <div class="mu-item-group">
+                                        <div class="mu-selectbox">
+                                            <button class="mu-value">SKT</button>
+                                            <ul class="mu-list">
+                                                <li value="1">list option1</li>
+                                                <li value="2">list option2</li>
+                                                <li value="3">list option3</li>
+                                            </ul>
+                                        </div>
+                                        <input type="input" class="mu-input">
+                                        <button type="button" class="mu-btn"><span>중복확인</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>                    
+                </div>
+                <!-- //dialog 입력폼영역 -->
+                
+                <div class="info-box tr">
+                    <p class="txt-info">사용가능한 ID입니다.</p>
+                </div>
+                
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>사용</span></button>
+            </div>
+		</div>
+        <!-- //dialog -->
+               
+        <div style="position:absolute;top:780px;left:640px;font-size:13px;color:#fff;z-index:1000;" id="dialog05">Login > 계정 신청 결과 조회</div>
+		<!-- dialog : 계정 신청 결과 조회 -->
+		<div class="mu-dialog" style="top:800px;left:640px;width:400px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">계정 신청 결과 조회</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+                <div class="mu-dialog-box">
+                    <table class="mu-formbox">
+                        <colgroup>
+                            <col style="width:50px;">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><label class="necessary">*ID</label></th>
+                                <td>
+                                    <div class="mu-item-group">
+                                        <input type="input" class="mu-input">
+                                        <button type="button" class="mu-btn"><span>조회</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>결과</label></th>
+                                <td>
+                                    <textarea placeholder="" class="mu-area" readonly="readonly">계정 승인 되었습니다.</textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>                    
+                </div>
+                
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+            </div>
+		</div>
+        <!-- //dialog -->
+
+        <div style="position:absolute;top:780px;left:1250px;font-size:13px;color:#fff;z-index:1000;" id="dialog06">Login > 비밀번호 초기화</div>
+		<!-- dialog : 비밀번호 초기화 -->
+		<div class="mu-dialog" style="top:800px;left:1250px;width:400px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">비밀번호 초기화</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+                <div class="mu-dialog-box">
+                    <table class="mu-formbox">
+                        <colgroup>
+                            <col style="width:80px;">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><label>ID</label></th>
+                                <td>
+                                   <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>사용자명</label></th>
+                                <td>
+                                   <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>휴대폰번호</label></th>
+                                <td>
+                                   <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>인증번호</label></th>
+                                <td>
+                                    <div class="mu-item-group">
+                                        <input type="input" class="mu-input">
+                                        <button type="button" class="mu-btn"><span>인증번호 발송</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>인증 유효시간</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>                    
+                </div>
+                
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>확인</span></button>
+            </div>
+		</div>
+        <!-- //dialog -->
+
+        <div style="position:absolute;top:1100px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog06">Login > SMS 인증</div>
+		<!-- dialog : SMS 인증 -->
+		<div class="mu-dialog" style="top:1120px;left:30px;width:460px;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">SMS 인증</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+                <div class="mu-dialog-box">
+                    <table class="mu-formbox">
+                        <colgroup>
+                            <col style="width:80px;">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><label>휴대폰번호</label></th>
+                                <td>
+                                   <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>인증번호</label></th>
+                                <td>
+                                    <div class="mu-item-group">
+                                        <input type="input" class="mu-input">
+                                        <button type="button" class="mu-btn"><span>인증번호 발송</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>인증 유효시간</label></th>
+                                <td>
+                                    <input type="input" class="mu-input">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>                
+                </div>
+                <div class="info-box tr">
+                    <p class="txt-info">사용자 연락처 변경은 담당 지역매니저님을 통해서 요청하시기 바랍니다.</p>
+                </div> 
+                
+            </div>
+            <div class="mu-dialog-foot">
+                <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+                <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>확인</span></button>
+            </div>
+		</div>
+        <!-- //dialog -->
+	</div>
+</div>
+
+    <script src="https://unpkg.com/vue@2.6.10"></script><!-- 20200814 MOD : vue@2.3.3 ==> @2.6.10 -->
+    <script src="https://unpkg.com/ag-grid-community@21.0.1/dist/ag-grid-community.min.noStyle.js"></script><!-- 20200814 MOD : ver @23.2.1 ==> @21.0.1 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue2-datepicker@2.12.0/lib/index.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+</body>
+</html>

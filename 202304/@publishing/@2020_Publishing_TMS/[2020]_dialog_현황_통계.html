@@ -1,0 +1,1356 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>TMS - T Wifi Zone Management System</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link href="assets/ag-grid/ag-grid.css" rel="stylesheet" type="text/css">
+	<link href="assets/ag-grid/ag-theme-balham-dark.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="app">
+	<div class="mu-container">
+
+		<!-- dialog 배경 -->
+		<div class="mu-dialog-background"></div>
+
+		<div style="position:absolute;top:30px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog1">현황 > 장비 구성정보 조회 > 서울시 AP 추가</div>
+		<!-- dialog : 서울시 AP 추가 -->
+		<div class="mu-dialog" style="top:50px;left:30px;width:420px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">서울시 AP 추가</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<!-- dialog 입력폼영역 -->
+				<div class="mu-dialog-box">
+					<table class="mu-formbox">
+						<colgroup>
+							<col style="width:90px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label>MAC</label></th>
+								<td>
+									<input type="input" class="mu-input" value="0017B20B5227" readonly="readonly">
+								</td>
+							</tr>
+							<tr>
+								<th><label>Private IP</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+							</tr>
+							<tr>
+								<th><label>Public IP</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- //dialog 입력폼영역 -->
+			</div>
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>입력</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:30px;left:500px;font-size:13px;color:#fff;z-index:1000;" id="dialog2">현황 > L2 구성정보 조회 > L2 스위치 펌웨어 업그레이드</div>
+		<!-- dialog : L2 스위치 펌웨어 업그레이드 -->
+		<div class="mu-dialog" style="top:50px;left:500px;width:420px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">L2 스위치 펌웨어 업그레이드</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<!-- dialog 입력폼영역 -->
+				<div class="mu-dialog-box">
+					<table class="mu-formbox">
+						<colgroup>
+							<col style="width:90px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label>IP</label></th>
+								<td>
+									<input type="input" class="mu-input" value="">
+								</td>
+							</tr>
+							<tr>
+								<th><label>제조사</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">전체</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><label>펌웨어</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">펌웨어</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><label>ID</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+							</tr>
+							<tr>
+								<th><label>PW</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- //dialog 입력폼영역 -->
+			</div>
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>요청</span></button>
+			</div>
+		</div>
+        <!-- //dialog -->
+        
+        <div style="position:absolute;top:400px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog3">현황 > L2 구성정보 조회 > L2 스위치 장비 등록</div>
+		<!-- dialog : L2 스위치 장비 등록 -->
+		<div class="mu-dialog" style="top:420px;left:30px;width:980px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">L2 스위치 장비 등록</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<!-- dialog 입력폼영역 -->
+				<div class="mu-dialog-box">
+					<table class="mu-formbox">
+						<colgroup>
+							<col style="width:70px;">
+							<col>
+							<col style="width:70px;">
+							<col>
+							<col style="width:100px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label>장비명</label></th>
+								<td>
+									<input type="input" class="mu-input" value="">
+								</td>
+								<th><label>조직</label></th>
+								<td>
+									<div class="mu-input-search">
+										<input type="text" class="mu-input" placeholder="search...">
+										<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img search"></i></button>
+									</div>
+								</td>
+								<th><label>망사업자</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">SKT</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><label>MAC</label></th>
+								<td>
+									<input type="input" class="mu-input" value="">
+								</td>
+								<th><label>전송로 유형</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">SKT기지국</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+								<th><label>UP link 포트번호</label></th>
+								<td>
+									<input type="input" class="mu-input" value="">
+								</td>
+							</tr>
+							<tr>
+								<th><label>IP</label></th>
+								<td>
+                                    <div class="mu-item-group">
+                                        <input type="input" class="mu-input">
+                                        <button type="button" class="mu-btn"><span>PING체크</span></button>
+                                    </div>
+								</td>
+								<th><label>제조사</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">전체</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+								<th><label>주소검색</label></th>
+								<td>
+									<div class="mu-input-search">
+										<input type="text" class="mu-input" placeholder="search...">
+										<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img search"></i></button>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><label>상위장비명</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+								<th><label>모델명</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">전체</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+								<th><label>특이사항</label></th>
+								<td rowspan="2">
+                                    <textarea placeholder="최대 200자 까지 입력 가능 합니다." class="mu-area"></textarea>
+								</td>
+							</tr>
+							<tr>
+                                <th></th>
+                                <td></td>
+								<th><label>설치업체명</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- //dialog 입력폼영역 -->
+			</div>
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>저장</span></button>
+			</div>
+		</div>
+        <!-- //dialog -->
+        
+        <div style="position:absolute;top:780px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog4">현황 > L2 구성정보 조회 > L2 스위치 장비 등록 1Port 전용</div>
+		<!-- dialog : L2 스위치 장비 등록 1Port 전용 -->
+		<div class="mu-dialog" style="top:800px;left:30px;width:980px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">L2 스위치 장비 등록 1Port 전용</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<!-- dialog 입력폼영역 -->
+				<div class="mu-dialog-box">
+					<table class="mu-formbox">
+						<colgroup>
+							<col style="width:70px;">
+							<col>
+							<col style="width:70px;">
+							<col>
+							<col style="width:100px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label>장비명</label></th>
+								<td>
+									<input type="input" class="mu-input" value="">
+								</td>
+								<th><label>조직</label></th>
+								<td>
+									<div class="mu-input-search">
+										<input type="text" class="mu-input" placeholder="search...">
+										<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img search"></i></button>
+									</div>
+								</td>
+								<th><label>망사업자</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">SKT</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><label>MAC</label></th>
+								<td>
+									<input type="input" class="mu-input" value="">
+								</td>
+								<th><label>전송로 유형</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">SKT기지국</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+								<th><label>UP link 포트번호</label></th>
+								<td>
+									<input type="input" class="mu-input" value="">
+								</td>
+							</tr>
+							<tr>
+								<th><label>상위장비명</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+								<th><label>제조사</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">전체</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+								<th><label>주소검색</label></th>
+								<td>
+									<div class="mu-input-search">
+										<input type="text" class="mu-input" placeholder="search...">
+										<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img search"></i></button>
+									</div>
+								</td>
+							</tr>
+							<tr>
+                                <th></th>
+                                <td></td>
+								<th><label>모델명</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">전체</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+								<th rowspan="2"><label>특이사항</label></th>
+								<td rowspan="2">
+                                    <textarea placeholder="최대 200자 까지 입력 가능 합니다." class="mu-area"></textarea>
+								</td>
+							</tr>
+							<tr>
+                                <th></th>
+                                <td></td>
+								<th><label>설치업체명</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- //dialog 입력폼영역 -->
+			</div>
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>저장</span></button>
+			</div>
+		</div>
+        <!-- //dialog -->
+        
+        <div style="position:absolute;top:1150px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog5">현황 > L2 구성정보 조회 > L2 스위치 구성정보</div>
+		<!-- dialog : L2 스위치 구성정보 -->
+		<div class="mu-dialog" style="top:1170px;left:30px;width:980px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">L2 스위치 구성정보</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+                <div class="mu-dialog-top">
+					<h5 class="mu-title">장비명:(CAM)튼튼병원 1F 접수실_ML</h5>
+					<div class="mu-item-group fr">
+						<button type="button" class="mu-btn">Reboot</button>
+						<button type="button" class="mu-btn">PING</button>
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i><span>새로고침</span></button>
+					</div>
+				</div>
+				<!-- dialog 입력폼영역 -->				
+				<div class="mu-dialog-box">
+					<table class="mu-formbox">
+						<colgroup>
+							<col style="width:90px;">
+							<col>
+							<col style="width:90px;">
+							<col style="width:160px;">
+							<col style="width:90px;">
+							<col style="width:160px;">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label>장비명</label></th>
+								<td><span>(CAM) 튼튼병원 1F 접수실_ML</span></td>
+								<th><label>망사업자</label></th>
+								<td colspan="3"><span>SKT</span></td>
+							</tr>
+							<tr>
+								<th><label>MAC</label></th>
+								<td><span>10E3C7061495</span></td>
+								<th><label>UP link 포트번호</label></th>
+								<td colspan="3"><span>100</span></td>
+							</tr>
+							<tr>
+								<th><label>IP</label></th>
+								<td><span>223.32.250.49</span></td>
+								<th><label>도로명 주소</label></th>
+								<td colspan="3"></td>
+							</tr>
+							<tr>
+								<th><label>상위 장비명</label></th>
+								<td><span>중심국</span></td>
+								<th><label>시/도</label></th>
+								<td><span>서울특별시 송파구</span></td>
+								<th><label>구/군</label></th>
+								<td><span>광산구</span></td>
+							</tr>
+							<tr>
+								<th><label>조직</label></th>
+								<td><span>서부</span><span>광주 Access Infra 팀</span><span>서광주 품질개선팀</span></td>
+								<th><label>도로명</label></th>
+								<td colspan="3"><span>용아로</span></td>
+							</tr>
+							<tr>
+								<th><label>전송료 유형</label></th>
+								<td><span>SKT 기지국</span></td>
+								<th><label>건물본번</label></th>
+								<td><span>00234</span></td>
+								<th><label>건물부번</label></th>
+								<td><span>00000</span></td>
+							</tr>
+							<tr>
+								<th><label>제조사</label></th>
+								<td><span>콘텔라(주)</span></td>
+								<th><label>상세주소</label></th>
+								<td colspan="3"><span>(우산동)</span></td>
+							</tr>
+							<tr>
+								<th><label>H/W버젼</label></th>
+								<td><span>L2_AP_V01</span></td>
+								<th rowspan="6"><label>특이사항</label></th>
+								<td rowspan="6" colspan="3" class="vt">
+									<span>class="vt" 추가 L2스위치 등록화면 TEST L2스위치 등록화면 TEST L2스위치L2스위치 등록화면 TEST L2스위치 등록화면 TEST L2스위치L2스위치 등록화면 TEST L2스위치 등록화면 TEST L2스위치 등록화면 TEST L2스위치 등록화면 TEST L2스위치 등록화면 TESTL2스위치 등록화면 TESTL2스위치 등록화면 TEST</span>
+								</td>
+							</tr>
+							<tr>
+								<th><label>S/W버젼</label></th>
+								<td><span>1.0.0</span></td>
+							</tr>
+							<tr>
+								<th><label>모델명</label></th>
+								<td colspan="3"><span>SHPFW20-C1</span></td>
+							</tr>
+							<tr>
+								<th><label>설치업체명</label></th>
+								<td colspan="3"><span>아이엘</span></td>
+							</tr>
+							<tr>
+								<th><label>최근 Conn</label></th>
+								<td colspan="3"><span>2019-02-10 15:21:40</span></td>
+							</tr>
+							<tr>
+								<th><label>등록일(TMS)</label></th>
+								<td colspan="3"><span>2014-11-24 12:24:50</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>				
+				<!-- dialog 입력폼영역 -->
+				<!-- ag-grid-wrap -->
+				<div class="ag-grid-wrap" style="height:300px;">
+					<div id="myGrid2" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+				</div>
+				<!-- //ag-grid-wrap -->
+				<!-- pagination-wrap -->
+				<div class="pagination-wrap">
+					<p class="total-num">총: 1,200건(1/200건)</p>
+					<div class="mu-pagination">
+						<button type="button" class="mu-first" disabled="disabled"><span></span></button>
+						<button type="button" class="mu-prev" disabled="disabled"><span></span></button>
+						<ul>
+							<li><a href="">1</a></li>
+							<li><a href="">2</a></li>
+							<li><a href="">3</a></li> 
+							<li><a href="">4</a></li>
+							<li><a href="">5</a></li>
+							<li><a href="">6</a></li>
+							<li class="active"><a href="">7</a></li>
+							<li><a href="">8</a></li>
+							<li><a href="">9</a></li>
+						</ul>
+						<button type="button" class="mu-next"><span></span></button>
+						<button type="button" class="mu-last"><span></span></button>
+					</div>
+				</div>
+				<!-- //pagination-wrap -->
+			</div>
+		</div>
+		<!-- //dialog -->
+		
+		<div style="position:absolute;top:1150px;left:1020px;font-size:13px;color:#fff;z-index:1000;" id="dialog6">현황 > L2 구성정보 조회 > L2 스위치 구성정보 > Ping 실행(Ping 버튼 클릭시)</div>
+		<!-- dialog : Ping 실행 -->
+		<div class="mu-dialog" style="top:1170px;left:1020px;width:626px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">Ping 실행</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<div class="ping-box">ping-box 실제 내용이 여기에 들어감 고정600*350 디자인확인용 영역입니다. 실제내용이 여기에 들어갑니다.</div>
+			</div>
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>중지</span></button>
+			</div>
+		</div>
+		<!-- //dialog --> 
+
+		<div style="position:absolute;top:780px;left:1020px;font-size:13px;color:#fff;z-index:1000;" id="dialog7">현황 > L2 구성정보 조회 > L2 스위치 구성정보 > 계정 정보 입력(Reboot버튼 클릭시)</div>
+		<!-- dialog : 계정 정보 입력 -->
+		<div class="mu-dialog" style="top:800px;left:1020px;width:420px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">계정 정보 입력</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<!-- dialog 입력폼영역 -->
+				<div class="mu-dialog-box">
+					<table class="mu-formbox">
+						<colgroup>
+							<col style="width:90px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label>ID</label></th>
+								<td>
+									<input type="input" class="mu-input" value="0017B20B5227" readonly="readonly">
+								</td>
+							</tr>
+							<tr>
+								<th><label>PW</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+							</tr>
+							<tr>
+								<th><label>제조사</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">전체</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><label>모델</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">전체</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- //dialog 입력폼영역 -->
+			</div>
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>확인</span></button>
+			</div>
+		</div>
+		<!-- //dialog --> 
+
+        <div style="position:absolute;top:30px;left:1020px;font-size:13px;color:#fff;z-index:1000;" id="dialog8">현황 > L2 구성정보 조회 > 디폴트 패스워드 사용 L2 스위치</div>
+		<!-- dialog : 디폴트 패스워드 사용 L2 스위치 -->
+		<div class="mu-dialog" style="top:50px;left:1020px;width:880px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">디폴트 패스워드 사용 L2 스위치</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+                <div class="mu-grid-top">
+                    <div class="mu-item-group fr">
+                        <button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>엑셀</span></button> 
+                    </div>
+                </div>
+                <!-- ag-grid-wrap -->
+                <div class="ag-grid-wrap" style="height:500px;">
+                    <div id="myGrid1" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+                </div>
+				<!-- //ag-grid-wrap -->
+				<!-- pagination-wrap -->
+				<div class="pagination-wrap">
+					<p class="total-num">총: 1,200건(1/200건)</p>
+					<div class="mu-pagination">
+						<button type="button" class="mu-first" disabled="disabled"><span></span></button>
+						<button type="button" class="mu-prev" disabled="disabled"><span></span></button>
+						<ul>
+							<li><a href="">1</a></li>
+							<li><a href="">2</a></li>
+							<li><a href="">3</a></li> 
+							<li><a href="">4</a></li>
+							<li><a href="">5</a></li>
+							<li><a href="">6</a></li>
+							<li class="active"><a href="">7</a></li>
+							<li><a href="">8</a></li>
+							<li><a href="">9</a></li>
+						</ul>
+						<button type="button" class="mu-next"><span></span></button>
+						<button type="button" class="mu-last"><span></span></button>
+					</div>
+				</div>
+				<!-- //pagination-wrap -->
+			</div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:2100px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog9">현황 > 알람 시간 관리 > 처리 내용 입력(입력모드)</div>
+		<!-- dialog : 처리 내용 입력 -->
+		<div class="mu-dialog" style="top:2120px;left:30px;width:680px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">처리 내용 입력</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+                <div class="mu-grid-top">
+					<h5 class="mu-title">선택된 장비 목록</h5>
+                </div>
+                <!-- ag-grid-wrap -->
+                <div class="ag-grid-wrap" style="height:200px;">
+                    <div id="myGrid3" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+                </div>
+				<!-- //ag-grid-wrap -->
+								
+				<!-- dialog 입력폼영역 -->
+				<div class="mu-dialog-box">
+					<table class="mu-formbox">
+						<colgroup>
+							<col style="width:120px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label>출동여부</label></th>
+								<td>
+									<div class="mu-hgroup">
+										<div class="mu-radio">
+											<input type="radio" id="r1" name="radio" checked="checked">
+											<label for="r1">출동</label>
+										</div>
+										<div class="mu-radio">
+											<input type="radio" id="r2" name="radio">
+											<label for="r2">미출동</label>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><label>고장유형</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">WI-FI장비</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><label>조치유형</label></th>
+								<td>
+									<div class="mu-selectbox">
+										<button class="mu-value">콘센트 부족으로 추가 신설</button>
+										<ul class="mu-list">
+											<li value="1">list option1</li>
+											<li value="2">list option2</li>
+											<li value="3">list option3</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><label>조치내역</label></th>
+								<td>
+									<textarea placeholder="최대 200자 까지 입력 가능 합니다." class="mu-area"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<th><label>조치자</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+							</tr>
+							<tr>
+								<th><label>조치자 연락처</label></th>
+								<td>
+									<input type="input" class="mu-input">
+								</td>
+							</tr>
+							<tr>
+								<th><label>수리요청 여부</label></th>
+								<td>									
+									<div class="mu-checkbox">
+										<input type="checkbox" id="ckb1"> 
+										<label for="ckb1">수리요청</label>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>				
+				<!-- //dialog 입력폼영역 -->
+			</div>			
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img delete"></i><span>삭제</span></button>
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>등록</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:2100px;left:800px;font-size:13px;color:#fff;z-index:1000;" id="dialog10">현황 > 알람 시간 관리 > 처리 내용 입력(View)</div>
+		<!-- dialog : 처리 내용 입력 -->
+		<div class="mu-dialog" style="top:2120px;left:800px;width:600px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">처리 내용 입력</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">								
+				<!-- dialog 입력폼영역 -->
+				<div class="mu-dialog-box">
+					<table class="mu-formbox">
+						<colgroup>
+							<col style="width:120px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label>장비명</label></th>
+								<td><span>현양자립생활관 6층 604호_D</span></td>
+							</tr>
+							<tr>
+								<th><label>장비ID</label></th>
+								<td><span>00300D-00300D8C346F</span></td>
+							</tr>
+							<tr>
+								<th><label>장비유형</label></th>
+								<td><span>WIFI-AP-IHD</span></td>
+							</tr>
+							<tr>
+								<th><label>알람명</label></th>
+								<td><span>AP_LINK_FAIL</span></td>
+							</tr>
+							<tr>
+								<th><label>발생일자</label></th>
+								<td><span>2020-04-22 11:59:46</span></td>
+							</tr>
+							<tr>
+								<th><label>출동여부</label></th>
+								<td><span>미입력</span></td>
+							</tr>
+							<tr>
+								<th><label>고장유형</label></th>								
+								<td><span>WI-FI장비</span></td>
+							</tr>
+							<tr>
+								<th><label>조치유형</label></th>								
+								<td><span>콘센트 부족으로 추가 신설</span></td>
+							</tr>
+							<tr>
+								<th><label>조치내역</label></th>															
+								<td><span>000000조치내역이 보여집니다.  000000조치내역이 보여집니다. 000000조치내역이 보여집니다.000000조치내역이 보여집니다.</span></td>
+							</tr>
+							<tr>
+								<th><label>조치자</label></th>						
+								<td><span>홍길동</span></td>
+							</tr>
+							<tr>
+								<th><label>조치자 연락처</label></th>														
+								<td><span>010-1234-5678</span></td>
+							</tr>
+							<tr>
+								<th><label>수리요청 여부</label></th>																					
+								<td><span>완료</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- dialog 입력폼영역 -->
+			</div>			
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:1740px;left:1020px;font-size:13px;color:#fff;z-index:1000;" id="dialog11">현황 > KPI 실적 / ONS KPI 가동률 > 도움말</div>
+		<!-- dialog : 도움말 -->
+		<div class="mu-dialog" style="top:1760px;left:1020px;width:600px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">도움말</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">				
+				<!-- 안내문구 -->
+				<div class="mu-dialog-info">
+					<ul>
+						<li>KPI 고장 국소수는 복구시간까지 48시간 이상 소요된 고장 국소수입니다. KPI의 자료는 최대 3개월 전까지만 조회됩니다.</li> 
+						<li>KPI 고장시간은 복구시간까지 48시간 이상 소요된 고장시간에서 48시간을 제외한 후 48시간 이후부터 최한시를 제외한 시간입니다.</li> 
+						<li>BRIDGE-M-T 타입은 KPI 실적에서 제외됩니다. BRIDGE-M 타입의 KPI기준시간이 48시간에서 72시간으로 변경되었습니다.</li>
+						<li>해당지역을 Double-Click하면 상세 내역을 조회할 수 있습니다.</li>
+					</ul>
+				</div>
+				<!-- //안내문구 -->
+			</div>			
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:2800px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog12">현황 > KPI > KPI 24시간 감시 장비 > 장비 선택</div>
+		<!-- dialog : 장비 선택 -->
+		<div class="mu-dialog" style="top:2820px;left:30px;width:920px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">장비 선택</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<div class="mu-search-group">
+					<div class="mu-search-item">
+						<table>
+							<colgroup>
+								<col style="width:45px;">
+								<col style="width:250px;">
+								<col style="width:70px;">
+								<col style="width:300px;">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th><label>장비명</label></th>
+									<td>
+										<input type="input" class="mu-input">
+									</td>									
+									<th><label>조직</label></th>
+									<td>
+										<div class="mu-input-search">
+											<input type="text" class="mu-input" placeholder="search...">
+											<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img search"></i></button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th><label>MAC</label></th>
+									<td>
+										<input type="input" class="mu-input">
+									</td>									
+									<th><label>장비유형</label></th>
+									<td>
+										<div class="mu-item-group">
+											<div class="mu-selectbox">
+												<button class="mu-value">대분류</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+													<li value="2">list option2</li>
+													<li value="3">list option3</li>
+												</ul>
+											</div>
+											<div class="mu-selectbox">
+												<button class="mu-value">소분류</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+													<li value="2">list option2</li>
+													<li value="3">list option3</li>
+												</ul>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mu-search-btn">
+						<button type="button" class="mu-btn mu-btn-point mu-btn-icon"><i class="mu-icon-img search"></i><span>조회</span></button>
+					</div>
+				</div>
+				<div class="ag-grid-wrap" style="height:320px;">
+					<div id="myGrid4" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+				</div>
+			</div>
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>취소</span></button>
+				<button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>확인</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+		<div style="position:absolute;top:2800px;left:970px;font-size:13px;color:#fff;z-index:1000;" id="dialog13">현황 > KPI > ONS KPI 가동률 > KPI ONS가동률 파일 다운로드</div>
+		<!-- dialog : KPI ONS가동률 파일 다운로드 -->
+		<div class="mu-dialog" style="top:2820px;left:970px;width:500px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">KPI ONS가동률 파일 다운로드</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">
+				<div class="mu-search-group">
+					<div class="mu-search-item">
+						<table>
+							<colgroup>
+								<col style="width:35px;">
+								<col style="width:250px;">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th><label>기간</label></th>
+									<td>
+										<div class="mu-item-group">
+											<date-picker v-model="stdDate" :lang="lang" :clearable=false></date-picker>
+											<span>~</span>
+											<date-picker v-model="stdDate" :lang="lang" :clearable=false></date-picker>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mu-search-btn">
+						<button type="button" class="mu-btn mu-btn-point mu-btn-icon"><i class="mu-icon-img search"></i><span>조회</span></button>
+					</div>
+				</div>
+				<div class="ag-grid-wrap" style="height:320px;">
+					<div id="myGrid5" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+				</div>
+			</div>
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:3400px;left:30px;font-size:13px;color:#fff;z-index:1000;" id="dialog14">현황 > WiFi 트래픽현황 > 품질관리 통계 도움말</div>
+		<!-- dialog : 품질관리 통계 도움말 -->
+		<div class="mu-dialog" style="top:3420px;left:30px;width:550px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">품질관리 통계 도움말</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">				
+				<!-- 안내문구 box-none type ADD -->
+				<div class="mu-dialog-info box-none">
+					<ul>
+						<li>15분 통계를 기준으로 일일 단위 통계를 관리합니다.</li> 
+						<li>WiFi 통계 시스템에서 인증서버의 일단위 데이터를 연동해옵니다.</li> 
+					</ul> 	
+				</div>
+				<!-- 안내문구 통계항목 들어감 -->	
+				<div class="mu-dialog-info">						
+					<dl>
+						<dt>통계항목</dt>
+						<dd>
+							<ul class="item-info">
+								<li><span class="info-title">Max Account Count</span><span>일일동안 15분 통계로 수집한 Max Account Count 중 최대값입니다.</span></li>
+								<li><span class="info-title">DL Throughput(kbps)</span><span>일일동안 AP전체 Download Throughput의 일 평균 값입니다.</span></li>
+								<li><span class="info-title">UL Throughput(kbps)</span><span>일일동안 AP전체 Upload Throughput의 일 평균 값입니다.</span></li>
+								<li><span class="info-title">Account Count</span><span>일일동안 15분 통계로 수집한 Account Count의 총합입니다.</span></li>
+								<li><span class="info-title">Max Account Count</span><span>일일동안 15분 통계로 수집한 Max Account Count 중 최대값입니다.</span></li>
+							</ul>
+						</dd>
+					</dl> 	
+				</div>	
+				<!-- //안내문구 -->
+			</div>			
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+
+		<div style="position:absolute;top:3400px;left:700px;font-size:13px;color:#fff;z-index:1000;" id="dialog15">통계 > 트래픽 저조 국소 > 트래픽 저조 국소 도움말</div>
+
+		<!-- dialog : 트래픽 저조 국소 도움말 -->
+		<div class="mu-dialog" style="top:3420px;left:700px;width:400px;height:auto;">
+			<div class="mu-dialog-head">
+				<h4 class="mu-title">트래픽 저조 국소 도움말</h4>
+				<div class="mu-dialog-head-btn">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img cancel"></i></button>
+				</div>
+			</div>
+			<div class="mu-dialog-body">				
+				<!-- 안내문구 -->
+				<div class="mu-dialog-info">
+					<dl>
+						<dt>트래픽 저조 판단</dt> 
+						<dd>(가). WiFi통계 시스템 1일 연동 트래픽정보를 기준</dd> 
+						<dd>(나). 수집일 7일전의 평균트래픽을 계산</dd> 
+						<dd>(다). (나)기준 30% 미만이면 트래픽 저조를 판단</dd> 
+					</dl>
+				</div>
+				<!-- //안내문구 -->
+			</div>			
+			<div class="mu-dialog-foot">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img cancel"></i><span>닫기</span></button>
+			</div>
+		</div>
+		<!-- //dialog -->
+
+
+
+	</div>
+</div>
+
+	<script src="https://unpkg.com/vue@2.6.10"></script><!-- 20200814 MOD : vue@2.3.3 ==> @2.6.10 -->
+	<script src="https://unpkg.com/ag-grid-community@21.0.1/dist/ag-grid-community.min.noStyle.js"></script><!-- 20200814 MOD : ver @23.2.1 ==> @21.0.1 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue2-datepicker@2.12.0/lib/index.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.js"></script>
+	<script>
+		//달력+시간 샘플 2.12.0
+		Vue.use(DatePicker.default);
+			
+		new Vue({
+			
+			el: '#app',
+			data: {
+			  prjName: 'TMS',
+			  stdDate:null,
+			  lang: {
+					days: ['일', '월', '화', '수', '목', '금', '토'],
+					months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+					pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+					placeholder: {
+					date: 'Select Date',
+					dateRange: 'Select Date Range'
+					}
+				},
+			 time:'',
+			 timePickerOptions:{
+				 start: '00',
+				 step: '00',
+				 end: '00'
+			   }
+			},
+			
+			beforeMount(){
+			
+				
+			},
+			mounted() {
+				this.stdDate  = Date.now();
+			},
+			
+		
+		})
+		
+		//ag-grid 개발참고용 샘플코드 - 디폴트 패스워드 사용 L2 스위치	
+		// specify the columns
+		var columnDefs = [
+			{headerName: "본부", field: "cl1",width: 100, unSortIcon: true},
+			{headerName: "팀", field: "cl2", width: 150, unSortIcon: true},
+			{headerName: "ONS팀", field: "cl3", width: 150, unSortIcon: true},
+			{headerName: "IP", field: "cl4", width: 105, unSortIcon: true},
+			{headerName: "L2 MAC", field: "cl5", width: 100, unSortIcon: true},
+			{headerName: "사용중인 패스워드", field: "cl6", width: 120, unSortIcon: true},
+			{headerName: "패스워드 확인일", field: "cl7", width: 120, unSortIcon: true}
+		
+		];
+		
+		// specify the data
+		var rowData = [
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "admin", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "admin1234", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"},
+			{cl1: "중부", cl2: "대전 Access Infra팀", cl3: "SKB 대전운용팀", cl4: "223.63.107.28", cl5: "10E3C7061495", cl6: "qwertyuio", cl7: "2020-08-05"}
+		];
+		
+		// let the grid know which columns and what data to use
+		var gridOptions = {
+			defaultColDef: {
+			sortable: true
+			},
+			columnDefs: columnDefs,
+			rowData: rowData,
+			rowSelection: 'single'
+		};
+		
+		// lookup the container we want the Grid to use
+		var eGridDiv = document.querySelector('#myGrid1');
+		
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv, gridOptions);
+
+			
+		//ag-grid 개발참고용 샘플코드 - L2 스위치 구성정보
+		// specify the columns
+		var columnDefs = [
+			{headerName: "등록일", field: "cl1",width: 150, unSortIcon: true},
+			{headerName: "L2스위치 PORT", field: "cl2", width: 150, unSortIcon: true},
+			{headerName: "물리 Link속도", field: "cl3", width: 150, unSortIcon: true},
+			{headerName: "Link /AP MAC", field: "cl4", width: 130, unSortIcon: true},
+			{headerName: "장비명", field: "cl5", width: 180, unSortIcon: true},
+			{headerName: "T WiFi Zone명", field: "cl6", width: 180, unSortIcon: true}
+		
+		];
+		
+		// specify the data
+		var rowData = [
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"},
+			{cl1: "2020-08-05 10:16", cl2: "PORT", cl3: "10E3C7061495", cl4: "장비명칭들어감", cl5: "Zone명"}
+		];
+		
+		// let the grid know which columns and what data to use
+		var gridOptions = {
+			defaultColDef: {
+			sortable: true
+			},
+			columnDefs: columnDefs,
+			rowData: rowData,
+			rowSelection: 'single'
+		};
+		
+		// lookup the container we want the Grid to use
+		var eGridDiv = document.querySelector('#myGrid2');
+		
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv, gridOptions);		
+
+		//ag-grid 개발참고용 샘플코드 - 처리내용입력 - 선택된 장비 목록
+		// specify the columns
+		var columnDefs = [
+			{headerName: "장비명", field: "cl1",width: 150, unSortIcon: true},
+			{headerName: "장비ID", field: "cl2", width: 150, unSortIcon: true},
+			{headerName: "장비유형", field: "cl3", width: 112, unSortIcon: true},
+			{headerName: "알람명", field: "cl4", width: 100, unSortIcon: true},
+			{headerName: "발생일자", field: "cl5", width: 140, unSortIcon: true}
+		
+		];
+		
+		// specify the data
+		var rowData = [
+			{cl1: "수_지_KTX_광명역사", cl2: "00300D-00300D8C346F", cl3: "WIFI-AP-IHDGDW", cl4: "Power Status", cl5: "2020-04-22 11:59:46"},
+			{cl1: "현양자립생활관 6층 604호_D", cl2: "00300D-00300D8C346F", cl3: "WIFI-AP-IHD", cl4: "Power Status", cl5: "2020-04-22 11:59:46"},
+			{cl1: "현양자립생활관 6층 604호_D", cl2: "00300D-00300D8C346F", cl3: "WIFI-AP-IHD", cl4: "Power Status", cl5: "2020-04-22 11:59:46"},
+			{cl1: "현양자립생활관 6층 604호_D", cl2: "00300D-00300D8C346F", cl3: "WIFI-AP-IHD", cl4: "Power Status", cl5: "2020-04-22 11:59:46"},
+			{cl1: "현양자립생활관 6층 604호_D", cl2: "00300D-00300D8C346F", cl3: "WIFI-AP-IHD", cl4: "Power Status", cl5: "2020-04-22 11:59:46"},
+			{cl1: "현양자립생활관 6층 604호_D", cl2: "00300D-00300D8C346F", cl3: "WIFI-AP-IHD", cl4: "Power Status", cl5: "2020-04-22 11:59:46"}
+		];
+		
+		// let the grid know which columns and what data to use
+		var gridOptions = {
+			defaultColDef: {
+			sortable: true
+			},
+			columnDefs: columnDefs,
+			rowData: rowData,
+			rowSelection: 'single'
+		};
+		
+		// lookup the container we want the Grid to use
+		var eGridDiv = document.querySelector('#myGrid3');
+		
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv, gridOptions);		
+
+
+		//ag-grid 개발참고용 샘플코드 - 장비선택
+		// specify the columns
+		var columnDefs = [			
+			{headerName: "", field: "cl1",width: 40, sortable: true,checkboxSelection: true,headerCheckboxSelection: true},
+			{headerName: "테스트용 그리드", field: "cl2", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드2", field: "cl3", width: 200, unSortIcon: true},
+			{headerName: "테스트용 그리드3", field: "cl4", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드4", field: "cl5", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드5", field: "cl6", width: 150, unSortIcon: true},
+			{headerName: "테스트용 그리드6", field: "cl7", width: 150, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl8", width: 150, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl9", width: 200, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl10", width: 150, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl11", width: 100, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl12", width: 200, unSortIcon: true},
+			{headerName: "샘플코드", field: "cl13", width: 100, unSortIcon: true}
+
+		];
+
+		// specify the data
+		var rowData = [
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"}, 			
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"},  			
+			{cl1: "", cl2: "테스트용 그리드", cl3: "샘플코드", cl4: "강남Access Infra", cl5: "경남본부", cl6: "SKB동작운영팀", cl7: "성빈센트병원 0000", cl8: "10E37C-10E3C70000", cl9: "WiFi-AP-IGDW2", cl10: "SK텔레시스", cl11: "A00017", cl12: "REBOOT ALARM", cl13: "MINOR"}
+		];
+  
+		// let the grid know which columns and what data to use
+		var gridOptions = {
+			defaultColDef: {
+			sortable: true
+			},
+			columnDefs: columnDefs,
+			rowData: rowData,
+			rowSelection: 'single'
+		};
+
+		// lookup the container we want the Grid to use
+		var eGridDiv = document.querySelector('#myGrid4');
+
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv, gridOptions);	
+
+		//ag-grid 개발참고용 샘플코드 - 처리내용입력 - KPI ONS가동률 파일 다운로드
+		// specify the columns
+		var columnDefs = [
+			{headerName: "생성날짜", field: "cl1",width: 100, unSortIcon: true},
+			{headerName: "파일명", field: "cl2", width: 200, unSortIcon: true},
+			{headerName: "내려받기", field: "cl3", width: 150, unSortIcon: true,
+    template:'<button type="button" class="mu-btn mu-btn-sm">내려받기</button>'}
+		
+		];
+		
+		// specify the data
+		var rowData = [
+			{cl1: "2020-04-01", cl2: "20200401_ONS_ALM.csv", cl3: ""},
+			{cl1: "2020-04-01", cl2: "20200401_ONS_ALM.csv", cl3: ""},
+			{cl1: "2020-04-01", cl2: "20200401_ONS_ALM.csv", cl3: ""},
+			{cl1: "2020-04-01", cl2: "20200401_ONS_ALM.csv", cl3: ""},
+			{cl1: "2020-04-01", cl2: "20200401_ONS_ALM.csv", cl3: ""},
+			{cl1: "2020-04-01", cl2: "20200401_ONS_ALM.csv", cl3: ""}
+		];
+		
+		// let the grid know which columns and what data to use
+		var gridOptions = {
+			defaultColDef: {
+			sortable: true
+			},
+			columnDefs: columnDefs,
+			rowData: rowData,
+			rowSelection: 'single'
+		};
+		
+		// lookup the container we want the Grid to use
+		var eGridDiv = document.querySelector('#myGrid5');
+		
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv, gridOptions);	
+		</script>
+</body>
+</html>

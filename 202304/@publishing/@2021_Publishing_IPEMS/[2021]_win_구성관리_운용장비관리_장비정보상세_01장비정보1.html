@@ -1,0 +1,569 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>IP-EMS </title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="assets/ag-grid/ag-grid.css">
+	<link rel="stylesheet" href="assets/ag-grid/ag-theme-balham-dark.css">
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body class="equip-popup">
+<div id="app">
+	<div class="mu-container">
+		<section>
+			<div class="mu-content-top">
+				<h3 class="mu-title"><i class="mu-icon-img list"></i><span>장비 정보 상세</span></h3>
+			</div>
+			<div class="mu-content">
+
+				<!-- mu-search-group -->
+				<div class="mu-search-group">
+					<div class="mu-search-item">
+						<table>
+							<colgroup>
+								<col style="width:90px;">
+								<col style="width:240px;">
+								<col style="width:90px;">
+								<col style="width:240px;">
+								<col style="width:90px;">
+								<col style="width:240px;">
+								<col style="width:90px;">
+								<col style="width:240px;">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th><label>전송국사</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>망구분</label></th>
+									<td>
+										<input type="text" class="mu-input" value="라우터 > IBC" readonly="readonly">
+									</td>
+									<th><label>장비유형</label></th>
+									<td colspan="3">
+										<input type="text" class="mu-input" value="IB백홀 > IBC" readonly="readonly">
+									</td>
+								</tr>
+								<tr>
+									<th><label>장비명</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>장비 IP</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>장비설명</label></th>
+									<td colspan="3">
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+								</tr>
+								<tr>
+									<th><label>제조사</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>모델</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>가동시간</label></th>
+									<td>
+										<input type="text" class="mu-input" value="5 days, 23:22:46.67" readonly="readonly">
+									</td>
+									<th><label>백업일시</label></th>
+									<td>
+										<input type="text" class="mu-input" value="2001-01-01 13:00:00" readonly="readonly">
+									</td>
+								</tr>
+								<tr>
+									<th><label>최상위 연동장비</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>상위 연동장비</label></th>
+									<td>
+										<input type="text" class="mu-input" readonly="readonly">
+									</td>
+									<th><label>등록일시</label></th>
+									<td>
+										<input type="text" class="mu-input" value="yyyy-mm-dd hh24:mi:ss" readonly="readonly">
+									</td>
+									<th><label>수정일시</label></th>
+									<td>
+										<input type="text" class="mu-input" value="yyyy-mm-dd hh24:mi:ss" readonly="readonly">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- //mu-search-group -->
+
+				<div class="mu-grid-top">
+					<div class="mu-item-group fr">
+						<button type="button" class="mu-btn"><span>재조회</span></button>
+						<button type="button" class="mu-btn" disabled="disabled"><span>저장</span></button>
+						<button type="button" class="mu-btn"><span>장비 상태 및 성능</span></button>
+						<button type="button" class="mu-btn"><span>실시간 장비 성능</span></button>
+						<button type="button" class="mu-btn"><span>자원 재 수집</span></button>
+						<button type="button" class="mu-btn"><span>조회접속</span></button>
+						<button type="button" class="mu-btn"><span>작업접속</span></button>
+						<button type="button" class="mu-btn"><span>RM접속</span></button>
+					</div>
+				</div>
+				<div class="mu-tab-page">
+					<ul class="mu-tab">
+						<li class="active"><a href="#none">장비정보(I)</a></li>
+						<li><a href="#none">장비정보(II)</a></li>
+						<li><a href="#none">장비정보(III)</a></li>
+						<li><a href="#none">고장내역</a></li>
+						<li><a href="#none">포트정보</a></li>
+						<li><a href="#none">포트성능</a></li>
+						<li><a href="#none">포트링크현황</a></li>
+						<li><a href="#none">Config 백업</a></li>
+						<li><a href="#none">TFTP 백업</a></li>
+						<li><a href="#none">Syslog 현황</a></li>
+						<li><a href="#none">FDB 정보</a></li>
+						<li><a href="#none">ARP 정보</a></li>
+						<li><a href="#none">상태정보</a></li>
+						<li><a href="#none">Net Session</a></li>
+						<li><a href="#none">CMS 정보</a></li>
+						<li><a href="#none">Fast Convergence</a></li>
+						<li><a href="#none">FHRP</a></li>
+						<li><a href="#none">L4 Session</a></li>
+					</ul>
+					<button type="button" class="mu-btn mu-btn-icon-only"><span>. . .</span></button>
+				</div>
+				<div class="mu-tab-body">
+					<div class="mu-tab-cont">
+						<div class="mu-grid-top">
+							<h6 class="mu-title"><i class="mu-icon-img"></i><span>장비 조직 정보</span></h6>
+						</div>
+						<table class="mu-formbox">
+							<colgroup>
+								<col width="120">
+								<col>
+								<col width="120">
+								<col>
+								<col><!-- 빈공간용 -->
+							</colgroup>
+							<tbody>
+								<tr>
+									<th><label>대표 IP</label></th>
+									<td>
+										<input type="text" class="mu-input" value="1.1.1.1">
+									</td>
+									<th></th>
+									<td></td>
+								</tr>
+								<tr>
+									<th><label>관할 본부/팀</label></th>
+									<td>
+										<div class="mu-item-group">
+											<div class="mu-selectbox">
+												<button class="mu-value">list default</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+													<li value="2">list option2</li>
+													<li value="3">list option3</li>
+												</ul>
+											</div>
+											<div class="mu-selectbox">
+												<button class="mu-value">list default</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+													<li value="2">list option2</li>
+													<li value="3">list option3</li>
+												</ul>
+											</div>
+										</div>
+									</td>
+									<th><label>전송국사</label></th>
+									<td>
+										<div class="mu-selectbox">
+											<button class="mu-value">list default</button>
+											<ul class="mu-list">
+												<li value="1">list option1</li>
+												<li value="2">list option2</li>
+												<li value="3">list option3</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th><label>운용 본부/팀</label></th>
+									<td>
+										<div class="mu-item-group">
+											<div class="mu-selectbox">
+												<button class="mu-value">list default</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+													<li value="2">list option2</li>
+													<li value="3">list option3</li>
+												</ul>
+											</div>
+											<div class="mu-selectbox">
+												<button class="mu-value">list default</button>
+												<ul class="mu-list">
+													<li value="1">list option1</li>
+													<li value="2">list option2</li>
+													<li value="3">list option3</li>
+												</ul>
+											</div>
+										</div>
+									</td>
+									<th><label>국사(CMS)</label></th>
+									<td>
+										<div class="mu-input-search">
+											<input type="text" placeholder="search..." class="mu-input">
+											<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non">
+												<i class="mu-icon-img search"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th><label>망구분</label></th>
+									<td>
+										<div class="mu-input-search">
+											<input type="text" placeholder="search..." class="mu-input" value="라우터 > IBC">
+											<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non">
+												<i class="mu-icon-img search"></i>
+											</button>
+										</div>
+									</td>
+									<th><label>BP사</label></th>
+									<td>
+										<div class="mu-input-search">
+											<input type="text" placeholder="search..." class="mu-input">
+											<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non">
+												<i class="mu-icon-img search"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th><label>장비유형</label></th>
+									<td>
+										<div class="mu-input-search">
+											<input type="text" placeholder="search..." class="mu-input" value="IB백호 > IBC">
+											<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non">
+												<i class="mu-icon-img search"></i>
+											</button>
+										</div>
+									</td>
+									<th><label>한글명</label></th>
+									<td>
+										<input type="text" class="mu-input" value="테스트장비">
+									</td>
+								</tr>
+								<tr>
+									<th><label>10G Ring/PTS</label></th>
+									<td>
+										<div class="mu-item-group">
+											<input type="text" class="mu-input w100" value="APD1009">
+											<div class="mu-input-search">
+												<input type="text" placeholder="search..." class="mu-input" value="APD19/1012/1013/태평#11">
+												<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non">
+													<i class="mu-icon-img search"></i>
+												</button>
+											</div>
+										</div>
+									</td>
+									<th><label>IP NOC</label></th>
+									<td>
+										<div class="mu-hgroup">
+											<div class="mu-radio">
+												<input type="radio" id="r1-1" name="radio-1" checked="checked">
+												<label for="r1-1">운용</label>
+											</div>
+											<div class="mu-radio">
+												<input type="radio" id="r1-2" name="radio-1">
+												<label for="r1-2">미운용</label>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th><label>1G Ring/PTS</label></th>
+									<td>
+										<div class="mu-item-group">
+											<input type="text" class="mu-input w100" value="APD1009">
+											<div class="mu-input-search">
+												<input type="text" placeholder="search..." class="mu-input">
+												<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non">
+													<i class="mu-icon-img search"></i>
+												</button>
+											</div>
+										</div>
+									</td>
+									<th><label>서비스구분</label></th>
+									<td>
+										<div class="mu-hgroup">
+											<div class="mu-radio">
+												<input type="radio" id="r2-1" name="radio-2" checked="checked">
+												<label for="r2-1">중요</label>
+											</div>
+											<div class="mu-radio">
+												<input type="radio" id="r2-2" name="radio-2">
+												<label for="r2-2">비중요</label>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th><label>고장/성능 관리</label></th>
+									<td>
+										<div class="mu-hgroup">
+											<div class="mu-radio">
+												<input type="radio" id="r3-1" name="radio-3" checked="checked">
+												<label for="r3-1">관리</label>
+											</div>
+											<div class="mu-radio">
+												<input type="radio" id="r3-2" name="radio-3">
+												<label for="r3-2">비관리</label>
+											</div>
+										</div>
+									</td>
+									<th><label>수집주기</label></th>
+									<td>
+										<div class="mu-selectbox">
+											<button class="mu-value">list default</button>
+											<ul class="mu-list">
+												<li value="1">list option1</li>
+												<li value="2">list option2</li>
+												<li value="3">list option3</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th><label>Config 관리</label></th>
+									<td>
+										<div class="mu-hgroup">
+											<div class="mu-radio">
+												<input type="radio" id="r4-1" name="radio-4" checked="checked">
+												<label for="r4-1">관리</label>
+											</div>
+											<div class="mu-radio">
+												<input type="radio" id="r4-2" name="radio-4">
+												<label for="r4-2">비관리</label>
+											</div>
+										</div>
+									</td>
+									<th><label>IPV6 수집</label></th>
+									<td>
+										<div class="mu-hgroup">
+											<div class="mu-radio">
+												<input type="radio" id="r5-1" name="radio-5" checked="checked">
+												<label for="r5-1">수집</label>
+											</div>
+											<div class="mu-radio">
+												<input type="radio" id="r5-2" name="radio-5">
+												<label for="r5-2">수집 안함</label>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th><label>전원종류</label></th>
+									<td>
+										<div class="mu-selectbox">
+											<button class="mu-value">list default</button>
+											<ul class="mu-list">
+												<li value="1">list option1</li>
+												<li value="2">list option2</li>
+												<li value="3">list option3</li>
+											</ul>
+										</div>
+									</td>
+									<th></th>
+									<td></td>
+								</tr>
+								<tr>
+									<th><label>서포트기간</label></th>
+									<td>
+										<div class="mu-item-group">
+											<date-picker v-model="stdDate" :lang="lang" :clearable=false></date-picker>
+											<span>~</span>
+											<date-picker v-model="stdDate" :lang="lang" :clearable=false></date-picker>
+										</div>
+									</td>
+									<th><label>건물층</label></th>
+									<td>
+										<div class="mu-selectbox">
+											<button class="mu-value">list default</button>
+											<ul class="mu-list">
+												<li value="1">list option1</li>
+												<li value="2">list option2</li>
+												<li value="3">list option3</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th><label>상면정보</label></th>
+									<td colspan="3">
+										<input type="text" class="mu-input" value="">
+									</td>
+								</tr>
+								<tr>
+									<th><label>비고</label></th>
+									<td colspan="3">
+										<input type="text" class="mu-input" value="">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+
+	<script src="https://unpkg.com/vue@2.6.10"></script><!-- 20200814 MOD : vue@2.3.3 ==> @2.6.10 -->
+	<script src="https://unpkg.com/ag-grid-community@21.0.1/dist/ag-grid-community.min.noStyle.js"></script><!-- 20200814 MOD : ver @23.2.1 ==> @21.0.1 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue2-datepicker@2.12.0/lib/index.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.js"></script>
+	<script type="text/javascript"> 
+		$(document).ready(function() {
+			$(".mu-tab-page .mu-btn").on("click",function(){
+				$('.mu-tab-page').toggleClass('open');
+			});
+		});
+
+		//달력+시간 샘플 2.12.0
+		Vue.use(DatePicker.default);
+			
+		new Vue({
+			
+			el: '#app',
+			data: {
+			prjName: 'TMS',
+			stdDate:null,
+			lang: {
+					days: ['일', '월', '화', '수', '목', '금', '토'],
+					months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+					pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+					placeholder: {
+					date: 'Select Date',
+					dateRange: 'Select Date Range'
+					}
+				},
+			time:'',
+			timePickerOptions:{
+				start: '00',
+				step: '00',
+				end: '00'
+			}
+			},
+			
+			beforeMount(){
+			
+				
+			},
+			mounted() {
+				this.stdDate  = Date.now();
+			},
+			
+
+		})
+
+		//ag-grid 개발참고용 샘플코드
+		// specify the columns
+		var columnDefs = [			
+			{headerName: "등급색상확인", field: "cl1",width: 100, unSortIcon: true, cellRenderer:"level1"},
+			{headerName: "등급색상확인", field: "cl2", width: 100, unSortIcon: true, cellRenderer:"level2"},
+			{headerName: "등급색상확인", field: "cl3", width: 100, unSortIcon: true, cellRenderer:"level3"},
+			{headerName: "전송국사", field: "cl4", width: 150, unSortIcon: true},
+			{headerName: "망구분", field: "cl5", width: 150, unSortIcon: true},
+			{headerName: "장비유형", field: "cl6", width: 150, unSortIcon: true},
+			{headerName: "발생시간", field: "cl7", width: 150, unSortIcon: true},
+			{headerName: "알랔코드", field: "cl8", width: 150, unSortIcon: true},
+			{headerName: "알람메세지", field: "cl9", width: 150, unSortIcon: true},
+			{headerName: "장비명", field: "cl10", width: 150, unSortIcon: true},
+			{headerName: "포트명", field: "cl11", width: 150, unSortIcon: true}
+
+		];
+
+		// specify the data
+		var rowData = [
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "스위치-L4", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}
+		];
+  
+        // let the grid know which columns and what data to use
+        var gridOptions = {
+        defaultColDef: {
+        sortable: true
+        },
+        columnDefs: columnDefs,
+        rowData: rowData,
+        rowSelection: 'single',
+        components: {
+            level1: function (params) {
+                let flag = '<i class="ico-alarm-critical"></i>';
+                return flag;
+            },
+            level2: function (params) {
+                let flag = '<i class="ico-alarm-major"></i>';
+                return flag;
+            },
+            level3: function (params) {
+                let flag = '<i class="ico-alarm-minor"></i>';
+                return flag;
+            }
+        },
+        };
+
+		// lookup the container we want the Grid to use
+		var eGridDiv1 = document.querySelector('#myGrid1');
+		var eGridDiv2 = document.querySelector('#myGrid2');
+
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv1, gridOptions);
+        new agGrid.Grid(eGridDiv2, gridOptions);
+
+
+        //실시간 알람추이 Fold  
+        $( function() {
+
+            var $foldArea = $('.fold-cont'),
+                $foldBtn = $('.mu-grid-top .mu-item-group .mu-btn-fold');
+
+            $foldBtn.click(function(){  
+            if($foldArea.hasClass('open') == true){
+                $(this).children("span").text('챠트열기');
+                $(this).children('i').toggleClass("arrow-down arrow-up");
+                $foldArea.slideUp(100).removeClass("open");
+            } else {
+                $(this).children("span").text('챠트닫기');
+                $(this).children('i').toggleClass("arrow-up arrow-down");
+                $foldArea.slideDown(100).addClass("open");
+            }
+        });
+    }); 
+	</script>
+
+	
+</body>
+</html>

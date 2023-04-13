@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>TMS - T Wifi Zone Management System</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+	<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham-dark.css">
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="app">
+	<header>
+		<h1><span>SK Telecom</span></h1>
+		<h2><span>TMS</span></h2>
+		<nav class="mu-gnb fl">
+			<!-- Depth1 -->
+			<ul class="mu-h-menu fl">
+				<li class="active"><a href="#"><span>Dashboard</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>장비 상황판</span></a></li>
+						<li><a href="#"><span>RM 상황판</span></a></li>
+						<li><a href="#"><span>지하철 관리</span></a></li>
+					</ul>
+				</li>
+				<li><a href="#"><span>현황</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>장비 현황</span></a></li>
+						<li><a href="#"><span>장애 현황</span></a></li>
+						<li><a href="#"><span>DNS Manager</span></a></li>
+						<li><a href="#"><span>AP 리셋 통계</span></a></li>
+						<li><a href="#"><span>장시간 미복구 알람</span></a></li>
+						<li><a href="#"><span>다발 알람</span></a></li>
+					</ul>
+				</li>
+				<li><a href="#"><span>제어</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>MMI</span></a></li>
+					</ul>
+				</li>
+				<li><a href="#"><span>설정</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>일반</span><i class="mu-icon arrow"></i></a>
+							<ul class="mu-list">
+								<li><a href="#"><span>AP 비밀번호 설정</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div class="mu-top-menu fr">
+				<div class="session">
+					<i class="mu-icon-img clock"></i>
+					<span>세션 유지 시간 : 60분</span>
+					<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i></button>
+				</div>
+				<div class="user-info">
+					<i class="mu-icon-img user"></i>
+					<span>MG_2010님</span>
+				</div>
+				<div class="">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img logout"></i></button>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="mu-container">
+		<section>
+			<div class="mu-content-top">
+				<h3 class="mu-title"><i class="mu-icon-img dashboard"></i><span>장비 상황판</span></h3>
+			</div>
+			<div class="mu-content">
+				<div class="mu-row">
+					<div class="mu-col mu-col-5">
+						<div class="mu-panel">
+							<div class="mu-panel-head">
+								<div class="mu-input-search">
+									<label>조직</label>
+									<input type="text" class="mu-input" placeholder="search...">
+									<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only mu-btn-bg-non"><i class="mu-icon-img search"></i></button>
+								</div>
+							</div>
+							<div class="mu-panel-body">
+								<div class="chart-group mu-row-4">
+									<div class="chart-wrap">
+										<h5 class="mu-title">알람등급별 장비 현황</h5>
+										<div class="chart">
+										
+										</div>
+									</div>
+									<div class="chart-remark">
+										<ul>
+											<li class="total"><span>All</span><span class="num">999,999</span></li>
+											<li class="oos"><span class="mu-icon stat"></span><span>OOS</span><span class="num">999,999</span></li>
+											<li class="critical"><span class="mu-icon stat"></span><span>Critical</span><span class="num">999,999</span></li>
+											<li class="major"><span class="mu-icon stat"></span><span>Major</span><span class="num">999,999</span></li>
+											<li class="minor"><span class="mu-icon stat"></span><span>Minor</span><span class="num">999,999</span></li>
+											<li class="normal"><span class="mu-icon stat"></span><span>Normal</span><span class="num">999,999</span></li>
+											<li class="disabled"><span class="mu-icon stat"></span><span>Useless</span><span class="num">999,999</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="chart-group-top">
+									<label>기준일(08시 기준)</label>
+									<div class="mu-datepicker">
+										<input type="text" class="datepicker" readonly="readonly">
+										<i class="mu-icon-img calendar"></i>
+									</div>
+								</div>
+								<div class="chart-group mu-row-4">
+									<div class="chart-wrap">
+										<h5 class="mu-title">등록상태별 장비 현황</h5>
+										<div class="chart"></div>
+									</div>
+									<div class="chart-remark">
+										<ul>
+											<li class="total"><span>All</span><span class="num">999,999</span></li>
+											<li class="oos"><span class="mu-icon stat"></span><span>상용</span><span class="num">999,999</span></li>
+											<li class="red"><span class="mu-icon stat"></span><span>상용 후 대기</span><span class="num">999,999</span></li>
+											<li class="yellow"><span class="mu-icon stat"></span><span>대기</span><span class="num">999,999</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="chart-group mu-row-4">
+									<div class="chart-wrap">
+										<h5 class="mu-title">유형별 장비 현황</h5>
+										<div class="chart"></div>
+									</div>
+									<div class="chart-remark">
+										<div class="mu-selectbox">
+											<button class="mu-value">list default</button>
+											<ul class="mu-list">
+												<li value="1">list option1</li>
+												<li value="2">list option2</li>
+												<li value="3">list option3</li>
+											</ul>
+										</div>
+										<ul>
+											<li class="total"><span>All</span><span class="num">999,999</span></li>
+											<li class="purple"><span class="mu-icon stat"></span><span>Hybrid-AP</span><span class="num">999,999</span></li>
+											<li class="red"><span class="mu-icon stat"></span><span>Wifi-AP-I</span><span class="num">999,999</span></li>
+											<li class="orange"><span class="mu-icon stat"></span><span>Wifi-AP-O</span><span class="num">999,999</span></li>
+											<li class="yellow"><span class="mu-icon stat"></span><span>Bridge-M</span><span class="num">999,999</span></li>
+											<li class="green"><span class="mu-icon stat"></span><span>FEMFI</span><span class="num">999,999</span></li>
+											<li class="skyblue"><span class="mu-icon stat"></span><span>Unknown</span><span class="num">999,999</span></li>
+											<li class="blue"><span class="mu-icon stat"></span><span>L2-Switch</span><span class="num">999,999</span></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="mu-col mu-col-7">
+						<div class="mu-panel">
+							<div class="mu-panel-head">
+								<h4 class="mu-title">OOS율 현황</h4>
+								<div class="mu-item-group fr">
+									<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only"><i class="mu-icon-img refresh"></i></button>
+									<span>기준 시간 : 2019/03/13 08:00:00</span>
+								</div>
+							</div>
+							<div class="mu-panel-body">
+								<div class="mu-grid-group">
+									<h5 class="mu-title">본부별 OOS율</h5>
+									<div class="ag-grid-wrap">
+										<div id="myGrid1" class="ag-theme-balham-dark"></div>
+									</div>
+								</div>
+								<div class="mu-grid-group">
+									<h5 class="mu-title">수도권 팀별 OOS율</h5>
+									<div class="ag-grid-wrap">
+										<div id="myGrid2" class="ag-theme-balham-dark"></div>
+									</div>
+								</div>
+								<div class="mu-grid-group mu-grid-group-last">
+									<h5 class="mu-title">강북 Access Infra 팀별 OOS율</h5>
+									<div class="ag-grid-wrap">
+										<div id="myGrid3" class="ag-theme-balham-dark" style="height:100%;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+
+	<script src="https://unpkg.com/vue@2.3.3"></script>
+	<script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.js"></script>
+	<script type="text/javascript"> 
+	/* datepicker */
+	$( function(){
+		$(".datepicker").datepicker({
+		});
+	});
+
+	new Vue({
+        el: '#app',
+        data: {
+          prjName: 'TMS',
+          columnDefs: null,
+          rowData: null,
+        },
+        components:{
+            'ag-grid-vue' :agGrid
+        },
+        beforeMount(){
+        
+            
+        },
+        mounted() {
+			//첫번쨰 그리드########################################################
+			var columnDefs1 = [
+                {headerName: "본부", field: "aaa", headerClass: "rowspan3", width:120},
+				{headerName: "SKB",
+					children: [
+						{headerName: "AP",
+							children: [
+								{headerName: "장비수", field: "bbb", width:100},
+								{headerName: "OOS율(%)", field: "ccc", width:100}
+							]
+						},
+					]
+				},
+				{headerName: "ONS",
+					children: [
+						{headerName: "LTE",
+							children: [
+								{headerName: "장비수", field: "ddd", width:100},
+								{headerName: "OOS율(%)", field: "eee", width:100}
+							]
+						},
+						{headerName: "FEMFI",
+							children: [
+								{headerName: "장비수", field: "fff", width:100},
+								{headerName: "OOS율(%)", field: "ggg", width:100}
+							]
+						},
+					]
+				},
+                {headerName: "유형별 상세", field: "hhh", cellRenderer:this.countryCellRenderer, headerClass: 'rowspan3'}
+            ];
+            
+            // specify the data
+            var rowData1 = [
+                {aaa: "전체", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "수도권", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "동부", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "서부", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "중부", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"}
+            ];
+			//var rowData = null;
+            
+            //var domLayout = "autoHeight";
+
+            var gridOptions1 = {
+                columnDefs: columnDefs1,
+                rowData: rowData1,
+				domLayout : "autoHeight" // grid height auto
+            };        
+
+            let eGridDiv1 = document.querySelector('#myGrid1');
+            new agGrid.Grid(eGridDiv1, gridOptions1);
+
+			//두번째 그리드########################################################
+			var columnDefs2 = [
+                {headerName: "본부", field: "aaa", headerClass: "rowspan3", width:120},
+				{headerName: "SKB",
+					children: [
+						{headerName: "AP",
+							children: [
+								{headerName: "장비수", field: "bbb", width:100},
+								{headerName: "OOS율(%)", field: "ccc", width:100}
+							]
+						},
+					]
+				},
+				{headerName: "ONS",
+					children: [
+						{headerName: "LTE",
+							children: [
+								{headerName: "장비수", field: "ddd", width:100},
+								{headerName: "OOS율(%)", field: "eee", width:100}
+							]
+						},
+						{headerName: "FEMFI",
+							children: [
+								{headerName: "장비수", field: "fff", width:100},
+								{headerName: "OOS율(%)", field: "ggg", width:100}
+							]
+						},
+					]
+				},
+                {headerName: "유형별 상세", field: "hhh", cellRenderer:this.countryCellRenderer, headerClass: 'rowspan3'}
+            ];
+            
+            // specify the data
+            var rowData2 = [
+                {aaa: "강남Access Infra팀", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "강북Access Infra팀", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "경인Access Infra팀", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+            ];
+			//var rowData = null;
+            
+            //var domLayout = "autoHeight";
+
+            var gridOptions2 = {
+                columnDefs: columnDefs2,
+                rowData: rowData2,
+				domLayout : "autoHeight" // grid height auto
+            };        
+
+            let eGridDiv2 = document.querySelector('#myGrid2');
+            new agGrid.Grid(eGridDiv2, gridOptions2);
+
+			//세번째 그리드########################################################
+			var columnDefs3 = [
+                {headerName: "본부", field: "aaa", headerClass: "rowspan3", width:120},
+				{headerName: "SKB",
+					children: [
+						{headerName: "AP",
+							children: [
+								{headerName: "장비수", field: "bbb", width:100},
+								{headerName: "OOS율(%)", field: "ccc", width:100}
+							]
+						},
+					]
+				},
+				{headerName: "ONS",
+					children: [
+						{headerName: "LTE",
+							children: [
+								{headerName: "장비수", field: "ddd", width:100},
+								{headerName: "OOS율(%)", field: "eee", width:100}
+							]
+						},
+						{headerName: "FEMFI",
+							children: [
+								{headerName: "장비수", field: "fff", width:100},
+								{headerName: "OOS율(%)", field: "ggg", width:100}
+							]
+						},
+					]
+				},
+                {headerName: "유형별 상세", field: "hhh", cellRenderer:this.countryCellRenderer, headerClass: 'rowspan3'}
+            ];
+            
+            // specify the data
+            var rowData3 = [
+                {aaa: "SKB동작운용팀", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "북인천품질개선팀", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "남인천품질개선팀", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "부천품질개선팀", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "일산품질개선팀", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "수원품질개선팀", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "용인품질개선팀", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "평택품질개선팀", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"},
+                {aaa: "하남품질개선팀", bbb: "222", ccc: "333", ddd: "444", eee: "555", fff: "666", ggg: "777", hhh: "888"}
+            ];
+			//var rowData = null;
+            
+            //var domLayout = "autoHeight";
+
+            var gridOptions3 = {
+                columnDefs: columnDefs3,
+                rowData: rowData3,
+				//domLayout : "autoHeight"
+            };        
+
+            let eGridDiv3 = document.querySelector('#myGrid3');
+            new agGrid.Grid(eGridDiv3, gridOptions3);
+        }
+        ,methods: {
+          countryCellRenderer(params) {
+            let flag = '<button type="button" class="mu-btn mu-btn-sm">상세</button>';
+            return flag;
+          }
+        
+        }
+    })
+	</script>
+</body>
+</html>

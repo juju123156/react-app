@@ -1,0 +1,511 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>TMS - T Wifi Zone Management System</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link href="assets/js/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link href="assets/js/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header>
+		<h1><span>SK Telecom</span></h1>
+		<h2><span>TMS</span></h2>
+		<nav class="mu-gnb fl">
+			<!-- Depth1 -->
+			<ul class="mu-h-menu fl">
+				<li><a href="#"><span>지하철 관리</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>품질 현황</span></a></li>
+						<li><a href="#"><span>품질 현황</span></a></li>
+						<li><a href="#"><span>품질 현황 품질</span></a></li>
+					</ul>
+				</li>
+				<li class="active"><a href="#"><span>L2 관리</span></a>
+					<ul class="mu-list">
+						<li><a href="#"><span>장비 관리</span></a></li>
+						<li><a href="#"><span>장비 관리</span></a></li>
+						<li><a href="#"><span>장비 관리</span></a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="mu-top-menu fr">
+				<div class="session">
+					<i class="mu-icon-img clock"></i>
+					<span>세션 유지 시간 : 60분</span>
+					<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i></button>
+				</div>
+				<div class="user-info">
+					<i class="mu-icon-img user"></i>
+					<span>MG_2010님</span>
+				</div>
+				<div class="">
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img logout"></i></button>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="mu-container">
+		<section>
+			<div class="mu-panel">
+				<div class="mu-panel-head">
+					<h3 class="mu-title"><span>지하철 관리 - 품질 현황</span></h3>
+					<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img help"></i></button>
+					<div class="mu-panel-head-btn">
+						<div class="latest-collect">
+							<span>최종 수집 : 2018-08-08 12:12:12 </span>
+							<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img refresh"></i></button>
+						</div>
+						<div class="auto-collect">
+							<span>자동 수집 중</span>
+							<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img play"></i></button>
+							<!--<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img stop"></i></button>--><!-- 자동수집중일때 -->
+						</div>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img min"></i></button>
+						<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img close"></i></button>
+					</div>
+				</div>
+				<div class="mu-panel-body">
+					<div id="subway" class="mu-content">
+					<!-- content -->
+						<div class="subway"></div><!-- 지하철 노선도 -->
+						<div class="subway-city">
+							<ul>
+								<li class="seoulmetro"><!-- 지역 선택시 "active" 추가 -->
+									<div class="name">수도권</div>
+									<div class="rate">98%</div>
+									<ul class="stat">
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">전체 (대)</div>
+										</li>
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">Link Fail</div>
+										</li>
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">품질저조</div>
+										</li>
+									</ul>
+								</li>
+								<li class="busan active alarm"><!-- 지역 선택시 "active" 추가, 알람 발생시 "alarm" 추가 -->
+									<div class="name">부산</div>
+									<div class="rate">98%</div>
+									<ul class="stat">
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">전체 (대)</div>
+										</li>
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">Link Fail</div>
+										</li>
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">품질저조</div>
+										</li>
+									</ul>
+								</li>
+								<li class="daegu">
+									<div class="name">대구</div>
+									<div class="rate">98%</div>
+									<ul class="stat">
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">전체 (대)</div>
+										</li>
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">Link Fail</div>
+										</li>
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">품질저조</div>
+										</li>
+									</ul>
+								</li>
+								<li class="gwangju alarm"><!-- 알람 발생시 "alarm" 추가 -->
+									<div class="name">광주</div>
+									<div class="rate">98%</div>
+									<ul class="stat">
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">전체 (대)</div>
+										</li>
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">Link Fail</div>
+										</li>
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">품질저조</div>
+										</li>
+									</ul>
+								</li>
+								<li class="daejeon">
+									<div class="name">대전</div>
+									<div class="rate">98%</div>
+									<ul class="stat">
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">전체 (대)</div>
+										</li>
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">Link Fail</div>
+										</li>
+										<li>
+											<div class="num"><span>1,830</span></div>
+											<div class="tit">품질저조</div>
+										</li>
+									</ul>
+								</li>
+								<li class="search">
+									<input type="text" class="mu-input" placeholder="Search">
+									<button type="button" class="mu-btn mu-btn-icon mu-btn-icon-only"><i class="mu-icon search"></i></button>
+								</li>
+							</ul>
+						</div>
+						<div class="subway-line seoulmetro"><!-- 도시구분 class 추가(seoulmetro) -->
+							<ul>
+								<li class="line-01 active"><!-- 노선 선택시 "active" 추가 -->
+									<div class="line-name">
+										<span class="line-color">1</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-02 active alarm"><!-- 노선 선택시 "active" 추가, 알람 발생시 "alarm" 추가 -->
+									<div class="line-name">
+										<span class="line-color">2</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-03">
+									<div class="line-name">
+										<span class="line-color">3</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-04 alarm"><!-- 알람 발생시 "alarm" 추가 -->
+									<div class="line-name">
+										<span class="line-color">4</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-05">
+									<div class="line-name">
+										<span class="line-color">5</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-06">
+									<div class="line-name">
+										<span class="line-color">6</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-07">
+									<div class="line-name">
+										<span class="line-color">7</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-08">
+									<div class="line-name">
+										<span class="line-color">8</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-09">
+									<div class="line-name">
+										<span class="line-color">9</span>
+										<span class="line-txt">호선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-10">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">경춘</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-11">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">경의·중앙</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-12">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">인천1</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-13">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">인천2</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-14">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">분당</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-15">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">공항</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-16">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">수인</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-17">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">신분당</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-18">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">의정부</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-19">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">에버라인</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-20">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">자기부상</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-21">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">경강</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-22">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">우이신설</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+								<li class="line-23">
+									<div class="line-name">
+										<span class="line-color"></span>
+										<span class="line-txt">서해선</span>
+									</div> 
+									<div class="rate">89%</div>
+								</li>
+							</ul>
+						</div>
+						<!-- 호선별 상태 2019-12-16 ADD -->
+						<div class="subway-status seoulmetro">
+							<div class="line-01">
+								<div class="line-name">
+									<span class="line-color">1</span>
+									<span class="line-txt">호선</span>
+								</div>
+							</div>
+							<table class="mu-formbox">
+								<tbody>
+									<tr>
+										<th>전체장비</th>
+										<td>1,289</td>
+									</tr>
+									<tr>
+										<th>
+											<div class="alarm-rate normal"><i class="mu-icon-img alarm"></i>정상 장비</div>
+										</th>
+										<td>413(32%)</td>
+									</tr>
+									<tr>
+										<th>
+											<div class="alarm-rate critical"><i class="mu-icon-img alarm"></i>Link Fail 장비</div>
+										</th>
+										<td>18(1.4%)</td>
+									</tr>
+									<tr>
+										<th>
+											<div class="alarm-rate minor"><i class="mu-icon-img alarm"></i>트래픽 저조 장비</div>
+										</th>
+										<td>353(27.4%)</td>
+									</tr>
+									<tr>
+										<th>
+											<div class="alarm-rate oos"><i class="mu-icon-img alarm"></i>미운행 장비</div>
+										</th>
+										<td>505(39.2%)</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- //호선별 상태 2019-12-16 ADD -->
+						<div class="subway-btn-top">
+							<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img setting"></i><span>자동리셋설정</span></button>
+						</div>
+						<div class="subway-btn-wrap">
+							<button type="button" class="mu-btn mu-btn-icon plus"><i class="mu-icon-img plus"></i></button>
+							<button type="button" class="mu-btn mu-btn-icon minus"><i class="mu-icon-img minus"></i></button>
+						</div>
+						<!-- //content -->
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- dialog : 지하철 자동리셋 설정 -->
+	<div class="mu-dialog" style="top:160px;left:620px;width:600px;height:auto;">
+		<div class="mu-dialog-head">
+			<span class="mu-title">지하철 자동리셋 설정</span>
+			<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img close"></i></button>
+		</div>
+		<div class="mu-dialog-body">
+			<div class="mu-grid-wrap">
+				<div class="mu-grid-top">
+					<div class="mu-item-group">
+						<label>지역</label>
+						<div class="mu-selectbox">
+							<button class="mu-value">list default</button>
+							<ul class="mu-list">
+								<li value="1">list option1</li>
+							</ul>
+						</div><label>자동리셋여부</label>
+						<div class="mu-selectbox">
+							<button class="mu-value">list default</button>
+							<ul class="mu-list">
+								<li value="1">list option1</li>
+							</ul>
+						</div>
+					</div>
+					<div class="mu-item-group fr">
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img search"></i><span>조회</span></button>
+					</div>
+				</div>
+				<div class="mu-grid-body" style="height:370px;">
+					<table id="jqGrid" style="width:100%;height:100%;"></table>
+				</div>
+				<div class="mu-dialog-info">
+					<div class="mu-title">리셋 기준</div>
+					<ul>
+						<li>1. 품질저조 장비 확인
+							<ul>
+								<li>객차의 2.4G Throughput이 열차의 2.4G 평균 Throughput 의 10% 미만인 경우</li>
+								<li>객차의 5G Throughput이 열차의 5G 평균 Throughput 의 10% 미만인 경우</li>
+								<li>위의 두 조건을 만족하면 품질저조</li>
+							</ul>
+						</li>
+						<li>2. 운행 중, 품질저조, 자동리셋 설정 Y 인 장비는 자동리셋 대상으로 추출</li>
+						<li>3. 위의 로직으로 10분마다 체크</li>
+						<li>4. 1시간 내 6번 대상으로 추출 시 자동리셋 실행산</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- dialog : 도움말 -->
+	<div class="mu-dialog" style="top:160px;left:1250px;width:600px;height:;">
+		<div class="mu-dialog-head">
+			<span class="mu-title">지하철 통합 품질관리 도움말</span>
+			<button type="button" class="mu-btn mu-btn-icon mu-btn-bg-non"><i class="mu-icon-img close"></i></button>
+		</div>
+		<div class="mu-dialog-body">
+			<div class="mu-dialog-help">
+				<div class="mu-title">품질 저조 판단</div>
+				<ul>
+					<li>(가). 매 통계시마다 열차내 객차들의 Throughout을 통해 열차의 평균을 밴드별로 계산</li>
+					<li>(나). (가)에서 계산된 평균을 기준으로 객차의 2.4G Throughput이 10% 미만인 경우</li>
+					<li>(다). (가)에서 계산된 평균을 기준으로 객차의 5G Throughput이 10% 미만인 경우</li>
+					<li>(라). (나),(다)조건 중 하나라도 만족하면 품질 저조 장비</li>
+					<li>(마). (나),(다)조건을 모두 만족하면 품질 저조 장비이면서 자동 리셋 대상 후보</li>
+				</ul>
+				<div class="mu-title">자동 리셋 판단</div>
+				<ul>
+					<li>(가). 매 통계시마다 열차내 객차들의 Throughout을 통해 열차의 평균을 밴드별로 계산</li>
+					<li>(나). (가)에서 계산된 평균을 기준으로 객차의 2.4G Throughput이 10% 미만인 경우</li>
+					<li>(다). (가)에서 계산된 평균을 기준으로 객차의 5G Throughput이 10% 미만인 경우</li>
+					<li>(라). (나),(다)조건 중 하나라도 만족하면 품질 저조 장비</li>
+					<li>(마). (나),(다)조건을 모두 만족하면 품질 저조 장비이면서 자동 리셋 대상 후보</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.min.js"></script>
+	<script src="assets/js/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript"> 
+		var mydata = [
+			{ locate: "수도권", line: "1호선", reset: "<div class='mu-hgroup'>"
+				+ "<div class='mu-radio'><input type='radio' id='r11' name='r1' checked='checked'><label for='r11'>예</label></div>"
+				+ "<div class='mu-radio'><input type='radio' id='r12' name='r1'><label for='r12'>아니오</label></div>" + "</div>"},
+			{ locate: "수도권", line: "2호선", reset: "<div class='mu-hgroup'>"
+				+ "<div class='mu-radio'><input type='radio' id='r21' name='r2' checked='checked'><label for='r21'>예</label></div>"
+				+ "<div class='mu-radio'><input type='radio' id='r22' name='r2'><label for='r22'>아니오</label></div>" + "</div>"},
+			{ locate: "수도권", line: "3호선", reset: "<div class='mu-hgroup'>"
+				+ "<div class='mu-radio'><input type='radio' id='r31' name='r3' checked='checked'><label for='r31'>예</label></div>"
+				+ "<div class='mu-radio'><input type='radio' id='r32' name='r3'><label for='r32'>아니오</label></div>" + "</div>"}
+		];
+
+		$(document).ready(function () {
+			$("#jqGrid").jqGrid({
+				datatype: "local",
+				data: mydata,
+				//autowidth: true,
+				width: $("#jqGrid").width(),
+				height: $("#jqGrid").height() - 29,
+				shrinkToFit:true,
+				colModel: [
+					{ label: '지역', name: 'locate', width: 75, key:true },
+					{ label: '호선', name: 'line', width: 90 },
+					{ label: '자동리셋여부', name: 'reset', width: 100 }
+				]
+			});
+		});
+
+	</script>
+</body>
+</html>

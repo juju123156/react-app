@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>TMS - T Wifi Zone Management System</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link href="assets/js/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link href="assets/js/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+	<link href="assets/js/popupwindow.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+ 	
+
+	<div class="mu-search-group" style="height:150px;">
+		<div class="mu-search-item">
+			<table>
+				<tbody>
+					<tr>
+						<th><label>본부</label></th>
+						<td>
+							<div class="mu-selectbox bunbu">
+								<button class="mu-value"></button>
+								<ul class="mu-list">
+								</ul>
+							</div>
+						</td>
+						<th><label>팀</label></th>
+						<td>
+							<div class="mu-selectbox team">
+								<button class="mu-value"></button>
+								<ul class="mu-list">
+								</ul>
+							</div>
+						</td>
+						<th><label>ONS팀</label></th>
+						<td>
+							<div class="mu-selectbox onsteam">
+								<button class="mu-value"></button>
+								<ul class="mu-list">
+								</ul>
+							</div>
+						</td>
+						<th><label>전송로</label></th>
+						<td>
+							<div class="mu-selectbox transType">
+								<button class="mu-value"></button>
+								<ul class="mu-list">
+								</ul>
+							</div>
+						</td>
+						<th><label>망사업자</label></th>
+						<td>
+							<div class="mu-selectbox tlineBizNm">
+								<button class="mu-value"></button>
+								<ul class="mu-list">
+								</ul>
+							</div>
+						</td>
+						<th><label>연동상태</label></th>
+						<td>
+							<div class="mu-selectbox state">
+								<button class="mu-value"></button>
+								<ul class="mu-list">
+								</ul>
+							</div>
+						</td>
+						
+					</tr>
+					<tr>
+						<th><label>제조사</label></th>
+						<td>
+							<div class="mu-selectbox manufacturer">
+								<button class="mu-value"></button>
+								<ul class="mu-list">
+								</ul>
+							</div>
+						</td>
+						<th><label>모델명</label></th>
+						<td>
+							<div class="mu-selectbox model">
+								<button class="mu-value"></button>
+								<ul class="mu-list">
+								</ul>
+							</div>
+						</td>
+						<th><label>MAC</label></th>
+						<td>
+							<input type="text" class="mu-input" id="mac">
+						</td>
+						<th><label>IP</label></th>
+						<td>
+							<input type="text" class="mu-input" id="ip">
+						</td>
+						<th><label>장비명</label></th>
+						<td>
+							<input type="text" class="mu-input" id="equipment" >
+						</td>
+						<th><label>설치위치</label></th>
+						<td>
+							<input type="text" class="mu-input" >
+						</td>
+					</tr>
+					<tr>
+						<th><label>상위 장비명</label></th>
+						<td>
+							<input type="text" class="mu-input">
+						</td>
+						<th><label>업링크포트</label></th>
+						<td>
+							<input type="text" class="mu-input">
+						</td>
+						<th><label>AP MAC</label></th>
+						<td>
+							<input type="text" class="mu-input" id="apmac">
+						</td>
+						<th><label>AP IP</label></th>
+						<td>
+							<input type="text" class="mu-input" id="apip">
+						</td>
+						<th><label>AP 장비명</label></th>
+						<td>
+							<input type="text" class="mu-input" id="apequipment">
+						</td>
+						<th></th>
+						<td colspan="3"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="mu-search-btn">
+			<button type="button" class="mu-btn mu-btn-icon" onClick="l2component.searchL2Component2();"><i class="mu-icon-img search"></i><span>조회</span></button>
+		</div>
+	</div>
+	<div class="mu-grid-wrap">
+		<div class="mu-grid-top">
+			<div class="result">조회결과 : <span id="totCnt"></span>건</div>
+			<div class="mu-grid-top-btn">
+				<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img detail"></i><span>상세조회</span></button>
+				<button type="button" class="mu-btn mu-btn-icon" onClick="popup.registerL2Componet();"><i class="mu-icon-img manage"></i><span>관리</span></button>
+				<button type="button" class="mu-btn mu-btn-icon" onClick="l2component.deleteL2Componet();"><i class="mu-icon-img trash"></i><span>삭제</span></button>
+				<button type="button" class="mu-btn mu-btn-icon" onClick="l2component.exceldownloadL2Componet();"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+			</div>
+		</div>
+		<div class="mu-grid-body">
+			<table id="jqGrid2" style="width:100%;" ></table>
+		</div>
+	</div>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.min.js"></script>
+	<script src="assets/js/popupwindow.js"></script>
+	<!--<script src="assets/js/popupwindow.min.js"></script>-->
+	<script src="assets/js/header.js"></script>
+	<script src="assets/js/jquery.jqGrid.min.js"></script>
+	<script src="assets/js/l2componet.js"></script> 
+    </body>
+</html>
+	

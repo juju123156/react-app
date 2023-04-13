@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">  
+    <title>Vue Sample</title>
+</head>
+<body>
+    
+<div id="app">
+      <H1>{{ prjName }}</H1>       
+      
+      <date-picker v-model="stdDate" :lang="lang" :clearable=false>            
+      </date-picker>
+      
+       <date-picker v-model="time "type="time" format="HH:mm:ss" placeholder="Select Time" :time-picker-options="timePickerOptions">
+       </date-picker>
+
+</div>
+
+<script src="https://unpkg.com/vue@2.3.3"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue2-datepicker@2.12.0/lib/index.min.js"></script>
+
+<script>
+    
+    Vue.use(DatePicker.default);
+    
+    new Vue({
+        el: '#app',
+        data: {
+          prjName: 'TMS',
+          stdDate:null,
+          lang: {
+                days: ['일', '월', '화', '수', '목', '금', '토'],
+                months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+                placeholder: {
+                date: 'Select Date',
+                dateRange: 'Select Date Range'
+                }
+            },
+         time:'',
+         timePickerOptions:{
+             start: '00:00',
+             step: '00:30',
+             end: '23:30'
+           }
+        },
+        
+        beforeMount(){
+        
+            
+        },
+        mounted() {
+            this.stdDate  = Date.now();
+        },
+    })
+</script>
+</body>
+</html>

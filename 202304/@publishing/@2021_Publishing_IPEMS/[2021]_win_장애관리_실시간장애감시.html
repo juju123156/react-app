@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>IP-EMS </title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="assets/ag-grid/ag-grid.css">
+	<link rel="stylesheet" href="assets/ag-grid/ag-theme-balham-dark.css">
+	<link href="assets/css/common.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/layout_top.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="app">
+	<div class="mu-container">
+		<section>
+			<div class="mu-content-top">
+				<h3 class="mu-title"><i class="mu-icon-img dashboard"></i><span>실시간 장애 감시</span></h3>
+			</div>
+			<div class="mu-content">
+
+				<!-- mu-search-group -->
+				<div class="mu-search-group">
+					<div class="mu-search-item">
+						<table>
+							<colgroup>
+								<col style="width:60px;">
+								<col>
+								<col style="width:90px;">
+								<col>
+							</colgroup>
+							<tbody>
+								<tr>
+									<th><label>망구분</label></th>
+									<td>
+                                        <div class="mu-hgroup">
+                                            <div class="mu-checkbox">
+                                                <input type="checkbox" id="ckb1"> 
+                                                <label for="ckb1">IP백홀</label>
+                                            </div> <div class="mu-checkbox">
+                                                <input type="checkbox" id="ckb2" checked="checked"> 
+                                                <label for="ckb2">IP백본</label>
+                                            </div>
+                                        </div>
+									</td>	
+									<th><label>장애등급</label></th>
+									<td>
+                                        <div class="mu-hgroup">
+                                            <div class="mu-checkbox">
+                                                <input type="checkbox" id="ckb11"> 
+                                                <label for="ckb11">KPI</label>
+                                            </div> 
+                                            <div class="mu-checkbox">
+                                                <input type="checkbox" id="ckb12" checked="checked"> 
+                                                <label for="ckb12">Critical</label>
+                                            </div> 
+                                            <div class="mu-checkbox">
+                                                <input type="checkbox" id="ckb13" checked="checked"> 
+                                                <label for="ckb13">Major</label>
+                                            </div> 
+                                            <div class="mu-checkbox">
+                                                <input type="checkbox" id="ckb14" checked="checked"> 
+                                                <label for="ckb14">Minor</label>
+                                            </div>
+                                        </div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mu-search-btn">
+                        <button type="button" class="mu-btn mu-btn-icon" title="감시시작"><i class="mu-icon-img play"></i></button><!-- //감시 시작,중지 토글버튼 <button type="button" class="mu-btn mu-btn-icon" title="감시중지"><i class="mu-icon-img stop"></i></button> -->
+						<button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img volume"></i><span>가청 설정</span></button>
+                        <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img filter"></i><span>알람 필터 설정</span></button>
+                        <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img set"></i><span>감시 항목 설정</span></button>
+                        <span class="bar-line"></span>
+                        <button type="button" class="mu-btn mu-btn-icon"><i class="mu-icon-img refresh"></i><span>초기화</span></button>
+                        <button type="button" class="mu-btn mu-btn-icon mu-btn-point"><i class="mu-icon-img confirm"></i><span>적용</span></button>	
+					</div>
+				</div>
+				<!-- //mu-search-group -->
+
+                <!-- mu-grid-top -->
+                <div class="mu-grid-top">
+					<h4 class="mu-title">실시간 알람추이</h4>
+                    <div class="mu-item-group fr">                        
+                        <button type="button" class="mu-btn mu-btn-icon mu-btn-fold"><i class="mu-icon-img arrow-up"></i><span>챠트닫기</span></button>
+                    </div>
+				</div>
+                <!-- //mu-grid-top -->
+                <!-- chart-wrap-group -->
+                <div class="mu-row chart-wrap-group fold-cont open">
+                    <div class="mu-col mu-col-6">
+                        <div class="chart-wrap">
+                            <h5 class="mu-title">IP백홀 알람추이</h5> 
+                            <div class="chart">실제 차트 영역</div>
+                        </div>
+                    </div>
+                    <div class="mu-col mu-col-6">
+                        <div class="chart-wrap">
+                            <h5 class="mu-title">IP백본 알람추이</h5> 
+                            <div class="chart">실제 차트 영역</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //chart-wrap-group -->
+                <!-- mu-row : 고장 장애(고장/성능) -->
+                <div class="mu-row">
+                    <div class="mu-col mu-col-12">  
+                        <div class="mu-tab-body">     
+                            <div class="mu-tab-cont">       
+                                <!-- mu-grid-top -->
+                                <div class="mu-grid-top">
+                                    <h4 class="mu-title">고장 장애(고장/성능)</h4>
+                                    <div class="mu-checkbox ml20">
+                                        <input type="checkbox" id="ckb111"> 
+                                        <label for="ckb111">작업여부</label>
+                                    </div>
+                                    <div class="mu-item-group fr">
+                                        <!-- alarm-stat -->
+                                        <div class="alarm-stat">
+                                            <ul>
+                                                <li><span class="num">Total : 1,234</span></li>
+                                                <li class="critical"><span class="mu-icon stat"></span><span class="num">Critical : 1,234</span></li> 
+                                                <li class="major"><span class="mu-icon stat"></span><span class="num">Major : 1,234</span></li> 
+                                                <li class="minor"><span class="mu-icon stat"></span><span class="num">Minor : 1,234</span></li>
+                                            </ul>
+                                        </div>
+                                        <!-- //alarm-stat -->
+                                        <button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+                                    </div>
+                                </div>
+                                <!-- //mu-grid-top -->
+                                <div class="ag-grid-wrap">
+                                    <div id="myGrid1" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+                                </div>
+                                <div class="pagination-wrap">
+                                    <p class="total-num">총 : 1,200건(1/200건)</p>
+                                    <div class="mu-pagination">
+                                        <button type="button" class="mu-first" disabled="disabled"><span></span></button>
+                                        <button type="button" class="mu-prev" disabled="disabled"><span></span></button>
+                                        <ul>
+                                            <li><a href="">1</a></li>
+                                            <li><a href="">2</a></li>
+                                            <li><a href="">3</a></li> 
+                                            <li><a href="">4</a></li>
+                                            <li><a href="">5</a></li>
+                                            <li><a href="">6</a></li>
+                                            <li class="active"><a href="">7777</a></li>
+                                            <li><a href="">8</a></li>
+                                            <li><a href="">9</a></li>
+                                        </ul>
+                                        <button type="button" class="mu-next"><span></span></button>
+                                        <button type="button" class="mu-last"><span></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+                    </div>
+                </div> 
+                <!-- //mu-row -->
+                <!-- mu-row : TRAP 장애(TRAP/Syslog) -->
+                <div class="mu-row">
+                    <div class="mu-col mu-col-12">  
+                        <div class="mu-tab-body">     
+                            <div class="mu-tab-cont">  
+                                <!-- mu-grid-top -->
+                                <div class="mu-grid-top">
+                                    <h4 class="mu-title">TRAP 장애(TRAP/Syslog)</h4>
+                                    <div class="mu-checkbox ml20">
+                                        <input type="checkbox" id="ckb222"> 
+                                        <label for="ckb222">작업여부</label>
+                                    </div>
+                                    <div class="mu-item-group fr">
+                                        <!-- alarm-stat -->
+                                        <div class="alarm-stat">
+                                            <ul>
+                                                <li><span class="num">Total : 1,234</span></li>
+                                                <li class="critical"><span class="mu-icon stat"></span><span class="num">Critical : 1,234</span></li> 
+                                                <li class="major"><span class="mu-icon stat"></span><span class="num">Major : 1,234</span></li> 
+                                                <li class="minor"><span class="mu-icon stat"></span><span class="num">Minor : 1,234</span></li>
+                                            </ul>
+                                        </div>
+                                        <!-- //alarm-stat -->
+                                        <button type="button" class="mu-btn mu-btn-icon mu-btn-green"><i class="mu-icon-img download"></i><span>엑셀</span></button>
+                                    </div>
+                                </div>
+                                <!-- //mu-grid-top -->
+                                <!-- //mu-grid-top -->
+                                <div class="ag-grid-wrap">
+                                    <div id="myGrid2" class="ag-theme-balham-dark" style="width:100%;height:100%;"></div>
+                                </div>
+                                <div class="pagination-wrap">
+                                    <p class="total-num">총 : 1,200건(1/200건)</p>
+                                    <div class="mu-pagination">
+                                        <button type="button" class="mu-first" disabled="disabled"><span></span></button>
+                                        <button type="button" class="mu-prev" disabled="disabled"><span></span></button>
+                                        <ul>
+                                            <li><a href="">1</a></li>
+                                            <li><a href="">2</a></li>
+                                            <li><a href="">3</a></li> 
+                                            <li><a href="">4</a></li>
+                                            <li><a href="">5</a></li>
+                                            <li><a href="">6</a></li>
+                                            <li class="active"><a href="">7777</a></li>
+                                            <li><a href="">8</a></li>
+                                            <li><a href="">9</a></li>
+                                        </ul>
+                                        <button type="button" class="mu-next"><span></span></button>
+                                        <button type="button" class="mu-last"><span></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+                    </div>
+                </div> 
+                <!-- //mu-row -->
+			</div>
+		</section>
+	</div>
+</div>
+
+	<script src="https://unpkg.com/vue@2.6.10"></script><!-- 20200814 MOD : vue@2.3.3 ==> @2.6.10 -->
+	<script src="https://unpkg.com/ag-grid-community@21.0.1/dist/ag-grid-community.min.noStyle.js"></script><!-- 20200814 MOD : ver @23.2.1 ==> @21.0.1 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue2-datepicker@2.12.0/lib/index.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.js"></script>
+	<script type="text/javascript"> 
+		//달력+시간 샘플 2.12.0
+		Vue.use(DatePicker.default);
+			
+		new Vue({
+			
+			el: '#app',
+			data: {
+			prjName: 'TMS',
+			stdDate:null,
+			lang: {
+					days: ['일', '월', '화', '수', '목', '금', '토'],
+					months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+					pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+					placeholder: {
+					date: 'Select Date',
+					dateRange: 'Select Date Range'
+					}
+				},
+			time:'',
+			timePickerOptions:{
+				start: '00',
+				step: '00',
+				end: '00'
+			}
+			},
+			
+			beforeMount(){
+			
+				
+			},
+			mounted() {
+				this.stdDate  = Date.now();
+			},
+			
+
+		})
+
+		//ag-grid 개발참고용 샘플코드
+		// specify the columns
+		var columnDefs = [			
+			{headerName: "등급색상확인", field: "cl1",width: 100, unSortIcon: true, cellRenderer:"level1"},
+			{headerName: "등급색상확인", field: "cl2", width: 100, unSortIcon: true, cellRenderer:"level2"},
+			{headerName: "등급색상확인", field: "cl3", width: 100, unSortIcon: true, cellRenderer:"level3"},
+			{headerName: "전송국사", field: "cl4", width: 150, unSortIcon: true},
+			{headerName: "망구분", field: "cl5", width: 150, unSortIcon: true},
+			{headerName: "장비유형", field: "cl6", width: 150, unSortIcon: true},
+			{headerName: "발생시간", field: "cl7", width: 150, unSortIcon: true},
+			{headerName: "알랔코드", field: "cl8", width: 150, unSortIcon: true},
+			{headerName: "알람메세지", field: "cl9", width: 150, unSortIcon: true},
+			{headerName: "장비명", field: "cl10", width: 150, unSortIcon: true},
+			{headerName: "포트명", field: "cl11", width: 150, unSortIcon: true}
+
+		];
+
+		// specify the data
+		var rowData = [
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "스위치-L4", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}, 
+			{cl1: "", cl2: "", cl3: "", cl4: "라우터-IBC", cl5: "개발참고용샘플코드", cl6: "개발참고용샘플코드", cl7: "개발참고용샘플코드", cl8: "개발참고용샘플코드", cl9: "개발참고용샘플코드", cl10: "개발참고용샘플코드", cl11: "개발참고용샘플코드"}
+		];
+  
+        // let the grid know which columns and what data to use
+        var gridOptions = {
+        defaultColDef: {
+        sortable: true
+        },
+        columnDefs: columnDefs,
+        rowData: rowData,
+        rowSelection: 'single',
+        components: {
+            level1: function (params) {
+                let flag = '<i class="ico-alarm-critical"></i>';
+                return flag;
+            },
+            level2: function (params) {
+                let flag = '<i class="ico-alarm-major"></i>';
+                return flag;
+            },
+            level3: function (params) {
+                let flag = '<i class="ico-alarm-minor"></i>';
+                return flag;
+            }
+        },
+        };
+
+		// lookup the container we want the Grid to use
+		var eGridDiv1 = document.querySelector('#myGrid1');
+		var eGridDiv2 = document.querySelector('#myGrid2');
+
+		// create the grid passing in the div to use together with the columns & data we want to use
+		new agGrid.Grid(eGridDiv1, gridOptions);
+        new agGrid.Grid(eGridDiv2, gridOptions);
+
+
+        //검색목록 검색필터 Fold  
+        $( function() {
+
+            var $foldArea = $('.fold-cont'),
+                $foldBtn = $('.mu-grid-top .mu-item-group .mu-btn-fold');
+
+            $foldBtn.click(function(){  
+            if($foldArea.hasClass('open') == true){
+                $(this).children("span").text('챠트열기');
+                $(this).children('i').toggleClass("arrow-down arrow-up");
+                $foldArea.slideUp(100).removeClass("open");
+            } else {
+                $(this).children("span").text('챠트닫기');
+                $(this).children('i').toggleClass("arrow-up arrow-down");
+                $foldArea.slideDown(100).addClass("open");
+            }
+        });
+    }); 
+	</script>
+
+	
+</body>
+</html>
