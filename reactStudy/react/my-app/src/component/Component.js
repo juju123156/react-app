@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import Button from "../UI/Button";
-import AgGrid from "./AgGrid";
-import Test2 from "../test2";
-import { AgGridReact } from "ag-grid-react";
 
+import AgGrid from "./AgGrid";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 

@@ -1,5 +1,5 @@
 //Router.js
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
@@ -10,11 +10,11 @@ import "../style/App.css";
 const Router = () => {
   return (
     <BrowserRouter>
-    <Nav/>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/mypage" element={<Mypage />} />
-          </Routes>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/mypage" element={<Mypage />} />
+      </Routes>
     </BrowserRouter>
   );
 };

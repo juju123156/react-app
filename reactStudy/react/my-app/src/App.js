@@ -1,9 +1,6 @@
 //App.js
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import Home from "./pages/Home";
-import Mypage from "./pages/Mypage";
-import Nav from "./UI/Nav";
 import Router from "./router/Router";
 import "./style/App.css";
 

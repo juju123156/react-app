@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { render } from "react-dom";
-import ReactDOM from "react-dom";
+
 import { AgGridReact } from "ag-grid-react";
 import axios from "axios";
 
@@ -27,9 +26,6 @@ const AgGrid = ({ sendData }) => {
     { headerName: "수정일자", field: "udt_DT", width: 200 },
     { headerName: "수정한사람 ID", field: "udt_ID", width: 130 },
   ]);
-  let currentPage = 10;
-  let perPageNum = 10;
-
 
   useEffect(() => {
 

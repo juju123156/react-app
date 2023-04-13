@@ -1,10 +1,9 @@
 import React from "react";
+
 import { NavLink } from "react-router-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../style/Nav.css";
 
-function Nav ({children}) {
-
+function Nav({ children }) {
   return (
     <nav>
       <div>
@@ -15,8 +14,7 @@ function Nav ({children}) {
       </div>
       {children}
     </nav>
-
   );
-};
+}
 
 export default Nav;
