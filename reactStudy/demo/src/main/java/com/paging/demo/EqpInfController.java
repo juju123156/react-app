@@ -18,46 +18,6 @@ public class EqpInfController {
         this.eqpInfService = eqpInfService;
     }
 
-    // 장비이름
-    @ModelAttribute("filterParam_eqpNm")
-    public List<FilterField> filterParam_eqpNm() {
-        List<FilterField> filterList = new ArrayList<>();
-        filterList.add(new FilterField("DU","01"));
-        filterList.add(new FilterField("RU","02"));
-        filterList.add(new FilterField("DUH","03"));
-        filterList.add(new FilterField("DUL","04"));
-        filterList.add(new FilterField("NODEB","05"));
-
-        return filterList;
-    }
-    //
-    @ModelAttribute("filterParam_eqpOpStat")
-    public List<FilterField> filterParam_eqpOpStat() {
-        List<FilterField> filterList = new ArrayList<>();
-        filterList.add(new FilterField ("대기","3"));
-        filterList.add(new FilterField ("운용","4"));
-        filterList.add(new FilterField ("미운용","9"));
-
-        return filterList;
-    }
-
-    // 페이지당 보여주는 데이터 수
-    @ModelAttribute("displayPageNum")
-    public List<DisplayPage> selectDisplayPage() {
-        List<DisplayPage> displayPageArr = new ArrayList<>();
-        displayPageArr.add(new DisplayPage("10",10));
-        displayPageArr.add(new DisplayPage("20",20));
-        displayPageArr.add(new DisplayPage("50",50));
-        return displayPageArr;
-    }
-
-    // // 페이지 맵핑 쿼리
-    // @GetMapping("/main")
-    // public String mainPage(){
-
-    //     return "index";
-    // }
-
 
     // 리스트 받아오기
     @GetMapping("/api/getEqpInfListPaging")

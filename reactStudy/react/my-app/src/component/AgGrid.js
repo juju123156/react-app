@@ -36,10 +36,6 @@ const AgGrid = ({ sendData }) => {
         page: 10,
         perPageNum: 10,
       },
-
-      // url: '/api/getEqpInfListPaging',
-      // url: '/api/getEqpInfListPaging?page='+currentPage +'&perPageNum=' + perPageNum,
-      // url: '/api/getEqpInfListPaging?page=10&perPageNum=10',
       method: "get",
       baseURL: "http://localhost:3000",
       headers: {
@@ -52,7 +48,6 @@ const AgGrid = ({ sendData }) => {
       },
     })
     .then((response) => {
-    //   setRowData(response.data);
         setRowData(response.data);
         console.log(response.data);
     });

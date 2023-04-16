@@ -5,14 +5,11 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const Component = (props) => {
-  // const [rowData,setRowData] = useState(null);
-  // const [columnDefs, setColumnDefs] = useState(null);
-  // const isContent = props.isContent;  
+
   const [isContent, setIsContent] = useState(false);
   const sendData = (rowData, columnDefs) => {};
 
   const clickRender =()=>{
-    alert("click");
     // console.log(content);
     setIsContent(!isContent)
   };
