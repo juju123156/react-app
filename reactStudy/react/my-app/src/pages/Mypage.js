@@ -92,27 +92,20 @@ const Mypage = () => {
 //     // console.log(e.target.value);
 //     setIsLoad(e.target.value);
 //     console.log(isLoad);
-// }, [isLoad]);
+// }, [isLoad]); 
+ alert(isClicked);
 console.log(isClicked);
-const clickHandler = (e,isClicked) => {
-  e.preventDefault();
+const clickHandler = (isClicked, e) => {
+  // e.preventDefault();
+  // isClicked = e.target.value;
+  // setIsClicked(!isClicked);
+
 
   console.log(isClicked);
-  // alert("this is mypage")
-  if(isClicked===true){
-      alert(isClicked);
-
-
-  }
- 
+  
+  setIsClicked(isClicked => !isClicked);  // on off
 
 }
-const loadData = () => {
-    alert("click");
-    
-}
-
-
 
   return (
     <Fragment>
@@ -121,7 +114,7 @@ const loadData = () => {
       <SelectBox options={OPTION_EQP_CL_CD} defaultValue=""></SelectBox>
       <SelectBox options={OPTION_JRDT_HDOFC_CD} defaultValue=""></SelectBox>
       <SelectBox options={OPTION_RDT_TEAM_ORG_CD} defaultValue=""></SelectBox>
-      <Button isClicked={isClicked} clickHandler={clickHandler}></Button>
+      <Button name="조회" isClicked={isClicked} clickHandler={clickHandler}></Button>
       <Component />
     </Fragment>
   );
