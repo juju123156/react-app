@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Button = ({ isClicked, clickHandler}) => {
-    isClicked = true;
+const Button = (props) => {
+  // isClicked = true;
   return (
-    <div><button onClick={(e) => { clickHandler(e, isClicked)}}>조회하기</button>
+    <div>
+      <button onClick={() => { props.clickHandler()}}>{props.name}</button>
+      <div>{props.name}</div>
     </div>
   );
 };

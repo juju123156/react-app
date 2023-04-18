@@ -92,27 +92,20 @@ const Mypage = () => {
 //     // console.log(e.target.value);
 //     setIsLoad(e.target.value);
 //     console.log(isLoad);
-// }, [isLoad]);
+// }, [isLoad]); 
+ alert(isClicked);
 console.log(isClicked);
-const clickHandler = (e,isClicked) => {
-  e.preventDefault();
+const clickHandler = (isClicked, e) => {
+  // e.preventDefault();
+  // isClicked = e.target.value;
+  // setIsClicked(!isClicked);
+
 
   console.log(isClicked);
-  // alert("this is mypage")
-  if(isClicked===true){
-      alert(isClicked);
-
-
-  }
- 
+  
+  setIsClicked(isClicked => !isClicked);  // on off
 
 }
-const loadData = () => {
-    alert("click");
-    
-}
-
-
 
   return (
     <Fragment>
