@@ -1,11 +1,9 @@
-import React, { Children, useCallback, useState, useEf } from "react";
+import React, { useState } from "react";
 
 import { Fragment } from "react";
 import Component from "../component/Component";
 import SelectBox from "../UI/SelectBox";
 import Button from "../UI/Button";
-import AgGrid from "../component/AgGrid";
-
 
 const OPTION_PAGENUM = [
   { value: 10, name: "10" },
@@ -75,36 +73,15 @@ const OPTION_RDT_TEAM_ORG_CD= [
   { value: "42", name: "UX팀" },
 ];
 
-const submitParam = () => {
-  // alert("click");
-}
-const sendData = (rowData, columnDefs) => {};
 
 const Mypage = () => {
 
   // 버튼 클릭 on off
   const [isClicked, setIsClicked] = useState(false);
-  // button on off체크 함수 
-//   const loadData = useCallback((e) =>{
-//     alert("click loadData");
-//     // const isLoad = this.props.isLoad;
-//     // const isLoad = this.setState({isLoad : e.target.value});
-//     // console.log(e.target.value);
-//     setIsLoad(e.target.value);
-//     console.log(isLoad);
-// }, [isLoad]); 
- alert(isClicked);
-console.log(isClicked);
+
 const clickHandler = (isClicked, e) => {
-  // e.preventDefault();
-  // isClicked = e.target.value;
-  // setIsClicked(!isClicked);
-
-
   console.log(isClicked);
-  
   setIsClicked(isClicked => !isClicked);  // on off
-
 }
 
   return (
@@ -112,6 +89,7 @@ const clickHandler = (isClicked, e) => {
       <h1>Mypage</h1>
       <SelectBox options={OPTION_PAGENUM}></SelectBox>
       <SelectBox options={OPTION_EQP_CL_CD} defaultValue=""></SelectBox>
+      <SelectBox options={OPTION_EQP_OP_STAT} defaultValue=""></SelectBox>
       <SelectBox options={OPTION_JRDT_HDOFC_CD} defaultValue=""></SelectBox>
       <SelectBox options={OPTION_RDT_TEAM_ORG_CD} defaultValue=""></SelectBox>
       <Button name="조회" isClicked={isClicked} clickHandler={clickHandler}></Button>

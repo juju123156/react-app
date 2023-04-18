@@ -1,16 +1,16 @@
 import React from "react";
 
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../style/Nav.css";
 
 function Nav({ children }) {
   return (
     <nav>
       <div>
-        <NavLink to="/">Home</NavLink>
+        <Link to="/">Home</Link>
       </div>
       <div>
-        <NavLink to="/mypage">Mypage</NavLink>
+        <Link to="/mypage">Mypage</Link>
       </div>
       {children}
     </nav>
