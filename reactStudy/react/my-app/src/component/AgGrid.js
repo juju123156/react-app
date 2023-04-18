@@ -31,21 +31,24 @@ const AgGrid = ({ sendData }) => {
 
   
   axios
-    .get("/api/getEqpInfListPaging", {
-      params: {
-        page: 10,
-        perPageNum: 10,
-      },
-      method: "get",
-      baseURL: "http://localhost:3000",
-      headers: {
-        "Content-Type": `application/json;charset=UTF-8`,
-        Accept: "application/json",
+    .get(
+      "/api/getEqpInfListPaging"
+    , {
+        params: {
+            page: 1
+          , perPageNum: 20
+        }
+        , method: "get"
+        , baseURL: "http://localhost:3000"
+        , headers: {
+          "Content-Type": `application/json;charset=UTF-8`
+          , Accept: "application/json"
 
-        // 추가
-        "Access-Control-Allow-Origin": `http://localhost:8080`,
-        "Access-Control-Allow-Credentials": "true",
-      },
+          // 추가
+          , "Access-Control-Allow-Origin": `http://localhost:8080`
+          , "Access-Control-Allow-Credentials": "true"
+        }
+        ,
     })
     .then((response) => {
         setRowData(response.data);

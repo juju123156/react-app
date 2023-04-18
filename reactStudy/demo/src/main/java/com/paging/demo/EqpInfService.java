@@ -1,10 +1,12 @@
 package com.paging.demo;
 
-import com.paging.demo.dto.EqpInfDto;
-import com.paging.demo.mapper.EqpInfMapper;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.paging.demo.dto.EqpInfDto;
+import com.paging.demo.dto.FilterDto;
+import com.paging.demo.mapper.EqpInfMapper;
 
 @Service
 public class EqpInfService {
@@ -16,10 +18,15 @@ public class EqpInfService {
     }
 
     // 조직원 전체 조회
-    public List<EqpInfDto> getEqpInfListPaging(int page, int perPageNum) {
-//        final List<EqpDto> eqpList = eqpMapper.findOrg(cri);
+    public List<EqpInfDto> getEqpInfListPaging(FilterDto filterDto) {
 
-        return eqpInfMapper.getEqpInfListPaging(page,perPageNum);
+        return eqpInfMapper.getEqpInfListPaging(filterDto);
     }
+
+    // inset data
+    public int insEqpInf(EqpInfDto eqpDto) {
+        return eqpInfMapper.insEqpInf(eqpDto);
+    }
+
 
 }
