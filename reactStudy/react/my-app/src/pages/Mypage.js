@@ -152,19 +152,21 @@ const Mypage = () => {
     <Fragment>
       {modalOpen && <Modal setModalOpen={setModalOpen} />}
       <h1>Mypage</h1>
-
-      <div className="searchGrid">
-        <SelectBox options={OPTION_PAGENUM}></SelectBox>
-        <SelectBox options={OPTION_EQP_CL_CD} defaultValue=""></SelectBox>
-        <SelectBox options={OPTION_JRDT_HDOFC_CD} defaultValue=""></SelectBox>
-        <SelectBox options={OPTION_RDT_TEAM_ORG_CD} defaultValue=""></SelectBox>
-        <Button isClicked={isClicked} clickHandler={clickHandler}></Button>
-      </div>
-      <div style={{ width: "100%", textAlign: "center" }}>
-        <Component />
-      </div>
+      <SelectBox options={OPTION_PAGENUM}></SelectBox>
+      <SelectBox options={OPTION_EQP_CL_CD} defaultValue=""></SelectBox>
+      <SelectBox options={OPTION_EQP_OP_STAT} defaultValue=""></SelectBox>
+      <SelectBox options={OPTION_JRDT_HDOFC_CD} defaultValue=""></SelectBox>
+      <SelectBox options={OPTION_RDT_TEAM_ORG_CD} defaultValue=""></SelectBox>
+      <Button
+        name="조회"
+        isClicked={isClicked}
+        clickHandler={clickHandler}
+      ></Button>
+      <Component />
+      <button onClick={showModal}>모달띄우기</button>
     </Fragment>
   );
 };
 
 export default Mypage;
+
