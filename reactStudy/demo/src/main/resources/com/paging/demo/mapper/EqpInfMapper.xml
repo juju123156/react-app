@@ -57,8 +57,52 @@
                 <include refid="getEqpInfList" />
             ) AA
         WHERE 1 = 1
-        <!-- AND AA.num > (#{page} - 1) * #{perPageNum} AND AA.num <![CDATA[ <= ]]> #{page} * #{perPageNum} -->
-        AND AA.num > (1 - 1) * 10 AND AA.num <![CDATA[ <= ]]> 1 * 10
+        AND AA.num <![CDATA[ > ]]> (#{page} - 1) * #{perPageNum} AND AA.num <![CDATA[ <= ]]> #{page} * #{perPageNum}
+        <!-- AND AA.num > (1 - 1) * 10 AND AA.num <![CDATA[ <= ]]> 1 * 10 -->
     </select>
+
+    <insert id="insEqpInf">
+        <!-- keyProperty는 insert할 변수이름, resultType 시퀀스 타입 -->
+        <selectKey keyProperty="EQP_ID" resultType="String" order="BEFORE">
+                SELECT LPAD(nextval(EQP_SEQ),5,"0") AS EQP_ID FROM DUAL
+        </selectKey>
+
+        INSERT INTO EQP_INF
+            (
+                  EQP_ID
+                , EQP_NM
+                , EQP_CL_CD
+                , EQP_OP_STAT_CD
+                , JRDT_HDOFC_CD
+                , RDT_TEAM_ORG_CD
+                , EQP_SRNO
+                , MST_IP
+                , LAT_CODN
+                , LNG_CODN
+                , OP_CHRR_ID
+                , REGRT_DT
+                , REGRT_ID
+                , UDT_DT
+                , UDT_ID
+            )
+        VALUES
+            (   
+                  #{EQP_ID}
+                , #{EQP_NM}
+                , #{EQP_CL_CD}
+                , #{EQP_OP_STAT_CD}
+                , #{JRDT_HDOFC_CD}
+                , #{RDT_TEAM_ORG_CD}
+                , #{EQP_SRNO}
+                , #{MST_IP}
+                , #{LAT_CODN}
+                , #{LNG_CODN}
+                , #{OP_CHRR_ID}
+                , #{REGRT_DT}
+                , #{REGRT_ID}
+                , #{UDT_DT}
+                , #{UDT_ID}
+            );
+    </insert>
 
 </mapper>

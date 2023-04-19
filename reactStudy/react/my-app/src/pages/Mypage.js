@@ -1,11 +1,10 @@
-import React, { Children, useCallback, useState, useEf } from "react";
+import React, { useState } from "react";
 
 import { Fragment } from "react";
+import axios from "axios";
 import Component from "../component/Component";
 import SelectBox from "../UI/SelectBox";
 import Button from "../UI/Button";
-import AgGrid from "../component/AgGrid";
-
 
 const OPTION_PAGENUM = [
   { value: 10, name: "10" },
@@ -75,37 +74,111 @@ const OPTION_RDT_TEAM_ORG_CD= [
   { value: "42", name: "UX팀" },
 ];
 
-const submitParam = () => {
-  // alert("click");
-}
-const sendData = (rowData, columnDefs) => {};
 
 const Mypage = () => {
 
   // 버튼 클릭 on off
   const [isClicked, setIsClicked] = useState(false);
-  // button on off체크 함수 
-//   const loadData = useCallback((e) =>{
-//     alert("click loadData");
-//     // const isLoad = this.props.isLoad;
-//     // const isLoad = this.setState({isLoad : e.target.value});
-//     // console.log(e.target.value);
-//     setIsLoad(e.target.value);
-//     console.log(isLoad);
-// }, [isLoad]); 
- alert(isClicked);
-console.log(isClicked);
+
 const clickHandler = (isClicked, e) => {
-  // e.preventDefault();
-  // isClicked = e.target.value;
-  // setIsClicked(!isClicked);
-
-
   console.log(isClicked);
-  
   setIsClicked(isClicked => !isClicked);  // on off
-
+  addData();
 }
+
+// axios post add data test
+const addData = () => {
+  let addData =
+    {
+  
+          "EQP_ID" : "test"
+        , "EQP_NM" : "test"
+        , "EQP_CL_CD" : "test"
+        , "EQP_OP_STAT_CD" : "test"
+        , "JRDT_HDOFC_CD" : "test"
+        , "RDT_TEAM_ORG_CD" : "test"
+        , "EQP_SRNO" : "test"
+        , "MST_IP" : "test"
+        , "LAT_CODN" : 123
+        , "LNG_CODN" : 456
+        , "OP_CHRR_ID" : "test"
+        , "REGRT_DT" : "2023-04-18 11:02:23"
+        , "REGRT_ID" : "testId"
+        , "UDT_ID" : "testId"
+        , "UDT_DT" : "2023-04-18 11:02:23"
+      
+  };
+
+       
+  axios({
+    params: {
+   
+  
+          // EQP_ID : "test_id",
+          EQP_NM : "test"
+        , EQP_CL_CD : "t"
+        , EQP_OP_STAT_CD : "t"
+        , JRDT_HDOFC_CD : "t"
+        , RDT_TEAM_ORG_CD : "t"
+        , EQP_SRNO : "test"
+        , MST_IP : "test"
+        , LAT_CODN : 123
+        , LNG_CODN : 456
+        , OP_CHRR_ID : "test"
+        , REGRT_DT : "2023-04-18 11:02:23"
+        , REGRT_ID : "testId"
+        , UDT_ID : "testId"
+        , UDT_DT : "2023-04-18 11:02:23"
+      
+    }
+    ,method: "post",
+    url: "/api/insEqpInf",
+    // header에서 JSON 타입의 데이터라는 것을 명시
+    headers: {'Content-type': 'application/json'}
+              // 추가
+          , "Access-Control-Allow-Origin": `http://localhost:8080`
+          , "Access-Control-Allow-Credentials": "true"
+        
+}).then((res)=>{
+    alert("성공");
+    // API로 부터 받은 데이터 출력
+    console.log(res.data);
+}).catch(error=>{
+    console.log("실패");
+    console.log(addData);
+});
+
+
+  // axios
+  //   .post(
+  //     "/api/insEqpInf"
+  //     , {
+  //         method: "post"
+  //       , data: addData
+  //       , baseURL: "http://localhost:3000"
+  //       , headers: {
+  //         "Content-Type": `application/json;charset=UTF-8`
+  //         , Accept: "application/json"
+
+  //         // 추가
+  //         , "Access-Control-Allow-Origin": `http://localhost:8080`
+  //         , "Access-Control-Allow-Credentials": "true"
+  //       }
+  //     ,
+  //   })
+  //   .then((response) => {
+  //     // add된 데이터 표에 표시하는 건  나중에 처리
+  //     // setRowData(response.data); 
+  //     alert("성공");
+  //     console.log(response.data);
+  //   }).catch(error => {
+  //     console.log(addData);
+  //     alert("실패");
+  //   })
+  //   ;
+}
+
+
 
   return (
     <Fragment>

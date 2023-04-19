@@ -1,6 +1,6 @@
 package com.paging.demo.dto;
 
-import lombok.*;
+import  lombok.*;
 
 @Getter
 @Setter
@@ -12,17 +12,13 @@ public class EqpInfDto {
     private String  EQP_ID;
     private String  EQP_NM;
     private String  EQP_CL_CD;
-    private String   EQP_CL_CD_NM;
-    private String   EQP_OP_Stat_CD_NM;
     private String  EQP_OP_STAT_CD;
     private String  JRDT_HDOFC_CD;
-    private String   JRDT_HDOFC_CD_NM;
     private String  RDT_TEAM_ORG_CD;
-    private String   RDT_TEAM_ORG_CD_NM;
     private String  EQP_SRNO;
     private String  MST_IP;
-    private float  LAT_CODN;
-    private float  LNG_CODN;
+    private float   LAT_CODN;
+    private float   LNG_CODN;
     private String  OP_CHRR_ID;
     private String  REGRT_DT;
     private String  REGRT_ID;
