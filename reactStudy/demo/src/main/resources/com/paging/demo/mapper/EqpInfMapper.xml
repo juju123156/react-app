@@ -98,9 +98,9 @@
                 , #{LAT_CODN}
                 , #{LNG_CODN}
                 , #{OP_CHRR_ID}
-                , #{REGRT_DT}
+                , TO_CHAR(sysdate(), 'YYYY-MM-DD hh:mm:ss')
                 , #{REGRT_ID}
-                , #{UDT_DT}
+                , TO_CHAR(sysdate(), 'YYYY-MM-DD hh:mm:ss')
                 , #{UDT_ID}
             );
     </insert>

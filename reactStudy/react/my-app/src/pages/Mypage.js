@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 import { Fragment } from "react";
-import axios from "axios";
 import Component from "../component/Component";
 import SelectBox from "../UI/SelectBox";
 import Button from "../UI/Button";
-import Modal from "../UI/Modal";
+import Modal from "../UI/Popup";
+
 
 const OPTION_PAGENUM = [
   { value: 10, name: "10" },
@@ -79,91 +79,39 @@ const Mypage = () => {
   // 버튼 클릭 on off
   const [isClicked, setIsClicked] = useState(false);
   // 모달창 노출 여부
-  const [modalOpen, setModalOpen] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
 
   const clickHandler = (isClicked, e) => {
     console.log(isClicked);
     setIsClicked((isClicked) => !isClicked); // on off
-    addData();
+    // addData();
   };
 
-  const showModal = () => {
-    setModalOpen(true);
-  };
-
-  // axios post add data test
-  const addData = () => {
-    let addData = {
-      EQP_ID: "test",
-      EQP_NM: "test",
-      EQP_CL_CD: "test",
-      EQP_OP_STAT_CD: "test",
-      JRDT_HDOFC_CD: "test",
-      RDT_TEAM_ORG_CD: "test",
-      EQP_SRNO: "test",
-      MST_IP: "test",
-      LAT_CODN: 123,
-      LNG_CODN: 456,
-      OP_CHRR_ID: "test",
-      REGRT_DT: "2023-04-18 11:02:23",
-      REGRT_ID: "testId",
-      UDT_ID: "testId",
-      UDT_DT: "2023-04-18 11:02:23",
-    };
-
-    axios({
-      params: {
-        // EQP_ID : "test_id",
-        EQP_NM: "test",
-        EQP_CL_CD: "t",
-        EQP_OP_STAT_CD: "t",
-        JRDT_HDOFC_CD: "t",
-        RDT_TEAM_ORG_CD: "t",
-        EQP_SRNO: "test",
-        MST_IP: "test",
-        LAT_CODN: 123,
-        LNG_CODN: 456,
-        OP_CHRR_ID: "test",
-        REGRT_DT: "2023-04-18 11:02:23",
-        REGRT_ID: "testId",
-        UDT_ID: "testId",
-        UDT_DT: "2023-04-18 11:02:23",
-      },
-      method: "post",
-      url: "/api/insEqpInf",
-      // header에서 JSON 타입의 데이터라는 것을 명시
-      headers: { "Content-type": "application/json" },
-      // 추가
-      "Access-Control-Allow-Origin": `http://localhost:8080`,
-      "Access-Control-Allow-Credentials": "true",
-    })
-      .then((res) => {
-        alert("성공");
-        // API로 부터 받은 데이터 출력
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log("실패");
-        console.log(addData);
-      });
+  const showPopup = () => {
+    setPopupOpen(true);
   };
 
   return (
-    <Fragment>
-      {modalOpen && <Modal setModalOpen={setModalOpen} />}
+<Fragment>
       <h1>Mypage</h1>
-      <SelectBox options={OPTION_PAGENUM}></SelectBox>
-      <SelectBox options={OPTION_EQP_CL_CD} defaultValue=""></SelectBox>
-      <SelectBox options={OPTION_EQP_OP_STAT} defaultValue=""></SelectBox>
-      <SelectBox options={OPTION_JRDT_HDOFC_CD} defaultValue=""></SelectBox>
-      <SelectBox options={OPTION_RDT_TEAM_ORG_CD} defaultValue=""></SelectBox>
+      <div className="searchGrid">
+        <SelectBox options={OPTION_PAGENUM}></SelectBox>
+        <SelectBox options={OPTION_EQP_CL_CD} defaultValue=""></SelectBox>
+        <SelectBox options={OPTION_JRDT_HDOFC_CD} defaultValue=""></SelectBox>
+        <SelectBox options={OPTION_RDT_TEAM_ORG_CD} defaultValue=""></SelectBox>
+      </div>
+      <div style={{width: '100%', textAlign:'center'}}>
+        <Component />
+      </div>
       <Button
         name="조회"
         isClicked={isClicked}
         clickHandler={clickHandler}
       ></Button>
-      <Component />
-      <button onClick={showModal}>모달띄우기</button>
+       <button onClick={showPopup}>등록하기</button>
+      {popupOpen && <Modal setPopupOpen={setPopupOpen} />}
+     
+
     </Fragment>
   );
 };
