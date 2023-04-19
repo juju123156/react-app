@@ -11,10 +11,12 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/mypage" element={<Mypage />} />
-      </Routes>
+      <div style={{marginTop: '70px'}}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/mypage" element={<Mypage />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };

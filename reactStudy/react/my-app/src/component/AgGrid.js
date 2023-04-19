@@ -59,7 +59,7 @@ const AgGrid = ({ sendData }) => {
   return (
     <div>
       {/* {visible && <div className="ag-theme-alpine" style={{height: 400, width: 600}}> */}
-      <div className="ag-theme-alpine" style={{ height: 400, width: 600 }}>
+      <div className="ag-theme-alpine" style={{ height: 400, width: '100%' }}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs}
