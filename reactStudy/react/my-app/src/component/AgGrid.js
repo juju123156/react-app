@@ -6,6 +6,9 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const AgGrid = (props) => {
+
+  console.log("this is AGGRID  : "+props.rowData)
+  console.log("this is AGGRID  : "+props.columnDefs)
   return (
     <div>
       <div className="ag-theme-alpine" style={{ height: 400, width: "100%" }}>

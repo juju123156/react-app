@@ -181,11 +181,14 @@ const Mypage = (props) => {
     },
   ]);
 
+
+
+// 표 보여주기 버튼 클릭시 AgGrid에 Axio 비동기로 데이터 전송
   useEffect(() => {
     axios
       .get("/api/getEqpInfListPaging", {
         params: {
-          page: 231,
+          page: 238,
           perPageNum: 10,
         },
         method: "get",
@@ -199,26 +202,98 @@ const Mypage = (props) => {
           "Access-Control-Allow-Credentials": "true",
         },
       })
-      .then((response) => {
-        setRowData(response.data);
-        console.log(response.data);
+      .then((res) => {
+        setRowData(res.data);
+        console.log(res.data);
       });
   }, []);
+
 
   const clickRender = () => {
     // console.log(content);
     setIsContent(!isContent);
   };
 
-  const clickHandler = (isClicked, e) => {
+  const clickHandler = (isClicked) => {
     console.log(isClicked);
     setIsClicked((isClicked) => !isClicked); // on off
     // addData();
   };
 
-  const showPopup = () => {
-    setPopupOpen(true);
+  // 팝업창 컨트롤러
+  const popupHandler = (popupOpen) => {
+    setPopupOpen((popupOpen) => !popupOpen);
   };
+
+  // 팝업창에서 axios로 data insert
+  const addData = (inputs) => {
+
+    console.log(inputs);
+    
+    axios({
+      params: inputs,
+      method: "post",
+      url: "/api/insEqpInf",
+      // header에서 JSON 타입의 데이터라는 것을 명시
+      headers: { "Content-type": "application/json" },
+      // 추가
+      "Access-Control-Allow-Origin": `http://localhost:8080`,
+      "Access-Control-Allow-Credentials": "true",
+    })
+      .then((res) => {
+        alert("성공");
+        // setRowData(inputs);
+        // updateRowData(inputs);
+        // API로 부터 받은 데이터 출력
+        updateRowData(inputs);
+        console.log("this is key "+Object.keys(inputs));
+        console.log("this is values "+Object.values(inputs));
+        // updateRowData(Object.entries(inputs));
+        // console.log("this is input "+Object.entries(inputs));
+
+      })
+      .catch((error) => {
+        console.log("실패");
+        console.log(error);
+        console.log("this is key "+Object.keys(inputs));
+        console.log("this is values "+Object.values(inputs));
+
+        const testSpread = [...rowData, inputs];
+        // console.log("test: "+test);
+        console.log("testSpread : "+testSpread);
+        console.log("testSpread : "+Object.entries(testSpread));
+        console.log("inputs: "+inputs);
+        console.log("inputs: "+Object.entries(inputs));
+        console.log("rowData: "+rowData);
+        console.log("rowData: "+Object.entries(rowData));
+      });
+  };
+
+  // useCallback으로 함수 재용하기> setRowData를 재사용하는듯
+  const updateRowData = (inputs)=> {
+
+    axios
+      .get("/api/getEqpInfListPaging", {
+        params: {
+          page: 238,
+          perPageNum: 10,
+        },
+        method: "get",
+        baseURL: "http://localhost:3000",
+        headers: {
+          "Content-Type": `application/json;charset=UTF-8`,
+          Accept: "application/json",
+
+          // 추가
+          "Access-Control-Allow-Origin": `http://localhost:8080`,
+          "Access-Control-Allow-Credentials": "true",
+        },
+      })
+      .then((res) => {
+        setRowData(res.data);
+        console.log(res.data);
+      });
+  }
 
   return (
     <Fragment>
@@ -235,12 +310,11 @@ const Mypage = (props) => {
         isClicked={isClicked}
         clickHandler={clickHandler}
       ></Button>
-      <button onClick={showPopup}>등록하기</button>
-      {popupOpen && <Popup setPopupOpen={setPopupOpen} />}
+      <button onClick={popupHandler}>등록하기</button>
+      {popupOpen && <Popup popupHandler={popupHandler} addData={addData}/>}
       <div style={{ width: "100%", textAlign: "center" }}>
-        {/* <Component /> */}
-        <button onClick={clickRender}>표 보여주기</button>
-        {isContent && <AgGrid rowData={rowData} columnDefs={columnDefs} />}
+      <button onClick={clickRender}>표 보여주기</button>
+      {isContent && <AgGrid rowData={rowData} columnDefs={columnDefs} />}
       </div>
     </Fragment>
   );

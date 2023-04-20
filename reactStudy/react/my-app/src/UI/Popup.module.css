@@ -104,7 +104,7 @@
     padding: 5px; /* 간격을 위해 각 너비에 준 패딩 5px을 줌 */
     /* padding-right: 35px; */
     vertical-align: middle; /* 나란히 배치하는 와중에 수직정렬도 가운데로 하려고 준 속성 */
-    text-align: left; /* 영역 안 태그들의 텍스트가 center로 오도록 준 속성 */
+
     box-sizing: border-box; /* width값이 오롯이 50%를 갖게 하기 위해 준 속성 */
           
   }
@@ -117,7 +117,7 @@
     display: inline-block;
 
     /* padding-right: 35px; */
-    text-align: left; /* 영역 안 태그들의 텍스트가 center로 오도록 준 속성 */
+
   }
 
     /* 모달창 input */
@@ -127,7 +127,6 @@
       margin:auto;
       display: block;
       font-size: 20px;
-      vertical-align: middle; /* 나란히 배치하는 와중에 수직정렬도 가운데로 하려고 준 속성 */
     }
 
     /* 모달창 라벨 */
