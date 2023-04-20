@@ -6,8 +6,7 @@
 
     <sql id="getEqpInfList">
         SELECT
-            <!-- CEILING(COUNT(*) OVER () / #{perPageNum}) AS page, COUNT(*) OVER () AS totalCnt -->
-            CEILING(COUNT(*) OVER () / 10) AS page, COUNT(*) OVER () AS totalCnt
+            CEILING(COUNT(*) OVER () / #{perPageNum}) AS page, COUNT(*) OVER () AS totalCnt
 		     , ROW_NUMBER() OVER(ORDER BY EQP_ID) AS num
              , ef.EQP_ID
              , ef.EQP_NM
@@ -43,10 +42,22 @@
                     ON ef.RDT_TEAM_ORG_CD  = co4.COM_CD
                     AND co4.GRP_CD = '08'
         WHERE 1 = 1
+        <if test="eqpName != null and eqpName != ''">
+            AND ef.EQP_NM LIKE CONCAT('%',#{eqpName},'%')
+        </if>
 
-<!--        <if test="eqpName != null and eqpName != ''">-->
-<!--            AND-->
-<!--        </if>-->
+        <if test="eqpClCd != null and eqpClCd != ''">
+            AND ef.EQP_CL_CD = #{eqpClCd}
+        </if>
+        <if test="eqpOpStat != null and eqpOpStat != ''">
+            AND ef.EQP_OP_STAT_CD = #{eqpOpStat}
+        </if>
+        <if test="jrdtHdofcCd != null and jrdtHdofcCd != ''">
+            AND ef.JRDT_HDOFC_CD = #{jrdtHdofcCd}
+        </if>
+        <if test="rdtTeamOrgCd != null and rdtTeamOrgCd != ''">
+            AND ef.RDT_TEAM_ORG_CD = #{rdtTeamOrgCd}
+        </if>
     </sql>
 
     <select id="getEqpInfListPaging" resultType="EqpInfDto" >
@@ -58,7 +69,6 @@
             ) AA
         WHERE 1 = 1
         AND AA.num <![CDATA[ > ]]> (#{page} - 1) * #{perPageNum} AND AA.num <![CDATA[ <= ]]> #{page} * #{perPageNum}
-        <!-- AND AA.num > (1 - 1) * 10 AND AA.num <![CDATA[ <= ]]> 1 * 10 -->
     </select>
 
     <insert id="insEqpInf">

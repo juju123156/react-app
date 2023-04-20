@@ -12,9 +12,13 @@ public class EqpInfDto {
     private String  EQP_ID;
     private String  EQP_NM;
     private String  EQP_CL_CD;
+    private String  EQP_CL_CD_NM;
+    private String  EQP_OP_STAT_CD_NM;
     private String  EQP_OP_STAT_CD;
     private String  JRDT_HDOFC_CD;
+    private String  JRDT_HDOFC_CD_NM;
     private String  RDT_TEAM_ORG_CD;
+    private String  RDT_TEAM_ORG_CD_NM;
     private String  EQP_SRNO;
     private String  MST_IP;
     private float   LAT_CODN;
