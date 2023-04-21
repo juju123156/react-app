@@ -7,7 +7,7 @@
     <sql id="getEqpInfList">
         SELECT
             CEILING(COUNT(*) OVER () / #{perPageNum}) AS page, COUNT(*) OVER () AS totalCnt
-		     , ROW_NUMBER() OVER(ORDER BY EQP_ID) AS num
+		     , ROW_NUMBER() OVER(ORDER BY EQP_ID DESC) AS num
              , ef.EQP_ID
              , ef.EQP_NM
              , ef.EQP_CL_CD

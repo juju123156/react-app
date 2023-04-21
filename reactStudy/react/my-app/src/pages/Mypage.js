@@ -85,6 +85,8 @@ const Mypage = (props) => {
   const [popupOpen, setPopupOpen] = useState(false);
   // 그리드 노출 여부
   const [isContent, setIsContent] = useState(true);
+  // row 클릭 여부
+  const [isClickedData, setIsClickedData] = useState(false);
   // 그리드 데이터 상태체크
   const [rowData, setRowData] = useState([]);
   // 그리드 컬럼 데이터
@@ -93,102 +95,100 @@ const Mypage = (props) => {
       headerName: "장비아이디",
       field: "eqp_ID",
       width: 100,
-      cellStyle: { "text-align": "center" },
+      cellStyle: { "textAlign": "center" },
     },
     {
       headerName: "장비명",
       field: "eqp_NM",
       width: 80,
-      cellStyle: { "text-align": "left" },
+      cellStyle: { "textAlign": "left" },
     },
     {
       headerName: "장비분류",
       field: "eqp_CL_CD_NM",
       width: 100,
-      cellStyle: { "text-align": "left" },
+      cellStyle: { "textAlign": "left" },
     },
     {
       headerName: "장비운용상태",
       field: "eqp_OP_STAT_CD_NM",
       width: 140,
-      cellStyle: { "text-align": "left" },
+      cellStyle: { "textAlign": "left" },
     },
     {
       headerName: "시리얼 넘버",
       field: "eqp_SRNO",
       width: 180,
-      cellStyle: { "text-align": "center" },
+      cellStyle: { "textAlign": "center" },
     },
     {
       headerName: "관할본부 조직",
       field: "jrdt_HDOFC_CD_NM",
       width: 130,
-      cellStyle: { "text-align": "left" },
+      cellStyle: { "textAlign": "left" },
     },
     {
       headerName: "관할팀 조직",
       field: "rdt_TEAM_ORG_CD_NM",
       width: 130,
-      cellStyle: { "text-align": "left" },
+      cellStyle: { "textAlign": "left" },
     },
     {
       headerName: "위도",
       field: "lat_CODN",
       width: 110,
-      cellStyle: { "text-align": "center" },
+      cellStyle: { "textAlign": "center" },
     },
     {
       headerName: "경도",
       field: "lng_CODN",
       width: 110,
-      cellStyle: { "text-align": "center" },
+      cellStyle: { "textAlign": "center" },
     },
     {
       headerName: "마스터IP",
       field: "mst_IP",
       width: 150,
-      cellStyle: { "text-align": "center" },
+      cellStyle: { "textAlign": "center" },
     },
     {
       headerName: "운용담당자 아이디",
       field: "op_CHRR_ID",
       width: 120,
-      cellStyle: { "text-align": "left" },
+      cellStyle: { "textAlign": "left" },
     },
     {
       headerName: "등록일자",
       field: "regrt_DT",
       width: 200,
-      cellStyle: { "text-align": "center" },
+      cellStyle: { "textAlign": "center" },
     },
     {
       headerName: "등록자 ID",
       field: "regrt_ID",
       width: 100,
-      cellStyle: { "text-align": "left" },
+      cellStyle: { "textAlign": "left" },
     },
     {
       headerName: "수정일자",
       field: "udt_DT",
       width: 200,
-      cellStyle: { "text-align": "center" },
+      cellStyle: { "textAlign": "center" },
     },
     {
       headerName: "수정한사람 ID",
       field: "udt_ID",
       width: 130,
-      cellStyle: { "text-align": "left" },
+      cellStyle: { "textAlign": "left" },
     },
   ]);
 
-
-
-// 표 보여주기 버튼 클릭시 AgGrid에 Axio 비동기로 데이터 전송
-  useEffect(() => {
+  // useCallback으로 함수 재용하기> setRowData를 재사용하는듯
+  const loadRowData = () => {
     axios
       .get("/api/getEqpInfListPaging", {
         params: {
-          page: 238,
+          page: 1,
           perPageNum: 10,
         },
         method: "get",
@@ -206,7 +206,9 @@ const Mypage = (props) => {
         setRowData(res.data);
         console.log(res.data);
       });
-  }, []);
+  };
+  // 표 보여주기 버튼 클릭시 AgGrid에 Axio 비동기로 데이터 전송
+  useEffect(loadRowData, []);
 
 
   const clickRender = () => {
@@ -217,83 +219,25 @@ const Mypage = (props) => {
   const clickHandler = (isClicked) => {
     console.log(isClicked);
     setIsClicked((isClicked) => !isClicked); // on off
-    // addData();
   };
 
-  // 팝업창 컨트롤러
-  const popupHandler = (popupOpen) => {
+  // 팝업창 컨트롤러 
+  // addData 성공시 reloadFlag 전송
+  const popupHandler = (reloadFlag) => {
     setPopupOpen((popupOpen) => !popupOpen);
+    if (reloadFlag) loadRowData();
   };
 
-  // 팝업창에서 axios로 data insert
-  const addData = (inputs) => {
+  // AgGrid 셀 클릭시 데이터 Popup으로 보내기
+  const updateRowDataHandler = (clickedData) => {
 
-    console.log(inputs);
-    
-    axios({
-      params: inputs,
-      method: "post",
-      url: "/api/insEqpInf",
-      // header에서 JSON 타입의 데이터라는 것을 명시
-      headers: { "Content-type": "application/json" },
-      // 추가
-      "Access-Control-Allow-Origin": `http://localhost:8080`,
-      "Access-Control-Allow-Credentials": "true",
-    })
-      .then((res) => {
-        alert("성공");
-        // setRowData(inputs);
-        // updateRowData(inputs);
-        // API로 부터 받은 데이터 출력
-        updateRowData(inputs);
-        console.log("this is key "+Object.keys(inputs));
-        console.log("this is values "+Object.values(inputs));
-        // updateRowData(Object.entries(inputs));
-        // console.log("this is input "+Object.entries(inputs));
-
-      })
-      .catch((error) => {
-        console.log("실패");
-        console.log(error);
-        console.log("this is key "+Object.keys(inputs));
-        console.log("this is values "+Object.values(inputs));
-
-        const testSpread = [...rowData, inputs];
-        // console.log("test: "+test);
-        console.log("testSpread : "+testSpread);
-        console.log("testSpread : "+Object.entries(testSpread));
-        console.log("inputs: "+inputs);
-        console.log("inputs: "+Object.entries(inputs));
-        console.log("rowData: "+rowData);
-        console.log("rowData: "+Object.entries(rowData));
-      });
-  };
-
-  // useCallback으로 함수 재용하기> setRowData를 재사용하는듯
-  const updateRowData = (inputs)=> {
-
-    axios
-      .get("/api/getEqpInfListPaging", {
-        params: {
-          page: 238,
-          perPageNum: 10,
-        },
-        method: "get",
-        baseURL: "http://localhost:3000",
-        headers: {
-          "Content-Type": `application/json;charset=UTF-8`,
-          Accept: "application/json",
-
-          // 추가
-          "Access-Control-Allow-Origin": `http://localhost:8080`,
-          "Access-Control-Allow-Credentials": "true",
-        },
-      })
-      .then((res) => {
-        setRowData(res.data);
-        console.log(res.data);
-      });
+    if(isClickedData)
+    console.log("this is mypage : " + Object.entries(clickedData));
+    // setPopupOpen(true);
+    // alert("!")
   }
+
+  useEffect(updateRowDataHandler, []);
 
   return (
     <Fragment>
@@ -311,10 +255,11 @@ const Mypage = (props) => {
         ></Button>
         <button onClick={popupHandler}>등록하기</button>
       </div>
-      {popupOpen && <Popup popupHandler={popupHandler} addData={addData}/>}
+      {popupOpen && (
+        <Popup loadRowData={loadRowData} popupHandler={popupHandler} updateRowDataHandler={updateRowDataHandler}/>
+      )}
       <div style={{ width: "100%", textAlign: "center" }}>
-      {!isContent && <button onClick={clickRender}>표 보여주기</button>}
-      {isContent && <AgGrid rowData={rowData} columnDefs={columnDefs} />}
+        {isContent && <AgGrid rowData={rowData} columnDefs={columnDefs} updateRowDataHandler={updateRowDataHandler} />}
       </div>
     </Fragment>
   );

@@ -1,4 +1,4 @@
-/* 모달창을 화면 중앙. 최상단에 노출 */
+/* 팝업창을 화면 중앙. 최상단에 노출 */
 .background {
   --bs-bg-opacity: 1;
   /* background-color: rgba(var(--bs-secondary-bg-rgb),
@@ -11,12 +11,12 @@
 
 
 .container {
-    /* 모달창 크기 */
+    /* 팝업창 크기 */
     position: relative;
     display: flex;
     flex-direction: column;
     width: 800px;
-    height: 600px;
+
     /* margin-bottom: 20px; */
     color: var(--bs-popup-color);
     pointer-events: auto;
@@ -37,7 +37,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
   
-    /* 모달창 디자인 */
+    /* 팝업창 디자인 */
     background-color: white;
     border: 2px solid rgb(36, 36, 36);
     border-radius: 20px;
@@ -45,7 +45,7 @@
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
   }
 
-  /* 모달창 헤더 */
+  /* 팝업창 헤더 */
   .popupHeader {
     background-color: white;
 
@@ -70,15 +70,15 @@
   }
 
 
-   /* 모달창 바디 */
+   /* 팝업창 바디 */
   .popupBody {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 180px);
+    grid-template-columns: repeat(4, 190px);
     grid-template-rows: repeat(6, 32px);
-    text-align: left;
     grid-gap: 5px;
-    margin:auto;
+    margin-top:40px;
+    margin-bottom:40px;
 
     /* position: relative;
     display: block;
@@ -95,7 +95,7 @@
 
   }
 
-  /* 모달창 input div- left*/
+  /* 팝업창 input div- left*/
   .popupInputAreaLeft {
     background-color:rgb(127, 127, 225);
     width: 50%;
@@ -109,7 +109,7 @@
           
   }
 
-  /* 모달창 input div - right*/
+  /* 팝업창 input div - right*/
   .popupInputAreaRight {
     background-color:rgb(130, 130, 162);
     width: 50%;
@@ -120,7 +120,7 @@
 
   }
 
-    /* 모달창 input */
+    /* 팝업창 input */
     .popupInput {
       width: 150px;
       /* height:30px; */
@@ -129,7 +129,7 @@
       font-size: 20px;
     }
 
-    /* 모달창 라벨 */
+    /* 팝업창 라벨 */
     .popupLabel {
       display: inline-block;
       width: 100px;
@@ -139,7 +139,7 @@
       vertical-align: middle; /* 나란히 배치하는 와중에 수직정렬도 가운데로 하려고 준 속성 */
     }
   
-  /* 모달창 하단 */
+  /* 팝업창 하단 */
   .popupFooter {
     /* position: absolute;
     right: 10px;
@@ -160,7 +160,7 @@
   }
 
 
-  /* 모달창 버튼 */
+  /* 팝업창 버튼 */
   .popupButtonClose {
     width: 150px;
     height: 45px;
