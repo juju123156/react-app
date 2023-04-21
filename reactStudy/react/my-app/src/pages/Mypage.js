@@ -84,7 +84,7 @@ const Mypage = (props) => {
   // 팝업창 노출 여부
   const [popupOpen, setPopupOpen] = useState(false);
   // 그리드 노출 여부
-  const [isContent, setIsContent] = useState(false);
+  const [isContent, setIsContent] = useState(true);
   // 그리드 데이터 상태체크
   const [rowData, setRowData] = useState([]);
   // 그리드 컬럼 데이터
@@ -304,16 +304,16 @@ const Mypage = (props) => {
         <SelectBox options={OPTION_EQP_OP_STAT} defaultValue=""></SelectBox>
         <SelectBox options={OPTION_JRDT_HDOFC_CD} defaultValue=""></SelectBox>
         <SelectBox options={OPTION_RDT_TEAM_ORG_CD} defaultValue=""></SelectBox>
+        <Button
+          name="조회"
+          isClicked={isClicked}
+          clickHandler={clickHandler}
+        ></Button>
+        <button onClick={popupHandler}>등록하기</button>
       </div>
-      <Button
-        name="조회"
-        isClicked={isClicked}
-        clickHandler={clickHandler}
-      ></Button>
-      <button onClick={popupHandler}>등록하기</button>
       {popupOpen && <Popup popupHandler={popupHandler} addData={addData}/>}
       <div style={{ width: "100%", textAlign: "center" }}>
-      <button onClick={clickRender}>표 보여주기</button>
+      {!isContent && <button onClick={clickRender}>표 보여주기</button>}
       {isContent && <AgGrid rowData={rowData} columnDefs={columnDefs} />}
       </div>
     </Fragment>

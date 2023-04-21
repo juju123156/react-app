@@ -23,22 +23,22 @@ import styles from "./Popup.module.css";
    , UDT_ID : ''
  });
 
- const {
-  EQP_NM
- , EQP_CL_CD
- , EQP_OP_STAT_CD
- , JRDT_HDOFC_CD
- , RDT_TEAM_ORG_CD
- , EQP_SRNO
- , MST_IP
- , LAT_CODN
- , LNG_CODN
- , OP_CHRR_ID
- , REGRT_DT
- , REGRT_ID
- , UDT_DT
- , UDT_ID
-} = inputs;
+//  const {
+//   EQP_NM
+//  , EQP_CL_CD
+//  , EQP_OP_STAT_CD
+//  , JRDT_HDOFC_CD
+//  , RDT_TEAM_ORG_CD
+//  , EQP_SRNO
+//  , MST_IP
+//  , LAT_CODN
+//  , LNG_CODN
+//  , OP_CHRR_ID
+//  , REGRT_DT
+//  , REGRT_ID
+//  , UDT_DT
+//  , UDT_ID
+// } = inputs;
 
 // 변경된 input값을 업데이트하기
 function onChange (e) {
