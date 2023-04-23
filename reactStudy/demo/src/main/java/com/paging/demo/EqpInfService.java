@@ -23,7 +23,8 @@ public class EqpInfService {
         return eqpInfMapper.getEqpInfListPaging(filterDto);
     }
 
-    // inset data
+
+    // insert data
     public int insEqpInf(EqpInfDto eqpDto) {
         return eqpInfMapper.insEqpInf(eqpDto);
     }

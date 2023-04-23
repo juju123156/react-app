@@ -41,7 +41,7 @@
                 LEFT JOIN COM_CD co4
                     ON ef.RDT_TEAM_ORG_CD  = co4.COM_CD
                     AND co4.GRP_CD = '08'
-        WHERE 1 = 1
+       <where>
         <if test="eqpName != null and eqpName != ''">
             AND ef.EQP_NM LIKE CONCAT('%',#{eqpName},'%')
         </if>
@@ -58,6 +58,10 @@
         <if test="rdtTeamOrgCd != null and rdtTeamOrgCd != ''">
             AND ef.RDT_TEAM_ORG_CD = #{rdtTeamOrgCd}
         </if>
+         <if test="EQP_ID != null and EQP_ID != ''">
+            AND ef.EQP_ID = #{EQP_ID}
+        </if>
+        </where>
     </sql>
 
     <select id="getEqpInfListPaging" resultType="EqpInfDto" >
@@ -67,8 +71,9 @@
             (
                 <include refid="getEqpInfList" />
             ) AA
-        WHERE 1 = 1
-        AND AA.num <![CDATA[ > ]]> (#{page} - 1) * #{perPageNum} AND AA.num <![CDATA[ <= ]]> #{page} * #{perPageNum}
+        <where>
+        AND AA.num &gt; (#{page} - 1) * #{perPageNum} AND AA.num &lt;= #{page} * #{perPageNum}
+        </where>
     </select>
 
     <insert id="insEqpInf">

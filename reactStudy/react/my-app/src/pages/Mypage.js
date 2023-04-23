@@ -3,12 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Fragment } from "react";
 import axios from "axios";
 import SelectBox from "../UI/SelectBox";
-import Button from "../UI/Button";
 import Popup from "../UI/Popup";
 import AgGrid from "../component/AgGrid";
-
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const OPTION_PAGENUM = [
   { value: 10, name: "10" },
@@ -79,14 +75,16 @@ const OPTION_RDT_TEAM_ORG_CD = [
 ];
 
 const Mypage = (props) => {
-  // 버튼 클릭 on off
-  const [isClicked, setIsClicked] = useState(false);
+
+  // 업데이트인지 아닌지 체크 유무
+  const [isUpdate, setIsUpdate] = useState(false);
+
+  // row 클릭 여부
+  const [clickedRowData, setClickedRowData] = useState(''); // 배열의 첫 번째 요소
+
   // 팝업창 노출 여부
   const [popupOpen, setPopupOpen] = useState(false);
-  // 그리드 노출 여부
-  const [isContent, setIsContent] = useState(true);
-  // row 클릭 여부
-  const [isClickedData, setIsClickedData] = useState(false);
+
   // 그리드 데이터 상태체크
   const [rowData, setRowData] = useState([]);
   // 그리드 컬럼 데이터
@@ -95,91 +93,91 @@ const Mypage = (props) => {
       headerName: "장비아이디",
       field: "eqp_ID",
       width: 100,
-      cellStyle: { "textAlign": "center" },
+      cellStyle: { textAlign: "center" },
     },
     {
       headerName: "장비명",
       field: "eqp_NM",
       width: 80,
-      cellStyle: { "textAlign": "left" },
+      cellStyle: { textAlign: "left" },
     },
     {
       headerName: "장비분류",
       field: "eqp_CL_CD_NM",
       width: 100,
-      cellStyle: { "textAlign": "left" },
+      cellStyle: { textAlign: "left" },
     },
     {
       headerName: "장비운용상태",
       field: "eqp_OP_STAT_CD_NM",
       width: 140,
-      cellStyle: { "textAlign": "left" },
+      cellStyle: { textAlign: "left" },
     },
     {
       headerName: "시리얼 넘버",
       field: "eqp_SRNO",
       width: 180,
-      cellStyle: { "textAlign": "center" },
+      cellStyle: { textAlign: "center" },
     },
     {
       headerName: "관할본부 조직",
       field: "jrdt_HDOFC_CD_NM",
       width: 130,
-      cellStyle: { "textAlign": "left" },
+      cellStyle: { textAlign: "left" },
     },
     {
       headerName: "관할팀 조직",
       field: "rdt_TEAM_ORG_CD_NM",
       width: 130,
-      cellStyle: { "textAlign": "left" },
+      cellStyle: { textAlign: "left" },
     },
     {
       headerName: "위도",
       field: "lat_CODN",
       width: 110,
-      cellStyle: { "textAlign": "center" },
+      cellStyle: { textAlign: "center" },
     },
     {
       headerName: "경도",
       field: "lng_CODN",
       width: 110,
-      cellStyle: { "textAlign": "center" },
+      cellStyle: { textAlign: "center" },
     },
     {
       headerName: "마스터IP",
       field: "mst_IP",
       width: 150,
-      cellStyle: { "textAlign": "center" },
+      cellStyle: { textAlign: "center" },
     },
     {
       headerName: "운용담당자 아이디",
       field: "op_CHRR_ID",
       width: 120,
-      cellStyle: { "textAlign": "left" },
+      cellStyle: { textAlign: "left" },
     },
     {
       headerName: "등록일자",
       field: "regrt_DT",
       width: 200,
-      cellStyle: { "textAlign": "center" },
+      cellStyle: { textAlign: "center" },
     },
     {
       headerName: "등록자 ID",
       field: "regrt_ID",
       width: 100,
-      cellStyle: { "textAlign": "left" },
+      cellStyle: { textAlign: "left" },
     },
     {
       headerName: "수정일자",
       field: "udt_DT",
       width: 200,
-      cellStyle: { "textAlign": "center" },
+      cellStyle: { textAlign: "center" },
     },
     {
       headerName: "수정한사람 ID",
       field: "udt_ID",
       width: 130,
-      cellStyle: { "textAlign": "left" },
+      cellStyle: { textAlign: "left" },
     },
   ]);
 
@@ -209,35 +207,34 @@ const Mypage = (props) => {
   };
   // 표 보여주기 버튼 클릭시 AgGrid에 Axio 비동기로 데이터 전송
   useEffect(loadRowData, []);
-
-
-  const clickRender = () => {
-    // console.log(content);
-    setIsContent(!isContent);
-  };
-
-  const clickHandler = (isClicked) => {
-    console.log(isClicked);
-    setIsClicked((isClicked) => !isClicked); // on off
-  };
-
-  // 팝업창 컨트롤러 
+  // 팝업창 컨트롤러
   // addData 성공시 reloadFlag 전송
   const popupHandler = (reloadFlag) => {
     setPopupOpen((popupOpen) => !popupOpen);
     if (reloadFlag) loadRowData();
+    closePopupBody();
   };
 
   // AgGrid 셀 클릭시 데이터 Popup으로 보내기
-  const updateRowDataHandler = (clickedData) => {
+  const updateRowDataHandler = (clickedRowData) => {
+    if (clickedRowData) {
+      setClickedRowData(clickedRowData);
+      // 팝업창 열기
+      popupHandler();
 
-    if(isClickedData)
-    console.log("this is mypage : " + Object.entries(clickedData));
-    // setPopupOpen(true);
-    // alert("!")
-  }
+    }
+  };
+
 
   useEffect(updateRowDataHandler, []);
+
+  const showPopupBody = () => {
+      setIsUpdate(true);
+  };
+
+  const closePopupBody = () => {
+      setIsUpdate(false);
+  };
 
   return (
     <Fragment>
@@ -248,18 +245,27 @@ const Mypage = (props) => {
         <SelectBox options={OPTION_EQP_OP_STAT} defaultValue=""></SelectBox>
         <SelectBox options={OPTION_JRDT_HDOFC_CD} defaultValue=""></SelectBox>
         <SelectBox options={OPTION_RDT_TEAM_ORG_CD} defaultValue=""></SelectBox>
-        <Button
-          name="조회"
-          isClicked={isClicked}
-          clickHandler={clickHandler}
-        ></Button>
         <button onClick={popupHandler}>등록하기</button>
       </div>
-      {popupOpen && (
-        <Popup loadRowData={loadRowData} popupHandler={popupHandler} updateRowDataHandler={updateRowDataHandler}/>
-      )}
+      {popupOpen &&
+        (
+          <Popup 
+            isUpdate={isUpdate}
+            clickedRowData={clickedRowData} 
+            loadRowData={loadRowData} 
+            popupHandler={popupHandler}
+            showPopupBody={showPopupBody}
+            name="eqp_ID" 
+            value={clickedRowData.eqp_ID}>
+            </Popup>
+        )}
       <div style={{ width: "100%", textAlign: "center" }}>
-        {isContent && <AgGrid rowData={rowData} columnDefs={columnDefs} updateRowDataHandler={updateRowDataHandler} />}
+          <AgGrid
+            rowData={rowData}
+            columnDefs={columnDefs}
+            updateRowDataHandler={updateRowDataHandler}
+            showPopupBody={showPopupBody}
+          />
       </div>
     </Fragment>
   );

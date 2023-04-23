@@ -1,11 +1,9 @@
 package com.paging.demo;
 import com.paging.demo.dto.EqpInfDto;
 import com.paging.demo.dto.FilterDto;
-// import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
@@ -38,6 +36,7 @@ public class EqpInfController {
 
         return eqpList;
     }
+
 
     @ResponseBody
     @PostMapping("/api/getEqpInfListPaging")

@@ -17,6 +17,6 @@ public class FilterDto {
       private String eqpOpStat;    // 장비상태코드
       private String jrdtHdofcCd;  // 관할본부조직코드
       private String rdtTeamOrgCd; // 관할팀조직코드
+      private String EQP_ID;       // 장비 아이디
       
-
 }
