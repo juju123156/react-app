@@ -6,6 +6,8 @@ import SelectBox from "../UI/SelectBox";
 import Popup from "../UI/Popup";
 import AgGrid from "../component/AgGrid";
 
+import styles from "./Mypage.module.css";
+
 const OPTION_PAGENUM = [
   { value: 10, name: "10" },
   { value: 100, name: "100" },
@@ -75,6 +77,9 @@ const OPTION_RDT_TEAM_ORG_CD = [
 ];
 
 const Mypage = (props) => {
+  // 셀렉트 박스에서 관할본부조직코드에 값에 따라 관할팀조직코드 노출
+  const[selJrdtCd, setSelJrdtCd] = useState('');
+
   // 업데이트인지 아닌지 체크 유무
   const [rowClickPopup, setRowClickPopup] = useState(false);
 
@@ -182,6 +187,29 @@ const Mypage = (props) => {
     },
   ]);
 
+  const edtTeamCd = {
+    all_team: [{  '플랫폼연구팀':'05', 'UI솔루션연구팀':'06', 'AI플랫폼연구팀' : '07','AI응용연구팀':'08', '기술기획팀':'09', '운용기술연구팀':'10'
+                , '텔코솔루션영업부':'12', '빅데이터솔루션 영업1부': '13', '빅데이터솔루션 영업2부':'14', '컨설팅사업팀':'15', '사업개발팀':'16'
+                , 'NI개발1팀':'18', 'NI개발2팀':'19', 'NX개발1팀':'22', 'NX개발2팀':'23', 'NX개발3팀':'24', 'NX개발4팀':'25'
+                , 'DP개발팀':'27', 'DX개발1팀':'28', 'DX개발2팀':'29', 'DX개발3팀':'30', 'DV개발1팀':'32','DV개발2팀':'33'
+                , 'OT개발팀':'35', 'OI개발팀':'36', 'OX개발팀':'37', '경영기획팀':'40', '인사총무팀':'41', 'UX팀':'42'}]
+  , jrdtCd_04: [{'플랫폼연구팀':'05','UI솔루션연구팀':'06', 'AI플랫폼연구팀' : '07','AI응용연구팀':'08', '기술기획팀':'09', '운용기술연구팀':'10'}]
+  , jrdtCd_11: [{'텔코솔루션영업부':'12', '빅데이터솔루션 영업1부': '13', '빅데이터솔루션 영업2부':'14', '컨설팅사업팀':'15', '사업개발팀':'16'}]
+  , jrdtCd_17: [{'NI개발1팀':'18', 'NI개발2팀':'19'}]
+  , jrdtCd_21: [{'NX개발1팀':'22', 'NX개발2팀':'23', 'NX개발3팀':'24', 'NX개발4팀':'25'}]
+  , jrdtCd_26: [{'DP개발팀':'27', 'DX개발1팀':'28', 'DX개발2팀':'29', 'DX개발3팀':'30'}]
+  , jrdtCd_31: [{'DV개발1팀':'32','DV개발2팀':'33'}]
+  , jrdtCd_34: [{'OT개발팀':'35', 'OI개발팀':'36', 'OX개발팀':'37'}]
+  , jrdtCd_39: [{'경영기획팀':'40', '인사총무팀':'41', 'UX팀':'42'}]
+  }
+
+  // const changeSelectBoxHandler = (e, props) => {
+  //   setSelJrdtCd(e.target.value);
+  //   if(selJrdtCd ==='04'){
+  //     return (<select value></select>);
+  //   }
+  // }
+
   // useCallback으로 함수 재용하기> setRowData를 재사용하는듯
   const loadRowData = () => {
     axios
@@ -241,33 +269,88 @@ const Mypage = (props) => {
 
   // Popup에서 update버튼 클릭 핸들러
   const updateHandler = () => {
-    
     setUpdateClicked((popupOpen) => !popupOpen);
   };
 
+  const searchHandler = () => {};
+
   return (
     <Fragment>
-      <h1>Mypage</h1>
-      <div className="searchGrid">
-        <SelectBox options={OPTION_PAGENUM}></SelectBox>
-        <SelectBox options={OPTION_EQP_CL_CD} defaultValue=""></SelectBox>
-        <SelectBox options={OPTION_EQP_OP_STAT} defaultValue=""></SelectBox>
-        <SelectBox options={OPTION_JRDT_HDOFC_CD} defaultValue=""></SelectBox>
-        <SelectBox options={OPTION_RDT_TEAM_ORG_CD} defaultValue=""></SelectBox>
+      <h3>장비관리</h3>
+      <div className={styles.searchArea}>
+        <div className={styles.searchGrid}>
+          <div className={styles.searchGrid_sm}>
+            <label
+              htmlFor="OPTION_EQP_CL_CD_SELBOX"
+              className={styles.searchLabel}
+            >
+              장비분류
+            </label>
+            <SelectBox
+              id="OPTION_EQP_CL_CD_SELBOX"
+              options={OPTION_EQP_CL_CD}
+              defaultValue=""
+            ></SelectBox>
+            <label htmlFor="UDT_ID" className={styles.searchLabel}>
+              장비명
+            </label>
+            <input id="SEARCH_EQP_NM" className={styles.searchInput} />
+          </div>
+          <div className={styles.searchGrid_sm}>
+            <label
+              htmlFor="OPTION_EQP_OP_STAT_SELBOX"
+              className={styles.searchLabel}
+            >
+              장비운용상태
+            </label>
+            <SelectBox
+              id="OPTION_EQP_OP_STAT_SELBOX"
+              options={OPTION_EQP_OP_STAT}
+              defaultValue=""
+            ></SelectBox>
+          </div>
+          <div className={styles.searchGrid_sm}>
+            <label
+              htmlFor="OPTION_JRDT_HDOFC_CD_SELBOX"
+              className={styles.searchLabel}
+            >
+              관할본부조직
+            </label>
+            <SelectBox
+              id="OPTION_JRDT_HDOFC_CD_SELBOX"
+              options={OPTION_JRDT_HDOFC_CD}
+              defaultValue=""
+            ></SelectBox>
+            <label
+              htmlFor="OPTION_RDT_TEAM_ORG_CD_SELBOX"
+              className={styles.searchLabel}
+            >
+              관할팀조직
+            </label>
+            <SelectBox
+              id="OPTION_RDT_TEAM_ORG_CD_SELBOX"
+              options={OPTION_RDT_TEAM_ORG_CD}
+              defaultValue=""
+            ></SelectBox>
+          </div>
+        </div>
+      </div>
+      <div className={styles.searchButton}>
+        <button onClick={searchHandler}>조회</button>
         <button onClick={popupHandler}>등록하기</button>
       </div>
       {popupOpen && (
-          <Popup
-            clickedRowData={clickedRowData}
-            loadRowData={loadRowData}
-            popupHandler={popupHandler}
-            rowClickPopupHandler={rowClickPopupHandler}
-            rowClickPopup={rowClickPopup}
-            resetUpdateRowDataHandler={resetUpdateRowDataHandler}
-            updateHandler={updateHandler}
-            updateClicked={updateClicked}
-            value={clickedRowData.eqp_ID}
-          ></Popup>
+        <Popup
+          clickedRowData={clickedRowData}
+          loadRowData={loadRowData}
+          popupHandler={popupHandler}
+          rowClickPopupHandler={rowClickPopupHandler}
+          rowClickPopup={rowClickPopup}
+          resetUpdateRowDataHandler={resetUpdateRowDataHandler}
+          updateHandler={updateHandler}
+          updateClicked={updateClicked}
+          value={clickedRowData.eqp_ID}
+        ></Popup>
       )}
       <div style={{ width: "100%", textAlign: "center" }}>
         <AgGrid
@@ -279,6 +362,7 @@ const Mypage = (props) => {
           updateClicked={updateClicked}
         />
       </div>
+      <SelectBox options={OPTION_PAGENUM}></SelectBox>
     </Fragment>
   );
 };
