@@ -6,7 +6,6 @@ import styles from "./Popup.module.css";
 const Popup = (props) => {
   // 구조분해 할당으로 가져옴
   const { clickedRowData } = props;
-  const [updateClicked, setUpdateClicked] = useState(false);
   const [updateSubmit, setUpdateSubmit] = useState(false);
   // Popup input값 초기화
   const [inputs, setInputs] = useState({
@@ -27,7 +26,7 @@ const Popup = (props) => {
   });
 
   // 변경된 input값을 업데이트하기
-  function onChange(e) {
+  const onChange = (e) => {
     // const regex = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
     const { name, value } = e.target;
     console.log(e.target.value);
@@ -35,9 +34,9 @@ const Popup = (props) => {
       ...inputs, // 기존의 input 객체를 복사한 뒤
       [name]: value, // name 키를 가진 값을 value로 설정해서 새로운 값으로 설정 (key:value json 형태로 만들어 axios 통신을 위해)
     });
-  }
+  };
 
-  // 팝업창에서 axios로 data insert
+  // data insert logic
   const addData = (inputs) => {
     axios({
       params: inputs,
@@ -61,12 +60,12 @@ const Popup = (props) => {
       });
   };
 
-  const updateHandler = () => {
-    setUpdateClicked(true);
-  };
+  // data update logic
+  const udtData = () => {};
 
   // 수정하기 버튼 클릭시 보여지는 popup
   function PopupBodyUpdate(props) {
+
     let eqp_ID = clickedRowData.eqp_ID;
 
     let rowDataStr = JSON.stringify(clickedRowData);
@@ -85,11 +84,21 @@ const Popup = (props) => {
           <label htmlFor="EQP_NM" className={styles.popupLabel}>
             EQP_NM
           </label>
-          <input type="text" name="EQP_NM" value={jDataVal.eqp_NM} />
+          <input
+            type="text"
+            name="EQP_NM"
+            value={jDataVal.eqp_NM}
+            onChange={onChange}
+          />
           <label htmlFor="EQP_CL_CD" className={styles.popupLabel}>
             EQP_CL_CD
           </label>
-          <input type="text" name="EQP_CL_CD" value={jDataVal.eqp_CL_CD_NM} />
+          <input
+            type="text"
+            name="EQP_CL_CD"
+            value={jDataVal.eqp_CL_CD_NM}
+            onChange={onChange}
+          />
           <label htmlFor="EQP_OP_STAT_CD" className={styles.popupLabel}>
             EQP_OP_STAT_CD
           </label>
@@ -97,6 +106,7 @@ const Popup = (props) => {
             type="text"
             name="EQP_OP_STAT_CD"
             value={jDataVal.eqp_OP_STAT_CD_NM}
+            onChange={onChange}
           />
           <label htmlFor="JRDT_HDOFC_CD" className={styles.popupLabel}>
             JRDT_HDOFC_CD
@@ -105,6 +115,7 @@ const Popup = (props) => {
             type="text"
             name="JRDT_HDOFC_CD"
             value={jDataVal.jrdt_HDOFC_CD_NM}
+            onChange={onChange}
           />
           <label htmlFor="RDT_TEAM_ORG_CD" className={styles.popupLabel}>
             RDT_TEAM_ORG_CD
@@ -113,27 +124,53 @@ const Popup = (props) => {
             type="text"
             name="RDT_TEAM_ORG_CD"
             value={jDataVal.rdt_TEAM_ORG_CD_NM}
+            onChange={onChange}
           />
           <label htmlFor="EQP_SRNO" className={styles.popupLabel}>
             EQP_SRNO
           </label>
-          <input type="text" name="EQP_SRNO" value={jDataVal.eqp_SRNO} />
+          <input
+            type="text"
+            name="EQP_SRNO"
+            value={jDataVal.eqp_SRNO}
+            onChange={onChange}
+          />
           <label htmlFor="MST_IP" className={styles.popupLabel}>
             MST_IP
           </label>
-          <input type="text" name="EQP_NM" value={jDataVal.mst_IP} />
+          <input
+            type="text"
+            name="EQP_NM"
+            value={jDataVal.mst_IP}
+            onChange={onChange}
+          />
           <label htmlFor="LAT_CODN" className={styles.popupLabel}>
             LAT_CODN
           </label>
-          <input type="text" name="LAT_CODN" value={jDataVal.lat_CODN} />
+          <input
+            type="text"
+            name="LAT_CODN"
+            value={jDataVal.lat_CODN}
+            onChange={onChange}
+          />
           <label htmlFor="LNG_CODN" className={styles.popupLabel}>
             LNG_CODN
           </label>
-          <input type="text" name="LNG_CODN" value={jDataVal.lng_CODN} />
+          <input
+            type="text"
+            name="LNG_CODN"
+            value={jDataVal.lng_CODN}
+            onChange={onChange}
+          />
           <label htmlFor="OP_CHRR_ID" className={styles.popupLabel}>
             OP_CHRR_ID
           </label>
-          <input type="text" name="OP_CHRR_ID" value={jDataVal.op_CHRR_ID} />
+          <input
+            type="text"
+            name="OP_CHRR_ID"
+            value={jDataVal.op_CHRR_ID}
+            onChange={onChange}
+          />
           <label htmlFor="REGRT_DT" className={styles.popupLabel}>
             REGRT_ID
           </label>
@@ -141,7 +178,12 @@ const Popup = (props) => {
           <label htmlFor="REGRT_ID" className={styles.popupLabel}>
             REGRT_DT
           </label>
-          <input type="text" name="REGRT_ID" value={jDataVal.regrt_ID} />
+          <input
+            type="text"
+            name="REGRT_ID"
+            value={jDataVal.regrt_ID}
+            onChange={onChange}
+          />
           <label htmlFor="UDT_DT" className={styles.popupLabel}>
             UDT_DT
           </label>
@@ -149,7 +191,12 @@ const Popup = (props) => {
           <label htmlFor="UDT_ID" className={styles.popupLabel}>
             UDT_ID
           </label>
-          <input type="text" name="UDT_ID" value={jDataVal.udt_ID} />
+          <input
+            type="text"
+            name="UDT_ID"
+            value={jDataVal.udt_ID}
+            onChange={onChange}
+          />
         </div>
       </Fragment>
     );
@@ -233,6 +280,7 @@ const Popup = (props) => {
     );
   }
 
+  // 등록하기 버튼 클릭시 보여지는 팝업
   function PopupInsert() {
     return (
       <div className={styles.popupBody}>
@@ -371,29 +419,33 @@ const Popup = (props) => {
     );
   }
 
-  const UpdateBtn = () => {
-    if (updateSubmit) {
+  const updateSubmitHandler = () => {
+    setUpdateSubmit(true);
+  };
+
+  const UpdateBtn = (props) => {
+    if (props.updateClicked) {
       return (
         <button
           className={styles.popupButtonSubmit}
-          onClick={() => updateHandler(true)}
+          onClick={() => {
+            props.popupHandler()
+          }}
         >
           저장하기
         </button>
       );
     } else {
-      
       return (
         <button
           className={styles.popupButtonSubmit}
-          onClick={() => {updateHandler(true);
-            setUpdateSubmit(true);
-          }}
+            onClick={() => {props.updateHandler()}}
         >
           수정하기
         </button>
       );
     }
+
   };
 
   return (
@@ -402,11 +454,11 @@ const Popup = (props) => {
         <div className={styles.popupHeader}>
           <span className={styles.popupHeaderSpan}>데이터 추가</span>
         </div>
-        {props.isUpdate && !updateClicked && <PopupRowData />}
-        {updateClicked && <PopupBodyUpdate />}
-        {!props.isUpdate && <PopupInsert />}
+        {props.rowClickPopup && !props.updateClicked && <PopupRowData />}
+        {props.rowClickPopup && props.updateClicked && <PopupBodyUpdate />}
+        {props.clickedRowData.length == 0 && <PopupInsert />}
         <div className={styles.popupFooter}>
-          {!props.isUpdate && (
+          {props.clickedRowData.length == 0 &&  (
             <button
               className={styles.popupButtonSubmit}
               onClick={() => addData(inputs)}
@@ -414,11 +466,12 @@ const Popup = (props) => {
               등록하기
             </button>
           )}
-          {props.isUpdate && <UpdateBtn/> }
+          {props.rowClickPopup && <UpdateBtn updateHandler={props.updateHandler} updateClicked={props.updateClicked} popupHandler={props.popupHandler}/>}
           <button
             className={styles.popupButtonClose}
             onClick={() => {
               props.popupHandler(false);
+              props.resetUpdateRowDataHandler();
             }}
           >
             닫기

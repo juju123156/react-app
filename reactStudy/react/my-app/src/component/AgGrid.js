@@ -37,7 +37,7 @@ const AgGrid = (props) => {
       .then((res) => {
         console.log(res.data);
         props.updateRowDataHandler(res.data);
-        props.showPopupBody();
+        props.rowClickPopupHandler();
 
       });
       

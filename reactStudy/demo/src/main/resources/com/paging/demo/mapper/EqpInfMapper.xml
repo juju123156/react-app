@@ -42,25 +42,25 @@
                     ON ef.RDT_TEAM_ORG_CD  = co4.COM_CD
                     AND co4.GRP_CD = '08'
        <where>
-        <if test="eqpName != null and eqpName != ''">
-            AND ef.EQP_NM LIKE CONCAT('%',#{eqpName},'%')
-        </if>
+            <if test="eqpName != null and eqpName != ''">
+                AND ef.EQP_NM LIKE CONCAT('%',#{eqpName},'%')
+            </if>
 
-        <if test="eqpClCd != null and eqpClCd != ''">
-            AND ef.EQP_CL_CD = #{eqpClCd}
-        </if>
-        <if test="eqpOpStat != null and eqpOpStat != ''">
-            AND ef.EQP_OP_STAT_CD = #{eqpOpStat}
-        </if>
-        <if test="jrdtHdofcCd != null and jrdtHdofcCd != ''">
-            AND ef.JRDT_HDOFC_CD = #{jrdtHdofcCd}
-        </if>
-        <if test="rdtTeamOrgCd != null and rdtTeamOrgCd != ''">
-            AND ef.RDT_TEAM_ORG_CD = #{rdtTeamOrgCd}
-        </if>
-         <if test="EQP_ID != null and EQP_ID != ''">
-            AND ef.EQP_ID = #{EQP_ID}
-        </if>
+            <if test="eqpClCd != null and eqpClCd != ''">
+                AND ef.EQP_CL_CD = #{eqpClCd}
+            </if>
+            <if test="eqpOpStat != null and eqpOpStat != ''">
+                AND ef.EQP_OP_STAT_CD = #{eqpOpStat}
+            </if>
+            <if test="jrdtHdofcCd != null and jrdtHdofcCd != ''">
+                AND ef.JRDT_HDOFC_CD = #{jrdtHdofcCd}
+            </if>
+            <if test="rdtTeamOrgCd != null and rdtTeamOrgCd != ''">
+                AND ef.RDT_TEAM_ORG_CD = #{rdtTeamOrgCd}
+            </if>
+            <if test="EQP_ID != null and EQP_ID != ''">
+                AND ef.EQP_ID = #{EQP_ID}
+            </if>
         </where>
     </sql>
 
@@ -72,7 +72,7 @@
                 <include refid="getEqpInfList" />
             ) AA
         <where>
-        AND AA.num &gt; (#{page} - 1) * #{perPageNum} AND AA.num &lt;= #{page} * #{perPageNum}
+            AND AA.num &gt; (#{page} - 1) * #{perPageNum} AND AA.num &lt;= #{page} * #{perPageNum}
         </where>
     </select>
 
@@ -119,5 +119,26 @@
                 , #{UDT_ID}
             );
     </insert>
+
+
+    <update id="udtEqpInf"  parameterType="string">
+        UPDATE EQP_INF
+            SET     
+              EQP_NM = #{EQP_NM}
+            , EQP_CL_CD = #{EQP_CL_CD}
+            , EQP_OP_STAT_CD = #{EQP_OP_STAT_CD}
+            , JRDT_HDOFC_CD = #{JRDT_HDOFC_CD}
+            , RDT_TEAM_ORG_CD = #{RDT_TEAM_ORG_CD}
+            , EQP_SRNO = #{EQP_SRNO}
+            , MST_IP = #{MST_IP}
+            , LAT_CODN = #{LAT_CODN}
+            , LNG_CODN = #{LNG_CODN}
+            , OP_CHRR_ID = #{OP_CHRR_ID}
+            , UDT_DT = #{UDT_DT}
+            , UDT_ID = #{UDT_ID}
+        <where>
+            EQP_ID = {#EQP_ID}
+        </where>
+    </update>
 
 </mapper>

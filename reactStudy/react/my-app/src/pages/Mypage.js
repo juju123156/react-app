@@ -75,15 +75,16 @@ const OPTION_RDT_TEAM_ORG_CD = [
 ];
 
 const Mypage = (props) => {
-
   // 업데이트인지 아닌지 체크 유무
-  const [isUpdate, setIsUpdate] = useState(false);
+  const [rowClickPopup, setRowClickPopup] = useState(false);
 
   // row 클릭 여부
-  const [clickedRowData, setClickedRowData] = useState(''); // 배열의 첫 번째 요소
+  const [clickedRowData, setClickedRowData] = useState(""); // 배열의 첫 번째 요소
 
   // 팝업창 노출 여부
   const [popupOpen, setPopupOpen] = useState(false);
+
+  const [updateClicked, setUpdateClicked] = useState(false);
 
   // 그리드 데이터 상태체크
   const [rowData, setRowData] = useState([]);
@@ -221,19 +222,27 @@ const Mypage = (props) => {
       setClickedRowData(clickedRowData);
       // 팝업창 열기
       popupHandler();
-
     }
   };
 
+  const resetUpdateRowDataHandler = () => {
+    setClickedRowData("");
+  };
 
   useEffect(updateRowDataHandler, []);
 
-  const showPopupBody = () => {
-      setIsUpdate(true);
+  const rowClickPopupHandler = () => {
+    setRowClickPopup(true);
   };
 
   const closePopupBody = () => {
-      setIsUpdate(false);
+    setRowClickPopup(false);
+  };
+
+  // Popup에서 update버튼 클릭 핸들러
+  const updateHandler = () => {
+    
+    setUpdateClicked((popupOpen) => !popupOpen);
   };
 
   return (
@@ -247,25 +256,28 @@ const Mypage = (props) => {
         <SelectBox options={OPTION_RDT_TEAM_ORG_CD} defaultValue=""></SelectBox>
         <button onClick={popupHandler}>등록하기</button>
       </div>
-      {popupOpen &&
-        (
-          <Popup 
-            isUpdate={isUpdate}
-            clickedRowData={clickedRowData} 
-            loadRowData={loadRowData} 
+      {popupOpen && (
+          <Popup
+            clickedRowData={clickedRowData}
+            loadRowData={loadRowData}
             popupHandler={popupHandler}
-            showPopupBody={showPopupBody}
-            name="eqp_ID" 
-            value={clickedRowData.eqp_ID}>
-            </Popup>
-        )}
+            rowClickPopupHandler={rowClickPopupHandler}
+            rowClickPopup={rowClickPopup}
+            resetUpdateRowDataHandler={resetUpdateRowDataHandler}
+            updateHandler={updateHandler}
+            updateClicked={updateClicked}
+            value={clickedRowData.eqp_ID}
+          ></Popup>
+      )}
       <div style={{ width: "100%", textAlign: "center" }}>
-          <AgGrid
-            rowData={rowData}
-            columnDefs={columnDefs}
-            updateRowDataHandler={updateRowDataHandler}
-            showPopupBody={showPopupBody}
-          />
+        <AgGrid
+          rowData={rowData}
+          columnDefs={columnDefs}
+          updateRowDataHandler={updateRowDataHandler}
+          rowClickPopupHandler={rowClickPopupHandler}
+          updateHandler={updateHandler}
+          updateClicked={updateClicked}
+        />
       </div>
     </Fragment>
   );

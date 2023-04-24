@@ -59,15 +59,32 @@ public class EqpInfController {
         return eqpList;
     }
     
+    // 데이터 삽입하기
     @ResponseBody
     @PostMapping("/api/insEqpInf")
     public int insEqpInf(EqpInfDto eqpDto) {
         System.out.println("*************"+ eqpDto.toString());
 
 
-        int test = eqpInfService.insEqpInf(eqpDto);
+        int result = eqpInfService.insEqpInf(eqpDto);
 
-        return test;
+        return result;
     }
+
+    // 데이터 업데이트하기
+    @ResponseBody
+    @PostMapping("/api/udtEqpInf")
+    public int udtEqpInf(EqpInfDto eqpDto, String EQP_ID) {
+        System.out.println("*************"+ eqpDto.toString());
+
+        int result = eqpInfService.udtEqpInf(eqpDto,EQP_ID);
+
+        return result;
+    }
+
+
+
+
+    
 
 }
