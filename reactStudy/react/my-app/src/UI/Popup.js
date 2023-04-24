@@ -7,6 +7,7 @@ const Popup = (props) => {
   // 구조분해 할당으로 가져옴
   const { clickedRowData } = props;
   const [updateClicked, setUpdateClicked] = useState(false);
+  const [updateSubmit, setUpdateSubmit] = useState(false);
   // Popup input값 초기화
   const [inputs, setInputs] = useState({
     EQP_NM: "",
@@ -62,7 +63,7 @@ const Popup = (props) => {
 
   const updateHandler = () => {
     setUpdateClicked(true);
-  }
+  };
 
   // 수정하기 버튼 클릭시 보여지는 popup
   function PopupBodyUpdate(props) {
@@ -154,7 +155,6 @@ const Popup = (props) => {
     );
   }
 
-
   // row 클릭했을때 보여지는 popup
   function PopupRowData(props) {
     let eqp_ID = clickedRowData.eqp_ID;
@@ -233,144 +233,168 @@ const Popup = (props) => {
     );
   }
 
-  function PopupInsert () {
+  function PopupInsert() {
     return (
       <div className={styles.popupBody}>
-          <label htmlFor="EQP_NM" className={styles.popupLabel}>
-            EQP_NM
-          </label>
-          <input
-            type="text"
-            id="EQP_NM"
-            name="EQP_NM"
-            className={styles.popupInput}
-            onChange={onChange}
-          />
+        <label htmlFor="EQP_NM" className={styles.popupLabel}>
+          EQP_NM
+        </label>
+        <input
+          type="text"
+          id="EQP_NM"
+          name="EQP_NM"
+          className={styles.popupInput}
+          onChange={onChange}
+        />
 
-          <label htmlFor="EQP_CL_CD" className={styles.popupLabel}>
-            EQP_CL_CD
-          </label>
-          <input
-            type="text"
-            id="EQP_CL_CD"
-            name="EQP_CL_CD"
-            className={styles.popupInput}
-            onChange={onChange}
-          />
+        <label htmlFor="EQP_CL_CD" className={styles.popupLabel}>
+          EQP_CL_CD
+        </label>
+        <input
+          type="text"
+          id="EQP_CL_CD"
+          name="EQP_CL_CD"
+          className={styles.popupInput}
+          onChange={onChange}
+        />
 
-          <label htmlFor="EQP_OP_STAT_CD" className={styles.popupLabel}>
-            EQP_OP_STAT_CD
-          </label>
-          <input
-            type="text"
-            id="EQP_OP_STAT_CD"
-            name="EQP_OP_STAT_CD"
-            className={styles.popupInput}
-            onChange={onChange}
-          />
+        <label htmlFor="EQP_OP_STAT_CD" className={styles.popupLabel}>
+          EQP_OP_STAT_CD
+        </label>
+        <input
+          type="text"
+          id="EQP_OP_STAT_CD"
+          name="EQP_OP_STAT_CD"
+          className={styles.popupInput}
+          onChange={onChange}
+        />
 
-          <label htmlFor="JRDT_HDOFC_CD" className={styles.popupLabel}>
-            JRDT_HDOFC_CD
-          </label>
-          <input
-            type="text"
-            id="JRDT_HDOFC_CD"
-            name="JRDT_HDOFC_CD"
-            className={styles.popupInput}
-            onChange={onChange}
-          />
+        <label htmlFor="JRDT_HDOFC_CD" className={styles.popupLabel}>
+          JRDT_HDOFC_CD
+        </label>
+        <input
+          type="text"
+          id="JRDT_HDOFC_CD"
+          name="JRDT_HDOFC_CD"
+          className={styles.popupInput}
+          onChange={onChange}
+        />
 
-          <label htmlFor="RDT_TEAM_ORG_CD" className={styles.popupLabel}>
-            RDT_TEAM_ORG_CD
-          </label>
-          <input
-            type="text"
-            id="RDT_TEAM_ORG_CD"
-            name="RDT_TEAM_ORG_CD"
-            className={styles.popupInput}
-            onChange={onChange}
-          />
+        <label htmlFor="RDT_TEAM_ORG_CD" className={styles.popupLabel}>
+          RDT_TEAM_ORG_CD
+        </label>
+        <input
+          type="text"
+          id="RDT_TEAM_ORG_CD"
+          name="RDT_TEAM_ORG_CD"
+          className={styles.popupInput}
+          onChange={onChange}
+        />
 
-          <label htmlFor="EQP_SRNO" className={styles.popupLabel}>
-            EQP_SRNO
-          </label>
-          <input
-            type="text"
-            id="EQP_SRNO"
-            name="EQP_SRNO"
-            className={styles.popupInput}
-            onChange={onChange}
-          />
+        <label htmlFor="EQP_SRNO" className={styles.popupLabel}>
+          EQP_SRNO
+        </label>
+        <input
+          type="text"
+          id="EQP_SRNO"
+          name="EQP_SRNO"
+          className={styles.popupInput}
+          onChange={onChange}
+        />
 
-          <label htmlFor="MST_IP" className={styles.popupLabel}>
-            MST_IP
-          </label>
-          <input
-            type="text"
-            id="MST_IP"
-            name="MST_IP"
-            className={styles.popupInput}
-            onChange={onChange}
-          />
+        <label htmlFor="MST_IP" className={styles.popupLabel}>
+          MST_IP
+        </label>
+        <input
+          type="text"
+          id="MST_IP"
+          name="MST_IP"
+          className={styles.popupInput}
+          onChange={onChange}
+        />
 
-          <label htmlFor="LAT_CODN" className={styles.popupLabel}>
-            LAT_CODN
-          </label>
-          <input
-            type="number"
-            id="LAT_CODN"
-            name="LAT_CODN"
-            className={styles.popupInput}
-            onChange={onChange}
-          />
+        <label htmlFor="LAT_CODN" className={styles.popupLabel}>
+          LAT_CODN
+        </label>
+        <input
+          type="number"
+          id="LAT_CODN"
+          name="LAT_CODN"
+          className={styles.popupInput}
+          onChange={onChange}
+        />
 
-          <label htmlFor="LNG_CODN" className={styles.popupLabel}>
-            LNG_CODN
-          </label>
-          <input
-            type="number"
-            id="LNG_CODN"
-            name="LNG_CODN"
-            className={styles.popupInput}
-            onChange={onChange}
-          />
+        <label htmlFor="LNG_CODN" className={styles.popupLabel}>
+          LNG_CODN
+        </label>
+        <input
+          type="number"
+          id="LNG_CODN"
+          name="LNG_CODN"
+          className={styles.popupInput}
+          onChange={onChange}
+        />
 
-          <label htmlFor="OP_CHRR_ID" className={styles.popupLabel}>
-            OP_CHRR_ID
-          </label>
-          <input
-            type="text"
-            id="OP_CHRR_ID"
-            name="OP_CHRR_ID"
-            className={styles.popupInput}
-            onChange={onChange}
-          />
+        <label htmlFor="OP_CHRR_ID" className={styles.popupLabel}>
+          OP_CHRR_ID
+        </label>
+        <input
+          type="text"
+          id="OP_CHRR_ID"
+          name="OP_CHRR_ID"
+          className={styles.popupInput}
+          onChange={onChange}
+        />
 
-          <label htmlFor="REGRT_ID" className={styles.popupLabel}>
-            REGRT_ID
-          </label>
-          <input
-            type="text"
-            id="REGRT_ID"
-            name="REGRT_ID"
-            className={styles.popupInput}
-            onChange={onChange}
-          />
+        <label htmlFor="REGRT_ID" className={styles.popupLabel}>
+          REGRT_ID
+        </label>
+        <input
+          type="text"
+          id="REGRT_ID"
+          name="REGRT_ID"
+          className={styles.popupInput}
+          onChange={onChange}
+        />
 
-          <label htmlFor="UDT_ID" className={styles.popupLabel}>
-            UDT_ID
-          </label>
-          <input
-            type="text"
-            id="UDT_ID"
-            name="UDT_ID"
-            className={styles.popupInput}
-            onChange={onChange}
-          />
-        </div>
-    )
+        <label htmlFor="UDT_ID" className={styles.popupLabel}>
+          UDT_ID
+        </label>
+        <input
+          type="text"
+          id="UDT_ID"
+          name="UDT_ID"
+          className={styles.popupInput}
+          onChange={onChange}
+        />
+      </div>
+    );
   }
 
+  const UpdateBtn = () => {
+    if (updateSubmit) {
+      return (
+        <button
+          className={styles.popupButtonSubmit}
+          onClick={() => updateHandler(true)}
+        >
+          저장하기
+        </button>
+      );
+    } else {
+      
+      return (
+        <button
+          className={styles.popupButtonSubmit}
+          onClick={() => {updateHandler(true);
+            setUpdateSubmit(true);
+          }}
+        >
+          수정하기
+        </button>
+      );
+    }
+  };
 
   return (
     <div className={styles.background}>
@@ -380,20 +404,17 @@ const Popup = (props) => {
         </div>
         {props.isUpdate && !updateClicked && <PopupRowData />}
         {updateClicked && <PopupBodyUpdate />}
-        {!props.isUpdate && <PopupInsert/>}
+        {!props.isUpdate && <PopupInsert />}
         <div className={styles.popupFooter}>
-         {!props.isUpdate && <button
-            className={styles.popupButtonSubmit}
-            onClick={() => addData(inputs)}
-          >
-            등록하기
-          </button>}
-          {props.isUpdate && <button
-            className={styles.popupButtonSubmit}
-            onClick={() => updateHandler(true)}
-          >
-            수정하기
-          </button>}
+          {!props.isUpdate && (
+            <button
+              className={styles.popupButtonSubmit}
+              onClick={() => addData(inputs)}
+            >
+              등록하기
+            </button>
+          )}
+          {props.isUpdate && <UpdateBtn/> }
           <button
             className={styles.popupButtonClose}
             onClick={() => {
