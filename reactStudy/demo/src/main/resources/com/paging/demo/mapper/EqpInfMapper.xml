@@ -121,7 +121,7 @@
     </insert>
 
 
-    <update id="udtEqpInf"  parameterType="string">
+    <update id="udtEqpInf" >
         UPDATE EQP_INF
             SET     
               EQP_NM = #{EQP_NM}
@@ -137,7 +137,7 @@
             , UDT_DT = #{UDT_DT}
             , UDT_ID = #{UDT_ID}
         <where>
-            EQP_ID = {#EQP_ID}
+            EQP_ID = #{EQP_ID}
         </where>
     </update>
 

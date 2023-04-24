@@ -78,7 +78,13 @@ const OPTION_RDT_TEAM_ORG_CD = [
 
 const Mypage = (props) => {
   // 셀렉트 박스에서 관할본부조직코드에 값에 따라 관할팀조직코드 노출
-  const[selJrdtCd, setSelJrdtCd] = useState('');
+  // const[selJrdtCd, setSelJrdtCd] = useState('');
+  // const[selRdtTeamCd, setSelRdtTeamCd] = useState('');
+  // 셀렉트 박스 상태
+  const [selectValues, setSelectValues] = useState(["", "", "", "",""]);
+
+  //input창 (장비명) 상태
+  const [inputEpqNm, setInputEpqNm] = useState("");
 
   // 업데이트인지 아닌지 체크 유무
   const [rowClickPopup, setRowClickPopup] = useState(false);
@@ -187,28 +193,97 @@ const Mypage = (props) => {
     },
   ]);
 
-  const edtTeamCd = {
-    all_team: [{  '플랫폼연구팀':'05', 'UI솔루션연구팀':'06', 'AI플랫폼연구팀' : '07','AI응용연구팀':'08', '기술기획팀':'09', '운용기술연구팀':'10'
-                , '텔코솔루션영업부':'12', '빅데이터솔루션 영업1부': '13', '빅데이터솔루션 영업2부':'14', '컨설팅사업팀':'15', '사업개발팀':'16'
-                , 'NI개발1팀':'18', 'NI개발2팀':'19', 'NX개발1팀':'22', 'NX개발2팀':'23', 'NX개발3팀':'24', 'NX개발4팀':'25'
-                , 'DP개발팀':'27', 'DX개발1팀':'28', 'DX개발2팀':'29', 'DX개발3팀':'30', 'DV개발1팀':'32','DV개발2팀':'33'
-                , 'OT개발팀':'35', 'OI개발팀':'36', 'OX개발팀':'37', '경영기획팀':'40', '인사총무팀':'41', 'UX팀':'42'}]
-  , jrdtCd_04: [{'플랫폼연구팀':'05','UI솔루션연구팀':'06', 'AI플랫폼연구팀' : '07','AI응용연구팀':'08', '기술기획팀':'09', '운용기술연구팀':'10'}]
-  , jrdtCd_11: [{'텔코솔루션영업부':'12', '빅데이터솔루션 영업1부': '13', '빅데이터솔루션 영업2부':'14', '컨설팅사업팀':'15', '사업개발팀':'16'}]
-  , jrdtCd_17: [{'NI개발1팀':'18', 'NI개발2팀':'19'}]
-  , jrdtCd_21: [{'NX개발1팀':'22', 'NX개발2팀':'23', 'NX개발3팀':'24', 'NX개발4팀':'25'}]
-  , jrdtCd_26: [{'DP개발팀':'27', 'DX개발1팀':'28', 'DX개발2팀':'29', 'DX개발3팀':'30'}]
-  , jrdtCd_31: [{'DV개발1팀':'32','DV개발2팀':'33'}]
-  , jrdtCd_34: [{'OT개발팀':'35', 'OI개발팀':'36', 'OX개발팀':'37'}]
-  , jrdtCd_39: [{'경영기획팀':'40', '인사총무팀':'41', 'UX팀':'42'}]
-  }
+  const rdtTeamCd = [
+    {
+      all_team: [
+        { name: "플랫폼연구팀", value: "05" },
+        { name: "UI솔루션연구팀", value: "06" },
+        { name: "AI플랫폼연구팀", value: "07" },
+        { name: "AI응용연구팀", value: "08" },
+        { name: "기술기획팀", value: "09" },
+        { name: "운용기술연구팀", value: "10" },
+        { name: "텔코솔루션영업부", value: "12" },
+        { name: "빅데이터솔루션 영업1부", value: "13" },
+        { name: "빅데이터솔루션 영업2부", value: "14" },
+        { name: "컨설팅사업팀", value: "15" },
+        { name: "사업개발팀", value: "16" },
+        { name: "NI개발1팀", value: "18" },
+        { name: "NI개발2팀", value: "19" },
+        { name: "NX개발1팀", value: "22" },
+        { name: "NX개발2팀", value: "23" },
+        { name: "NX개발3팀", value: "24" },
+        { name: "NX개발4팀", value: "25" },
+        { name: "DP개발팀", value: "27" },
+        { name: "DX개발1팀", value: "28" },
+        { name: "DX개발2팀", value: "29" },
+        { name: "DX개발3팀", value: "30" },
+        { name: "DV개발1팀", value: "32" },
+        { name: "DV개발2팀", value: "33" },
+        { name: "OT개발팀", value: "35" },
+        { name: "OI개발팀", value: "36" },
+        { name: "OX개발팀", value: "37" },
+        { name: "경영기획팀", value: "40" },
+        { name: "인사총무팀", value: "41" },
+        { name: "UX팀", value: "42" },
+      ],
+      jrdtCd_04: [
+        { name: "플랫폼연구팀", value: "05" },
+        { name: "UI솔루션연구팀", value: "06" },
+        { name: "AI플랫폼연구팀", value: "07" },
+        { name: "AI응용연구팀", value: "08" },
+        { name: "기술기획팀", value: "09" },
+        { name: "운용기술연구팀", value: "10" },
+      ],
+      jrdtCd_11: [
+        { name: "텔코솔루션영업부", value: "12" },
+        { name: "빅데이터솔루션 영업1부", value: "13" },
+        { name: "빅데이터솔루션 영업2부", value: "14" },
+        { name: "컨설팅사업팀", value: "15" },
+        { name: "사업개발팀", value: "16" },
+      ],
+      jrdtCd_17: [
+        { name: "NI개발1팀", value: "18" },
+        { name: "NI개발2팀", value: "19" },
+      ],
+      jrdtCd_21: [
+        { name: "NX개발1팀", value: "22" },
+        { name: "NX개발2팀", value: "23" },
+        { name: "NX개발3팀", value: "24" },
+        { name: "NX개발4팀", value: "25" },
+      ],
+      jrdtCd_26: [
+        { name: "DP개발팀", value: "27" },
+        { name: "DX개발1팀", value: "28" },
+        { name: "DX개발2팀", value: "29" },
+        { name: "DX개발3팀", value: "30" },
+      ],
+      jrdtCd_31: [
+        { name: "DV개발1팀", value: "32" },
+        { name: "DV개발2팀", value: "33" },
+      ],
+      jrdtCd_34: [
+        { name: "OT개발팀", value: "35" },
+        { name: "OI개발팀", value: "36" },
+        { name: "OX개발팀", value: "37" },
+      ],
+      jrdtCd_39: [
+        { name: "경영기획팀", value: "40" },
+        { name: "인사총무팀", value: "41" },
+        { name: "UX팀", value: "42" },
+      ],
+    },
+  ];
 
-  // const changeSelectBoxHandler = (e, props) => {
-  //   setSelJrdtCd(e.target.value);
-  //   if(selJrdtCd ==='04'){
-  //     return (<select value></select>);
-  //   }
-  // }
+  const selectBoxOnChange = (idx, e) => {
+    if(!idx)
+    return;
+    console.log(e.target.value);
+    const value = e.target;
+    const name = e.target.options[e.target.idx];
+    const newSelectValues = {...selectValues};
+    newSelectValues[idx] = e.target.value;
+    setSelectValues({ ...newSelectValues, [name]: value });
+  };
 
   // useCallback으로 함수 재용하기> setRowData를 재사용하는듯
   const loadRowData = () => {
@@ -272,7 +347,20 @@ const Mypage = (props) => {
     setUpdateClicked((popupOpen) => !popupOpen);
   };
 
-  const searchHandler = () => {};
+  // 변경된 input값을 업데이트하기
+  const onChangeInput = (e) => {
+    const { name, value } = e.target;
+    console.log(e.target.value);
+    setInputEpqNm({
+      ...inputEpqNm, // 기존의 input 객체를 복사한 뒤
+      [name]: value, // name 키를 가진 값을 value로 설정해서 새로운 값으로 설정 (key:value json 형태로 만들어 axios 통신을 위해)
+    });
+  };
+
+  const searchHandler = (selectValues) => {
+    // console.log("params : " + JSON.stringify(selectValues), inputEpqNm);
+    console.log("params : " + JSON.stringify(selectValues), inputEpqNm);
+  };
 
   return (
     <Fragment>
@@ -287,14 +375,23 @@ const Mypage = (props) => {
               장비분류
             </label>
             <SelectBox
+              idx={0}
+              value={selectValues}
+              name="EQP_CL_CD"
               id="OPTION_EQP_CL_CD_SELBOX"
               options={OPTION_EQP_CL_CD}
               defaultValue=""
+              selectBoxOnChange={selectBoxOnChange}
+              selectValues={selectValues}
             ></SelectBox>
             <label htmlFor="UDT_ID" className={styles.searchLabel}>
               장비명
             </label>
-            <input id="SEARCH_EQP_NM" className={styles.searchInput} />
+            <input
+              name="EQP_NM"
+              className={styles.searchInput}
+              onChange={(e) => onChangeInput(e)}
+            />
           </div>
           <div className={styles.searchGrid_sm}>
             <label
@@ -304,9 +401,14 @@ const Mypage = (props) => {
               장비운용상태
             </label>
             <SelectBox
+              idx={1}
+              name="EQP_OP_STAT"
+              value={selectValues}
               id="OPTION_EQP_OP_STAT_SELBOX"
               options={OPTION_EQP_OP_STAT}
               defaultValue=""
+              selectBoxOnChange={selectBoxOnChange}
+              selectValues={selectValues}
             ></SelectBox>
           </div>
           <div className={styles.searchGrid_sm}>
@@ -317,9 +419,14 @@ const Mypage = (props) => {
               관할본부조직
             </label>
             <SelectBox
+              idx={2}
+              name="JRDT_HDOFC_CD"
+              value={selectValues}
               id="OPTION_JRDT_HDOFC_CD_SELBOX"
               options={OPTION_JRDT_HDOFC_CD}
               defaultValue=""
+              selectBoxOnChange={selectBoxOnChange}
+              selectValues={selectValues}
             ></SelectBox>
             <label
               htmlFor="OPTION_RDT_TEAM_ORG_CD_SELBOX"
@@ -328,16 +435,21 @@ const Mypage = (props) => {
               관할팀조직
             </label>
             <SelectBox
+              idx={3}
+              name="RDT_TEAM_ORG_CD"
+              value={selectValues}
               id="OPTION_RDT_TEAM_ORG_CD_SELBOX"
               options={OPTION_RDT_TEAM_ORG_CD}
               defaultValue=""
+              selectBoxOnChange={selectBoxOnChange}
+              selectValues={selectValues}
             ></SelectBox>
           </div>
         </div>
       </div>
       <div className={styles.searchButton}>
-        <button onClick={searchHandler}>조회</button>
-        <button onClick={popupHandler}>등록하기</button>
+        <button onClick={() => searchHandler(selectValues)}>조회</button>
+        <button onClick={()=> popupHandler(false)}>등록하기</button>
       </div>
       {popupOpen && (
         <Popup
@@ -362,7 +474,15 @@ const Mypage = (props) => {
           updateClicked={updateClicked}
         />
       </div>
-      <SelectBox options={OPTION_PAGENUM}></SelectBox>
+      <SelectBox
+        idx={4}
+        name="perPageNum"
+        value={selectValues}
+        options={OPTION_PAGENUM}
+        selectBoxOnChange={selectBoxOnChange}
+        selectValues={selectValues}
+        defaultValue={10}
+      ></SelectBox>
     </Fragment>
   );
 };

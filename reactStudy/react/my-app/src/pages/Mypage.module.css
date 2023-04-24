@@ -1,6 +1,5 @@
 
-
-.searchArea {
+  .searchArea {
     display: flex;
     align-items: center;
     place-items: center;
@@ -10,9 +9,9 @@
     justify-content: center;
 
     border-radius: 10px;
-}
+  }
 
-.searchGrid {
+  .searchGrid {
     display: grid;
     grid-template-columns: 400px 400px 400px;
     grid-auto-rows: min-content;
@@ -20,49 +19,43 @@
     width: 1400px;
     place-items: center;
     grid-gap: 100px;
-    margin:20px 00px 20px 0px
-    
-}
+    margin: 20px 00px 20px 0px;
+  }
 
-
-.searchGrid_sm {
+  .searchGrid_sm {
     display: grid;
-    grid-template-columns:  150px 200px;
+    grid-template-columns: 150px 200px;
     grid-row-gap: 6px;
     grid-auto-rows: min-content;
-    
- 
-}
+  }
 
-/* 팝업창 input */
-.searchInput {
+  /* 팝업창 input */
+  .searchInput {
     width: 200px;
     /* height:30px; */
-    margin:auto;
+    margin: auto;
     display: block;
     font-size: 20px;
-    }
+  }
 
-    /* 팝업창 라벨 */
-    .searchLabel {
+  /* 팝업창 라벨 */
+  .searchLabel {
     display: inline-block;
     width: 100px;
-    height:30px;
-    margin:auto;
+    height: 30px;
+    margin: auto;
     font-size: 15px;
     vertical-align: middle; /* 나란히 배치하는 와중에 수직정렬도 가운데로 하려고 준 속성 */
-    }
+  }
 
-/* searchButton */
-.searchButton {
+  /* searchButton */
+  .searchButton {
     display: grid;
 
     grid-template-columns: 150px 150px;
-    grid-template-rows: repeat(1,30px);
+    grid-template-rows: repeat(1, 30px);
     grid-column-gap: 40px;
     place-content: center;
     padding: 20px;
-}
-
-
+  }
 

@@ -64,7 +64,6 @@ const AgGrid = (props) => {
           ref={gridRef}
           rowSelection={'single'}
           onSelectionChanged={onSelectionChanged}
-          // clickedRowData = {clickedRowData}
         >
         </AgGridReact>
       </div>
