@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect} from "react";
+import React, { Fragment, useState, useEffect } from "react";
 
 import axios from "axios";
 import styles from "./Popup.module.css";
@@ -60,190 +60,44 @@ const Popup = (props) => {
       });
   };
 
-
-  // data update logic
-  const udtData = (inputs,eqp_ID) => {
-    axios({
-      params: inputs,eqp_ID,
-      method: "post",
-      url: "/api/udtEqpInf",
-      // header에서 JSON 타입의 데이터라는 것을 명시
-      headers: { "Content-type": "application/json" },
-      // 추가
-      "Access-Control-Allow-Origin": `http://localhost:8080`,
-      "Access-Control-Allow-Credentials": "true",
-    })
-      .then((res) => {
-        alert("성공");
-        // Aggrid reload 여부
-        let reloadFlag = true;
-        props.popupHandler(reloadFlag);
-      })
-      .catch((error) => {
-        console.log("실패");
-        console.log(error);
-      });
-  };
-
-
-  // 수정하기 버튼 클릭시 보여지는 popup
-  function PopupBodyUpdate(props) {
-    // 변경된 input값을 업데이트하기
-    const onChange = (e) => {
-      const { name, value } = e.target;
-      console.log(e.target.value);
-      setInputs({
-        ...inputs,
-        [name]: value,
-      });
-    };
-
-    let eqp_ID = clickedRowData.eqp_ID;
-
+    // upate 데이터 받아오기
     let rowDataStr = JSON.stringify(clickedRowData);
     let jData = JSON.parse(rowDataStr);
     let jDataVal = "";
     for (let i = 0; i < jData.length; i++) {
       jDataVal = jData[i];
     }
-    const [inputs, setInputs] = useState(jDataVal);
-    setInputHandler(clickedRowData);
 
-    props.sendUpdateData(inputs,eqp_ID);
-    return (
-      <Fragment>
-        <div className={styles.popupBody}>
-          <label htmlFor="EQP_ID" className={styles.popupLabel}>
-            EQP_ID
-          </label>
-          <span>{jDataVal.eqp_ID}</span>
-          <label htmlFor="EQP_NM" className={styles.popupLabel}>
-            EQP_NM
-          </label>
-          <input
-            type="text"
-            name="EQP_NM"
-            defaultValue={jDataVal.eqp_NM}
-            onChange={onChange}
-          />
-          <label htmlFor="EQP_CL_CD" className={styles.popupLabel}>
-            EQP_CL_CD
-          </label>
-          <input
-            type="text"
-            name="EQP_CL_CD"
-            defaultValue={jDataVal.eqp_CL_CD_NM}
-            onChange={onChange}
-          />
-          <label htmlFor="EQP_OP_STAT_CD" className={styles.popupLabel}>
-            EQP_OP_STAT_CD
-          </label>
-          <input
-            type="text"
-            name="EQP_OP_STAT_CD"
-            defaultValue={jDataVal.eqp_OP_STAT_CD_NM}
-            onChange={onChange}
-          />
-          <label htmlFor="JRDT_HDOFC_CD" className={styles.popupLabel}>
-            JRDT_HDOFC_CD
-          </label>
-          <input
-            type="text"
-            name="JRDT_HDOFC_CD"
-            defaultValue={jDataVal.jrdt_HDOFC_CD_NM}
-            onChange={onChange}
-          />
-          <label htmlFor="RDT_TEAM_ORG_CD" className={styles.popupLabel}>
-            RDT_TEAM_ORG_CD
-          </label>
-          <input
-            type="text"
-            name="RDT_TEAM_ORG_CD"
-            defaultValue={jDataVal.rdt_TEAM_ORG_CD_NM}
-            onChange={onChange}
-          />
-          <label htmlFor="EQP_SRNO" className={styles.popupLabel}>
-            EQP_SRNO
-          </label>
-          <input
-            type="text"
-            name="EQP_SRNO"
-            defaultValue={jDataVal.eqp_SRNO}
-            onChange={onChange}
-          />
-          <label htmlFor="MST_IP" className={styles.popupLabel}>
-            MST_IP
-          </label>
-          <input
-            type="text"
-            name="EQP_NM"
-            defaultValue={jDataVal.mst_IP}
-            onChange={onChange}
-          />
-          <label htmlFor="LAT_CODN" className={styles.popupLabel}>
-            LAT_CODN
-          </label>
-          <input
-            type="text"
-            name="LAT_CODN"
-            defaultValue={jDataVal.lat_CODN}
-            onChange={onChange}
-          />
-          <label htmlFor="LNG_CODN" className={styles.popupLabel}>
-            LNG_CODN
-          </label>
-          <input
-            type="text"
-            name="LNG_CODN"
-            defaultValue={jDataVal.lng_CODN}
-            onChange={onChange}
-          />
-          <label htmlFor="OP_CHRR_ID" className={styles.popupLabel}>
-            OP_CHRR_ID
-          </label>
-          <input
-            type="text"
-            name="OP_CHRR_ID"
-            defaultValue={jDataVal.op_CHRR_ID}
-            onChange={onChange}
-          />
-          <label htmlFor="REGRT_DT" className={styles.popupLabel}>
-            REGRT_ID
-          </label>
-          <span>{jDataVal.regrt_DT}</span>
-          <label htmlFor="REGRT_ID" className={styles.popupLabel}>
-            REGRT_DT
-          </label>
-          <input
-            type="text"
-            name="REGRT_ID"
-            defaultValue={jDataVal.regrt_ID}
-            onChange={onChange}
-          />
-          <label htmlFor="UDT_DT" className={styles.popupLabel}>
-            UDT_DT
-          </label>
-          <span>{jDataVal.udt_DT} </span>
-          <label htmlFor="UDT_ID" className={styles.popupLabel}>
-            UDT_ID
-          </label>
-          <input
-            type="text"
-            name="UDT_ID"
-            defaultValue={jDataVal.udt_ID}
-            onChange={onChange}
-          />
-        </div>
-      </Fragment>
-    );
-  }
+    // data update logic
+    const udtData = (inputs) => {
+  
+      axios({
+        params: inputs,
+        method: "post",
+        url: "/api/udtEqpInf",
+        // header에서 JSON 타입의 데이터라는 것을 명시
+        headers: { "Content-type": "application/json" },
+        // 추가
+        "Access-Control-Allow-Origin": `http://localhost:8080`,
+        "Access-Control-Allow-Credentials": "true",
+      })
+        .then((res) => {
+          alert("성공");
+          // Aggrid reload 여부
+          let reloadFlag = true;
+          props.popupHandler(reloadFlag);
+        })
+        .catch((error) => {
+          console.log("실패");
+          console.log(error);
+        });
+    };
+    
+  
 
-  const sendUpdateData = (inputs,eqp_ID) =>{
-    console.log(inputs+", "+eqp_ID)
-  }
+  const sendUpdateData = (inputs) => {};
 
-
-  useEffect(sendUpdateData,[]);
+  useEffect(sendUpdateData, []);
 
   // row 클릭했을때 보여지는 popup
   function PopupRowData(props) {
@@ -319,6 +173,26 @@ const Popup = (props) => {
           </label>
           <span>{jDataVal.udt_ID}</span>
         </div>
+        <div className={styles.popupFooter}>
+          <button
+            className={styles.popupButtonSubmit}
+            onClick={() => {
+              props.updateOnHandler();
+            }}
+          >
+            수정하기
+          </button>
+          <button
+            className={styles.popupButtonClose}
+            onClick={() => {
+              props.popupHandler(false);
+              props.resetUpdateRowDataHandler();
+              props.updateOffHandler();
+            }}
+          >
+            닫기
+          </button>
+        </div>
       </Fragment>
     );
   }
@@ -326,33 +200,6 @@ const Popup = (props) => {
   // 수정하기 페이지에서 데이터 업데이트
   const updateSubmitHandler = () => {
     setUpdateSubmit(true);
-  };
-
-  const UpdateBtn = (props) => {
-    if (props.updateClicked) {
-      return (
-        <button
-          className={styles.popupButtonSubmit}
-          onClick={() => {
-            props.popupHandler();
-            props.udtData(props.inputs);
-          }}
-        >
-          저장하기
-        </button>
-      );
-    } else {
-      return (
-        <button
-          className={styles.popupButtonSubmit}
-          onClick={() => {
-            props.updateHandler();
-          }}
-        >
-          수정하기
-        </button>
-      );
-    }
   };
 
   const setInputHandler = (inputs) => {
@@ -365,13 +212,161 @@ const Popup = (props) => {
         <div className={styles.popupHeader}>
           <span className={styles.popupHeaderSpan}>데이터 추가</span>
         </div>
-        {props.rowClickPopup && !props.updateClicked && <PopupRowData />}
-        {props.rowClickPopup && props.updateClicked && (
-          <PopupBodyUpdate
-            onChange={onChange}
-            setInputHandler={setInputHandler}
-            sendUpdateData={sendUpdateData}
+        {props.rowClickPopup && !props.updateClicked && (
+          <PopupRowData
+            updateOnHandler={props.updateOnHandler}
+            updateOffHandler={props.updateOffHandler}
+            popupHandler={props.popupHandler}
+            resetUpdateRowDataHandler={props.resetUpdateRowDataHandler}
           />
+        )}
+        {props.rowClickPopup && props.updateClicked && (
+          <Fragment>
+        <div className={styles.popupBody}>
+          <label htmlFor="EQP_ID" className={styles.popupLabel}>
+            EQP_ID
+          </label>
+          <span>{jDataVal.eqp_ID}</span>
+          <label htmlFor="EQP_NM" className={styles.popupLabel}>
+            EQP_NM
+          </label>
+          <input
+            type="text"
+            name="EQP_NM"
+            defaultValue={jDataVal.eqp_NM}
+            onChange={onChange}
+          />
+          <label htmlFor="EQP_CL_CD" className={styles.popupLabel}>
+            EQP_CL_CD
+          </label>
+          <input
+            type="text"
+            name="EQP_CL_CD"
+            defaultValue={jDataVal.eqp_CL_CD_NM}
+            onChange={onChange}
+          />
+          <label htmlFor="EQP_OP_STAT_CD" className={styles.popupLabel}>
+            EQP_OP_STAT_CD
+          </label>
+          <input
+            type="text"
+            name="EQP_OP_STAT_CD"
+            defaultValue={jDataVal.eqp_OP_STAT_CD_NM}
+            onChange={onChange}
+          />
+          <label htmlFor="JRDT_HDOFC_CD" className={styles.popupLabel}>
+            JRDT_HDOFC_CD
+          </label>
+          <input
+            type="text"
+            name="JRDT_HDOFC_CD"
+            defaultValue={jDataVal.jrdt_HDOFC_CD_NM}
+            onChange={onChange}
+          />
+          <label htmlFor="RDT_TEAM_ORG_CD" className={styles.popupLabel}>
+            RDT_TEAM_ORG_CD
+          </label>
+          <input
+            type="text"
+            name="RDT_TEAM_ORG_CD"
+            defaultValue={jDataVal.rdt_TEAM_ORG_CD_NM}
+            onChange={onChange}
+          />
+          <label htmlFor="EQP_SRNO" className={styles.popupLabel}>
+            EQP_SRNO
+          </label>
+          <input
+            type="text"
+            name="EQP_SRNO"
+            defaultValue={jDataVal.eqp_SRNO}
+            onChange={onChange}
+          />
+          <label htmlFor="MST_IP" className={styles.popupLabel}>
+            MST_IP
+          </label>
+          <input
+            type="text"
+            name="EQP_NM"
+            defaultValue={jDataVal.mst_IP}
+            onChange={onChange}
+          />
+          <label htmlFor="LAT_CODN" className={styles.popupLabel}>
+            LAT_CODN
+          </label>
+          <input
+            type="number"
+            name="LAT_CODN"
+            defaultValue={jDataVal.lat_CODN}
+            onChange={onChange}
+          />
+          <label htmlFor="LNG_CODN" className={styles.popupLabel}>
+            LNG_CODN
+          </label>
+          <input
+            type="number"
+            name="LNG_CODN"
+            defaultValue={jDataVal.lng_CODN}
+            onChange={onChange}
+          />
+          <label htmlFor="OP_CHRR_ID" className={styles.popupLabel}>
+            OP_CHRR_ID
+          </label>
+          <input
+            type="text"
+            name="OP_CHRR_ID"
+            defaultValue={jDataVal.op_CHRR_ID}
+            onChange={onChange}
+          />
+          <label htmlFor="REGRT_DT" className={styles.popupLabel}>
+            REGRT_ID
+          </label>
+          <span>{jDataVal.regrt_DT}</span>
+          <label htmlFor="REGRT_ID" className={styles.popupLabel}>
+            REGRT_DT
+          </label>
+          <input
+            type="text"
+            name="REGRT_ID"
+            defaultValue={jDataVal.regrt_ID}
+            onChange={onChange}
+          />
+          <label htmlFor="UDT_DT" className={styles.popupLabel}>
+            UDT_DT
+          </label>
+          <span>{jDataVal.udt_DT} </span>
+          <label htmlFor="UDT_ID" className={styles.popupLabel}>
+            UDT_ID
+          </label>
+          <input
+            type="text"
+            name="UDT_ID"
+            defaultValue={jDataVal.udt_ID}
+            onChange={onChange}
+          />
+        </div>
+        <div className={styles.popupFooter}>
+          <button
+            className={styles.popupButtonSubmit}
+            onClick={() => {
+              props.popupHandler();
+              props.updateOffHandler();
+              udtData(inputs);
+            }}
+          >
+            저장하기
+          </button>
+          <button
+            className={styles.popupButtonClose}
+            onClick={() => {
+              props.popupHandler(false);
+              props.resetUpdateRowDataHandler();
+              props.updateOffHandler();
+            }}
+          >
+            닫기
+          </button>
+        </div>
+      </Fragment>
         )}
         {props.clickedRowData.length == 0 && (
           <div className={styles.popupBody}>
@@ -507,33 +502,26 @@ const Popup = (props) => {
             />
           </div>
         )}
-        <div className={styles.popupFooter}>
-          {props.clickedRowData.length == 0 && (
+        {props.clickedRowData.length == 0 && (
+          <div className={styles.popupFooter}>
             <button
               className={styles.popupButtonSubmit}
               onClick={() => addData(inputs)}
             >
               등록하기
             </button>
-          )}
-          {props.rowClickPopup && (
-            <UpdateBtn
-              updateHandler={props.updateHandler}
-              updateClicked={props.updateClicked}
-              popupHandler={props.popupHandler}
-              udtData={udtData}
-            />
-          )}
-          <button
-            className={styles.popupButtonClose}
-            onClick={() => {
-              props.popupHandler(false);
-              props.resetUpdateRowDataHandler();
-            }}
-          >
-            닫기
-          </button>
-        </div>
+
+            <button
+              className={styles.popupButtonClose}
+              onClick={() => {
+                props.popupHandler(false);
+                props.resetUpdateRowDataHandler();
+              }}
+            >
+              닫기
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -103,91 +103,91 @@ const Mypage = (props) => {
   const [columnDefs] = useState([
     {
       headerName: "장비아이디",
-      field: "eqp_ID",
+      field: "eqpId",
       width: 100,
       cellStyle: { textAlign: "center" },
     },
     {
       headerName: "장비명",
-      field: "eqp_NM",
+      field: "eqpNm",
       width: 80,
       cellStyle: { textAlign: "left" },
     },
     {
       headerName: "장비분류",
-      field: "eqp_CL_CD_NM",
+      field: "eqpClCdNm",
       width: 100,
       cellStyle: { textAlign: "left" },
     },
     {
       headerName: "장비운용상태",
-      field: "eqp_OP_STAT_CD_NM",
+      field: "eqpOpStatCdNm",
       width: 140,
       cellStyle: { textAlign: "left" },
     },
     {
       headerName: "시리얼 넘버",
-      field: "eqp_SRNO",
+      field: "eqpSrno",
       width: 180,
       cellStyle: { textAlign: "center" },
     },
     {
       headerName: "관할본부 조직",
-      field: "jrdt_HDOFC_CD_NM",
+      field: "jrdtHdofcCd",
       width: 130,
       cellStyle: { textAlign: "left" },
     },
     {
       headerName: "관할팀 조직",
-      field: "rdt_TEAM_ORG_CD_NM",
+      field: "rdtTeamOrgCd",
       width: 130,
       cellStyle: { textAlign: "left" },
     },
     {
       headerName: "위도",
-      field: "lat_CODN",
+      field: "latCodn",
       width: 110,
       cellStyle: { textAlign: "center" },
     },
     {
       headerName: "경도",
-      field: "lng_CODN",
+      field: "lngCodn",
       width: 110,
       cellStyle: { textAlign: "center" },
     },
     {
       headerName: "마스터IP",
-      field: "mst_IP",
+      field: "mstIp",
       width: 150,
       cellStyle: { textAlign: "center" },
     },
     {
       headerName: "운용담당자 아이디",
-      field: "op_CHRR_ID",
+      field: "opChrrId",
       width: 120,
       cellStyle: { textAlign: "left" },
     },
     {
       headerName: "등록일자",
-      field: "regrt_DT",
+      field: "regrtDt",
       width: 200,
       cellStyle: { textAlign: "center" },
     },
     {
       headerName: "등록자 ID",
-      field: "regrt_ID",
+      field: "regrtId",
       width: 100,
       cellStyle: { textAlign: "left" },
     },
     {
       headerName: "수정일자",
-      field: "udt_DT",
+      field: "udtDt",
       width: 200,
       cellStyle: { textAlign: "center" },
     },
     {
       headerName: "수정한사람 ID",
-      field: "udt_ID",
+      field: "udtId",
       width: 130,
       cellStyle: { textAlign: "left" },
     },
@@ -343,8 +343,12 @@ const Mypage = (props) => {
   };
 
   // Popup에서 update버튼 클릭 핸들러
-  const updateHandler = () => {
-    setUpdateClicked((popupOpen) => !popupOpen);
+  const updateOnHandler = () => {
+    setUpdateClicked(true);
+  };
+
+  const updateOffHandler = () => {
+    setUpdateClicked(false);
   };
 
   // 변경된 input값을 업데이트하기
@@ -459,7 +463,8 @@ const Mypage = (props) => {
           rowClickPopupHandler={rowClickPopupHandler}
           rowClickPopup={rowClickPopup}
           resetUpdateRowDataHandler={resetUpdateRowDataHandler}
-          updateHandler={updateHandler}
+          updateOnHandler={updateOnHandler}
+          updateOffHandler={updateOffHandler}
           updateClicked={updateClicked}
           value={clickedRowData.eqp_ID}
         ></Popup>
@@ -470,7 +475,8 @@ const Mypage = (props) => {
           columnDefs={columnDefs}
           updateRowDataHandler={updateRowDataHandler}
           rowClickPopupHandler={rowClickPopupHandler}
-          updateHandler={updateHandler}
+          updateOnHandler={updateOnHandler}
+          updateOffHandler={updateOffHandler}
           updateClicked={updateClicked}
         />
       </div>
