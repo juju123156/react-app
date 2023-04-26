@@ -12,7 +12,7 @@ const AgGrid = (props) => {
 
   const onSelectionChanged = useCallback(() => {
     const selectedRowsApi = gridRef.current.api.getSelectedRows();
-    let selectedRows =  Object.values(Object.fromEntries(Object.entries(selectedRowsApi[0]).filter(([key])=> key.includes('eqp_ID'))));
+    let selectedRows =  Object.values(Object.fromEntries(Object.entries(selectedRowsApi[0]).filter(([key])=> key.includes('eqpId'))));
    
     selectedRows = selectedRows.toString();
     if(selectedRows !== null && selectedRows !== ''){
@@ -21,7 +21,7 @@ const AgGrid = (props) => {
         params: {
           page: 1,
           perPageNum: 10,
-          EQP_ID : selectedRows
+          eqpId : selectedRows
         },
         method: "get",
         baseURL: "http://localhost:3000",

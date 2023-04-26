@@ -2,79 +2,12 @@ import React, { useState, useEffect } from "react";
 
 import { Fragment } from "react";
 import axios from "axios";
-import SelectBox from "../UI/SelectBox";
+
 import Popup from "../UI/Popup";
 import AgGrid from "../component/AgGrid";
 
 import styles from "./Mypage.module.css";
 
-const OPTION_PAGENUM = [
-  { value: 10, name: "10" },
-  { value: 100, name: "100" },
-  { value: 500, name: "500" },
-  { value: 1000, name: "1000" },
-];
-
-const OPTION_EQP_CL_CD = [
-  { value: "", name: "전체" },
-  { value: "01", name: "DU" },
-  { value: "02", name: "RU" },
-  { value: "03", name: "DUH" },
-  { value: "04", name: "DUL" },
-  { value: "05", name: "NODEB" },
-];
-
-const OPTION_EQP_OP_STAT = [
-  { value: "", name: "전체" },
-  { value: 3, name: "대기" },
-  { value: 4, name: "운용" },
-  { value: 9, name: "미운용" },
-];
-
-const OPTION_JRDT_HDOFC_CD = [
-  { value: "", name: "전체" },
-  { value: "04", name: "연구소" },
-  { value: "11", name: "영업그룹" },
-  { value: "17", name: "NI개발그룹" },
-  { value: "21", name: "NX개발그룹" },
-  { value: "26", name: "DX개발그룹" },
-  { value: "31", name: "DV개발그룹" },
-  { value: "34", name: "IOP개발그룹" },
-  { value: "39", name: "Corporate Center" },
-];
-
-const OPTION_RDT_TEAM_ORG_CD = [
-  { value: "", name: "전체" },
-  { value: "05", name: "플랫폼연구팀" },
-  { value: "06", name: "UI솔루션연구팀" },
-  { value: "07", name: "AI플랫폼연구팀" },
-  { value: "08", name: "AI응용연구팀" },
-  { value: "09", name: "기술기획팀" },
-  { value: "10", name: "운용기술연구팀" },
-  { value: "12", name: "텔코솔루션영업부" },
-  { value: "13", name: "빅데이터솔루션 영업1부" },
-  { value: "14", name: "빅데이터솔루션 영업2부" },
-  { value: "15", name: "컨설팅사업팀" },
-  { value: "16", name: "사업개발팀" },
-  { value: "18", name: "NI개발1팀" },
-  { value: "19", name: "NI개발2팀" },
-  { value: "22", name: "NX개발1팀" },
-  { value: "23", name: "NX개발2팀" },
-  { value: "24", name: "NX개발3팀" },
-  { value: "25", name: "NX개발4팀" },
-  { value: "27", name: "DP개발팀" },
-  { value: "28", name: "DX개발1팀" },
-  { value: "29", name: "DX개발2팀" },
-  { value: "30", name: "DX개발3팀" },
-  { value: "32", name: "DV개발1팀" },
-  { value: "33", name: "DV개발2팀" },
-  { value: "35", name: "OT개발팀" },
-  { value: "36", name: "OI개발팀" },
-  { value: "37", name: "OX개발팀" },
-  { value: "40", name: "경영기획팀" },
-  { value: "41", name: "인사총무팀" },
-  { value: "42", name: "UX팀" },
-];
 
 const Mypage = (props) => {
   // 셀렉트 박스에서 관할본부조직코드에 값에 따라 관할팀조직코드 노출
@@ -133,13 +66,13 @@ const Mypage = (props) => {
     },
     {
       headerName: "관할본부 조직",
-      field: "jrdtHdofcCd",
+      field: "jrdtHdofcCdNm",
       width: 130,
       cellStyle: { textAlign: "left" },
     },
     {
       headerName: "관할팀 조직",
-      field: "rdtTeamOrgCd",
+      field: "rdtTeamOrgCdNm",
       width: 130,
       cellStyle: { textAlign: "left" },
     },
@@ -373,81 +306,41 @@ const Mypage = (props) => {
         <div className={styles.searchGrid}>
           <div className={styles.searchGrid_sm}>
             <label
-              htmlFor="OPTION_EQP_CL_CD_SELBOX"
+              htmlFor="eqpClCd"
               className={styles.searchLabel}
             >
               장비분류
             </label>
-            <SelectBox
-              idx={0}
-              value={selectValues}
-              name="EQP_CL_CD"
-              id="OPTION_EQP_CL_CD_SELBOX"
-              options={OPTION_EQP_CL_CD}
-              defaultValue=""
-              selectBoxOnChange={selectBoxOnChange}
-              selectValues={selectValues}
-            ></SelectBox>
-            <label htmlFor="UDT_ID" className={styles.searchLabel}>
+            <label htmlFor="eqpNm" className={styles.searchLabel}>
               장비명
             </label>
             <input
-              name="EQP_NM"
+              name="eqpNm"
               className={styles.searchInput}
               onChange={(e) => onChangeInput(e)}
             />
           </div>
           <div className={styles.searchGrid_sm}>
             <label
-              htmlFor="OPTION_EQP_OP_STAT_SELBOX"
+              htmlFor="eqpOpStatCd"
               className={styles.searchLabel}
             >
               장비운용상태
             </label>
-            <SelectBox
-              idx={1}
-              name="EQP_OP_STAT"
-              value={selectValues}
-              id="OPTION_EQP_OP_STAT_SELBOX"
-              options={OPTION_EQP_OP_STAT}
-              defaultValue=""
-              selectBoxOnChange={selectBoxOnChange}
-              selectValues={selectValues}
-            ></SelectBox>
           </div>
           <div className={styles.searchGrid_sm}>
             <label
-              htmlFor="OPTION_JRDT_HDOFC_CD_SELBOX"
+              htmlFor="jrdtHdofcCd"
               className={styles.searchLabel}
             >
               관할본부조직
             </label>
-            <SelectBox
-              idx={2}
-              name="JRDT_HDOFC_CD"
-              value={selectValues}
-              id="OPTION_JRDT_HDOFC_CD_SELBOX"
-              options={OPTION_JRDT_HDOFC_CD}
-              defaultValue=""
-              selectBoxOnChange={selectBoxOnChange}
-              selectValues={selectValues}
-            ></SelectBox>
             <label
-              htmlFor="OPTION_RDT_TEAM_ORG_CD_SELBOX"
+              htmlFor="rdtTeamOrgCd"
               className={styles.searchLabel}
             >
               관할팀조직
             </label>
-            <SelectBox
-              idx={3}
-              name="RDT_TEAM_ORG_CD"
-              value={selectValues}
-              id="OPTION_RDT_TEAM_ORG_CD_SELBOX"
-              options={OPTION_RDT_TEAM_ORG_CD}
-              defaultValue=""
-              selectBoxOnChange={selectBoxOnChange}
-              selectValues={selectValues}
-            ></SelectBox>
           </div>
         </div>
       </div>
@@ -466,7 +359,7 @@ const Mypage = (props) => {
           updateOnHandler={updateOnHandler}
           updateOffHandler={updateOffHandler}
           updateClicked={updateClicked}
-          value={clickedRowData.eqp_ID}
+          value={clickedRowData.eqpId}
         ></Popup>
       )}
       <div style={{ width: "100%", textAlign: "center" }}>
@@ -480,15 +373,6 @@ const Mypage = (props) => {
           updateClicked={updateClicked}
         />
       </div>
-      <SelectBox
-        idx={4}
-        name="perPageNum"
-        value={selectValues}
-        options={OPTION_PAGENUM}
-        selectBoxOnChange={selectBoxOnChange}
-        selectValues={selectValues}
-        defaultValue={10}
-      ></SelectBox>
     </Fragment>
   );
 };

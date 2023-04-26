@@ -9,20 +9,20 @@ const Popup = (props) => {
   const [updateSubmit, setUpdateSubmit] = useState(false);
   // Popup input값 초기화
   const [inputs, setInputs] = useState({
-    EQP_NM: "",
-    EQP_CL_CD: "",
-    EQP_OP_STAT_CD: "",
-    JRDT_HDOFC_CD: "",
-    RDT_TEAM_ORG_CD: "",
-    EQP_SRNO: "",
-    MST_IP: "",
-    LAT_CODN: "",
-    LNG_CODN: "",
-    OP_CHRR_ID: "",
-    REGRT_DT: "",
-    REGRT_ID: "",
-    UDT_DT: "",
-    UDT_ID: "",
+    eqpNm: "",
+    eqpClCd: "",
+    eqpOpStatCd: "",
+    jrdtHdofcCd: "",
+    rdtTeamOrgCd: "",
+    eqpSrno: "",
+    mstIp: "",
+    latCodn: "",
+    lngCodn: "",
+    opChrrId: "",
+    regrtDt: "",
+    regrtId: "",
+    udtDt: "",
+    udtId: "",
   });
 
   // 변경된 input값을 업데이트하기
@@ -101,7 +101,6 @@ const Popup = (props) => {
 
   // row 클릭했을때 보여지는 popup
   function PopupRowData(props) {
-    let eqp_ID = clickedRowData.eqp_ID;
 
     let rowDataStr = JSON.stringify(clickedRowData);
     let jData = JSON.parse(rowDataStr);
@@ -112,66 +111,66 @@ const Popup = (props) => {
     return (
       <Fragment>
         <div className={styles.popupBody}>
-          <label htmlFor="EQP_ID" className={styles.popupLabel}>
-            EQP_ID
+          <label htmlFor="eqpId" className={styles.popupLabel}>
+            장비ID
           </label>
-          <span>{jDataVal.eqp_ID}</span>
-          <label htmlFor="EQP_NM" className={styles.popupLabel}>
-            EQP_NM
+          <span>{jDataVal.eqpId}</span>
+          <label htmlFor="eqpNm" className={styles.popupLabel}>
+            장비명
           </label>
-          <span>{jDataVal.eqp_NM} </span>
-          <label htmlFor="EQP_CL_CD" className={styles.popupLabel}>
-            EQP_CL_CD
+          <span>{jDataVal.eqpNm} </span>
+          <label htmlFor="eqpClCd" className={styles.popupLabel}>
+            장비분류
           </label>
-          <span>{jDataVal.eqp_CL_CD_NM} </span>
-          <label htmlFor="EQP_OP_STAT_CD" className={styles.popupLabel}>
-            EQP_OP_STAT_CD
+          <span>{jDataVal.eqpClCd} </span>
+          <label htmlFor="eqpOpStatCd" className={styles.popupLabel}>
+            장비운용상태
           </label>
-          <span>{jDataVal.eqp_OP_STAT_CD_NM}</span>
-          <label htmlFor="JRDT_HDOFC_CD" className={styles.popupLabel}>
-            JRDT_HDOFC_CD
+          <span>{jDataVal.eqpOpStatCd}</span>
+          <label htmlFor="jrdtHdofcCd" className={styles.popupLabel}>
+            관할본부조직
           </label>
-          <span>{jDataVal.jrdt_HDOFC_CD_NM}</span>
-          <label htmlFor="RDT_TEAM_ORG_CD" className={styles.popupLabel}>
-            RDT_TEAM_ORG_CD
+          <span>{jDataVal.jrdtHdofcCd}</span>
+          <label htmlFor="rdtTeamOrgCd" className={styles.popupLabel}>
+            관할팀조직
           </label>
-          <span>{jDataVal.rdt_TEAM_ORG_CD_NM}</span>
-          <label htmlFor="EQP_SRNO" className={styles.popupLabel}>
-            EQP_SRNO
+          <span>{jDataVal.rdtTeamOrgCd}</span>
+          <label htmlFor="eqpSrno" className={styles.popupLabel}>
+            SERIAL NUMBER
           </label>
-          <span>{jDataVal.eqp_SRNO}</span>
-          <label htmlFor="MST_IP" className={styles.popupLabel}>
-            MST_IP
+          <span>{jDataVal.eqpSrno}</span>
+          <label htmlFor="mstIp" className={styles.popupLabel}>
+            MASTER IP
           </label>
-          <span>{jDataVal.mst_IP}</span>
-          <label htmlFor="LAT_CODN" className={styles.popupLabel}>
-            LAT_CODN
+          <span>{jDataVal.mstIp}</span>
+          <label htmlFor="latCodn" className={styles.popupLabel}>
+            위도
           </label>
-          <span>{jDataVal.lat_CODN}</span>
-          <label htmlFor="LNG_CODN" className={styles.popupLabel}>
-            LNG_CODN
+          <span>{jDataVal.latCodn}</span>
+          <label htmlFor="lngCodn" className={styles.popupLabel}>
+            경도
           </label>
-          <span>{jDataVal.lng_CODN}</span>
-          <label htmlFor="OP_CHRR_ID" className={styles.popupLabel}>
-            OP_CHRR_ID
+          <span>{jDataVal.lngCodn}</span>
+          <label htmlFor="opChrrId" className={styles.popupLabel}>
+            운용 담당자 ID
           </label>
-          <span>{jDataVal.op_CHRR_ID}</span>
+          <span>{jDataVal.opChrrId}</span>
           <label htmlFor="REGRT_DT" className={styles.popupLabel}>
-            REGRT_ID
+            등록일자
           </label>
-          <span>{jDataVal.regrt_DT}</span>
-          <label htmlFor="REGRT_ID" className={styles.popupLabel}>
-            REGRT_DT
+          <span>{jDataVal.regrtDt}</span>
+          <label htmlFor="regrtDt" className={styles.popupLabel}>
+            등록자 ID
           </label>
-          <span>{jDataVal.regrt_ID}</span>
-          <label htmlFor="UDT_DT" className={styles.popupLabel}>
-            UDT_DT
+          <span>{jDataVal.regrtId}</span>
+          <label htmlFor="regrtId" className={styles.popupLabel}>
+            수정일자
           </label>
-          <span>{jDataVal.udt_DT} </span>
-          <label htmlFor="UDT_ID" className={styles.popupLabel}>
-            UDT_ID
+          <span>{jDataVal.udtDt} </span>
+          <label htmlFor="udtId" className={styles.popupLabel}>
+            수정자 ID
           </label>
-          <span>{jDataVal.udt_ID}</span>
+          <span>{jDataVal.udtId}</span>
         </div>
         <div className={styles.popupFooter}>
           <button
@@ -223,124 +222,124 @@ const Popup = (props) => {
         {props.rowClickPopup && props.updateClicked && (
           <Fragment>
         <div className={styles.popupBody}>
-          <label htmlFor="EQP_ID" className={styles.popupLabel}>
-            EQP_ID
+          <label htmlFor="eqpId" className={styles.popupLabel}>
+            장비ID
           </label>
-          <span>{jDataVal.eqp_ID}</span>
-          <label htmlFor="EQP_NM" className={styles.popupLabel}>
-            EQP_NM
-          </label>
-          <input
-            type="text"
-            name="EQP_NM"
-            defaultValue={jDataVal.eqp_NM}
-            onChange={onChange}
-          />
-          <label htmlFor="EQP_CL_CD" className={styles.popupLabel}>
-            EQP_CL_CD
+          <span>{jDataVal.eqpId}</span>
+          <label htmlFor="eqpNm" className={styles.popupLabel}>
+            장비명
           </label>
           <input
             type="text"
-            name="EQP_CL_CD"
-            defaultValue={jDataVal.eqp_CL_CD_NM}
+            name="eqpNm"
+            defaultValue={jDataVal.eqpNm}
             onChange={onChange}
           />
-          <label htmlFor="EQP_OP_STAT_CD" className={styles.popupLabel}>
-            EQP_OP_STAT_CD
+          <label htmlFor="eqpClCd" className={styles.popupLabel}>
+            장비분류
           </label>
           <input
             type="text"
-            name="EQP_OP_STAT_CD"
-            defaultValue={jDataVal.eqp_OP_STAT_CD_NM}
+            name="eqpClCd"
+            defaultValue={jDataVal.eqpClCd}
             onChange={onChange}
           />
-          <label htmlFor="JRDT_HDOFC_CD" className={styles.popupLabel}>
-            JRDT_HDOFC_CD
+          <label htmlFor="eqpOpStatCd" className={styles.popupLabel}>
+            장비운용상태
           </label>
           <input
             type="text"
-            name="JRDT_HDOFC_CD"
-            defaultValue={jDataVal.jrdt_HDOFC_CD_NM}
+            name="eqpOpStatCd"
+            defaultValue={jDataVal.eqpOpStatCd}
             onChange={onChange}
           />
-          <label htmlFor="RDT_TEAM_ORG_CD" className={styles.popupLabel}>
-            RDT_TEAM_ORG_CD
+          <label htmlFor="jrdtHdofcCd" className={styles.popupLabel}>
+            관할본부조직
           </label>
           <input
             type="text"
-            name="RDT_TEAM_ORG_CD"
-            defaultValue={jDataVal.rdt_TEAM_ORG_CD_NM}
+            name="jrdtHdofcCd"
+            defaultValue={jDataVal.jrdtHdofcCd}
             onChange={onChange}
           />
-          <label htmlFor="EQP_SRNO" className={styles.popupLabel}>
-            EQP_SRNO
+          <label htmlFor="rdtTeamOrgCd" className={styles.popupLabel}>
+            관할팀조직
           </label>
           <input
             type="text"
-            name="EQP_SRNO"
-            defaultValue={jDataVal.eqp_SRNO}
+            name="rdtTeamOrgCd"
+            defaultValue={jDataVal.rdtTeamOrgCd}
             onChange={onChange}
           />
-          <label htmlFor="MST_IP" className={styles.popupLabel}>
-            MST_IP
+          <label htmlFor="eqpSrno" className={styles.popupLabel}>
+            SERIAL NUMBER   
           </label>
           <input
             type="text"
-            name="EQP_NM"
-            defaultValue={jDataVal.mst_IP}
+            name="eqpSrno"
+            defaultValue={jDataVal.eqpSrno}
             onChange={onChange}
           />
-          <label htmlFor="LAT_CODN" className={styles.popupLabel}>
-            LAT_CODN
+          <label htmlFor="mstIp" className={styles.popupLabel}>
+            MASTER IP
+          </label>
+          <input
+            type="text"
+            name="mstIp"
+            defaultValue={jDataVal.mstIp}
+            onChange={onChange}
+          />
+          <label htmlFor="latCodn" className={styles.popupLabel}>
+            위도
           </label>
           <input
             type="number"
-            name="LAT_CODN"
-            defaultValue={jDataVal.lat_CODN}
+            name="latCodn"
+            defaultValue={jDataVal.latCodn}
             onChange={onChange}
           />
-          <label htmlFor="LNG_CODN" className={styles.popupLabel}>
-            LNG_CODN
+          <label htmlFor="lngCodn" className={styles.popupLabel}>
+            경도
           </label>
           <input
             type="number"
-            name="LNG_CODN"
-            defaultValue={jDataVal.lng_CODN}
+            name="lngCodn"
+            defaultValue={jDataVal.lngCodn}
             onChange={onChange}
           />
-          <label htmlFor="OP_CHRR_ID" className={styles.popupLabel}>
-            OP_CHRR_ID
+          <label htmlFor="opChrrId" className={styles.popupLabel}>
+            운용 담당자 ID
           </label>
           <input
             type="text"
-            name="OP_CHRR_ID"
-            defaultValue={jDataVal.op_CHRR_ID}
+            name="opChrrId"
+            defaultValue={jDataVal.opChrrId}
             onChange={onChange}
           />
-          <label htmlFor="REGRT_DT" className={styles.popupLabel}>
-            REGRT_ID
+          <label htmlFor="regrtDt" className={styles.popupLabel}>
+            등록일자
           </label>
-          <span>{jDataVal.regrt_DT}</span>
-          <label htmlFor="REGRT_ID" className={styles.popupLabel}>
-            REGRT_DT
+          <span>{jDataVal.regrtDt}</span>
+          <label htmlFor="regrtId" className={styles.popupLabel}>
+            등록자 ID
           </label>
           <input
             type="text"
-            name="REGRT_ID"
-            defaultValue={jDataVal.regrt_ID}
+            name="regrtId"
+            defaultValue={jDataVal.regrtId}
             onChange={onChange}
           />
           <label htmlFor="UDT_DT" className={styles.popupLabel}>
-            UDT_DT
+            수정일자
           </label>
-          <span>{jDataVal.udt_DT} </span>
-          <label htmlFor="UDT_ID" className={styles.popupLabel}>
-            UDT_ID
+          <span>{jDataVal.udtDt} </span>
+          <label htmlFor="udtId" className={styles.popupLabel}>
+            수정자 ID
           </label>
           <input
             type="text"
-            name="UDT_ID"
-            defaultValue={jDataVal.udt_ID}
+            name="udtId"
+            defaultValue={jDataVal.udtId}
             onChange={onChange}
           />
         </div>
@@ -370,133 +369,133 @@ const Popup = (props) => {
         )}
         {props.clickedRowData.length == 0 && (
           <div className={styles.popupBody}>
-            <label htmlFor="EQP_NM" className={styles.popupLabel}>
-              EQP_NM
+            <label htmlFor="eqpNm" className={styles.popupLabel}>
+              장비명
             </label>
             <input
               type="text"
-              id="EQP_NM"
-              name="EQP_NM"
+              id="eqpNm"
+              name="eqpNm"
               className={styles.popupInput}
               onChange={onChange}
             />
-            <label htmlFor="EQP_CL_CD" className={styles.popupLabel}>
-              EQP_CL_CD
+            <label htmlFor="eqpClCd" className={styles.popupLabel}>
+              장비분류코드
             </label>
             <input
               type="text"
-              id="EQP_CL_CD"
-              name="EQP_CL_CD"
-              className={styles.popupInput}
-              onChange={onChange}
-            />
-
-            <label htmlFor="EQP_OP_STAT_CD" className={styles.popupLabel}>
-              EQP_OP_STAT_CD
-            </label>
-            <input
-              type="text"
-              id="EQP_OP_STAT_CD"
-              name="EQP_OP_STAT_CD"
+              id="eqpClCd"
+              name="eqpClCd"
               className={styles.popupInput}
               onChange={onChange}
             />
 
-            <label htmlFor="JRDT_HDOFC_CD" className={styles.popupLabel}>
-              JRDT_HDOFC_CD
+            <label htmlFor="eqpOpStatCd" className={styles.popupLabel}>
+              장비운용상태
             </label>
             <input
               type="text"
-              id="JRDT_HDOFC_CD"
-              name="JRDT_HDOFC_CD"
+              id="eqpOpStatCd"
+              name="eqpOpStatCd"
               className={styles.popupInput}
               onChange={onChange}
             />
 
-            <label htmlFor="RDT_TEAM_ORG_CD" className={styles.popupLabel}>
-              RDT_TEAM_ORG_CD
+            <label htmlFor="jrdtHdofcCd" className={styles.popupLabel}>
+              관할본부조직
             </label>
             <input
               type="text"
-              id="RDT_TEAM_ORG_CD"
-              name="RDT_TEAM_ORG_CD"
+              id="jrdtHdofcCd"
+              name="jrdtHdofcCd"
               className={styles.popupInput}
               onChange={onChange}
             />
 
-            <label htmlFor="EQP_SRNO" className={styles.popupLabel}>
-              EQP_SRNO
+            <label htmlFor="rdtTeamOrgCd" className={styles.popupLabel}>
+              관할팀조직
             </label>
             <input
               type="text"
-              id="EQP_SRNO"
-              name="EQP_SRNO"
+              id="rdtTeamOrgCd"
+              name="rdtTeamOrgCd"
               className={styles.popupInput}
               onChange={onChange}
             />
 
-            <label htmlFor="MST_IP" className={styles.popupLabel}>
-              MST_IP
+            <label htmlFor="eqpSrno" className={styles.popupLabel}>
+              SERIAL NUMBER   
             </label>
             <input
               type="text"
-              id="MST_IP"
-              name="MST_IP"
+              id="eqpSrno"
+              name="eqpSrno"
               className={styles.popupInput}
               onChange={onChange}
             />
 
-            <label htmlFor="LAT_CODN" className={styles.popupLabel}>
-              LAT_CODN
+            <label htmlFor="mstIp" className={styles.popupLabel}>
+              MASTER IP
+            </label>
+            <input
+              type="text"
+              id="mstIp"
+              name="mstIp"
+              className={styles.popupInput}
+              onChange={onChange}
+            />
+
+            <label htmlFor="latCodn" className={styles.popupLabel}>
+              위도
             </label>
             <input
               type="number"
-              id="LAT_CODN"
-              name="LAT_CODN"
+              id="latCodn"
+              name="latCodn"
               className={styles.popupInput}
               onChange={onChange}
             />
 
-            <label htmlFor="LNG_CODN" className={styles.popupLabel}>
-              LNG_CODN
+            <label htmlFor="lngCodn" className={styles.popupLabel}>
+              경도
             </label>
             <input
               type="number"
-              id="LNG_CODN"
-              name="LNG_CODN"
+              id="lngCodn"
+              name="lngCodn"
               className={styles.popupInput}
               onChange={onChange}
             />
 
-            <label htmlFor="OP_CHRR_ID" className={styles.popupLabel}>
-              OP_CHRR_ID
+            <label htmlFor="opChrrId" className={styles.popupLabel}>
+              운용 담당자 ID
             </label>
             <input
               type="text"
-              id="OP_CHRR_ID"
-              name="OP_CHRR_ID"
+              id="opChrrId"
+              name="opChrrId"
               className={styles.popupInput}
               onChange={onChange}
             />
 
-            <label htmlFor="REGRT_ID" className={styles.popupLabel}>
-              REGRT_ID
+            <label htmlFor="regrtId" className={styles.popupLabel}>
+              등록자 ID
             </label>
             <input
               type="text"
-              id="REGRT_ID"
-              name="REGRT_ID"
+              id="regrtId"
+              name="regrtId"
               className={styles.popupInput}
               onChange={onChange}
             />
 
-            <label htmlFor="UDT_ID" className={styles.popupLabel}>
-              UDT_ID
+            <label htmlFor="udtId" className={styles.popupLabel}>
+              수정자 ID
             </label>
             <input
               type="text"
-              id="UDT_ID"
-              name="UDT_ID"
+              id="udtId"
+              name="udtId"
               className={styles.popupInput}
               onChange={onChange}
             />
