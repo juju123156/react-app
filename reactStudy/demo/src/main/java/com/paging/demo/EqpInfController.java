@@ -18,20 +18,20 @@ public class EqpInfController {
 
     // 리스트 받아오기
     @GetMapping("/api/getEqpInfListPaging")
-    public List<EqpInfDto> getEqpInfListPaging(FilterDto filterDto){
+    public List<EqpInfDto> getEqpInfListPaging(EqpInfDto eqpInfDto){
         
-        if(filterDto.getPerPageNum() == 0){
-            filterDto.setPerPageNum(10);
-            filterDto.setPage(1);
+        if(eqpInfDto.getPerPageNum() == 0){
+            eqpInfDto.setPerPageNum(10);
+            eqpInfDto.setPage(1);
         }
 
-        List<EqpInfDto> eqpList = eqpInfService.getEqpInfListPaging(filterDto);
+        List<EqpInfDto> eqpList = eqpInfService.getEqpInfListPaging(eqpInfDto);
 
         System.out.println("리스트 사이즈 : " + eqpList.size());
         System.out.println("리스트 : " + eqpList.toString());
 
-        if (filterDto != null){
-            System.out.println("*************************" +filterDto.toString());
+        if (eqpInfDto != null){
+            System.out.println("*************************" +eqpInfDto.toString());
         }
 
         return eqpList;
@@ -40,20 +40,20 @@ public class EqpInfController {
 
     @ResponseBody
     @PostMapping("/api/getEqpInfListPaging")
-    public List<EqpInfDto> getEqpInfListPagingPost(FilterDto filterDto){
+    public List<EqpInfDto> getEqpInfListPagingPost(EqpInfDto eqpInfDto){
 
-        if(filterDto.getPerPageNum() == 0){
-            filterDto.setPerPageNum(10);
-            filterDto.setPage(1);
+        if(eqpInfDto.getPerPageNum() == 0){
+            eqpInfDto.setPerPageNum(10);
+            eqpInfDto.setPage(1);
         }
 
-        List<EqpInfDto> eqpList = eqpInfService.getEqpInfListPaging(filterDto);
+        List<EqpInfDto> eqpList = eqpInfService.getEqpInfListPaging(eqpInfDto);
 
         System.out.println("리스트 사이즈 : " + eqpList.size());
         System.out.println("리스트 : " + eqpList.toString());
 
-        if (filterDto != null){
-            System.out.println("*************************" +filterDto.toString());
+        if (eqpInfDto != null){
+            System.out.println("*************************" +eqpInfDto.toString());
         }
 
         return eqpList;
@@ -62,11 +62,11 @@ public class EqpInfController {
     // 데이터 삽입하기
     @ResponseBody
     @PostMapping("/api/insEqpInf")
-    public int insEqpInf(EqpInfDto eqpDto) {
-        System.out.println("*************"+ eqpDto.toString());
+    public int insEqpInf(EqpInfDto eqpInfDto) {
+        System.out.println("*************"+ eqpInfDto.toString());
 
 
-        int result = eqpInfService.insEqpInf(eqpDto);
+        int result = eqpInfService.insEqpInf(eqpInfDto);
 
         return result;
     }
@@ -74,10 +74,10 @@ public class EqpInfController {
     // 데이터 업데이트하기
     @ResponseBody
     @PostMapping("/api/udtEqpInf")
-    public int udtEqpInf(EqpInfDto eqpDto, String EQP_ID) {
-        System.out.println("*************"+ eqpDto.toString());
+    public int udtEqpInf(EqpInfDto eqpInfDto) {
+        System.out.println("*************"+ eqpInfDto.toString());
 
-        int result = eqpInfService.udtEqpInf(eqpDto,EQP_ID);
+        int result = eqpInfService.udtEqpInf(eqpInfDto);
 
         return result;
     }

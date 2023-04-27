@@ -16,20 +16,21 @@ public class EqpInfService {
     }
 
     // 조직원 전체 조회
-    public List<EqpInfDto> getEqpInfListPaging(FilterDto filterDto) {
+    public List<EqpInfDto> getEqpInfListPaging(EqpInfDto eqpInfDto) {
 
-        return eqpInfMapper.getEqpInfListPaging(filterDto);
+        return eqpInfMapper.getEqpInfListPaging(eqpInfDto);
     }
 
 
     // 데이터 삽입하기
-    public int insEqpInf(EqpInfDto eqpDto) {
-        return eqpInfMapper.insEqpInf(eqpDto);
+    public int insEqpInf(EqpInfDto eqpInfDto) {
+        return eqpInfMapper.insEqpInf(eqpInfDto);
     }
 
     // 데이터 업데이트하기
-    public int udtEqpInf(EqpInfDto eqpDto, String EQP_ID) {
-        return eqpInfMapper.udtEqpInf(eqpDto, EQP_ID);
+    public int udtEqpInf(EqpInfDto eqpInfDto) {
+
+        return eqpInfMapper.udtEqpInf(eqpInfDto);
     }
 
 }

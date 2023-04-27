@@ -5,84 +5,84 @@
 <mapper namespace="com.paging.demo.mapper.EqpInfMapper">
 
     <sql id="getEqpInfList">
-        SELECT
-            CEILING(COUNT(*) OVER () / #{perPageNum}) AS page, COUNT(*) OVER () AS totalCnt
-		     , ROW_NUMBER() OVER(ORDER BY EQP_ID DESC) AS num
-             , ef.EQP_ID
-             , ef.EQP_NM
-             , ef.EQP_CL_CD
-             , ef.EQP_OP_STAT_CD
-             , ef.JRDT_HDOFC_CD
-             , ef.RDT_TEAM_ORG_CD
-             , ef.EQP_SRNO
-             , ef.MST_IP
-             , ef.LAT_CODN
-             , ef.LNG_CODN
-             , ef.OP_CHRR_ID
-             , DATE_FORMAT(ef.REGRT_DT, '%Y-%m-%d %H:%i:%S') AS REGRT_DT
-             , ef.REGRT_ID
-             , DATE_FORMAT(ef.UDT_DT, '%Y-%m-%d %T') AS UDT_DT
-             , ef.UDT_ID
-             , co.COM_CD_NM AS EQP_OP_STAT_CD_NM
-             , co2.COM_CD_NM AS EQP_CL_CD_NM
-             , co3.COM_CD_NM AS JRDT_HDOFC_CD_NM
-             , co4.COM_CD_NM AS RDT_TEAM_ORG_CD_NM
-        FROM
+        select
+            ceiling(count(*) over () / #{perPageNum}) as page, count(*) over () as totalCnt
+		     , ROW_NUMBER() over(order BY EQP_ID desc) as num
+             , ef.EQP_ID as 'eqpId'
+             , ef.EQP_NM as 'eqpNm'
+             , ef.EQP_CL_CD as 'eqpClCd'
+             , ef.EQP_OP_STAT_CD as 'eqpOpStatCd'
+             , ef.JRDT_HDOFC_CD as 'jrdtHdofcCd'
+             , ef.RDT_TEAM_ORG_CD as 'rdtTeamOrgCd'
+             , ef.EQP_SRNO as 'eqpSrno'
+             , ef.MST_IP as 'mstIp'
+             , ef.LAT_CODN as 'latCodn'
+             , ef.LNG_CODN as 'lngCodn'
+             , ef.OP_CHRR_ID as 'opChrrId'
+             , DATE_FORMAT(ef.REGRT_DT, '%Y-%m-%d %H:%i:%S') as 'regrtDt'
+             , ef.REGRT_ID as 'regrtId'
+             , DATE_FORMAT(ef.UDT_DT, '%Y-%m-%d %T') as 'udtDt'
+             , ef.UDT_ID as 'udtId'
+             , co.COM_CD_NM as 'eqpOpStatCdNm' 
+             , co2.COM_CD_NM as 'eqpClCdNm'
+             , co3.COM_CD_NM as 'jrdtHdofcCdNm'
+             , co4.COM_CD_NM as 'rdtTeamOrgCdNm'
+        from
             EQP_INF ef
-                LEFT JOIN COM_CD co
-                    ON ef.EQP_OP_STAT_CD = co.COM_CD
-                    AND co.GRP_CD = '06'
-                LEFT JOIN COM_CD co2
-                    ON ef.EQP_CL_CD = co2.COM_CD
-                    AND co2.GRP_CD = '05'
-                LEFT JOIN COM_CD co3
-                    ON ef.JRDT_HDOFC_CD  = co3.COM_CD
-                    AND co3.GRP_CD = '07'
-                LEFT JOIN COM_CD co4
-                    ON ef.RDT_TEAM_ORG_CD  = co4.COM_CD
-                    AND co4.GRP_CD = '08'
+                left join COM_CD co
+                    on ef.EQP_OP_STAT_CD = co.COM_CD
+                    and co.GRP_CD = '06'
+                left join COM_CD co2
+                    on ef.EQP_CL_CD = co2.COM_CD
+                    and co2.GRP_CD = '05'
+                left join COM_CD co3
+                    on ef.JRDT_HDOFC_CD  = co3.COM_CD
+                    and co3.GRP_CD = '07'
+                left join COM_CD co4
+                    on ef.RDT_TEAM_ORG_CD  = co4.COM_CD
+                    and co4.GRP_CD = '08'
        <where>
-            <if test="eqpName != null and eqpName != ''">
-                AND ef.EQP_NM LIKE CONCAT('%',#{eqpName},'%')
+            <if test="eqpNm != null and eqpNm != ''">
+                and ef.EQP_NM like concat('%',#{eqpNm},'%')
             </if>
 
             <if test="eqpClCd != null and eqpClCd != ''">
-                AND ef.EQP_CL_CD = #{eqpClCd}
+                and ef.EQP_CL_CD = #{eqpClCd}
             </if>
-            <if test="eqpOpStat != null and eqpOpStat != ''">
-                AND ef.EQP_OP_STAT_CD = #{eqpOpStat}
+            <if test="eqpOpStatCd != null and eqpOpStatCd != ''">
+                and ef.EQP_OP_STAT_CD = #{eqpOpStat}
             </if>
             <if test="jrdtHdofcCd != null and jrdtHdofcCd != ''">
-                AND ef.JRDT_HDOFC_CD = #{jrdtHdofcCd}
+                and ef.JRDT_HDOFC_CD = #{jrdtHdofcCd}
             </if>
             <if test="rdtTeamOrgCd != null and rdtTeamOrgCd != ''">
-                AND ef.RDT_TEAM_ORG_CD = #{rdtTeamOrgCd}
+                and ef.RDT_TEAM_ORG_CD = #{rdtTeamOrgCd}
             </if>
-            <if test="EQP_ID != null and EQP_ID != ''">
-                AND ef.EQP_ID = #{EQP_ID}
+            <if test="eqpId != null and eqpId != ''">
+                and ef.EQP_ID = #{eqpId}
             </if>
         </where>
     </sql>
 
-    <select id="getEqpInfListPaging" resultType="EqpInfDto" >
-        SELECT
+    <select id="getEqpInfListPaging" parameterType="EqpInfDto" resultType="EqpInfDto" >
+        select
             AA.*
-        FROM
+        from
             (
                 <include refid="getEqpInfList" />
             ) AA
         <where>
-            AND AA.num &gt; (#{page} - 1) * #{perPageNum} AND AA.num &lt;= #{page} * #{perPageNum}
+            and AA.num &gt; (#{page} - 1) * #{perPageNum} and AA.num &lt;= #{page} * #{perPageNum}
         </where>
     </select>
 
     <insert id="insEqpInf">
         <!-- keyProperty는 insert할 변수이름, resultType 시퀀스 타입 -->
-        <selectKey keyProperty="EQP_ID" resultType="String" order="BEFORE">
-                SELECT LPAD(nextval(EQP_SEQ),5,"0") AS EQP_ID FROM DUAL
+        <selectKey keyProperty="eqpId" resultType="String" order="BEFORE">
+                select lpad(nextval(EQP_SEQ),5,"0") as EQP_ID from dual
         </selectKey>
 
-        INSERT INTO EQP_INF
+        insert into EQP_INF
             (
                   EQP_ID
                 , EQP_NM
@@ -102,42 +102,42 @@
             )
         VALUES
             (   
-                  #{EQP_ID}
-                , #{EQP_NM}
-                , #{EQP_CL_CD}
-                , #{EQP_OP_STAT_CD}
-                , #{JRDT_HDOFC_CD}
-                , #{RDT_TEAM_ORG_CD}
-                , #{EQP_SRNO}
-                , #{MST_IP}
-                , #{LAT_CODN}
-                , #{LNG_CODN}
-                , #{OP_CHRR_ID}
-                , TO_CHAR(sysdate(), 'YYYY-MM-DD hh:mm:ss')
-                , #{REGRT_ID}
-                , TO_CHAR(sysdate(), 'YYYY-MM-DD hh:mm:ss')
-                , #{UDT_ID}
+                  #{eqpId}
+                , #{eqpNm}
+                , #{eqpClCd}
+                , #{eqpOpStatCd}
+                , #{jrdtHdofcCd}
+                , #{rdtTeamOrgCd}
+                , #{eqpSrno}
+                , #{mstIp}
+                , #{latCodn}
+                , #{lngCodn}
+                , #{opChrrId}
+                , to_char(sysdate(), 'YYYY-MM-DD hh:mm:ss')
+                , #{regrtId}
+                , to_char(sysdate(), 'YYYY-MM-DD hh:mm:ss')
+                , #{udtId}
             );
     </insert>
 
 
     <update id="udtEqpInf" >
-        UPDATE EQP_INF
-            SET     
-              EQP_NM = #{EQP_NM}
-            , EQP_CL_CD = #{EQP_CL_CD}
-            , EQP_OP_STAT_CD = #{EQP_OP_STAT_CD}
-            , JRDT_HDOFC_CD = #{JRDT_HDOFC_CD}
-            , RDT_TEAM_ORG_CD = #{RDT_TEAM_ORG_CD}
-            , EQP_SRNO = #{EQP_SRNO}
-            , MST_IP = #{MST_IP}
-            , LAT_CODN = #{LAT_CODN}
-            , LNG_CODN = #{LNG_CODN}
-            , OP_CHRR_ID = #{OP_CHRR_ID}
-            , UDT_DT = #{UDT_DT}
-            , UDT_ID = #{UDT_ID}
+        update EQP_INF
+            set     
+              EQP_NM = #{eqpNm}
+            , EQP_CL_CD = #{eqpClCd}
+            , EQP_OP_STAT_CD = #{eqpOpStatCd}
+            , JRDT_HDOFC_CD = #{jrdtHdofcCd}
+            , RDT_TEAM_ORG_CD = #{rdtTeamOrgCd}
+            , EQP_SRNO = #{eqpSrno}
+            , MST_IP = #{mstIp}
+            , LAT_CODN = #{latCodn}
+            , LNG_CODN = #{lngCodn}
+            , OP_CHRR_ID = #{opChrrId}
+            , UDT_DT = #{udtDt}
+            , UDT_ID = #{udtId}
         <where>
-            EQP_ID = #{EQP_ID}
+            EQP_ID = #{eqpId}
         </where>
     </update>
 

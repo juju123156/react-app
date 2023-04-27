@@ -4,32 +4,31 @@ import  lombok.*;
 
 @Getter
 @Setter
-@Data
 @AllArgsConstructor //전체 필드에 대한 생성자
 @NoArgsConstructor  //기본생성자
-public class EqpInfDto {
+public class EqpInfDto extends FilterDto {
 
-    private String  EQP_ID;
-    private String  EQP_NM;
-    private String  EQP_CL_CD;
-    private String  EQP_CL_CD_NM;
-    private String  EQP_OP_STAT_CD_NM;
-    private String  EQP_OP_STAT_CD;
-    private String  JRDT_HDOFC_CD;
-    private String  JRDT_HDOFC_CD_NM;
-    private String  RDT_TEAM_ORG_CD;
-    private String  RDT_TEAM_ORG_CD_NM;
-    private String  EQP_SRNO;
-    private String  MST_IP;
-    private float   LAT_CODN;
-    private float   LNG_CODN;
-    private String  OP_CHRR_ID;
-    private String  REGRT_DT;
-    private String  REGRT_ID;
-    private String  UDT_DT;
-    private String  UDT_ID;
+    private	String	eqpId;
+    private	String	eqpNm;
+    private	String	eqpClCd;
+    private	String	eqpOpStatCd;
+    private	String	jrdtHdofcCd;
+    private	String	rdtTeamOrgCd;
+    private	String	eqpClCdNm;
+    private	String	eqpOpStatCdNm;
+    private	String	jrdtHdofcCdNm;
+    private	String	rdtTeamOrgCdNm;
+    private	String	eqpSrno;
+    private	String	mstIp;
+    private	float	latCodn;
+    private	float	lngCodn;
+    private	String	opChrrId;
+    private	String	regrtDt;
+    private	String	regrtId;
+    private	String	udtDt;
+    private	String	udtId;
 
-    private int page;
-    private int totalCnt;
+    // private int page;
+    // private int totalCnt;
 
 }
