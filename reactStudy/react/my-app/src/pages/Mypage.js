@@ -8,13 +8,13 @@ import AgGrid from "../component/AgGrid";
 
 import styles from "./Mypage.module.css";
 
-
 const Mypage = (props) => {
-  // 셀렉트 박스에서 관할본부조직코드에 값에 따라 관할팀조직코드 노출
-  // const[selJrdtCd, setSelJrdtCd] = useState('');
-  // const[selRdtTeamCd, setSelRdtTeamCd] = useState('');
+  // 관할본부 셀렉트 박스 상태
+  const [jrdtSelectVal, setJrdtSelectVal] = useState();
+  // 관할팀 셀렉트 박스 상태
+  const [rdtTeamSelectVal, setRdtTeamSelectVal] = useState();
   // 셀렉트 박스 상태
-  const [selectValues, setSelectValues] = useState(["", "", "", "",""]);
+  const [selectValues, setSelectValues] = useState(["", "", "", "", ""]);
 
   //input창 (장비명) 상태
   const [inputEpqNm, setInputEpqNm] = useState("");
@@ -127,12 +127,11 @@ const Mypage = (props) => {
   ]);
 
   const selectBoxOnChange = (idx, e) => {
-    if(!idx)
-    return;
+    if (!idx) return;
     console.log(e.target.value);
     const value = e.target;
     const name = e.target.options[e.target.idx];
-    const newSelectValues = {...selectValues};
+    const newSelectValues = { ...selectValues };
     newSelectValues[idx] = e.target.value;
     setSelectValues({ ...newSelectValues, [name]: value });
   };
@@ -163,6 +162,31 @@ const Mypage = (props) => {
   };
   // 표 보여주기 버튼 클릭시 AgGrid에 Axio 비동기로 데이터 전송
   useEffect(loadRowData, []);
+
+  // 관할본부 셀렉트 박스 옵션
+  const jrdtSelectOpt = () => {
+    axios
+      .get("/api/getJrdtHdofcCdList", {
+        method: "get",
+        baseURL: "http://localhost:3000",
+        headers: {
+          "Content-Type": `application/json;charset=UTF-8`,
+          Accept: "application/json",
+
+          // 추가
+          "Access-Control-Allow-Origin": `http://localhost:8080`,
+          "Access-Control-Allow-Credentials": "true",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
+  };
+
+  const onChangeJrdtSelBox = (e) => {
+    setJrdtSelectVal(e.currentTarget.value);
+  };
+
   // 팝업창 컨트롤러
   // addData 성공시 reloadFlag 전송
   const popupHandler = (reloadFlag) => {
@@ -224,10 +248,7 @@ const Mypage = (props) => {
       <div className={styles.searchArea}>
         <div className={styles.searchGrid}>
           <div className={styles.searchGrid_sm}>
-            <label
-              htmlFor="eqpClCd"
-              className={styles.searchLabel}
-            >
+            <label htmlFor="eqpClCd" className={styles.searchLabel}>
               장비분류
             </label>
             <label htmlFor="eqpNm" className={styles.searchLabel}>
@@ -240,24 +261,22 @@ const Mypage = (props) => {
             />
           </div>
           <div className={styles.searchGrid_sm}>
-            <label
-              htmlFor="eqpOpStatCd"
-              className={styles.searchLabel}
-            >
+            <label htmlFor="eqpOpStatCd" className={styles.searchLabel}>
               장비운용상태
             </label>
           </div>
           <div className={styles.searchGrid_sm}>
-            <label
-              htmlFor="jrdtHdofcCd"
-              className={styles.searchLabel}
-            >
+            <label htmlFor="jrdtHdofcCd" className={styles.searchLabel}>
               관할본부조직
             </label>
-            <label
-              htmlFor="rdtTeamOrgCd"
-              className={styles.searchLabel}
-            >
+            <label htmlFor="rdtTeamOrgCd" className={styles.searchLabel}>
+              <select onChange={onChangeJrdtSelBox} value={jrdtSelectVal}>
+                {jrdtSelectOpt.map((item) => (
+                  <option key={item.id} value={item.value}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
               관할팀조직
             </label>
           </div>
@@ -265,7 +284,7 @@ const Mypage = (props) => {
       </div>
       <div className={styles.searchButton}>
         <button onClick={() => searchHandler(selectValues)}>조회</button>
-        <button onClick={()=> popupHandler(false)}>등록하기</button>
+        <button onClick={() => popupHandler(false)}>등록하기</button>
       </div>
       {popupOpen && (
         <Popup

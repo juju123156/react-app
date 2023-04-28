@@ -136,11 +136,11 @@ const Popup = (props) => {
           </label>
           <span>{jDataVal.rdtTeamOrgCd}</span>
           <label htmlFor="eqpSrno" className={styles.popupLabel}>
-            SERIAL NUMBER
+            시리얼 넘버
           </label>
           <span>{jDataVal.eqpSrno}</span>
           <label htmlFor="mstIp" className={styles.popupLabel}>
-            MASTER IP
+            마스터 IP
           </label>
           <span>{jDataVal.mstIp}</span>
           <label htmlFor="latCodn" className={styles.popupLabel}>
@@ -424,7 +424,7 @@ const Popup = (props) => {
             />
 
             <label htmlFor="eqpSrno" className={styles.popupLabel}>
-              SERIAL NUMBER   
+              시리얼 넘버  
             </label>
             <input
               type="text"
@@ -435,7 +435,7 @@ const Popup = (props) => {
             />
 
             <label htmlFor="mstIp" className={styles.popupLabel}>
-              MASTER IP
+              마스터 IP
             </label>
             <input
               type="text"

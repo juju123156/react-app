@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.paging.demo.dto.EqpInfDto;
 import com.paging.demo.dto.FilterDto;
+import com.paging.demo.dto.OrgCdInfDto;
 import com.paging.demo.mapper.EqpInfMapper;
 
 @Service
@@ -33,4 +34,17 @@ public class EqpInfService {
         return eqpInfMapper.udtEqpInf(eqpInfDto);
     }
 
+    // 관할본부코드 조회하기
+    public List<OrgCdInfDto> getJrdtHdofcCdList(OrgCdInfDto orgCdInf) {
+
+        return eqpInfMapper.getJrdtHdofcCdList(orgCdInf);
+    }
+    
+    // 관할팀코드 조회하기
+    public List<OrgCdInfDto> getRdtTeamOrgCdList(OrgCdInfDto orgCdInf) {
+
+        return eqpInfMapper.getRdtTeamOrgCdList(orgCdInf);
+    }
+
+    
 }

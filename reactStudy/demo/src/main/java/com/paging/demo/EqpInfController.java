@@ -1,6 +1,8 @@
 package com.paging.demo;
 import com.paging.demo.dto.EqpInfDto;
 import com.paging.demo.dto.FilterDto;
+import com.paging.demo.dto.OrgCdInfDto;
+
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,6 +84,23 @@ public class EqpInfController {
         return result;
     }
 
+    // 관할본부코드 조회하기
+    @GetMapping("/api/getJrdtHdofcCdList")
+    public List<OrgCdInfDto> getJrdtHdofcCdList(OrgCdInfDto orgCdInf) {
+
+        List<OrgCdInfDto> orgCdInfList = eqpInfService.getJrdtHdofcCdList(orgCdInf);
+
+        return orgCdInfList;
+    }
+
+    // 관할팀코드 조회하기
+    @GetMapping("/api/getRdtTeamOrgCdList")
+    public List<OrgCdInfDto> getRdtTeamOrgCdList(OrgCdInfDto orgCdInf) {
+
+        List<OrgCdInfDto> orgCdInfList = eqpInfService.getRdtTeamOrgCdList(orgCdInf);
+
+        return orgCdInfList;
+    }
 
 
 
