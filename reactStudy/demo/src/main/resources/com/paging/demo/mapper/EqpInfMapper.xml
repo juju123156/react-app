@@ -141,8 +141,13 @@
         </where>
     </update>
 
+<<<<<<< HEAD
 <!-- 셀렉트 박스 괸할 부서 조회 -->
     <!-- <select id="">
+=======
+<!-- 셀렉트 박스 관할본부 조회 -->
+    <select id="getJrdtHdofcCdList">
+>>>>>>> d33e157978355e495742af9266d9ab2babca5a3a
         select 
             AA.*
         from (
@@ -152,7 +157,11 @@
                         , upper_org_cd_nm
                         , org_cd
                         , org_cd_nm
+<<<<<<< HEAD
                         , cast(org_cd_nm as char(200)) as path, 1 as lvl
+=======
+                        , cast(org_cd_nm as char(200)) as path, 1 as level
+>>>>>>> d33e157978355e495742af9266d9ab2babca5a3a
                     from
                         org_cd_inf
                     <where> upper_org_cd = 01 </where>
@@ -164,7 +173,11 @@
                         , org.upper_org_cd_nm
                         , org.org_cd
                         , org.org_cd_nm
+<<<<<<< HEAD
                         , concat(cte.path, ', ', org.org_cd_nm) as path, lvl+1
+=======
+                        , concat(cte.path, ', ', org.org_cd_nm) as path, level+1
+>>>>>>> d33e157978355e495742af9266d9ab2babca5a3a
                     from
                         org_cd_inf org, cte
                     <where> org.upper_org_cd = cte.org_cd </where>
@@ -172,11 +185,19 @@
             select *
             from cte
         ) AA
+<<<<<<< HEAD
         <where> lvl = 3 </where>
     </select> -->
 
     <!-- 셀렉트 박스 괸할 팀 조회 -->
     <!-- <select id="2">
+=======
+        <where> level = 3 </where>
+    </select>
+
+    <!-- 셀렉트 박스 관할팀 조회 -->
+    <select id="getRdtTeamOrgCdList">
+>>>>>>> d33e157978355e495742af9266d9ab2babca5a3a
         select 
             AA.*
         from (
@@ -186,7 +207,11 @@
                         , upper_org_cd_nm
                         , org_cd
                         , org_cd_nm
+<<<<<<< HEAD
                         , cast(org_cd_nm as char(200)) as path, 1 as lvl
+=======
+                        , cast(org_cd_nm as char(200)) as path, 1 as level
+>>>>>>> d33e157978355e495742af9266d9ab2babca5a3a
                     from
                         org_cd_inf
                     <where> upper_org_cd = 01 </where>
@@ -198,7 +223,11 @@
                         , org.upper_org_cd_nm
                         , org.org_cd
                         , org.org_cd_nm
+<<<<<<< HEAD
                         , concat(cte.path, ', ', org.org_cd_nm) as path, lvl+1
+=======
+                        , concat(cte.path, ', ', org.org_cd_nm) as path, level+1
+>>>>>>> d33e157978355e495742af9266d9ab2babca5a3a
                     from
                         org_cd_inf org, cte
                     <where> org.upper_org_cd = cte.org_cd </where>
@@ -206,11 +235,19 @@
             select *
             from cte
         ) AA
+<<<<<<< HEAD
         <where> lvl = 2 
+=======
+        <where> level = 2 
+>>>>>>> d33e157978355e495742af9266d9ab2babca5a3a
             <if test="jrdtHdofcCd != null and jrdtHdofcCd != ''">
                 and AA.upper_org_cd = #{upper_org_cd}
             </if>
         </where>
+<<<<<<< HEAD
     </select> -->
+=======
+    </select>
+>>>>>>> d33e157978355e495742af9266d9ab2babca5a3a
 
 </mapper>
