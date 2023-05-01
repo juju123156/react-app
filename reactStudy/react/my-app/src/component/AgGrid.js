@@ -62,8 +62,9 @@ const AgGrid = (props) => {
             flex: true
           }}
           ref={gridRef}
-          rowSelection={'single'}
+          rowSelection={'multiple'}
           onSelectionChanged={onSelectionChanged}
+          suppressRowClickSelection={true}
         >
         </AgGridReact>
       </div>

@@ -41,6 +41,9 @@ const Mypage = (props) => {
       field: "eqpId",
       width: 100,
       cellStyle: { textAlign: "center" },
+      headerCheckboxSelection: true,
+      checkboxSelection: true,
+      
     },
     {
       headerName: "장비명",
@@ -273,13 +276,13 @@ const Mypage = (props) => {
               관할본부조직
             </label>
             <label htmlFor="rdtTeamOrgCd" className={styles.searchLabel}>
-              <select onChange={onChangeJrdtSelBox} value={jrdtSelectVal}>
+              {/* <select onChange={onChangeJrdtSelBox} value={jrdtSelectVal}>
                 {jrdtSelectOpt.map((item) => (
                   <option key={item.id} value={item.value}>
                     {item.name}
                   </option>
                 ))}
-              </select>
+              </select> */}
               관할팀조직
             </label>
           </div>
