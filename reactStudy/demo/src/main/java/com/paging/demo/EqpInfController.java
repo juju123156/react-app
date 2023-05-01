@@ -76,8 +76,8 @@ public class EqpInfController {
     @PostMapping("/api/udtEqpInf")
     public int udtEqpInf(EqpInfDto eqpInfDto) {
         System.out.println("*************"+ eqpInfDto.toString());
-
         int result = eqpInfService.udtEqpInf(eqpInfDto);
+
 
         return result;
     }

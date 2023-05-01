@@ -15,4 +15,5 @@ public interface EqpInfMapper {
     public int insEqpInf(EqpInfDto eqpInfDto);
     // 데이터 업데이트 하기
     public int udtEqpInf(EqpInfDto eqpInfDto);
+
 };

@@ -3,7 +3,6 @@ package com.paging.demo;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import com.paging.demo.dto.EqpInfDto;
-import com.paging.demo.dto.FilterDto;
 import com.paging.demo.mapper.EqpInfMapper;
 
 @Service
@@ -17,7 +16,6 @@ public class EqpInfService {
 
     // 조직원 전체 조회
     public List<EqpInfDto> getEqpInfListPaging(EqpInfDto eqpInfDto) {
-
         return eqpInfMapper.getEqpInfListPaging(eqpInfDto);
     }
 

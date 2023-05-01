@@ -65,6 +65,7 @@
     </sql>
 
     <select id="getEqpInfListPaging" parameterType="EqpInfDto" resultType="EqpInfDto" >
+
         select
             AA.*
         from
@@ -78,6 +79,7 @@
 
     <insert id="insEqpInf">
         <!-- keyProperty는 insert할 변수이름, resultType 시퀀스 타입 -->
+
         <selectKey keyProperty="eqpId" resultType="String" order="BEFORE">
                 select lpad(nextval(EQP_SEQ),5,"0") as eqp_id from dual
         </selectKey>
@@ -100,7 +102,7 @@
                 , udt_dt
                 , udt_id
             )
-        VALUES
+        values
             (   
                   #{eqpId}
                 , #{eqpNm}
@@ -119,8 +121,6 @@
                 , #{udtId}
             );
     </insert>
-
-
     <update id="udtEqpInf" >
         update eqp_inf
             set     
@@ -134,11 +134,83 @@
             , lat_codn = #{latCodn}
             , lng_codn = #{lngCodn}
             , op_chrr_id = #{opChrrId}
-            , udt_dt = #{udtDt}
+            , udt_dt = to_char(sysdate(), 'YYYY-MM-DD hh:mm:ss')
             , udt_id = #{udtId}
         <where>
             eqp_id = #{eqpId}
         </where>
     </update>
+
+<!-- 셀렉트 박스 괸할 부서 조회 -->
+    <!-- <select id="">
+        select 
+            AA.*
+        from (
+                with recursive cte as (
+                    select
+                        upper_org_cd
+                        , upper_org_cd_nm
+                        , org_cd
+                        , org_cd_nm
+                        , cast(org_cd_nm as char(200)) as path, 1 as lvl
+                    from
+                        org_cd_inf
+                    <where> upper_org_cd = 01 </where>
+                    
+                    union all
+                    
+                    select
+                        org.upper_org_cd
+                        , org.upper_org_cd_nm
+                        , org.org_cd
+                        , org.org_cd_nm
+                        , concat(cte.path, ', ', org.org_cd_nm) as path, lvl+1
+                    from
+                        org_cd_inf org, cte
+                    <where> org.upper_org_cd = cte.org_cd </where>
+            )
+            select *
+            from cte
+        ) AA
+        <where> lvl = 3 </where>
+    </select> -->
+
+    <!-- 셀렉트 박스 괸할 팀 조회 -->
+    <!-- <select id="2">
+        select 
+            AA.*
+        from (
+                with recursive cte as (
+                    select
+                        upper_org_cd
+                        , upper_org_cd_nm
+                        , org_cd
+                        , org_cd_nm
+                        , cast(org_cd_nm as char(200)) as path, 1 as lvl
+                    from
+                        org_cd_inf
+                    <where> upper_org_cd = 01 </where>
+                    
+                    union all
+                    
+                    select
+                        org.upper_org_cd
+                        , org.upper_org_cd_nm
+                        , org.org_cd
+                        , org.org_cd_nm
+                        , concat(cte.path, ', ', org.org_cd_nm) as path, lvl+1
+                    from
+                        org_cd_inf org, cte
+                    <where> org.upper_org_cd = cte.org_cd </where>
+            )
+            select *
+            from cte
+        ) AA
+        <where> lvl = 2 
+            <if test="jrdtHdofcCd != null and jrdtHdofcCd != ''">
+                and AA.upper_org_cd = #{upper_org_cd}
+            </if>
+        </where>
+    </select> -->
 
 </mapper>

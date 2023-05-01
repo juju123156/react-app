@@ -27,8 +27,4 @@ public class EqpInfDto extends FilterDto {
     private	String	regrtId;
     private	String	udtDt;
     private	String	udtId;
-
-    // private int page;
-    // private int totalCnt;
-
 }

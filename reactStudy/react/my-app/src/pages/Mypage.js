@@ -13,8 +13,8 @@ const Mypage = (props) => {
   // 셀렉트 박스에서 관할본부조직코드에 값에 따라 관할팀조직코드 노출
   // const[selJrdtCd, setSelJrdtCd] = useState('');
   // const[selRdtTeamCd, setSelRdtTeamCd] = useState('');
-  // 셀렉트 박스 상태
-  const [selectValues, setSelectValues] = useState(["", "", "", "",""]);
+  // 관할 팀 셀렉트 박스 상태 
+  const [jrdtSelectValues, setJrdtSelectValues] = useState();
 
   //input창 (장비명) 상태
   const [inputEpqNm, setInputEpqNm] = useState("");
@@ -126,16 +126,16 @@ const Mypage = (props) => {
     },
   ]);
 
-  const selectBoxOnChange = (idx, e) => {
-    if(!idx)
-    return;
-    console.log(e.target.value);
-    const value = e.target;
-    const name = e.target.options[e.target.idx];
-    const newSelectValues = {...selectValues};
-    newSelectValues[idx] = e.target.value;
-    setSelectValues({ ...newSelectValues, [name]: value });
-  };
+  // const selectBoxOnChange = (idx, e) => {
+  //   if(!idx)
+  //   return;
+  //   console.log(e.target.value);
+  //   const value = e.target;
+  //   const name = e.target.options[e.target.idx];
+  //   const newSelectValues = {...selectValues};
+  //   newSelectValues[idx] = e.target.value;
+  //   setSelectValues({ ...newSelectValues, [name]: value });
+  // };
 
   // useCallback으로 함수 재용하기> setRowData를 재사용하는듯
   const loadRowData = () => {
@@ -213,10 +213,10 @@ const Mypage = (props) => {
     });
   };
 
-  const searchHandler = (selectValues) => {
-    // console.log("params : " + JSON.stringify(selectValues), inputEpqNm);
-    console.log("params : " + JSON.stringify(selectValues), inputEpqNm);
-  };
+  // const searchHandler = (selectValues) => {
+  //   // console.log("params : " + JSON.stringify(selectValues), inputEpqNm);
+  //   console.log("params : " + JSON.stringify(selectValues), inputEpqNm);
+  // };
 
   return (
     <Fragment>
@@ -264,7 +264,7 @@ const Mypage = (props) => {
         </div>
       </div>
       <div className={styles.searchButton}>
-        <button onClick={() => searchHandler(selectValues)}>조회</button>
+        {/* <button onClick={() => searchHandler(selectValues)}>조회</button> */}
         <button onClick={()=> popupHandler(false)}>등록하기</button>
       </div>
       {popupOpen && (
