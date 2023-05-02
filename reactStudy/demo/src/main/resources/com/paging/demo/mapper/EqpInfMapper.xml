@@ -140,8 +140,14 @@
             eqp_id = #{eqpId}
         </where>
     </update>
-
-
+<!-- 데이터 삭제하기 -->
+    <delete id="delEqpInf">
+        delete 
+        from eqp_inf
+        <where> 
+            eqp_id=#{eqpId}
+        </where>
+    </delete>
 <!-- 셀렉트 박스 관할본부 조회 -->
     <select id="getJrdtHdofcCdList">
         select 
@@ -218,4 +224,5 @@
             </if>
         </where>
     </select>
+
 </mapper>

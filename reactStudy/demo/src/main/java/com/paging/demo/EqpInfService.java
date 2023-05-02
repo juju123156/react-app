@@ -33,6 +33,12 @@ public class EqpInfService {
         return eqpInfMapper.udtEqpInf(eqpInfDto);
     }
 
+    // 데이터 삭제하기
+    public int delEqpInf(EqpInfDto eqpInfDto) {
+
+        return eqpInfMapper.delEqpInf(eqpInfDto);
+    }
+
     // 관할본부코드 조회하기
     public List<OrgCdInfDto> getJrdtHdofcCdList(OrgCdInfDto orgCdInf) {
 
@@ -44,6 +50,7 @@ public class EqpInfService {
 
         return eqpInfMapper.getRdtTeamOrgCdList(orgCdInf);
     }
+
 
     
 }

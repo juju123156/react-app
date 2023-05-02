@@ -23,6 +23,8 @@ const Mypage = (props) => {
 
   // 업데이트인지 아닌지 체크 유무
   const [rowClickPopup, setRowClickPopup] = useState(false);
+  // 삭제 버튼 클릭여부
+  const [isDelClicked, setIsDelClicked] = useState(false);
 
   // row 클릭 여부
   const [clickedRowData, setClickedRowData] = useState(""); // 배열의 첫 번째 요소
@@ -35,14 +37,14 @@ const Mypage = (props) => {
   // 그리드 데이터 상태체크
   const [rowData, setRowData] = useState([]);
   // 그리드 컬럼 데이터
-  const [columnDefs] = useState([
+  const [columnDefs, setColumnDefs] = useState([
     {
       headerName: "장비아이디",
       field: "eqpId",
       width: 100,
       cellStyle: { textAlign: "center" },
-      headerCheckboxSelection: true,
-      checkboxSelection: true,
+      headerCheckboxSelection: false,
+      checkboxSelection: false,
       
     },
     {
@@ -248,6 +250,11 @@ const Mypage = (props) => {
   //   console.log("params : " + JSON.stringify(selectValues), inputEpqNm);
   // };
 
+  const deleteHandler = (isDelClicked) => {
+    setIsDelClicked((isDelClicked) => !isDelClicked);
+    setColumnDefs([...columnDefs, {headerCheckboxSelection:true, checkboxSelection:true}]);
+  }
+
   return (
     <Fragment>
       <h3>장비관리</h3>
@@ -291,6 +298,7 @@ const Mypage = (props) => {
       <div className={styles.searchButton}>
         {/* <button onClick={() => searchHandler(selectValues)}>조회</button> */}
         <button onClick={()=> popupHandler(false)}>등록하기</button>
+        <button onClick={()=> deleteHandler(true)}>삭제하기</button>
       </div>
       {popupOpen && (
         <Popup

@@ -84,6 +84,14 @@ public class EqpInfController {
         return result;
     }
 
+    // 데이터 삭제하기
+    @PostMapping("/api/delEqpInf")
+    public int delEqpInf(EqpInfDto eqpInfDto) {
+        int result = eqpInfService.delEqpInf(eqpInfDto);
+        return result;
+    }
+
+
     // 관할본부코드 조회하기
     @GetMapping("/api/getJrdtHdofcCdList")
     public List<OrgCdInfDto> getJrdtHdofcCdList(OrgCdInfDto orgCdInf) {

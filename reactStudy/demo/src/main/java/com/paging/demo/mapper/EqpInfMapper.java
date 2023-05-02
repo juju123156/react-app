@@ -16,11 +16,13 @@ public interface EqpInfMapper {
     public int insEqpInf(EqpInfDto eqpInfDto);
     // 데이터 업데이트 하기
     public int udtEqpInf(EqpInfDto eqpInfDto);
-
+    // 데이터 삭제하기
+    public int delEqpInf(EqpInfDto eqpInfDto);
     // 관할본부코드 조회하기
     public List<OrgCdInfDto> getJrdtHdofcCdList(OrgCdInfDto orgCdInf);
     // 관할팀코드 조회하기
     public List<OrgCdInfDto> getRdtTeamOrgCdList(OrgCdInfDto orgCdInf);
+
 
 
 };
