@@ -37,14 +37,19 @@ const Mypage = (props) => {
   // 그리드 데이터 상태체크
   const [rowData, setRowData] = useState([]);
   // 그리드 컬럼 데이터
-  const [columnDefs, setColumnDefs] = useState([
+  const [columnDefs] = useState([
+
+    {
+      headerName: '',
+      field: '',
+      width: 50,
+      checkboxSelection: true,
+    },
     {
       headerName: "장비아이디",
       field: "eqpId",
       width: 100,
       cellStyle: { textAlign: "center" },
-      headerCheckboxSelection: false,
-      checkboxSelection: false,
       
     },
     {
@@ -252,7 +257,7 @@ const Mypage = (props) => {
 
   const deleteHandler = (isDelClicked) => {
     setIsDelClicked((isDelClicked) => !isDelClicked);
-    setColumnDefs([...columnDefs, {headerCheckboxSelection:true, checkboxSelection:true}]);
+
   }
 
   return (

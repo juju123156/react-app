@@ -1,4 +1,4 @@
-import React, { useCallback, useRef }  from "react";
+import React, { useCallback, useRef, useState }  from "react";
 
 import { AgGridReact } from "ag-grid-react";
 import axios from "axios";
@@ -7,8 +7,14 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const AgGrid = (props) => {
-
+  const { selectedCheckboxData, setSelectedCheckboxData } = useState([]);
   const gridRef = useRef();
+
+  const gridOptions = {
+    onSelectionChanged: (e) => {
+      selectedCheckboxData(e.api.getSelectedNodes().map((node) => node.data));
+    },
+  }
 
   const onSelectionChanged = useCallback(() => {
     const selectedRowsApi = gridRef.current.api.getSelectedRows();
@@ -64,7 +70,8 @@ const AgGrid = (props) => {
           ref={gridRef}
           rowSelection={'multiple'}
           onSelectionChanged={onSelectionChanged}
-          suppressRowClickSelection={true}
+         gridOptions={gridOptions}
+          // suppressRowClickSelection={true}
         >
         </AgGridReact>
       </div>
