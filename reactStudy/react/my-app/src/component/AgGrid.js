@@ -7,27 +7,37 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const AgGrid = (props) => {
-  const { selectedCheckboxData, setSelectedCheckboxData } = useState([]);
+    //row click 데이터
+    const { selectedRowData, setSelectedRowData } = useState([]);
+    // 체크박스 데이터
+    const { selectedCheckboxData, setSelectedCheckboxData } = useState([]);
+  
+    const gridOptions = {
+      onRowSelected:(e) => {
+        setSelectedRowData(e.api.getSelectedRows());
+      },
+  
+      onSelectionChanged: (e) => {
+        setSelectedCheckboxData(e.api.getSelectedNodes().map((node) => node.data));
+        console.log("checkbox data : ", selectedCheckboxData);
+      },
+    };
+  
+
+  
   const gridRef = useRef();
 
-  const gridOptions = {
-    onSelectionChanged: (e) => {
-      selectedCheckboxData(e.api.getSelectedNodes().map((node) => node.data));
-    },
-  }
 
-  const onSelectionChanged = useCallback(() => {
-    const selectedRowsApi = gridRef.current.api.getSelectedRows();
-    let selectedRows =  Object.values(Object.fromEntries(Object.entries(selectedRowsApi[0]).filter(([key])=> key.includes('eqpId'))));
-   
-    selectedRows = selectedRows.toString();
-    if(selectedRows !== null && selectedRows !== ''){
-      axios
+  // 더블 클릭시 팝업창 띄우기
+  function onRowDoubleClicked(e) {
+    const rowData = e.data;
+
+    axios
       .get("/api/getEqpInfListPaging", {
         params: {
           page: 1,
           perPageNum: 10,
-          eqpId : selectedRows
+          eqpId : rowData.eqpId
         },
         method: "get",
         baseURL: "http://localhost:3000",
@@ -48,8 +58,43 @@ const AgGrid = (props) => {
       });
       
     }
+
+  
+  // const onSelectionChanged = useCallback(() => {
+
+  //   const selectedRowsApi = gridRef.current.api.getSelectedRows();
+  //   let selectedRows =  Object.values(Object.fromEntries(Object.entries(selectedRowsApi[0]).filter(([key])=> key.includes('eqpId'))));
+   
+  //   selectedRows = selectedRows.toString();
+  //   if(selectedRows !== null && selectedRows !== ''){
+  //     axios
+  //     .get("/api/getEqpInfListPaging", {
+  //       params: {
+  //         page: 1,
+  //         perPageNum: 10,
+  //         eqpId : selectedRows
+  //       },
+  //       method: "get",
+  //       baseURL: "http://localhost:3000",
+  //       headers: {
+  //         "Content-Type": `application/json;charset=UTF-8`,
+  //         Accept: "application/json",
+  
+  //         // 추가
+  //         "Access-Control-Allow-Origin": `http://localhost:8080`,
+  //         "Access-Control-Allow-Credentials": "true",
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       props.updateRowDataHandler(res.data);
+  //       props.rowClickPopupHandler();
+
+  //     });
+      
+  //   }
     
-  }, []);
+  // }, []);
 
 
 
@@ -69,9 +114,10 @@ const AgGrid = (props) => {
           }}
           ref={gridRef}
           rowSelection={'multiple'}
-          onSelectionChanged={onSelectionChanged}
-         gridOptions={gridOptions}
+          // onSelectionChanged={onSelectionChanged}
+          gridOptions={gridOptions}
           // suppressRowClickSelection={true}
+          onRowDoubleClicked={onRowDoubleClicked}
         >
         </AgGridReact>
       </div>
