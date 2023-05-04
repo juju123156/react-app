@@ -139,6 +139,24 @@ const Mypage = (props) => {
     },
   ]);
 
+  // 체크박스 데이터
+  const [selectedCheckboxData, setSelectedCheckboxData] = useState([]);
+
+  const gridOptions = {
+    // onRowSelected:(e) => {
+    //   setSelectedRowData(e.api.getSelectedRows());
+    // },
+
+    onSelectionChanged: (e) => {
+      // setSelectedCheckboxData(e.api.getSelectedNodes().map((node) => node.data));
+      const selectedNodes = e.api.getSelectedNodes();
+      const selectedData = selectedNodes.map((node) => node.data);
+      setSelectedCheckboxData(selectedData);
+      console.log("checkbox data : ", selectedData);
+    },
+  };
+    
+
   // const selectBoxOnChange = (idx, e) => {
   //   if(!idx)
   //   return;
@@ -174,21 +192,6 @@ const Mypage = (props) => {
         console.log(res.data);
       });
   };
-  // //row click 데이터
-  // const { selectedRowData, setSelectedRowData } = useState([]);
-  // // 체크박스 데이터
-  // const { selectedCheckboxData, setSelectedCheckboxData } = useState([]);
-
-  // const gridOptions = {
-  //   onRowSelected:(e) => {
-  //     setSelectedRowData(e.api.getSelectedRows());
-  //   },
-
-  //   onSelectionChanged: (e) => {
-  //     setSelectedCheckboxData(e.api.getSelectedNodes().map((node) => node.data));
-  //     console.log("checkbox data : ", selectedCheckboxData);
-  //   },
-  // };
 
   // 표 보여주기 버튼 클릭시 AgGrid에 Axio 비동기로 데이터 전송
   useEffect(loadRowData, []);
@@ -272,11 +275,10 @@ const Mypage = (props) => {
   //   console.log("params : " + JSON.stringify(selectValues), inputEpqNm);
   // };
 
-  // const deleteHandler = (selectedCheckboxData) => {
-  //   // setIsDelClicked((isDelClicked) => !isDelClicked);
-  //   console.log(selectedCheckboxData);
-
-  // }
+  const deleteHandler = (selectedCheckboxData) => {
+    // selectedCheckboxData.eqpId
+    console.log(selectedCheckboxData);
+  }
 
   return (
     <Fragment>
@@ -321,7 +323,7 @@ const Mypage = (props) => {
       <div className={styles.searchButton}>
         {/* <button onClick={() => searchHandler(selectValues)}>조회</button> */}
         <button onClick={()=> popupHandler(false)}>등록하기</button>
-        {/* <button onClick={()=> deleteHandler(selectedCheckboxData)}>삭제하기</button> */}
+        <button onClick={()=> deleteHandler(selectedCheckboxData)}>삭제하기</button>
       </div>
       {popupOpen && (
         <Popup
@@ -346,9 +348,8 @@ const Mypage = (props) => {
           updateOnHandler={updateOnHandler}
           updateOffHandler={updateOffHandler}
           updateClicked={updateClicked}
-          // gridOptions={gridOptions}
-          // selectedRowData={selectedRowData}
-          // selectedCheckboxData={selectedCheckboxData}
+          gridOptions={gridOptions}
+          selectedCheckboxData={selectedCheckboxData}
         />
       </div>
     </Fragment>

@@ -8,18 +8,21 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const AgGrid = (props) => {
     //row click 데이터
-    const { selectedRowData, setSelectedRowData } = useState([]);
+    // const { selectedRowData, setSelectedRowData } = useState([]);
     // 체크박스 데이터
-    const { selectedCheckboxData, setSelectedCheckboxData } = useState([]);
+    const [selectedCheckboxData, setSelectedCheckboxData] = useState([]);
   
     const gridOptions = {
-      onRowSelected:(e) => {
-        setSelectedRowData(e.api.getSelectedRows());
-      },
+      // onRowSelected:(e) => {
+      //   setSelectedRowData(e.api.getSelectedRows());
+      // },
   
       onSelectionChanged: (e) => {
-        setSelectedCheckboxData(e.api.getSelectedNodes().map((node) => node.data));
-        console.log("checkbox data : ", selectedCheckboxData);
+        // setSelectedCheckboxData(e.api.getSelectedNodes().map((node) => node.data));
+        const selectedNodes = e.api.getSelectedNodes();
+        const selectedData = selectedNodes.map((node) => node.data);
+        setSelectedCheckboxData(selectedData);
+        console.log("checkbox data : ", selectedData);
       },
     };
   
