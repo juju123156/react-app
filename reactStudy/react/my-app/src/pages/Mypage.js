@@ -37,14 +37,15 @@ const Mypage = (props) => {
   // 그리드 데이터 상태체크
   const [rowData, setRowData] = useState([]);
 
+
   // 그리드 컬럼 데이터
   const [columnDefs] = useState([
 
     {
-      headerName: '',
-      field: '',
-      width: 50,
+      field:"checkbox",
+      headerCheckboxSelection: true,
       checkboxSelection: true,
+      width: 50,
     },
     {
       headerName: "장비아이디",
@@ -139,34 +140,40 @@ const Mypage = (props) => {
     },
   ]);
 
+  // 더블 클릭시 팝업창 띄우기
+  // const onRowDoubleClicked = (e) => {
+    
+  //   const rowData = e.data;
+  //   console.log("double clicked : ", rowData.eqpId)
+  //   // axios
+  //   //   .get("/api/getEqpInfListPaging", {
+  //   //     params: {
+  //   //       page: 1,
+  //   //       perPageNum: 10,
+  //   //       eqpId : rowData.eqpId
+  //   //     },
+  //   //     method: "get",
+  //   //     baseURL: "http://localhost:3000",
+  //   //     headers: {
+  //   //       "Content-Type": `application/json;charset=UTF-8`,
+  //   //       Accept: "application/json",
+  
+  //   //       // 추가
+  //   //       "Access-Control-Allow-Origin": `http://localhost:8080`,
+  //   //       "Access-Control-Allow-Credentials": "true",
+  //   //     },
+  //   //   })
+  //   //   .then((res) => {
+  //   //     console.log(res.data);
+  //   //     props.updateRowDataHandler(res.data);
+  //   //     props.rowClickPopupHandler();
+
+  //   //   });
+      
+  //   }
+
   // 체크박스 데이터
   const [selectedCheckboxData, setSelectedCheckboxData] = useState([]);
-
-  const gridOptions = {
-    // onRowSelected:(e) => {
-    //   setSelectedRowData(e.api.getSelectedRows());
-    // },
-
-    onSelectionChanged: (e) => {
-      // setSelectedCheckboxData(e.api.getSelectedNodes().map((node) => node.data));
-      const selectedNodes = e.api.getSelectedNodes();
-      const selectedData = selectedNodes.map((node) => node.data);
-      setSelectedCheckboxData(selectedData);
-      console.log("checkbox data : ", selectedData);
-    },
-  };
-    
-
-  // const selectBoxOnChange = (idx, e) => {
-  //   if(!idx)
-  //   return;
-  //   console.log(e.target.value);
-  //   const value = e.target;
-  //   const name = e.target.options[e.target.idx];
-  //   const newSelectValues = {...selectValues};
-  //   newSelectValues[idx] = e.target.value;
-  //   setSelectValues({ ...newSelectValues, [name]: value });
-  // };
 
   // useCallback으로 함수 재용하기> setRowData를 재사용하는듯
   const loadRowData = () => {
@@ -275,9 +282,27 @@ const Mypage = (props) => {
   //   console.log("params : " + JSON.stringify(selectValues), inputEpqNm);
   // };
 
-  const deleteHandler = (selectedCheckboxData) => {
-    // selectedCheckboxData.eqpId
-    console.log(selectedCheckboxData);
+
+  //  데이터 삭제하기
+  const deleteHandler = () => {
+    axios
+    .post("/api/delEqpInf", {
+      eqpIdList : selectedCheckboxData,
+    }, {
+      method: "post",
+      baseURL: "http://localhost:3000",
+      headers: {
+        "Content-Type": `application/json;charset=UTF-8`,
+        Accept: "application/json",
+        // 추가
+        "Access-Control-Allow-Origin": `http://localhost:8080`,
+        "Access-Control-Allow-Credentials": "true",
+      },
+    })
+    .then((res) => {
+      console.log(res.data, '개 데이터 삭제 완료');
+      loadRowData();
+    });
   }
 
   return (
@@ -323,7 +348,7 @@ const Mypage = (props) => {
       <div className={styles.searchButton}>
         {/* <button onClick={() => searchHandler(selectValues)}>조회</button> */}
         <button onClick={()=> popupHandler(false)}>등록하기</button>
-        <button onClick={()=> deleteHandler(selectedCheckboxData)}>삭제하기</button>
+        <button onClick={deleteHandler}>삭제하기</button>
       </div>
       {popupOpen && (
         <Popup
@@ -348,8 +373,8 @@ const Mypage = (props) => {
           updateOnHandler={updateOnHandler}
           updateOffHandler={updateOffHandler}
           updateClicked={updateClicked}
-          gridOptions={gridOptions}
-          selectedCheckboxData={selectedCheckboxData}
+          setSelectedCheckboxData={setSelectedCheckboxData}
+          deleteHandler={deleteHandler}
         />
       </div>
     </Fragment>

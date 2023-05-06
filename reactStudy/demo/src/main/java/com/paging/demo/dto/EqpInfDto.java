@@ -1,5 +1,7 @@
 package com.paging.demo.dto;
 
+import java.util.List;
+
 import  lombok.*;
 
 @Getter
@@ -27,4 +29,6 @@ public class EqpInfDto extends FilterDto {
     private	String	regrtId;
     private	String	udtDt;
     private	String	udtId;
+
+    private List<String> eqpIdList;
 }

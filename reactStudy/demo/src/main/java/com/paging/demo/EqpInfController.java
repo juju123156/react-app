@@ -1,6 +1,5 @@
 package com.paging.demo;
 import com.paging.demo.dto.EqpInfDto;
-import com.paging.demo.dto.FilterDto;
 import com.paging.demo.dto.OrgCdInfDto;
 
 import org.springframework.web.bind.annotation.*;
@@ -86,7 +85,7 @@ public class EqpInfController {
 
     // 데이터 삭제하기
     @PostMapping("/api/delEqpInf")
-    public int delEqpInf(EqpInfDto eqpInfDto) {
+    public int delEqpInf(@RequestBody EqpInfDto eqpInfDto) {
         int result = eqpInfService.delEqpInf(eqpInfDto);
         return result;
     }

@@ -145,7 +145,10 @@
         delete 
         from eqp_inf
         <where> 
-            eqp_id=#{eqpId}
+            eqp_id in 
+            <foreach item="item" collection="eqpIdList" open="(" separator="," close=")">
+                #{item}
+            </foreach>
         </where>
     </delete>
 <!-- 셀렉트 박스 관할본부 조회 -->
